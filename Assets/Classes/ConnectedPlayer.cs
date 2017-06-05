@@ -16,7 +16,7 @@ public class ConnectedPlayer
     public Player input;
     public int id { get { return input.id; } }
     public PlayerState state = PlayerState.WAITING;
-    public USBCharacter character = null;
+    public USBCharacter character;
 
 
     void HandleDropIn()

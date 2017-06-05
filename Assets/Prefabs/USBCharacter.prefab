@@ -140,6 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06c78349a2da4a44ea0346a9654ed36e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  body: {fileID: 1405734875653468}
   shadow: {fileID: 119234882019570808}
   rigid_body: {fileID: 54928263774891892}
   face_locked: 0

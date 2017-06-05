@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class USBCharacter : MonoBehaviour
 {
+    public GameObject body;
     public Projector shadow;
     public Rigidbody rigid_body;
     public bool face_locked;
@@ -15,21 +16,40 @@ public class USBCharacter : MonoBehaviour
     private Vector3 last_facing;
 
 
-	void Start()
+    void Start()
     {
-		
-	}
+
+    }
 	
 
-	void Update()
+    void Update()
     {
-		
-	}
+        if ((last_facing.x > 0 && IsFlipped()) ||
+            (last_facing.x < 0 && !IsFlipped()))
+        {
+            Flip();
+        }
+    }
 
 
     void FixedUpdate()
     {
         rigid_body.MovePosition(transform.position + move_dir);
+    }
+
+
+    bool IsFlipped()
+    {
+        return body.transform.localScale.x < 0;
+    }
+
+
+    void Flip()
+    {
+        Vector3 scale = body.transform.localScale;
+        scale.x = -scale.x;
+
+        body.transform.localScale = scale;
     }
 
 
@@ -65,7 +85,7 @@ public class USBCharacter : MonoBehaviour
 
         loadout = _loadout;
         health = _loadout.max_health;
-        transform.localScale = _loadout.scale;
+        body.transform.localScale = _loadout.scale;
         shadow.orthographicSize = _loadout.scale.x;
     }
 

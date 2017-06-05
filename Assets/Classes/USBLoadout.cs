@@ -10,7 +10,7 @@ public class USBLoadout
     public Vector3 scale;
 
     public Sprite hat;
-    public GameObject particle_effect;
+    public GameObject particle;
 
     public Ability attack;
     public Ability slot_drop;

@@ -5,7 +5,7 @@ using Rewired;
 
 public class PlayerManager : MonoBehaviour
 {
-    private Dictionary<int, Player> connected_players = new Dictionary<int, Player>();
+    private Dictionary<int, ConnectedPlayer> connected_players = new Dictionary<int, ConnectedPlayer>();
 
 
     void Awake()
@@ -19,9 +19,29 @@ public class PlayerManager : MonoBehaviour
     }
 
 
+    void AssignAllConnectedJoysticks()
+    {
+        foreach (Joystick joystick in ReInput.controllers.Joysticks)
+        {
+            AddPlayer(joystick.id);
+        }
+    }
+
+
+    void AddPlayer(int _controller_id)
+    {
+        ConnectedPlayer connected_player = new ConnectedPlayer();
+
+        connected_player.input = ReInput.players.GetPlayer(_controller_id);
+        connected_player.input.controllers.AddController(ReInput.controllers.Joysticks[_controller_id], true);
+
+        connected_players.Add(_controller_id, connected_player);
+    }
+
+
     void Update()
     {
-        DropInDropOut();
+        HandlePlayers();
     }
 
 
@@ -39,46 +59,26 @@ public class PlayerManager : MonoBehaviour
         int controller_id = _args.controllerId;
 
         // Remove controller from the player it is attached to.
-        Player connected_player = connected_players[controller_id];
-        connected_player.controllers.ClearAllControllers();
+        ConnectedPlayer connected_player = connected_players[controller_id];
+        connected_player.input.controllers.ClearAllControllers();
 
         // Remove the player entry from the list.
         connected_players.Remove(controller_id);
     }
 
 
-    void AssignAllConnectedJoysticks()
+    // Tick players and handle drop-in / drop-out.
+    void HandlePlayers()
     {
-        foreach (Joystick joystick in ReInput.controllers.Joysticks)
+        foreach (ConnectedPlayer player in connected_players.Values)
         {
-            AddPlayer(joystick.id);
-        }
-    }
+            player.Update();
 
-
-    void AddPlayer(int _controller_id)
-    {
-        Player connected_player = ReInput.players.GetPlayer(_controller_id);
-
-        connected_player.controllers.AddController(ReInput.controllers.Joysticks[_controller_id], true);
-        connected_player.isPlaying = false;
-
-        connected_players.Add(_controller_id, connected_player);
-    }
-
-
-    // Handle drop-in drop-out from user input.
-    void DropInDropOut()
-    {
-        foreach (Player player in connected_players.Values)
-        {
-            // Handle join command.
-            if (player.GetButtonDown("Join") && !player.isPlaying)
+            if (player.state == PlayerState.JOINING)
             {
                 PlayerJoin(player.id);
             }
-            // Handle leave command.
-            else if (player.GetButtonDown("Leave") && player.isPlaying)
+            else if (player.state == PlayerState.LEAVING)
             {
                 PlayerLeave(player.id);
             }
@@ -86,17 +86,28 @@ public class PlayerManager : MonoBehaviour
     }
 
 
-    // Called when a player presses JOIN.
-    void PlayerJoin(int player_id)
+    // Create a character for the player to control and set to playing state.
+    void PlayerJoin(int _player_id)
     {
-        connected_players[player_id].isPlaying = true;
+        ConnectedPlayer connected_player = connected_players[_player_id];
+
+        connected_player.state = PlayerState.PLAYING;
     }
 
 
-    // Called when a player presses LEAVE.
-    void PlayerLeave(int player_id)
+    // Remove the player's attached character and set to waiting state.
+    void PlayerLeave(int _player_id)
     {
-        connected_players[player_id].isPlaying = false;
+        ConnectedPlayer connected_player = connected_players[_player_id];
+
+        Destroy(connected_player.character.gameObject);
+        connected_player.state = PlayerState.WAITING;
+    }
+
+
+    public Dictionary<int, ConnectedPlayer>.ValueCollection GetPlayers()
+    {
+        return connected_players.Values;
     }
 
 }

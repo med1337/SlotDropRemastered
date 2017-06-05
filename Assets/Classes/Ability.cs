@@ -9,7 +9,7 @@ public class Ability
     
     bool Ready()
     {
-        return Time.time - last_use >= cooldown_time;
+        return (Time.time - last_use) >= cooldown_time;
     }
 
 

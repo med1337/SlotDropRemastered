@@ -16,7 +16,7 @@ public class RespawnManager : MonoBehaviour
 
     void Update()
     {
-		if (player_manager)
+        if (player_manager)
         {
             RespawnPlayers();
         }
@@ -27,12 +27,27 @@ public class RespawnManager : MonoBehaviour
     {
         foreach (var player in player_manager.GetPlayers())
         {
-            if (player.state == PlayerState.PLAYING && player.character == null)
+            if (PlayerAwaitingRespawn(player))
             {
-                player.character = Instantiate(usb_character).GetComponent<USBCharacter>();
-                player.character.transform.position = new Vector3(0, 5, 0);
+                RespawnPlayer(player);
             }
         }
+    }
+
+
+    bool PlayerAwaitingRespawn(ConnectedPlayer _player)
+    {
+        return _player.state == PlayerState.PLAYING && _player.character == null;
+    }
+
+
+    void RespawnPlayer(ConnectedPlayer _player)
+    {
+        _player.character = Instantiate(usb_character).GetComponent<USBCharacter>();
+        _player.character.transform.position = new Vector3(0, 5, 0); // Temp.
+
+        _player.character.SetColour(_player.color);
+        _player.character.name = "Player" + _player.id;
     }
 
 }

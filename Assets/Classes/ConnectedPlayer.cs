@@ -17,6 +17,7 @@ public class ConnectedPlayer
     public int id { get { return input.id; } }
     public PlayerState state = PlayerState.WAITING;
     public USBCharacter character;
+    public Color color;
 
 
     void HandleDropIn()
@@ -40,7 +41,7 @@ public class ConnectedPlayer
         float horizontal = input.GetAxis("Horizontal");
         float vertical = input.GetAxis("Vertical");
 
-        character.face_locked = input.GetButton("FaceLock");
+        character.SetFaceLocked(input.GetButton("FaceLock"));
         character.Move(new Vector3(horizontal, 0, vertical));
 
         if (input.GetButtonDown("Attack"))

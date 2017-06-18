@@ -1,0 +1,73 @@
+{
+	"Starter":
+	[
+		{
+			"name": "Base",
+            "max_health": 100,
+            "move_speed": 15,
+            "snap_distance": 5,
+            "scale": [ 1, 1, 1 ],
+			"basic": "Pellet",
+			"special": "Shockwave"
+		}
+	],
+	
+	"General":
+	[
+		{
+			"name": "Fisher",
+            "max_health": 100,
+            "move_speed": 15,
+            "snap_distance": 5,
+            "scale": [ 1, 1, 1 ],
+			"basic": "Splash",
+			"special": "Tsunami"
+		},
+
+        {
+			"name": "Pirate",
+            "max_health": 100,
+            "move_speed": 15,
+            "snap_distance": 5,
+            "scale": [ 1, 1, 1 ],
+			"basic": "SwordDance",
+			"special": "BarrelBomb"
+		},
+
+		{
+			"name": "Soldier",
+            "max_health": 100,
+            "move_speed": 15,
+            "snap_distance": 5,
+            "scale": [ 1, 1, 1 ],
+			"basic": "Charge",
+			"special": "ArrowHail"
+		}
+	],
+
+    "Misc":
+	[
+		{
+			"name": "Broken",
+            "max_health": 100,
+            "move_speed": 15,
+            "snap_distance": 5,
+            "scale": [ 1, 1, 1 ],
+			"basic": "ShortCircuit",
+			"special": "Null"
+		}
+	],
+
+	"Titan":
+	[
+		{
+			"name": "Gold",
+            "max_health": 500,
+            "move_speed": 10,
+            "snap_distance": 7,
+            "scale": [ 3, 3, 3 ],
+			"basic": "MeteorStrike",
+			"special": "TitanWave"
+		}
+	]
+}

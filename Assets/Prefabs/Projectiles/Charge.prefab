@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 114723200383608298}
   - component: {fileID: 135225891422922496}
   m_Layer: 0
-  m_Name: ProjectileCharge
+  m_Name: Charge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

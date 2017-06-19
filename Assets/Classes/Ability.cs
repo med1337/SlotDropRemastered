@@ -3,24 +3,31 @@ using UnityEngine;
 
 public class Ability
 {
-    float cooldown_time;
-    float last_use;
-    
-    
-    bool Ready()
-    {
-        return (Time.time - last_use) >= cooldown_time;
-    }
+    public USBCharacter owner;
+    public GameObject projectile_prefab;
 
+    private float ready_time;
+    
 
     public void Activate()
     {
         if (!Ready())
             return;
 
-        last_use = Time.time;
+        Projectile projectile = GameObject.Instantiate(projectile_prefab, 
+            owner.transform.position, Quaternion.identity).GetComponent<Projectile>();
 
-        // Do ability stuff ..
+        projectile.Init(owner);
+
+        ready_time = Time.time + projectile.cooldown;
+
+        // TODO: play projectile activation sound effect.
+    }
+
+
+    bool Ready()
+    {
+        return Time.time >= ready_time;
     }
 
 }

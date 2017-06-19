@@ -5,7 +5,6 @@ using UnityEngine;
 public class RespawnManager : MonoBehaviour
 {
     public GameObject usb_character;
-    public PlayerManager player_manager;
 
 
     void Start()
@@ -16,16 +15,13 @@ public class RespawnManager : MonoBehaviour
 
     void Update()
     {
-        if (player_manager)
-        {
-            RespawnPlayers();
-        }
+        RespawnPlayers();
     }
 
 
     void RespawnPlayers()
     {
-        foreach (var player in player_manager.GetPlayers())
+        foreach (ConnectedPlayer player in PlayerManager.players)
         {
             if (PlayerAwaitingRespawn(player))
             {
@@ -43,9 +39,11 @@ public class RespawnManager : MonoBehaviour
 
     void RespawnPlayer(ConnectedPlayer _player)
     {
+        // Create and position the USBCharacter.
         _player.character = Instantiate(usb_character).GetComponent<USBCharacter>();
         _player.character.transform.position = new Vector3(0, 5, 0); // Temp.
 
+        // Configure the USBCharacter.
         _player.character.SetColour(_player.color);
         _player.character.name = "Player" + _player.id;
     }

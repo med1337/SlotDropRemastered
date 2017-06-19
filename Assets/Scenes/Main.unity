@@ -323,12 +323,16 @@ Prefab:
     - target: {fileID: 224593603939504104, guid: f8ff4307f64ce9340b63eb5f7a698bc5,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224593603939504104, guid: f8ff4307f64ce9340b63eb5f7a698bc5,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1868444851001498, guid: f8ff4307f64ce9340b63eb5f7a698bc5, type: 2}
+      propertyPath: m_Name
+      value: BodyGroup
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f8ff4307f64ce9340b63eb5f7a698bc5, type: 2}
@@ -2312,4 +2316,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   usb_character: {fileID: 1407569977858368, guid: f8ff4307f64ce9340b63eb5f7a698bc5,
     type: 2}
-  player_manager: {fileID: 2110544490}

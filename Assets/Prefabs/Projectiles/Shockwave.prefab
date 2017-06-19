@@ -9,31 +9,30 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1705827943364696}
+  m_RootGameObject: {fileID: 1342834061880088}
   m_IsPrefabParent: 1
---- !u!1 &1705827943364696
+--- !u!1 &1342834061880088
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4102111251402668}
-  - component: {fileID: 114030819441255518}
-  - component: {fileID: 136789728366244870}
+  - component: {fileID: 4744701324123988}
+  - component: {fileID: 114845572664195776}
   m_Layer: 0
-  m_Name: ProjectileArrowHail
+  m_Name: Shockwave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4102111251402668
+--- !u!4 &4744701324123988
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1705827943364696}
+  m_GameObject: {fileID: 1342834061880088}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -41,31 +40,16 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114030819441255518
+--- !u!114 &114845572664195776
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1705827943364696}
+  m_GameObject: {fileID: 1342834061880088}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da61df10c752e9f44aa334850153d3ce, type: 3}
+  m_Script: {fileID: 11500000, guid: 75ea3060cbfa71143b4443e87cfdab77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particle_effect: {fileID: 1876971625736494, guid: 3b1bed8590368e441909014d89ff6c66,
+  particle_effect: {fileID: 1953609776071866, guid: 2c45ac251aedd5c45afb52ebff053813,
     type: 2}
-  damage_delay: 0.5
-  stun_chance: 50
---- !u!136 &136789728366244870
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1705827943364696}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 5
-  m_Height: 50
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}

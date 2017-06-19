@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 114952232623123348}
   - component: {fileID: 135956106714533014}
   m_Layer: 0
-  m_Name: ProjectilePellet
+  m_Name: Pellet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

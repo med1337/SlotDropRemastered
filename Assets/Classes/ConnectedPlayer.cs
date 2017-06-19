@@ -20,6 +20,17 @@ public class ConnectedPlayer
     public Color color;
 
 
+    public void Update()
+    {
+        HandleDropIn();
+
+        if (character)
+        {
+            ControlCharacter();
+        }
+    }
+
+
     void HandleDropIn()
     {
 		if (input.GetButtonDown("DropIn"))
@@ -54,17 +65,5 @@ public class ConnectedPlayer
             character.SlotDrop();
         }
     }
-
-
-    public void Update()
-    {
-        HandleDropIn();
-
-        if (character)
-        {
-            ControlCharacter();
-        }
-    }
-
 
 }

@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4246707161388174}
   - component: {fileID: 114875895221006950}
   m_Layer: 0
-  m_Name: ProjectileTitanWave
+  m_Name: TitanWave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

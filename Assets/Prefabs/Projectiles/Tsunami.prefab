@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114088685648505798}
   - component: {fileID: 136849559431490120}
   m_Layer: 0
-  m_Name: ProjectileTsunami
+  m_Name: Tsunami
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

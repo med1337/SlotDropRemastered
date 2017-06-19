@@ -12,11 +12,15 @@ public class USBCharacter : MonoBehaviour
     public Renderer body_renderer;
     public GameObject stun_effect;
 
+    public Vector3 last_facing { get; private set; }
+
     private USBLoadout loadout = new USBLoadout();
     private int health;
 
+    private Ability basic_ability = new Ability();
+    private Ability special_ability = new Ability();
+
     private Vector3 move_dir;
-    private Vector3 last_facing;
     private bool slot_dropping;
     private bool face_locked;
 
@@ -39,7 +43,7 @@ public class USBCharacter : MonoBehaviour
 
     public void Attack()
     {
-
+        // TODO: perform basic ability ..
     }
 
 
@@ -79,8 +83,25 @@ public class USBCharacter : MonoBehaviour
     }
 
 
+    public void Damage(int _damage)
+    {
+
+    }
+
+
+    public void Stun(float _duration)
+    {
+
+    }
+
+
     void Start()
     {
+        // Set ownership of its abilities.
+        basic_ability.owner = this;
+        special_ability.owner = this;
+
+        // Set initial rotation of the face indicator.
         last_facing = transform.right;
         UpdateFaceIndicator();
     }
@@ -88,12 +109,14 @@ public class USBCharacter : MonoBehaviour
 
     void Update()
     {
+        // Determine when to flip the character.
         if ((last_facing.x > 0 && IsFlipped()) ||
             (last_facing.x < 0 && !IsFlipped()))
         {
             Flip();
         }
 
+        // Play the walk cycle.
         animator.SetBool("walking", move_dir != Vector3.zero);
     }
 
@@ -133,7 +156,7 @@ public class USBCharacter : MonoBehaviour
 
     void FireSpecial()
     {
-        // TODO: perform special ability.
+        // TODO: perform special ability ..
     }
 
 

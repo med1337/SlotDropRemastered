@@ -233,6 +233,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eade3ee3e2f56cb4e8aacc62c0c9ebfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 15
+  cooldown: 3
+  lifetime: 3
+  activation_sound: {fileID: 0}
   orbit_distance: 3
   rotate_speed: 500
 --- !u!114 &114357560651446640

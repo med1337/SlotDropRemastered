@@ -20,8 +20,7 @@ public class Ability
         projectile.Init(owner);
 
         ready_time = Time.time + projectile.cooldown;
-
-        // TODO: play projectile activation sound effect.
+        GameObject.FindObjectOfType<AudioManager>().PlayOneShot(projectile.activation_sound);
     }
 
 

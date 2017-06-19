@@ -51,5 +51,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 494170601ff5c2b4ebe02432caeaf785, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barrel_prefab: {fileID: 1166674624559396, guid: 1a7e75eefb64f1643912ab0b9b355baf,
-    type: 2}
+  damage: 0
+  cooldown: 0
+  lifetime: 0
+  activation_sound: {fileID: 0}
+  barrel_prefab: {fileID: 1662552585913546}
+  max_bombs: 3
+  min_range: 2000
+  max_range: 3000

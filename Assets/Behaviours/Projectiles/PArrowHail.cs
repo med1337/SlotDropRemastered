@@ -2,16 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArrowHail : Projectile
+public class PArrowHail : Projectile
 {
     public GameObject particle_effect;
-    public int damage = 10;
-    public float damage_delay = 0.5f;
-    public float stun_chance = 0;
-    public float stun_duration = 0.5f;
-    public float effect_radius = 3.0f;
+    public float damage_delay;
+    public float stun_chance;
+    public float stun_duration;
+    public float effect_radius;
 
-    private List<Collider> colliding_objects = new List<Collider>();
     private float timer;
     private bool can_damage;
 
@@ -25,14 +23,14 @@ public class ArrowHail : Projectile
 
     void Update()
     {
+        if (!can_damage)
+            return;
+
         timer += Time.deltaTime;
 
         if (timer >= damage_delay)
         {
             timer = 0;
-
-            if (!can_damage)
-                return;
 
             DamageAllInRadius();
         }

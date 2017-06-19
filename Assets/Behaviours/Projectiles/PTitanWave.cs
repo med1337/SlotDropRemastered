@@ -2,16 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectileShockwave : Projectile
+public class PTitanWave : Projectile
 {
     public GameObject particle_effect;
+    public float effect_radius;
+    public float knockback_force;
 
-    protected override void Start()
+
+    void Start()
     {
         CreateEffect(particle_effect, origin, Vector3.zero);
 
-        CreateExplosionForce(owning_player.gameObject, origin, 
-            properties.effect_radius, properties.knockback_force);
+        CreateExplosion(owner.gameObject, origin, 
+            effect_radius, knockback_force);
 
         Destroy(gameObject);
     }

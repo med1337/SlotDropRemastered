@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BarrelBomb : Projectile
+public class PBarrelBomb : Projectile
 {
     public GameObject barrel_prefab;
     public int max_bombs = 3;
@@ -10,7 +10,6 @@ public class BarrelBomb : Projectile
     public float min_range = 2000;
     public float max_range = 3000;
 
-    private float min_variation = 10;
     private List<Vector3> prev_drop_vectors = new List<Vector3>();
 
 

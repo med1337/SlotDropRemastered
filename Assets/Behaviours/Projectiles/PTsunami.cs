@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectileTsunami : Projectile
+public class PTsunami : Projectile
 {
     public GameObject particle_effect;
+    public float effect_radius;
+    public float knockback_force;
+    public float stun_duration;
+
     public float move_delay;
     public float move_spacing;
     public int max_moves;
@@ -12,21 +16,19 @@ public class ProjectileTsunami : Projectile
     private float timer;
     private float move_times;
 
-	protected override void Start()
-    {
-        origin = owning_player != null ? 
-            owning_player.transform.FindChild("BodyParts").position + (facing * move_spacing) : transform.position;
 
-        GetComponent<CapsuleCollider>().radius = properties.effect_radius;
+	void Start()
+    {
+        GetComponent<CapsuleCollider>().radius = effect_radius;
+
+        origin += facing * move_spacing;
+        transform.position = origin;
 
         CreateBlast();
-        
-        if (owning_player != null)
-            transform.position = origin;
     }
 
 
-    protected override void Update()
+    void Update()
     {
         if (move_times < max_moves)
         {
@@ -55,21 +57,21 @@ public class ProjectileTsunami : Projectile
 
         CreateEffect(particle_effect, transform.position, Vector3.zero);
 
-        var elems = CreateExplosionForce(owning_player != null ? owning_player.gameObject : null, 
-            transform.position, properties.effect_radius, properties.knockback_force);
+        var elems = CreateExplosion(owner ? owner.gameObject : null, 
+            transform.position, effect_radius, knockback_force);
 
         foreach (var elem in elems)
         {
-            PlayerController player = elem.collider.gameObject.GetComponent<PlayerController>();
+            USBCharacter character = elem.collider.gameObject.GetComponent<USBCharacter>();
 
-            if (player == null)
+            if (!character)
                 continue;
 
-            if (player != owning_player)
-                player.Stun(properties.stun_duration);
+            if (character != owner)
+                character.Stun(stun_duration);
         }
 
-        CameraShake.instance.ShakeCamera(properties.camera_shake_strength, properties.camera_shake_duration);
+        CameraShake.Shake(knockback_force / 10, knockback_force / 10);
     }
 
 }

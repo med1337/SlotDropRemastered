@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectileSwordDance : Projectile
+public class PSwordDance : Projectile
 {
     public float orbit_distance = 5.0f;
     public float rotate_speed = 10.0f;
@@ -10,26 +10,26 @@ public class ProjectileSwordDance : Projectile
     private GameObject orbit_axis;
 
 
-    protected override void Start()
+    void Start()
     {
-        if (owning_player != null)
+        if (owner)
         {
-            orbit_axis = owning_player.transform.FindChild("BodyParts").gameObject;
+            orbit_axis = owner.body_group;
             transform.position = orbit_axis.transform.position;
 
-            owning_player.move_speed_modifier = 0.5f;
+            owner.SetMoveSpeedModifier(0.5f);
         }
 
         GetComponent<SphereCollider>().center = new Vector3(orbit_distance, 0, 0);
         transform.FindChild("SwordDanceParticle").transform.localPosition = new Vector3(orbit_distance, 0, 0);
 
-        Destroy(gameObject, properties.lifetime);
+        Destroy(this.gameObject, lifetime);
     }
 
 
-    protected override void Update()
+    void Update()
     {
-        if (owning_player == null || orbit_axis == null)
+        if (!owner)
         {
             Destroy(gameObject);
             return;
@@ -40,30 +40,30 @@ public class ProjectileSwordDance : Projectile
     }
 
 
-    protected override void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         // Only collide with players.
         if (other.tag != "Player")
             return;
 
-        PlayerController colliding_player = other.GetComponent<PlayerController>();
+        USBCharacter character = other.GetComponent<USBCharacter>();
 
         // Don't collide with self.
-        if (owning_player != null)
+        if (owner)
         {
-            if (colliding_player == owning_player)
+            if (character == owner)
                 return;
         }
 
         GameObject.FindObjectOfType<AudioManager>().PlayOneShot("sword_dance_hit");
-        colliding_player.Damage(properties.damage);
+        character.Damage(damage);
     }
 
 
     private void OnDestroy()
     {
         // Reset player speed.
-        if (owning_player != null)
-            owning_player.move_speed_modifier = 1;
+        if (owner)
+            owner.SetMoveSpeedModifier(1);
     }
 }

@@ -22,25 +22,25 @@ public class Barrel : MonoBehaviour
 
         GameObject.FindObjectOfType<AudioManager>().PlayOneShot("explosion");
 
-        CameraShake.instance.ShakeCamera(0.4f, 0.4f);
+        CameraShake.Shake(0.4f, 0.4f);
 
         Projectile.CreateEffect(shockwave_particle, transform.position, Vector3.zero);
         RaycastHit[] elems = Projectile.CreateExplosion(gameObject, transform.position, 5, 0);
 
         foreach (var elem in elems)
         {
-            USBCharacter player = elem.collider.GetComponent<PlayerController>();
+            USBCharacter character = elem.collider.GetComponent<USBCharacter>();
 
-            if (player == null)
+            if (character == null)
                 continue;
 
             if (owner != null)
             {
-                if (player == owner)
+                if (character == owner)
                     continue;
             }
 
-            player.Stun(2.0f);
+            character.Stun(2.0f);
         }
 
         Destroy(gameObject);
@@ -51,6 +51,5 @@ public class Barrel : MonoBehaviour
     {
         rigid_body.AddForce(force);
     }
-
 
 }

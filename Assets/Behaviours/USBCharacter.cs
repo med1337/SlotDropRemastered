@@ -16,6 +16,7 @@ public class USBCharacter : MonoBehaviour
 
     private USBLoadout loadout = new USBLoadout();
     private int health;
+    private float move_speed_modifier = 1;
 
     private Ability basic_ability = new Ability();
     private Ability special_ability = new Ability();
@@ -27,8 +28,6 @@ public class USBCharacter : MonoBehaviour
 
     public void Move(Vector3 _dir)
     {
-        _dir.Normalize();
-
         if (_dir != Vector3.zero)
         {
             if (!face_locked)
@@ -85,13 +84,22 @@ public class USBCharacter : MonoBehaviour
 
     public void Damage(int _damage)
     {
+        health -= _damage;
 
+        if (health <= 0)
+            Destroy(this.gameObject);
     }
 
 
     public void Stun(float _duration)
     {
 
+    }
+
+
+    public void SetMoveSpeedModifier(float _value)
+    {
+        move_speed_modifier = _value;
     }
 
 
@@ -126,7 +134,7 @@ public class USBCharacter : MonoBehaviour
         if (!slot_dropping)
         {
             Vector3 move = move_dir * loadout.move_speed * Time.fixedDeltaTime;
-            rigid_body.MovePosition(transform.position + move);
+            rigid_body.MovePosition(transform.position + move * move_speed_modifier);
         }
     }
 

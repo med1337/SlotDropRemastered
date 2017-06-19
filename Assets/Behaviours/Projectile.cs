@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    public int damage;
     public float cooldown;
     public float lifetime;
     public AudioClip activation_sound;

@@ -52,10 +52,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da61df10c752e9f44aa334850153d3ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 15
+  cooldown: 3
+  lifetime: 6
+  activation_sound: {fileID: 0}
   particle_effect: {fileID: 1876971625736494, guid: 3b1bed8590368e441909014d89ff6c66,
     type: 2}
   damage_delay: 0.5
   stun_chance: 50
+  stun_duration: 0.5
+  effect_radius: 3
 --- !u!136 &136789728366244870
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -32,7 +32,7 @@ public class PPellet : Projectile
         }
         
         // Only collide with players.
-        if (other.tag != "Player")
+        if (other.tag != "USBCharacter")
             return;
 
         USBCharacter character = other.GetComponent<USBCharacter>();
@@ -45,7 +45,7 @@ public class PPellet : Projectile
         }
 
         character.Damage(damage);
-        Destroy(gameObject);
+        Destroy(this.gameObject);
     }
 
 }

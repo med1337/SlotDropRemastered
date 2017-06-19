@@ -56,7 +56,9 @@ public class PArrowHail : Projectile
 
             if (character == null ||
                 character == owner)
+            {
                 continue;
+            }
 
             if (Random.Range(1, 100) < stun_chance)
                 character.Stun(stun_duration);

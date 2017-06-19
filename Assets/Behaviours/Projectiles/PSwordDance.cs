@@ -6,6 +6,7 @@ public class PSwordDance : Projectile
 {
     public float orbit_distance = 5.0f;
     public float rotate_speed = 10.0f;
+    public float speed_modifier = 0.5f;
 
     private GameObject orbit_axis;
 
@@ -17,7 +18,7 @@ public class PSwordDance : Projectile
             orbit_axis = owner.body_group;
             transform.position = orbit_axis.transform.position;
 
-            owner.SetMoveSpeedModifier(0.5f);
+            owner.SetMoveSpeedModifier(speed_modifier);
         }
 
         GetComponent<SphereCollider>().center = new Vector3(orbit_distance, 0, 0);
@@ -43,7 +44,7 @@ public class PSwordDance : Projectile
     void OnTriggerEnter(Collider other)
     {
         // Only collide with players.
-        if (other.tag != "Player")
+        if (other.tag != "USBCharacter")
             return;
 
         USBCharacter character = other.GetComponent<USBCharacter>();

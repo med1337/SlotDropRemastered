@@ -51,7 +51,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4097554936249216}
-  - component: {fileID: 114482526087985506}
+  - component: {fileID: 114025652436031556}
   m_Layer: 0
   m_Name: SwordDanceParticle
   m_TagString: Untagged
@@ -190,7 +190,7 @@ TrailRenderer:
     textureMode: 0
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
---- !u!114 &114482526087985506
+--- !u!114 &114025652436031556
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -198,9 +198,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1844449695300792}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 144dc756932c7364991489af2a37bedc, type: 3}
+  m_Script: {fileID: 11500000, guid: 5d89ceb7361df524eac67b874b218b9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotation_speed: -50
+  rotation_axis: {x: 0, y: 1, z: 0}
 --- !u!212 &212702516936569362
 SpriteRenderer:
   m_ObjectHideFlags: 1

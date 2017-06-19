@@ -234,11 +234,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 15
-  cooldown: 3
-  lifetime: 3
+  cooldown: 2
+  lifetime: 2
   activation_sound: {fileID: 0}
   orbit_distance: 3
   rotate_speed: 500
+  speed_modifier: 0.5
 --- !u!114 &114357560651446640
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -247,9 +248,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1095047702662630}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 144dc756932c7364991489af2a37bedc, type: 3}
+  m_Script: {fileID: 11500000, guid: 5d89ceb7361df524eac67b874b218b9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotation_speed: 1
+  rotation_axis: {x: 0, y: 1, z: 0}
 --- !u!114 &114819573432912820
 MonoBehaviour:
   m_ObjectHideFlags: 1

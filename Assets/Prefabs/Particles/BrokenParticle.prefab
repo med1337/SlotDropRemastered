@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 198240591400626930}
   - component: {fileID: 199455691648980168}
   m_Layer: 0
-  m_Name: BrokenPartical
+  m_Name: BrokenParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

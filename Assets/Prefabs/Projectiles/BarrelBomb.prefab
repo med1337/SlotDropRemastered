@@ -53,9 +53,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   cooldown: 0
-  lifetime: 0
+  lifetime: 1
   activation_sound: {fileID: 0}
-  barrel_prefab: {fileID: 1662552585913546}
+  barrel_prefab: {fileID: 1166674624559396, guid: 1a7e75eefb64f1643912ab0b9b355baf,
+    type: 2}
   max_bombs: 3
   min_range: 2000
   max_range: 3000

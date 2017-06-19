@@ -11,7 +11,7 @@ public class Ability
 
     public void Activate()
     {
-        if (!Ready())
+        if (!IsReady())
             return;
 
         Projectile projectile = GameObject.Instantiate(projectile_prefab, 
@@ -24,7 +24,7 @@ public class Ability
     }
 
 
-    bool Ready()
+    public bool IsReady()
     {
         return Time.time >= ready_time;
     }

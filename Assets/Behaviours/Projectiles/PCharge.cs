@@ -5,11 +5,11 @@ using UnityEngine;
 public class PCharge : Projectile
 {
     public float charge_speed;
+    public float dir_threshold = 0.3f;
 
     private Transform torso_mount;
     private Rigidbody rigid_body;
     private Vector3 absolute_direction;
-    private float threshold = 0.5f;
 
 
 	void Start()
@@ -44,7 +44,7 @@ public class PCharge : Projectile
     void OnTriggerEnter(Collider other)
     {
         // Only collide with players.
-        if (other.tag != "Player")
+        if (other.tag != "USBCharacter")
             return;
 
         USBCharacter character = other.GetComponent<USBCharacter>();
@@ -62,19 +62,19 @@ public class PCharge : Projectile
 
     void CalculateRawDirection()
     {
-        if (owner.last_facing.x > threshold)
+        if (owner.last_facing.x > dir_threshold)
         {
             absolute_direction = Vector3.right;
         }
-        else if (owner.last_facing.x < -threshold)
+        else if (owner.last_facing.x < -dir_threshold)
         {
             absolute_direction = Vector3.left;
         }
-        else if (owner.last_facing.z > threshold)
+        else if (owner.last_facing.z > dir_threshold)
         {
             absolute_direction = Vector3.forward;
         }
-        else if (owner.last_facing.z < -threshold)
+        else if (owner.last_facing.z < -dir_threshold)
         {
             absolute_direction = Vector3.back;
         }

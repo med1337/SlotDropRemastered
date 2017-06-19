@@ -46,6 +46,8 @@ public class RespawnManager : MonoBehaviour
         // Configure the USBCharacter.
         _player.character.SetColour(_player.color);
         _player.character.name = "Player" + _player.id;
+
+        GameObject.FindObjectOfType<LoadoutFactory>().AssignRandomLoadout(_player.character);
     }
 
 }

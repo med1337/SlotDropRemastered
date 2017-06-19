@@ -26,7 +26,7 @@ public class PSplash : Projectile
     void OnTriggerEnter(Collider other)
     {
         // Only collide with players.
-        if (other.tag != "Player")
+        if (other.tag != "USBCharacter")
             return;
 
         USBCharacter character = other.GetComponent<USBCharacter>();

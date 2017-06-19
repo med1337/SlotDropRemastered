@@ -21,9 +21,6 @@ public class PTsunami : Projectile
     {
         GetComponent<CapsuleCollider>().radius = effect_radius;
 
-        origin += facing * move_spacing;
-        transform.position = origin;
-
         CreateBlast();
     }
 

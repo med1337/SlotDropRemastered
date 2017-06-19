@@ -10,11 +10,14 @@ public class USBCharacter : MonoBehaviour
     public Animator animator;
     public GameObject face_indicator;
     public Renderer body_renderer;
+    public SpriteRenderer hat_renderer;
     public GameObject stun_effect;
+    public PlayerHUD hud;
+    public FadableGraphic damage_flash;
 
     public Vector3 last_facing { get; private set; }
 
-    private USBLoadout loadout = new USBLoadout();
+    public USBLoadout loadout = new USBLoadout();
     private int health;
     private float move_speed_modifier = 1;
 
@@ -31,7 +34,7 @@ public class USBCharacter : MonoBehaviour
         if (_dir != Vector3.zero)
         {
             if (!face_locked)
-                last_facing = _dir;
+                last_facing = _dir.normalized;
         }
 
         move_dir = _dir;
@@ -42,16 +45,14 @@ public class USBCharacter : MonoBehaviour
 
     public void Attack()
     {
-        // TODO: perform basic ability ..
+        basic_ability.Activate();
     }
 
 
     public void SlotDrop()
     {
-        if (slot_dropping)
+        if (slot_dropping || !special_ability.IsReady())
             return;
-
-        // TODO: check slotdrop ability is off cooldown ..
 
         slot_dropping = true;
         animator.SetTrigger("slot_drop");
@@ -77,14 +78,23 @@ public class USBCharacter : MonoBehaviour
 
         loadout = _loadout;
         health = _loadout.max_health;
-        body_group.transform.localScale = _loadout.scale;
-        shadow.orthographicSize = _loadout.scale.x;
+        hud.UpdateHealthBar(health);
+
+        hat_renderer.sprite = _loadout.hat;
+        transform.localScale = _loadout.scale;
+        shadow.orthographicSize = 1.5f * (_loadout.scale.x / 2);
+
+        basic_ability.projectile_prefab = _loadout.basic_projectile;
+        special_ability.projectile_prefab = _loadout.special_projectile;
     }
 
 
     public void Damage(int _damage)
     {
         health -= _damage;
+
+        hud.UpdateHealthBar(health);
+        damage_flash.FadeOut(0.2f);
 
         if (health <= 0)
             Destroy(this.gameObject);
@@ -93,7 +103,7 @@ public class USBCharacter : MonoBehaviour
 
     public void Stun(float _duration)
     {
-
+        Debug.Log("USBCharacter Stun");
     }
 
 
@@ -112,6 +122,9 @@ public class USBCharacter : MonoBehaviour
         // Set initial rotation of the face indicator.
         last_facing = transform.right;
         UpdateFaceIndicator();
+        
+        // Set initial debug loadout.
+        AssignLoadout(loadout);
     }
 	
 
@@ -164,7 +177,7 @@ public class USBCharacter : MonoBehaviour
 
     void FireSpecial()
     {
-        // TODO: perform special ability ..
+        special_ability.Activate();
     }
 
 

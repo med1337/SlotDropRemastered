@@ -34,11 +34,8 @@ public class Barrel : MonoBehaviour
             if (character == null)
                 continue;
 
-            if (owner != null)
-            {
-                if (character == owner)
-                    continue;
-            }
+            if (character == owner)
+                continue;
 
             character.Stun(2.0f);
         }

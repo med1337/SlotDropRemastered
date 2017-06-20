@@ -43,17 +43,13 @@ public class Projectile : MonoBehaviour
         float _radius, float _force, bool _affect_creator = false)
     {
         RaycastHit[] sphere = Physics.SphereCastAll(_position, _radius, Vector3.up, 0);
-        Debug.Log(sphere.Length);
 
         foreach (var elem in sphere)
         {
             Rigidbody collided_body = elem.collider.gameObject.GetComponent<Rigidbody>();
 
             if (collided_body == null)
-            {
-                Debug.Log("Continuing");
                 continue;
-            }
 
             // Don't affect creator.
             if (_owner != null && !_affect_creator)
@@ -62,7 +58,6 @@ public class Projectile : MonoBehaviour
                     continue;
             }
 
-            Debug.Log("Adding explosion force");
             collided_body.AddExplosionForce(_force * 1000, _position, _radius);
         }
 

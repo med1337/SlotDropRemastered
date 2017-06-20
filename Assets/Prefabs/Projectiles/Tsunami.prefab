@@ -59,7 +59,7 @@ MonoBehaviour:
   particle_effect: {fileID: 1302995911479254, guid: e393a604b68214549809490f9dc6ec68,
     type: 2}
   effect_radius: 3
-  knockback_force: 10
+  knockback_force: 5
   stun_duration: 1
   blast_delay: 0.3
   blast_spacing: 6

@@ -57,12 +57,19 @@ public class LoadoutFactory : MonoBehaviour
     {
         USBLoadout loadout = new USBLoadout();
 
-        loadout.name = (string)elem["name"];
+        loadout.name = elem["name"].ToString();
         string hat_name = loadout.name + "Hat";
         loadout.hat = hat_sprites.Find(item => item.name.Substring(0) == hat_name);
 
-        loadout.basic_projectile = projectile_prefabs.Find(item => item.name.Substring(0) == (string)elem["basic"]);
-        loadout.special_projectile = projectile_prefabs.Find(item => item.name.Substring(0) == (string)elem["special"]);
+        loadout.max_health = int.Parse(elem["max_health"].ToString());
+        loadout.move_speed = float.Parse(elem["move_speed"].ToString());
+        loadout.snap_distance = float.Parse(elem["snap_distance"].ToString());
+        loadout.scale = new Vector3(float.Parse(elem["scale"][0].ToString()),
+                                    float.Parse(elem["scale"][1].ToString()),
+                                    float.Parse(elem["scale"][2].ToString()));
+
+        loadout.basic_projectile = projectile_prefabs.Find(item => item.name.Substring(0) == elem["basic"].ToString());
+        loadout.special_projectile = projectile_prefabs.Find(item => item.name.Substring(0) == elem["special"].ToString());
 
         dictionary.Add(loadout.name, loadout);
     }

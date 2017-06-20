@@ -16,6 +16,8 @@ public class PTitanWave : Projectile
         CreateExplosion(owner.gameObject, origin, 
             effect_radius, knockback_force);
 
+        CameraShake.Shake(0.4f, 0.4f);
+
         Destroy(gameObject);
     }
 

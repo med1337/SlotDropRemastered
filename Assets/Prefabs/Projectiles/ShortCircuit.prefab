@@ -59,7 +59,7 @@ MonoBehaviour:
   particle_effect: {fileID: 1569057443723522, guid: 1999503d48596ae439c6ec6f3fd74f6e,
     type: 2}
   stun_chance: 15
-  stun_duration: 0
+  stun_duration: 0.5
   dist_from_player: 1.5
 --- !u!135 &135071469336152042
 SphereCollider:

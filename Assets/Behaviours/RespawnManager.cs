@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RespawnManager : MonoBehaviour
 {
-    public GameObject usb_character;
+    public GameObject usb_character_prefab;
 
 
     void Start()
@@ -40,13 +40,14 @@ public class RespawnManager : MonoBehaviour
     void RespawnPlayer(ConnectedPlayer _player)
     {
         // Create and position the USBCharacter.
-        _player.character = Instantiate(usb_character).GetComponent<USBCharacter>();
+        _player.character = Instantiate(usb_character_prefab).GetComponent<USBCharacter>();
         _player.character.transform.position = new Vector3(0, 5, 0); // Temp.
 
         // Configure the USBCharacter.
         _player.character.SetColour(_player.color);
         _player.character.name = "Player" + _player.id;
 
+        //GameObject.FindObjectOfType<LoadoutFactory>().AssignLoadout(_player.character, "Base");
         GameObject.FindObjectOfType<LoadoutFactory>().AssignRandomLoadout(_player.character);
     }
 

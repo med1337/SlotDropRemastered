@@ -13,7 +13,7 @@ public class TempParticle : MonoBehaviour
 
         float duration = system.main.duration;
 
-	    Destroy(gameObject, system.main.duration + 5);
+	    Destroy(this.gameObject, duration);
 	}
 
 }

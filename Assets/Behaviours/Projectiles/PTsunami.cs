@@ -9,29 +9,29 @@ public class PTsunami : Projectile
     public float knockback_force;
     public float stun_duration;
 
-    public float move_delay;
-    public float move_spacing;
-    public int max_moves;
+    public float blast_delay;
+    public float blast_spacing;
+    public int max_blasts;
 
     private float timer;
-    private float move_times;
+    private float blast_times;
 
 
 	void Start()
     {
         GetComponent<CapsuleCollider>().radius = effect_radius;
 
-        CreateBlast();
+        timer = blast_delay;
     }
 
 
     void Update()
     {
-        if (move_times < max_moves)
+        if (blast_times < max_blasts)
         {
             timer += Time.deltaTime;
 
-            if (timer >= move_delay)
+            if (timer >= blast_delay)
             {
                 timer = 0;
 
@@ -49,8 +49,8 @@ public class PTsunami : Projectile
     {
         GameObject.FindObjectOfType<AudioManager>().PlayOneShot("water_explosion");
 
-        ++move_times;
-        transform.position += facing * move_spacing;
+        ++blast_times;
+        transform.position += facing * blast_spacing;
 
         CreateEffect(particle_effect, transform.position, Vector3.zero);
 

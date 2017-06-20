@@ -61,7 +61,7 @@ MonoBehaviour:
   damage_delay: 0.5
   stun_chance: 50
   stun_duration: 0.5
-  effect_radius: 3
+  effect_radius: 4
 --- !u!136 &136789728366244870
 CapsuleCollider:
   m_ObjectHideFlags: 1

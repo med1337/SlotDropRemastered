@@ -45,7 +45,7 @@ public class PArrowHail : Projectile
 
     void DamageAllInRadius()
     {
-        RaycastHit[] sphere = Physics.SphereCastAll(transform.position, effect_radius, Vector3.zero, 0);
+        RaycastHit[] sphere = Physics.SphereCastAll(transform.position, effect_radius, Vector3.up, 0);
 
         foreach (var elem in sphere)
         {

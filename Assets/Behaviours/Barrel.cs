@@ -8,10 +8,23 @@ public class Barrel : MonoBehaviour
     public USBCharacter owner;
     public Rigidbody rigid_body;
 
+    public float torque_x = 15.0f;
+    public float torque_z = 12.0f;
+
+    public float effect_radius;
+    public float knockback_force;
+    public float stun_duration;
+
+
+    public void AddForce(Vector3 force)
+    {
+        rigid_body.AddForce(force);
+    }
+
 
     void FixedUpdate()
     {
-        rigid_body.AddTorque(new Vector3(15, 0, 12));
+        rigid_body.AddTorque(new Vector3(torque_x, 0, torque_z));
     }
 
 
@@ -25,7 +38,7 @@ public class Barrel : MonoBehaviour
         CameraShake.Shake(0.4f, 0.4f);
 
         Projectile.CreateEffect(shockwave_particle, transform.position, Vector3.zero);
-        RaycastHit[] elems = Projectile.CreateExplosion(gameObject, transform.position, 5, 0);
+        RaycastHit[] elems = Projectile.CreateExplosion(gameObject, transform.position, effect_radius, knockback_force);
 
         foreach (var elem in elems)
         {
@@ -37,16 +50,10 @@ public class Barrel : MonoBehaviour
             if (character == owner)
                 continue;
 
-            character.Stun(2.0f);
+            character.Stun(stun_duration);
         }
 
-        Destroy(gameObject);
-    }
-
-
-    public void AddForce(Vector3 force)
-    {
-        rigid_body.AddForce(force);
+        Destroy(this.gameObject);
     }
 
 }

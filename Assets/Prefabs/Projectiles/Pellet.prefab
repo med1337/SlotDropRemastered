@@ -140,8 +140,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e916e4627f823c24ba7de08ec12f59e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 15
-  cooldown: 0.5
+  damage: 12
+  cooldown: 0.4
   lifetime: 5
   activation_sound: {fileID: 0}
   pellet_speed: 25

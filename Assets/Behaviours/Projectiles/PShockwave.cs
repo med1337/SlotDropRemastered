@@ -14,7 +14,7 @@ public class PShockwave : Projectile
         CreateEffect(particle_effect, origin, Vector3.zero);
         CreateExplosion(owner.gameObject, origin, effect_radius, knockback_force);
 
-        CameraShake.Shake(knockback_force / 10, knockback_force / 10);
+        CameraShake.Shake(0.4f, 0.4f);
 
         Destroy(gameObject);
     }

@@ -42,14 +42,18 @@ public class Projectile : MonoBehaviour
     public static RaycastHit[] CreateExplosion(GameObject _owner, Vector3 _position, 
         float _radius, float _force, bool _affect_creator = false)
     {
-        RaycastHit[] sphere = Physics.SphereCastAll(_position, _radius, Vector3.zero, 0);
+        RaycastHit[] sphere = Physics.SphereCastAll(_position, _radius, Vector3.up, 0);
+        Debug.Log(sphere.Length);
 
         foreach (var elem in sphere)
         {
             Rigidbody collided_body = elem.collider.gameObject.GetComponent<Rigidbody>();
 
             if (collided_body == null)
+            {
+                Debug.Log("Continuing");
                 continue;
+            }
 
             // Don't affect creator.
             if (_owner != null && !_affect_creator)
@@ -58,7 +62,8 @@ public class Projectile : MonoBehaviour
                     continue;
             }
 
-            collided_body.AddExplosionForce(_force, _position, _radius);
+            Debug.Log("Adding explosion force");
+            collided_body.AddExplosionForce(_force * 1000, _position, _radius);
         }
 
         return sphere;

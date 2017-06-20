@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System.CodeDom;
+using System.Collections;
 using System.Collections.Generic;
+using NUnit.Framework.Constraints;
 using UnityEngine;
 
 public class USBCharacter : MonoBehaviour
@@ -27,6 +29,7 @@ public class USBCharacter : MonoBehaviour
     private Vector3 move_dir;
     private bool slot_dropping;
     private bool face_locked;
+    private bool controls_disabled;
 
 
     public void Move(Vector3 _dir)
@@ -37,7 +40,8 @@ public class USBCharacter : MonoBehaviour
                 last_facing = _dir.normalized;
         }
 
-        move_dir = _dir;
+        if (!controls_disabled)
+            move_dir = _dir;
 
         UpdateFaceIndicator();
     }
@@ -45,17 +49,23 @@ public class USBCharacter : MonoBehaviour
 
     public void Attack()
     {
+        if (slot_dropping || controls_disabled)
+            return;
+
         basic_ability.Activate();
     }
 
 
     public void SlotDrop()
     {
-        if (slot_dropping || !special_ability.IsReady())
+        if (slot_dropping || controls_disabled)
             return;
 
-        slot_dropping = true;
-        animator.SetTrigger("slot_drop");
+        if (special_ability.IsReady())
+        {
+            slot_dropping = true;
+            animator.SetTrigger("slot_drop");
+        }
     }
 
 
@@ -78,6 +88,7 @@ public class USBCharacter : MonoBehaviour
 
         loadout = _loadout;
         health = _loadout.max_health;
+        hud.SetHealthBarMaxHealth(_loadout.max_health);
         hud.UpdateHealthBar(health);
 
         hat_renderer.sprite = _loadout.hat;
@@ -103,7 +114,9 @@ public class USBCharacter : MonoBehaviour
 
     public void Stun(float _duration)
     {
-        Debug.Log("USBCharacter Stun");
+        controls_disabled = true;
+        stun_effect.SetActive(true);
+        Invoke("RemoveStun", _duration);
     }
 
 
@@ -148,6 +161,7 @@ public class USBCharacter : MonoBehaviour
         {
             Vector3 move = move_dir * loadout.move_speed * Time.fixedDeltaTime;
             rigid_body.MovePosition(transform.position + move * move_speed_modifier);
+            move_dir = Vector3.zero;
         }
     }
 
@@ -184,6 +198,13 @@ public class USBCharacter : MonoBehaviour
     void SlotDropDone()
     {
         slot_dropping = false;
+    }
+
+
+    void RemoveStun()
+    {
+        controls_disabled = false;
+        stun_effect.SetActive(false);
     }
 
 }

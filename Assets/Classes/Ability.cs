@@ -14,6 +14,9 @@ public class Ability
         if (!IsReady())
             return;
 
+        if (!projectile_prefab)
+            return;
+
         Projectile projectile = GameObject.Instantiate(projectile_prefab, 
             owner.transform.position, Quaternion.identity).GetComponent<Projectile>();
 

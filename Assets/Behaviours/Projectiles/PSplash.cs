@@ -5,21 +5,23 @@ using UnityEngine;
 public class PSplash : Projectile
 {
     public GameObject particle_effect;
-    public float stun_chance = 0;
-    public float stun_duration = 0;
+    public float stun_chance;
+    public float stun_duration;
     public float dist_from_player = 2;
+    public float damage_radius = 3;
 
 
 	void Start()
     {
+        this.GetComponent<SphereCollider>().radius = damage_radius;
+
         if (owner)
             origin = owner.body_group.transform.position;
 
         Vector3 offset_pos = origin + (facing * (1 + dist_from_player));
-
-        CreateEffect(particle_effect, offset_pos, offset_pos + facing);
-
         transform.position = offset_pos + (facing * dist_from_player);
+
+        CreateEffect(particle_effect, origin + (facing * 3), origin + (facing * 10));
     }
 
 

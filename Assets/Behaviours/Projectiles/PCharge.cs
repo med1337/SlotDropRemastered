@@ -5,7 +5,7 @@ using UnityEngine;
 public class PCharge : Projectile
 {
     public float charge_speed;
-    public float dir_threshold = 0.3f;
+    public float dir_threshold = 0.1f;
 
     private Transform torso_mount;
     private Rigidbody rigid_body;

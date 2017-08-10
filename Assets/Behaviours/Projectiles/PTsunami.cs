@@ -68,7 +68,7 @@ public class PTsunami : Projectile
                 character.Stun(stun_duration);
         }
 
-        CameraShake.Shake(knockback_force / 10, knockback_force / 10);
+        CameraShake.Shake(0.4f, 0.4f);
     }
 
 }

@@ -44,10 +44,7 @@ public class Barrel : MonoBehaviour
         {
             USBCharacter character = elem.collider.GetComponent<USBCharacter>();
 
-            if (character == null)
-                continue;
-
-            if (character == owner)
+            if (character == null || character == owner)
                 continue;
 
             character.Stun(stun_duration);

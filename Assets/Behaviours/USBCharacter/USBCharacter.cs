@@ -6,20 +6,23 @@ using UnityEngine;
 
 public class USBCharacter : MonoBehaviour
 {
-    public GameObject body_group;
-    public Projector shadow;
-    public Rigidbody rigid_body;
-    public Animator animator;
-    public GameObject face_indicator;
-    public Renderer body_renderer;
-    public SpriteRenderer hat_renderer;
-    public GameObject stun_effect;
-    public PlayerHUD hud;
-    public FadableGraphic damage_flash;
-
     public Vector3 last_facing { get; private set; }
+    public string loadout_name { get { return loadout.name; } }
 
-    public USBLoadout loadout = new USBLoadout();
+    public GameObject body_group;
+    public Rigidbody rigid_body;
+
+    [SerializeField] Projector shadow;
+    [SerializeField] Animator animator;
+    [SerializeField] GameObject face_indicator;
+    [SerializeField] Renderer body_renderer;
+    [SerializeField] SpriteRenderer hat_renderer;
+    [SerializeField] GameObject stun_effect;
+    [SerializeField] PlayerHUD hud;
+    [SerializeField] FadableGraphic damage_flash;
+    [SerializeField] ShakeModule shake_module;
+
+    private USBLoadout loadout = new USBLoadout();
     private int health;
     private float move_speed_modifier = 1;
 
@@ -106,6 +109,7 @@ public class USBCharacter : MonoBehaviour
 
         hud.UpdateHealthBar(health);
         damage_flash.FadeOut(0.2f);
+        shake_module.Shake(0.2f, 0.1f);
 
         if (health <= 0)
             Destroy(this.gameObject);
@@ -116,6 +120,8 @@ public class USBCharacter : MonoBehaviour
     {
         controls_disabled = true;
         stun_effect.SetActive(true);
+        shake_module.Shake(0.2f, 0.1f);
+
         Invoke("RemoveStun", _duration);
     }
 

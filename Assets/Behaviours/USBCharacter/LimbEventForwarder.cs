@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LimbEventForwarder : MonoBehaviour
 {
-    public USBCharacter usb_character;
+    [SerializeField] USBCharacter usb_character;
 
 
     void FireSpecial()

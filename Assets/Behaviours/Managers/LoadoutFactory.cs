@@ -117,7 +117,7 @@ public class LoadoutFactory : MonoBehaviour
         do
         {
             new_loadout_name = loadout_names[Random.Range(0, loadout_names.Count)];
-        } while (new_loadout_name == _character.loadout.name);
+        } while (new_loadout_name == _character.loadout_name);
 
         AssignLoadout(_character, new_loadout_name);
     }

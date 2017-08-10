@@ -52,11 +52,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
-  cooldown: 0
+  cooldown: 2
   lifetime: 1
   activation_sound: {fileID: 0}
   barrel_prefab: {fileID: 1166674624559396, guid: 1a7e75eefb64f1643912ab0b9b355baf,
     type: 2}
+  effect_radius: 5
+  knockback_force: 5
+  stun_duration: 1.5
+  start_offset_y: 5
   max_bombs: 3
-  min_range: 2000
-  max_range: 3000
+  throw_force: 10
+  min_throw_range: 2000
+  max_throw_range: 3000

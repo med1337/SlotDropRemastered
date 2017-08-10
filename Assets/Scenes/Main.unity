@@ -209,22 +209,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5ce4aef536ff924e82e04107bc4c297, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam_transform: {fileID: 71613389}
-  original_local_pos: {x: 0, y: 0, z: 0}
-  shakeDecayRate:
+  decay_rate:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 2
-      time: 0.0000038146973
-      value: 0.40625
-      inSlope: 1.3714168
-      outSlope: 1.3714168
+      time: 0
+      value: 0.49999988
+      inSlope: 0.6831293
+      outSlope: 0.6831293
       tangentMode: 0
     - serializedVersion: 2
+      time: 0.5
+      value: 0.9937514
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+    - serializedVersion: 2
       time: 1
-      value: 0.018749237
-      inSlope: -3.2310796
-      outSlope: -3.2310796
+      value: 0
+      inSlope: -4.026316
+      outSlope: -4.026316
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -351,6 +355,16 @@ Prefab:
     - target: {fileID: 4003426867642144, guid: f8ff4307f64ce9340b63eb5f7a698bc5, type: 2}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224593603939504104, guid: f8ff4307f64ce9340b63eb5f7a698bc5,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224593603939504104, guid: f8ff4307f64ce9340b63eb5f7a698bc5,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f8ff4307f64ce9340b63eb5f7a698bc5, type: 2}
@@ -2483,5 +2497,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c82c14c2c114ded4f8bd2b3a7527f09a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audio_clips: []
   audio_source: {fileID: 1089336429}
+  audio_clips: []

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RespawnManager : MonoBehaviour
 {
-    public GameObject usb_character_prefab;
+    [SerializeField] GameObject usb_character_prefab;
 
 
     void Start()
@@ -47,8 +47,8 @@ public class RespawnManager : MonoBehaviour
         _player.character.SetColour(_player.color);
         _player.character.name = "Player" + _player.id;
 
-        //GameObject.FindObjectOfType<LoadoutFactory>().AssignLoadout(_player.character, "Base");
-        GameObject.FindObjectOfType<LoadoutFactory>().AssignRandomLoadout(_player.character);
+        GameObject.FindObjectOfType<LoadoutFactory>().AssignLoadout(_player.character, "Base");
+        //GameObject.FindObjectOfType<LoadoutFactory>().AssignRandomLoadout(_player.character);
     }
 
 }

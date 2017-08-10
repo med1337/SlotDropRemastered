@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class TempParticle : MonoBehaviour
 {
-	void Start()
+
+    void Start()
     {
         ParticleSystem system = GetComponent<ParticleSystem>();
 
@@ -13,7 +14,7 @@ public class TempParticle : MonoBehaviour
 
         float duration = system.main.duration;
 
-	    Destroy(this.gameObject, duration);
-	}
+        Destroy(this.gameObject, duration);
+    }
 
 }

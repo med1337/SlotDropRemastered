@@ -145,6 +145,8 @@ MonoBehaviour:
   lifetime: 5
   activation_sound: {fileID: 0}
   pellet_speed: 25
+  hit_particle: {fileID: 1134118733693108, guid: 4d3a757409902794bb97c94a856ca590,
+    type: 2}
 --- !u!135 &135956106714533014
 SphereCollider:
   m_ObjectHideFlags: 1

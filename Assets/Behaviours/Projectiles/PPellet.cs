@@ -22,20 +22,20 @@ public class PPellet : Projectile
 	}
 
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider _other)
     {
         GameObject.FindObjectOfType<AudioManager>().PlayOneShot("projectile_impact");
 
-        if (other.tag == "Prop")
+        if (_other.tag == "Prop")
         {
             Destroy(this.gameObject);
         }
         
         // Only collide with players.
-        if (other.tag != "USBCharacter")
+        if (_other.tag != "USBCharacter")
             return;
 
-        USBCharacter character = other.GetComponent<USBCharacter>();
+        USBCharacter character = _other.GetComponent<USBCharacter>();
 
         // Don't collide with self.
         if (owner)
@@ -44,7 +44,7 @@ public class PPellet : Projectile
                 return;
         }
 
-        character.Damage(damage);
+        character.Damage(damage, origin);
         Destroy(this.gameObject);
     }
 

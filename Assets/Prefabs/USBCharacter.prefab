@@ -732,7 +732,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f317162007537394eb0bd40d03c9300b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shaking_paused: 0
+  paused: 0
   decay_rate:
     serializedVersion: 2
     m_Curve:
@@ -1128,6 +1128,8 @@ MonoBehaviour:
   hud: {fileID: 114239383109276938}
   damage_flash: {fileID: 114148203334332156}
   shake_module: {fileID: 114195307393189010}
+  hit_particle: {fileID: 1134118733693108, guid: 4d3a757409902794bb97c94a856ca590,
+    type: 2}
 --- !u!114 &114976804727705404
 MonoBehaviour:
   m_ObjectHideFlags: 1

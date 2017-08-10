@@ -28,9 +28,9 @@ public class Barrel : MonoBehaviour
     }
 
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider _other)
     {
-        if (other.tag == "Barrel")
+        if (_other.tag == "Barrel")
             return;
 
         GameObject.FindObjectOfType<AudioManager>().PlayOneShot("explosion");

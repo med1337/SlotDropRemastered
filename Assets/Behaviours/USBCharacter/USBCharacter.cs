@@ -21,6 +21,7 @@ public class USBCharacter : MonoBehaviour
     [SerializeField] PlayerHUD hud;
     [SerializeField] FadableGraphic damage_flash;
     [SerializeField] ShakeModule shake_module;
+    [SerializeField] GameObject hit_particle;
 
     private USBLoadout loadout = new USBLoadout();
     private int health;
@@ -113,6 +114,15 @@ public class USBCharacter : MonoBehaviour
 
         if (health <= 0)
             Destroy(this.gameObject);
+    }
+
+
+    public void Damage(int _damage, Vector3 _hit_direction)
+    {
+        Damage(_damage);
+
+        Projectile.CreateEffect(hit_particle,
+            body_group.transform.position, _hit_direction);
     }
 
 

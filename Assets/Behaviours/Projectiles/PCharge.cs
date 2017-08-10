@@ -41,13 +41,13 @@ public class PCharge : Projectile
     }
 
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider _other)
     {
         // Only collide with players.
-        if (other.tag != "USBCharacter")
+        if (_other.tag != "USBCharacter")
             return;
 
-        USBCharacter character = other.GetComponent<USBCharacter>();
+        USBCharacter character = _other.GetComponent<USBCharacter>();
 
         // Don't collide with self.
         if (owner)
@@ -56,7 +56,7 @@ public class PCharge : Projectile
                 return;
         }
 
-        character.Damage(damage);
+        character.Damage(damage, _other.transform.position + (absolute_direction * 5));
     }
 
 

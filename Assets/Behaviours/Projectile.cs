@@ -34,6 +34,11 @@ public class Projectile : MonoBehaviour
         if (_direction != Vector3.zero)
             particle.transform.LookAt(_direction);
 
+        var particle_system = particle.GetComponent<ParticleSystem>();
+
+        if (particle_system.collision.enabled)
+            particle_system.collision.SetPlane(0, GameObject.Find("Plane").transform);
+
         particle.AddComponent<TempParticle>();
     }
 

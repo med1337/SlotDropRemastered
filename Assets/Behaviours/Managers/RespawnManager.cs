@@ -47,8 +47,8 @@ public class RespawnManager : MonoBehaviour
         _player.character.SetColour(_player.color);
         _player.character.name = "Player" + _player.id;
 
-        GameObject.FindObjectOfType<LoadoutFactory>().AssignLoadout(_player.character, "Base");
-        //GameObject.FindObjectOfType<LoadoutFactory>().AssignRandomLoadout(_player.character);
+        //GameObject.FindObjectOfType<LoadoutFactory>().AssignLoadout(_player.character, "Base");
+        GameObject.FindObjectOfType<LoadoutFactory>().AssignRandomLoadout(_player.character);
     }
 
 }

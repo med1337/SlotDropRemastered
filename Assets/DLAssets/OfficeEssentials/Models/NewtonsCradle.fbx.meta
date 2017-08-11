@@ -1,0 +1,422 @@
+fileFormatVersion: 2
+guid: aa3abbacdbe934a6cb48f5a182df4100
+timeCreated: 1436133323
+licenseType: Store
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: newtonsCradle3:pCube12
+    100004: newtonsCradle3:pCube13
+    100006: newtonsCradle3:polySurface3
+    100008: newtonsCradle3:polySurface3 1
+    100010: newtonsCradle3:polySurface5
+    100012: newtonsCradle3:polySurface6
+    100014: newtonsCradle3:polySurface7
+    100016: newtonsCradle3:polySurface8
+    100018: newtonsCradle3:polySurface9
+    100020: newtonsCradle3:transform1
+    100022: newtonsCradle3:transform2
+    100024: newtonsCradle3:transform3
+    100026: newtonsCradle3:transform4
+    100028: newtonsCradle3:transform5
+    100030: newtonsCradle3:transform6
+    100032: newtonsCradle3:transform7
+    100034: polySurface1
+    100036: polySurface10
+    100038: polySurface11
+    100040: polySurface11 1
+    100042: polySurface12
+    100044: polySurface2
+    100046: polySurface2 1
+    100048: polySurface3
+    100050: polySurface4
+    100052: polySurface5
+    100054: polySurface6
+    100056: polySurface7
+    100058: polySurface8
+    100060: polySurface9
+    100062: transform1
+    100064: transform2
+    100066: transform3
+    100068: transform4
+    100070: transform5
+    100072: group
+    100074: polySurface1 1
+    100076: transform10
+    100078: transform11
+    100080: transform12
+    100082: transform13
+    100084: transform14
+    100086: transform15
+    100088: transform6
+    100090: transform7
+    100092: transform8
+    100094: transform9
+    100096: polySurface13
+    100098: polySurface14
+    100100: polySurface15
+    100102: polySurface16
+    100104: polySurface17
+    100106: polySurface18
+    100108: polySurface19
+    100110: polySurface20
+    100112: polySurface21
+    100114: polySurface22
+    100116: polySurface23
+    100118: polySurface24
+    100120: transform16
+    100122: newtonsCradle4:polySurface3
+    100124: pasted__polySurface10
+    100126: pasted__polySurface11
+    100128: pasted__polySurface8
+    100130: pasted__polySurface9
+    100132: pCube1
+    100134: pCube2
+    100136: ball3
+    100138: ball4
+    100140: base
+    100142: frame
+    100144: leftball
+    100146: rigthball
+    100148: string2
+    100150: string3
+    100152: string4
+    100154: rightball
+    100156: ball
+    100158: ball 1
+    100160: ball1
+    100162: ball2
+    100164: newtons_cradle
+    100166: string1
+    100168: polySurface13 1
+    400000: //RootNode
+    400002: newtonsCradle3:pCube12
+    400004: newtonsCradle3:pCube13
+    400006: newtonsCradle3:polySurface3
+    400008: newtonsCradle3:polySurface3 1
+    400010: newtonsCradle3:polySurface5
+    400012: newtonsCradle3:polySurface6
+    400014: newtonsCradle3:polySurface7
+    400016: newtonsCradle3:polySurface8
+    400018: newtonsCradle3:polySurface9
+    400020: newtonsCradle3:transform1
+    400022: newtonsCradle3:transform2
+    400024: newtonsCradle3:transform3
+    400026: newtonsCradle3:transform4
+    400028: newtonsCradle3:transform5
+    400030: newtonsCradle3:transform6
+    400032: newtonsCradle3:transform7
+    400034: polySurface1
+    400036: polySurface10
+    400038: polySurface11
+    400040: polySurface11 1
+    400042: polySurface12
+    400044: polySurface2
+    400046: polySurface2 1
+    400048: polySurface3
+    400050: polySurface4
+    400052: polySurface5
+    400054: polySurface6
+    400056: polySurface7
+    400058: polySurface8
+    400060: polySurface9
+    400062: transform1
+    400064: transform2
+    400066: transform3
+    400068: transform4
+    400070: transform5
+    400072: group
+    400074: polySurface1 1
+    400076: transform10
+    400078: transform11
+    400080: transform12
+    400082: transform13
+    400084: transform14
+    400086: transform15
+    400088: transform6
+    400090: transform7
+    400092: transform8
+    400094: transform9
+    400096: polySurface13
+    400098: polySurface14
+    400100: polySurface15
+    400102: polySurface16
+    400104: polySurface17
+    400106: polySurface18
+    400108: polySurface19
+    400110: polySurface20
+    400112: polySurface21
+    400114: polySurface22
+    400116: polySurface23
+    400118: polySurface24
+    400120: transform16
+    400122: newtonsCradle4:polySurface3
+    400124: pasted__polySurface10
+    400126: pasted__polySurface11
+    400128: pasted__polySurface8
+    400130: pasted__polySurface9
+    400132: pCube1
+    400134: pCube2
+    400136: ball3
+    400138: ball4
+    400140: base
+    400142: frame
+    400144: leftball
+    400146: rigthball
+    400148: string2
+    400150: string3
+    400152: string4
+    400154: rightball
+    400156: ball
+    400158: ball 1
+    400160: ball1
+    400162: ball2
+    400164: newtons_cradle
+    400166: string1
+    400168: polySurface13 1
+    2300000: newtonsCradle3:polySurface3
+    2300002: //RootNode
+    2300004: polySurface1
+    2300006: polySurface11
+    2300008: polySurface12
+    2300010: polySurface2
+    2300012: polySurface4
+    2300014: polySurface5
+    2300016: polySurface6
+    2300018: polySurface7
+    2300020: polySurface8
+    2300022: polySurface9
+    2300024: polySurface13
+    2300026: polySurface14
+    2300028: polySurface15
+    2300030: polySurface16
+    2300032: polySurface17
+    2300034: polySurface18
+    2300036: polySurface19
+    2300038: polySurface20
+    2300040: polySurface21
+    2300042: polySurface22
+    2300044: polySurface23
+    2300046: polySurface24
+    2300048: polySurface10
+    2300050: polySurface3
+    2300052: ball3
+    2300054: ball4
+    2300056: base
+    2300058: frame
+    2300060: leftball
+    2300062: string2
+    2300064: string3
+    2300066: string4
+    2300068: ball
+    2300070: ball 1
+    2300072: ball1
+    2300074: ball2
+    2300076: string1
+    3300000: newtonsCradle3:polySurface3
+    3300002: //RootNode
+    3300004: polySurface1
+    3300006: polySurface11
+    3300008: polySurface12
+    3300010: polySurface2
+    3300012: polySurface4
+    3300014: polySurface5
+    3300016: polySurface6
+    3300018: polySurface7
+    3300020: polySurface8
+    3300022: polySurface9
+    3300024: polySurface13
+    3300026: polySurface14
+    3300028: polySurface15
+    3300030: polySurface16
+    3300032: polySurface17
+    3300034: polySurface18
+    3300036: polySurface19
+    3300038: polySurface20
+    3300040: polySurface21
+    3300042: polySurface22
+    3300044: polySurface23
+    3300046: polySurface24
+    3300048: polySurface10
+    3300050: polySurface3
+    3300052: ball3
+    3300054: ball4
+    3300056: base
+    3300058: frame
+    3300060: leftball
+    3300062: string2
+    3300064: string3
+    3300066: string4
+    3300068: ball
+    3300070: ball 1
+    3300072: ball1
+    3300074: ball2
+    3300076: string1
+    4300000: newtonsCradle3:polySurface3
+    4300002: polySurface1
+    4300004: polySurface4
+    4300006: polySurface5
+    4300008: polySurface6
+    4300010: polySurface7
+    4300012: polySurface8
+    4300014: polySurface9
+    4300016: polySurface12
+    4300018: polySurface11
+    4300020: polySurface2
+    4300022: polySurface13
+    4300024: polySurface14
+    4300026: polySurface15
+    4300028: polySurface16
+    4300030: polySurface17
+    4300032: polySurface18
+    4300034: polySurface19
+    4300036: polySurface20
+    4300038: polySurface21
+    4300040: polySurface22
+    4300042: polySurface23
+    4300044: polySurface24
+    4300046: polySurface3
+    4300048: polySurface10
+    4300050: frame
+    4300052: ball3
+    4300054: string3
+    4300056: string2
+    4300058: string4
+    4300060: base
+    4300062: leftball
+    4300064: ball4
+    4300066: ball
+    4300068: string1
+    4300070: ball1
+    4300072: ball
+    4300074: ball2
+    7400000: Take 001
+    9500000: //RootNode
+    11100000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 2
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Take 001
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 40
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: newtonsCradle3:polySurface3
+        weight: 1
+      - path: newtonsCradle3:polySurface3/polySurface1
+        weight: 1
+      - path: newtonsCradle3:polySurface3/polySurface2 1
+        weight: 1
+      - path: newtonsCradle3:polySurface3/polySurface2 1/transform5
+        weight: 1
+      - path: newtonsCradle3:polySurface3/polySurface3
+        weight: 1
+      - path: newtonsCradle3:polySurface3/polySurface3/transform4
+        weight: 1
+      - path: newtonsCradle3:polySurface3/polySurface4
+        weight: 1
+      - path: newtonsCradle3:polySurface3/polySurface5
+        weight: 1
+      - path: newtonsCradle3:polySurface3/polySurface6
+        weight: 1
+      - path: newtonsCradle3:polySurface3/polySurface7
+        weight: 1
+      - path: newtonsCradle3:polySurface3/polySurface8
+        weight: 1
+      - path: newtonsCradle3:polySurface3/polySurface9
+        weight: 1
+      - path: newtonsCradle3:polySurface3/polySurface10
+        weight: 1
+      - path: newtonsCradle3:polySurface3/polySurface10/transform2
+        weight: 1
+      - path: newtonsCradle3:polySurface3/polySurface11 1
+        weight: 1
+      - path: newtonsCradle3:polySurface3/polySurface11 1/transform3
+        weight: 1
+      - path: newtonsCradle3:polySurface3/polySurface12
+        weight: 1
+      - path: newtonsCradle3:polySurface3/transform1
+        weight: 1
+      - path: polySurface2
+        weight: 1
+      - path: polySurface11
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 100
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

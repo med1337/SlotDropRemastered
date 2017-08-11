@@ -1,7 +1,12 @@
 {
 	"Starter":
 	[
-		{
+
+	],
+
+	"General":
+	[
+        {
 			"name": "Base",
             "max_health": 100,
             "move_speed": 15,
@@ -9,11 +14,8 @@
             "scale": [ 2, 2, 2 ],
 			"basic": "Pellet",
 			"special": "Shockwave"
-		}
-	],
-	
-	"General":
-	[
+		},
+
 		{
 			"name": "Fisher",
             "max_health": 100,

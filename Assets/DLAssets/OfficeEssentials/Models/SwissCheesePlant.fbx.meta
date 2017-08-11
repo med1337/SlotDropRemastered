@@ -1,0 +1,441 @@
+fileFormatVersion: 2
+guid: a48a98c7151d74100bb159787c9ace0d
+timeCreated: 1435869463
+licenseType: Store
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: potPlant4_leaftest_pCylinder1
+    100002: potPlant4_pPlane1
+    100004: potPlant4_pPlane2
+    100006: potPlant4_pPlane3
+    100008: potPlant4_pPlane4
+    100010: potPlant4_pPlane5
+    100012: potPlant4_pPlane6
+    100014: //RootNode
+    100016: ambientLight1
+    100018: directionalLight1
+    100020: ground
+    100022: joint10
+    100024: joint12
+    100026: joint13
+    100028: joint14
+    100030: joint15
+    100032: joint17
+    100034: joint18
+    100036: joint19
+    100038: joint2
+    100040: joint20
+    100042: joint3
+    100044: joint4
+    100046: joint5
+    100048: joint7
+    100050: joint8
+    100052: joint9
+    100054: leaf1
+    100056: leaf1cluster1Handle
+    100058: leaf1cluster2Handle
+    100060: leaf1cluster3Handle
+    100062: Leaf1curve1
+    100064: Leaf1ikHandle1
+    100066: Leaf1joint1
+    100068: leaf2
+    100070: leaf2cluster4Handle
+    100072: leaf2cluster5Handle
+    100074: leaf2cluster6Handle
+    100076: leaf2curve1
+    100078: leaf2ikHandle1
+    100080: leaf2joint10
+    100082: leaf2joint6
+    100084: leaf2joint7
+    100086: leaf2joint8
+    100088: leaf2joint9
+    100090: leaf3
+    100092: leaf3cluster10Handle
+    100094: leaf3cluster7Handle
+    100096: leaf3cluster8Handle
+    100098: leaf3cluster9Handle
+    100100: leaf3curve1
+    100102: leaf3ikHandle1
+    100104: leaf3joint10
+    100106: leaf3joint6
+    100108: leaf3joint7
+    100110: leaf3joint8
+    100112: leaf3joint9
+    100114: leaf4
+    100116: leaf4cluster11Handle
+    100118: leaf4cluster12Handle
+    100120: leaf4cluster13Handle
+    100122: leaf4cluster14Handle
+    100124: leaf4curve1
+    100126: leaf4ikHandle1
+    100128: leaf4joint6
+    100130: leaf5
+    100132: leaf5cluster15Handle
+    100134: leaf5cluster16Handle
+    100136: leaf5cluster17Handle
+    100138: leaf5cluster18Handle
+    100140: leaf5curve1
+    100142: leaf5ikHandle1
+    100144: leaf5joint11
+    100146: leaf6
+    100148: leaf6cluster19Handle
+    100150: leaf6cluster20Handle
+    100152: leaf6cluster21Handle
+    100154: leaf6cluster22Handle
+    100156: leaf6curve1
+    100158: leaf6ikHandle1
+    100160: leaf6joint16
+    100162: pot1
+    400000: potPlant4_leaftest_pCylinder1
+    400002: potPlant4_pPlane1
+    400004: potPlant4_pPlane2
+    400006: potPlant4_pPlane3
+    400008: potPlant4_pPlane4
+    400010: potPlant4_pPlane5
+    400012: potPlant4_pPlane6
+    400014: //RootNode
+    400016: ambientLight1
+    400018: directionalLight1
+    400020: ground
+    400022: joint10
+    400024: joint12
+    400026: joint13
+    400028: joint14
+    400030: joint15
+    400032: joint17
+    400034: joint18
+    400036: joint19
+    400038: joint2
+    400040: joint20
+    400042: joint3
+    400044: joint4
+    400046: joint5
+    400048: joint7
+    400050: joint8
+    400052: joint9
+    400054: leaf1
+    400056: leaf1cluster1Handle
+    400058: leaf1cluster2Handle
+    400060: leaf1cluster3Handle
+    400062: Leaf1curve1
+    400064: Leaf1ikHandle1
+    400066: Leaf1joint1
+    400068: leaf2
+    400070: leaf2cluster4Handle
+    400072: leaf2cluster5Handle
+    400074: leaf2cluster6Handle
+    400076: leaf2curve1
+    400078: leaf2ikHandle1
+    400080: leaf2joint10
+    400082: leaf2joint6
+    400084: leaf2joint7
+    400086: leaf2joint8
+    400088: leaf2joint9
+    400090: leaf3
+    400092: leaf3cluster10Handle
+    400094: leaf3cluster7Handle
+    400096: leaf3cluster8Handle
+    400098: leaf3cluster9Handle
+    400100: leaf3curve1
+    400102: leaf3ikHandle1
+    400104: leaf3joint10
+    400106: leaf3joint6
+    400108: leaf3joint7
+    400110: leaf3joint8
+    400112: leaf3joint9
+    400114: leaf4
+    400116: leaf4cluster11Handle
+    400118: leaf4cluster12Handle
+    400120: leaf4cluster13Handle
+    400122: leaf4cluster14Handle
+    400124: leaf4curve1
+    400126: leaf4ikHandle1
+    400128: leaf4joint6
+    400130: leaf5
+    400132: leaf5cluster15Handle
+    400134: leaf5cluster16Handle
+    400136: leaf5cluster17Handle
+    400138: leaf5cluster18Handle
+    400140: leaf5curve1
+    400142: leaf5ikHandle1
+    400144: leaf5joint11
+    400146: leaf6
+    400148: leaf6cluster19Handle
+    400150: leaf6cluster20Handle
+    400152: leaf6cluster21Handle
+    400154: leaf6cluster22Handle
+    400156: leaf6curve1
+    400158: leaf6ikHandle1
+    400160: leaf6joint16
+    400162: pot1
+    2300000: potPlant4_leaftest_pCylinder1
+    2300002: potPlant4_pPlane1
+    2300004: potPlant4_pPlane2
+    2300006: potPlant4_pPlane3
+    2300008: potPlant4_pPlane4
+    2300010: potPlant4_pPlane5
+    2300012: potPlant4_pPlane6
+    2300014: ground
+    2300016: pot1
+    3300000: potPlant4_leaftest_pCylinder1
+    3300002: potPlant4_pPlane1
+    3300004: potPlant4_pPlane2
+    3300006: potPlant4_pPlane3
+    3300008: potPlant4_pPlane4
+    3300010: potPlant4_pPlane5
+    3300012: potPlant4_pPlane6
+    3300014: ground
+    3300016: pot1
+    4300000: potPlant4_leaftest_pCylinder1
+    4300002: potPlant4_pPlane1
+    4300004: potPlant4_pPlane2
+    4300006: potPlant4_pPlane3
+    4300008: potPlant4_pPlane4
+    4300010: potPlant4_pPlane5
+    4300012: potPlant4_pPlane6
+    4300014: ground
+    4300016: pot1
+    4300018: leaf1
+    4300020: leaf2
+    4300022: leaf5
+    4300024: leaf6
+    4300026: leaf4
+    4300028: leaf3
+    7400000: Take 001
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: leaf1
+    13700002: leaf2
+    13700004: leaf3
+    13700006: leaf4
+    13700008: leaf5
+    13700010: leaf6
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 2
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Take 001
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 44
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: leaf1
+        weight: 1
+      - path: leaf1cluster1Handle
+        weight: 1
+      - path: leaf1cluster2Handle
+        weight: 1
+      - path: leaf1cluster3Handle
+        weight: 1
+      - path: Leaf1curve1
+        weight: 1
+      - path: Leaf1ikHandle1
+        weight: 1
+      - path: Leaf1joint1
+        weight: 1
+      - path: Leaf1joint1/joint2
+        weight: 1
+      - path: Leaf1joint1/joint2/joint3
+        weight: 1
+      - path: Leaf1joint1/joint2/joint3/joint4
+        weight: 1
+      - path: Leaf1joint1/joint2/joint3/joint4/joint5
+        weight: 1
+      - path: leaf2
+        weight: 1
+      - path: leaf2cluster4Handle
+        weight: 1
+      - path: leaf2cluster5Handle
+        weight: 1
+      - path: leaf2cluster6Handle
+        weight: 1
+      - path: leaf2curve1
+        weight: 1
+      - path: leaf2ikHandle1
+        weight: 1
+      - path: leaf2joint6
+        weight: 1
+      - path: leaf2joint6/leaf2joint7
+        weight: 1
+      - path: leaf2joint6/leaf2joint7/leaf2joint8
+        weight: 1
+      - path: leaf2joint6/leaf2joint7/leaf2joint8/leaf2joint9
+        weight: 1
+      - path: leaf2joint6/leaf2joint7/leaf2joint8/leaf2joint9/leaf2joint10
+        weight: 1
+      - path: leaf3
+        weight: 1
+      - path: leaf3cluster7Handle
+        weight: 1
+      - path: leaf3cluster8Handle
+        weight: 1
+      - path: leaf3cluster9Handle
+        weight: 1
+      - path: leaf3cluster10Handle
+        weight: 1
+      - path: leaf3curve1
+        weight: 1
+      - path: leaf3ikHandle1
+        weight: 1
+      - path: leaf3joint6
+        weight: 1
+      - path: leaf3joint6/leaf3joint7
+        weight: 1
+      - path: leaf3joint6/leaf3joint7/leaf3joint8
+        weight: 1
+      - path: leaf3joint6/leaf3joint7/leaf3joint8/leaf3joint9
+        weight: 1
+      - path: leaf3joint6/leaf3joint7/leaf3joint8/leaf3joint9/leaf3joint10
+        weight: 1
+      - path: leaf4
+        weight: 1
+      - path: leaf4cluster11Handle
+        weight: 1
+      - path: leaf4cluster12Handle
+        weight: 1
+      - path: leaf4cluster13Handle
+        weight: 1
+      - path: leaf4cluster14Handle
+        weight: 1
+      - path: leaf4curve1
+        weight: 1
+      - path: leaf4ikHandle1
+        weight: 1
+      - path: leaf4joint6
+        weight: 1
+      - path: leaf4joint6/joint7
+        weight: 1
+      - path: leaf4joint6/joint7/joint8
+        weight: 1
+      - path: leaf4joint6/joint7/joint8/joint9
+        weight: 1
+      - path: leaf4joint6/joint7/joint8/joint9/joint10
+        weight: 1
+      - path: leaf5
+        weight: 1
+      - path: leaf5cluster15Handle
+        weight: 1
+      - path: leaf5cluster16Handle
+        weight: 1
+      - path: leaf5cluster17Handle
+        weight: 1
+      - path: leaf5cluster18Handle
+        weight: 1
+      - path: leaf5curve1
+        weight: 1
+      - path: leaf5ikHandle1
+        weight: 1
+      - path: leaf5joint11
+        weight: 1
+      - path: leaf5joint11/joint12
+        weight: 1
+      - path: leaf5joint11/joint12/joint13
+        weight: 1
+      - path: leaf5joint11/joint12/joint13/joint14
+        weight: 1
+      - path: leaf5joint11/joint12/joint13/joint14/joint15
+        weight: 1
+      - path: leaf6
+        weight: 1
+      - path: leaf6cluster19Handle
+        weight: 1
+      - path: leaf6cluster20Handle
+        weight: 1
+      - path: leaf6cluster21Handle
+        weight: 1
+      - path: leaf6cluster22Handle
+        weight: 1
+      - path: leaf6curve1
+        weight: 1
+      - path: leaf6ikHandle1
+        weight: 1
+      - path: leaf6joint16
+        weight: 1
+      - path: leaf6joint16/joint17
+        weight: 1
+      - path: leaf6joint16/joint17/joint18
+        weight: 1
+      - path: leaf6joint16/joint17/joint18/joint19
+        weight: 1
+      - path: leaf6joint16/joint17/joint18/joint19/joint20
+        weight: 1
+      - path: pot1
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 100
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

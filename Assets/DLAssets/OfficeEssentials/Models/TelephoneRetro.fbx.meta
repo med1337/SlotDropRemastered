@@ -1,0 +1,234 @@
+fileFormatVersion: 2
+guid: dd13e9477f04a415bb5a9352b811d367
+timeCreated: 1436132884
+licenseType: Store
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: base
+    100004: cable
+    100006: handset
+    100008: dynamicConstraint1
+    100010: dynamicConstraint2
+    100012: nCloth1
+    100014: nRigid1
+    100016: nRigid2
+    100018: nucleus1
+    100020: curve1
+    100022: polySurface1
+    100024: ikHandle1
+    100026: joint1
+    100028: joint2
+    100030: joint3
+    100032: joint4
+    100034: joint5
+    100036: joint6
+    100038: joint7
+    100040: chord
+    100042: Phone_Base_Jnt
+    100044: Phone_Cable_RIG_Grp
+    100046: Phone_Cable_RIG_Jnt1
+    100048: Phone_Cable_RIG_Jnt10
+    100050: Phone_Cable_RIG_Jnt11
+    100052: Phone_Cable_RIG_Jnt12
+    100054: Phone_Cable_RIG_Jnt13
+    100056: Phone_Cable_RIG_Jnt2
+    100058: Phone_Cable_RIG_Jnt3
+    100060: Phone_Cable_RIG_Jnt4
+    100062: Phone_Cable_RIG_Jnt5
+    100064: Phone_Cable_RIG_Jnt6
+    100066: Phone_Cable_RIG_Jnt7
+    100068: Phone_Cable_RIG_Jnt8
+    100070: Phone_Cable_RIG_Jnt9
+    100072: Phone_CableJnt1
+    100074: Phone_CableJnt10
+    100076: Phone_CableJnt11
+    100078: Phone_CableJnt12
+    100080: Phone_CableJnt13
+    100082: Phone_CableJnt2
+    100084: Phone_CableJnt3
+    100086: Phone_CableJnt4
+    100088: Phone_CableJnt5
+    100090: Phone_CableJnt6
+    100092: Phone_CableJnt7
+    100094: Phone_CableJnt8
+    100096: Phone_CableJnt9
+    100098: Phone_Handle_Jnt
+    100100: Phone_IK_End_Jnt
+    100102: Phone_IK_Middle_Jnt
+    100104: Phone_IK_Middle_JntGrp
+    100106: Phone_IK_Spline_Curve
+    100108: Phone_IK_Start_Jnt
+    100110: Phone_Root_Jnt
+    400000: //RootNode
+    400002: base
+    400004: cable
+    400006: handset
+    400008: dynamicConstraint1
+    400010: dynamicConstraint2
+    400012: nCloth1
+    400014: nRigid1
+    400016: nRigid2
+    400018: nucleus1
+    400020: curve1
+    400022: polySurface1
+    400024: ikHandle1
+    400026: joint1
+    400028: joint2
+    400030: joint3
+    400032: joint4
+    400034: joint5
+    400036: joint6
+    400038: joint7
+    400040: chord
+    400042: Phone_Base_Jnt
+    400044: Phone_Cable_RIG_Grp
+    400046: Phone_Cable_RIG_Jnt1
+    400048: Phone_Cable_RIG_Jnt10
+    400050: Phone_Cable_RIG_Jnt11
+    400052: Phone_Cable_RIG_Jnt12
+    400054: Phone_Cable_RIG_Jnt13
+    400056: Phone_Cable_RIG_Jnt2
+    400058: Phone_Cable_RIG_Jnt3
+    400060: Phone_Cable_RIG_Jnt4
+    400062: Phone_Cable_RIG_Jnt5
+    400064: Phone_Cable_RIG_Jnt6
+    400066: Phone_Cable_RIG_Jnt7
+    400068: Phone_Cable_RIG_Jnt8
+    400070: Phone_Cable_RIG_Jnt9
+    400072: Phone_CableJnt1
+    400074: Phone_CableJnt10
+    400076: Phone_CableJnt11
+    400078: Phone_CableJnt12
+    400080: Phone_CableJnt13
+    400082: Phone_CableJnt2
+    400084: Phone_CableJnt3
+    400086: Phone_CableJnt4
+    400088: Phone_CableJnt5
+    400090: Phone_CableJnt6
+    400092: Phone_CableJnt7
+    400094: Phone_CableJnt8
+    400096: Phone_CableJnt9
+    400098: Phone_Handle_Jnt
+    400100: Phone_IK_End_Jnt
+    400102: Phone_IK_Middle_Jnt
+    400104: Phone_IK_Middle_JntGrp
+    400106: Phone_IK_Spline_Curve
+    400108: Phone_IK_Start_Jnt
+    400110: Phone_Root_Jnt
+    2300000: //RootNode
+    2300002: base
+    2300004: cable
+    2300006: handset
+    2300008: polySurface1
+    3300000: //RootNode
+    3300002: base
+    3300004: cable
+    3300006: handset
+    3300008: polySurface1
+    4300000: group9
+    4300002: base
+    4300004: handset
+    4300006: cable
+    4300008: polySurface1
+    4300010: chord
+    7400000: Take 001
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: polySurface1
+    13700002: base
+    13700004: chord
+    13700006: handset
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 2
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Take 001
+      takeName: Take 001
+      firstFrame: -1
+      lastFrame: 60
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: base
+        weight: 1
+      - path: cable
+        weight: 1
+      - path: handset
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 100
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

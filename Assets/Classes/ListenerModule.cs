@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class ListenerModule
 {
     private List<GameObject> listeners = new List<GameObject>();
+    private List<GameObject> to_remove = new List<GameObject>();
 
 
     public void AddListener(GameObject _listener)
@@ -16,7 +17,7 @@ public class ListenerModule
 
     public void RemoveListener(GameObject _listener)
     {
-        listeners.Remove(_listener);
+        to_remove.Add(_listener);
     }
 
 
@@ -40,6 +41,11 @@ public class ListenerModule
     void GarbageCollectListeners()
     {
         listeners.RemoveAll(item => item == null);
+
+        foreach (GameObject listener in to_remove)
+            listeners.Remove(listener);
+
+        to_remove.Clear();
     }
 
 }

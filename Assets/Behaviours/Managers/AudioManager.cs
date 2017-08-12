@@ -4,37 +4,32 @@ using System.Collections.Generic;
 
 public class AudioManager : MonoBehaviour
 {
-    [Range(0,1)][SerializeField] float music_volume = 1;
-    [Range(0,1)][SerializeField] float sfx_volume = 1;
+    public static float music_volume { get { return instance.music_volume_; } set { instance.music_volume_ = value; } }
+    public static float sfx_volume { get { return instance.sfx_volume_; } set { instance.sfx_volume_ = value; } }
+
+    [Range(0, 1)][SerializeField] float music_volume_ = 1;
+    [Range(0, 1)][SerializeField] float sfx_volume_ = 1;
     [SerializeField] List<AudioClip> audio_clips;
+
+    private static AudioManager instance;
 
     private AudioSource music_source;
     private AudioSource sfx_source;
 
 
-    void Start()
+    public static void PlayOneShot(string _clip_name)
     {
-        GameObject audio_parent = new GameObject("Audio");
-        audio_parent.transform.SetParent(this.transform);
-
-        music_source = audio_parent.AddComponent<AudioSource>();
-        sfx_source = audio_parent.AddComponent<AudioSource>();
-    }
-
-
-    public void PlayOneShot(string _clip_name)
-    {
-        AudioClip clip = GetAudioClip(_clip_name);
+        AudioClip clip = instance.GetAudioClip(_clip_name);
 
         if (clip != null)
-            sfx_source.PlayOneShot(clip);
+            instance.sfx_source.PlayOneShot(clip);
     }
 
 
-    public void PlayOneShot(AudioClip _clip)
+    public static void PlayOneShot(AudioClip _clip)
     {
         if (_clip != null)
-            sfx_source.PlayOneShot(_clip);
+            instance.sfx_source.PlayOneShot(_clip);
     }
 
 
@@ -43,11 +38,36 @@ public class AudioManager : MonoBehaviour
         return audio_clips.Find(item => item.name.Substring(0) == _clip_name);
     }
 
-    
-    public void Update()
+
+    void Awake()
     {
-        music_source.volume = music_volume;
-        sfx_source.volume = sfx_volume;
+        if (instance == null)
+        {
+            InitSingleton();
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+
+    void InitSingleton()
+    {
+        instance = this;
+
+        GameObject audio_parent = new GameObject("Audio");
+        audio_parent.transform.SetParent(this.transform);
+
+        music_source = audio_parent.AddComponent<AudioSource>();
+        sfx_source = audio_parent.AddComponent<AudioSource>();
+    }
+
+
+    void Update()
+    {
+        music_source.volume = music_volume_;
+        sfx_source.volume = sfx_volume_;
     }
 
 }

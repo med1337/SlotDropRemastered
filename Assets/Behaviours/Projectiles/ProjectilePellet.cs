@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PPellet : Projectile
+public class ProjectilePellet : Projectile
 {
     public float pellet_speed = 5.0f;
 
@@ -24,27 +24,21 @@ public class PPellet : Projectile
 
     void OnTriggerEnter(Collider _other)
     {
-        GameObject.FindObjectOfType<AudioManager>().PlayOneShot("projectile_impact");
-
-        if (_other.tag == "Prop")
-        {
-            Destroy(this.gameObject);
-        }
-        
-        // Only collide with players.
-        if (_other.tag != "USBCharacter")
-            return;
-
         USBCharacter character = _other.GetComponent<USBCharacter>();
 
-        // Don't collide with self.
-        if (owner)
+        if (character != null)
         {
-            if (character == owner)
-                return;
+            // Don't collide with self.
+            if (owner)
+            {
+                if (character == owner)
+                    return;
+            }
+
+            character.Damage(damage, origin);
         }
 
-        character.Damage(damage, origin);
+        AudioManager.PlayOneShot("projectile_impact");
         Destroy(this.gameObject);
     }
 

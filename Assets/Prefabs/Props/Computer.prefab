@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 222023184727966622}
   - component: {fileID: 114174211230445382}
   - component: {fileID: 114951079077834494}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Scan Indicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 222196481748333644}
   - component: {fileID: 114160105850121960}
   - component: {fileID: 114512602845281448}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Title Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,9 +58,9 @@ GameObject:
   - component: {fileID: 33204470640233536}
   - component: {fileID: 64147171458925458}
   - component: {fileID: 23229764821054734}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Glass
-  m_TagString: Floor
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 222765731005842728}
   - component: {fileID: 114763209490587114}
   - component: {fileID: 114481311406013210}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: mask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 222177334806722912}
   - component: {fileID: 114201103178369572}
   - component: {fileID: 114096251957894916}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,8 +110,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4279857779548652}
   - component: {fileID: 108756291477870534}
-  m_Layer: 0
-  m_Name: GameObject
+  m_Layer: 10
+  m_Name: ScreenLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 222386321020590336}
   - component: {fileID: 114934243292275312}
   - component: {fileID: 114466181438571974}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Cursor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: 224187342706618048}
   - component: {fileID: 222208861194182702}
   - component: {fileID: 114867001142301672}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Title Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,7 +160,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224003876850132642}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 224662872138929402}
   - component: {fileID: 222106317844965350}
   - component: {fileID: 114424374465124008}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -194,7 +194,7 @@ GameObject:
   - component: {fileID: 224583228371717536}
   - component: {fileID: 222854831797938246}
   - component: {fileID: 114775046030300514}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Content Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -212,7 +212,7 @@ GameObject:
   - component: {fileID: 222424682657029922}
   - component: {fileID: 114663809055565272}
   - component: {fileID: 95166668389145460}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Skull Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -228,7 +228,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224896055730460714}
   - component: {fileID: 222729644278768568}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Scan Indicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -245,7 +245,7 @@ GameObject:
   - component: {fileID: 224863902025771174}
   - component: {fileID: 222752124067696180}
   - component: {fileID: 114750003795527000}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Skull Jaw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -261,7 +261,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224725699268901760}
   - component: {fileID: 222358265080357706}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Scan Indicator (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -278,7 +278,7 @@ GameObject:
   - component: {fileID: 4769049026690342}
   - component: {fileID: 33842741550786692}
   - component: {fileID: 23576950361435490}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Indicators
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -295,7 +295,7 @@ GameObject:
   - component: {fileID: 224915675686326228}
   - component: {fileID: 222305718055826188}
   - component: {fileID: 114697111798262432}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Virus Text (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -312,7 +312,7 @@ GameObject:
   - component: {fileID: 224114905031733238}
   - component: {fileID: 222839461592775702}
   - component: {fileID: 114143163511456978}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Title Text (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -330,9 +330,9 @@ GameObject:
   - component: {fileID: 33046046049726192}
   - component: {fileID: 23300149589224316}
   - component: {fileID: 65928937337232560}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Arm
-  m_TagString: Prop
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -351,7 +351,7 @@ GameObject:
   - component: {fileID: 222109956305580206}
   - component: {fileID: 114122851024011984}
   - component: {fileID: 114450932280896640}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: PC UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -368,7 +368,7 @@ GameObject:
   - component: {fileID: 224458593822340582}
   - component: {fileID: 222690461007074620}
   - component: {fileID: 114972983586807280}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -385,7 +385,7 @@ GameObject:
   - component: {fileID: 4085087337742438}
   - component: {fileID: 33170734378843734}
   - component: {fileID: 23403023853032594}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Logo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -403,9 +403,9 @@ GameObject:
   - component: {fileID: 33994363978324354}
   - component: {fileID: 23639044027057850}
   - component: {fileID: 65723178455131876}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Monitor
-  m_TagString: Prop
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -420,7 +420,7 @@ GameObject:
   - component: {fileID: 224016866309955174}
   - component: {fileID: 222624820952601276}
   - component: {fileID: 114654208980792796}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -438,9 +438,9 @@ GameObject:
   - component: {fileID: 33884385714261050}
   - component: {fileID: 23112576339872032}
   - component: {fileID: 65437759528758432}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Joint
-  m_TagString: Prop
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -454,7 +454,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224290677596183472}
   - component: {fileID: 222104484640716966}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -472,9 +472,9 @@ GameObject:
   - component: {fileID: 33635317227445814}
   - component: {fileID: 23983665150302958}
   - component: {fileID: 65486883172752136}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Computer
-  m_TagString: Prop
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -488,7 +488,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224590013399025092}
   - component: {fileID: 114685515913231476}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Virus Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -505,7 +505,7 @@ GameObject:
   - component: {fileID: 224299940544829618}
   - component: {fileID: 222591644511515682}
   - component: {fileID: 114791671332627726}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Virus Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -520,7 +520,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224944643734276126}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Handle Slide Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -604,9 +604,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1830500141919300}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: 0.7071068, w: 0}
-  m_LocalPosition: {x: -2.002888, y: 0, z: 28.944323}
-  m_LocalScale: {x: 7.1532793, y: 7.153276, z: 7.153276}
+  m_LocalRotation: {x: 0.2432103, y: 0.9076734, z: 0.33036616, w: -0.088521324}
+  m_LocalPosition: {x: 12.737608, y: -12.170166, z: 55.058388}
+  m_LocalScale: {x: 7.153284, y: 7.153279, z: 7.1532784}
   m_Children:
   - {fileID: 4191769090635934}
   m_Father: {fileID: 0}

@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4980270867661252}
   - component: {fileID: 114346051586768562}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BarrelBomb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1662552585913546}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 494170601ff5c2b4ebe02432caeaf785, type: 3}
+  m_Script: {fileID: 11500000, guid: 99e5444a3739f6542826b71efbd5d071, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0

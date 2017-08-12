@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PSplash : Projectile
+public class ProjectileSplash : Projectile
 {
     public GameObject particle_effect;
     public float stun_chance;

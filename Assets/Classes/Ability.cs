@@ -23,7 +23,7 @@ public class Ability
         projectile.Init(owner);
 
         ready_time = Time.time + projectile.cooldown;
-        GameObject.FindObjectOfType<AudioManager>().PlayOneShot(projectile.activation_sound);
+        AudioManager.PlayOneShot(projectile.activation_sound);
     }
 
 

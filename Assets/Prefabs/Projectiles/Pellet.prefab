@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 212054720229019290}
   - component: {fileID: 114564434256059660}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 4556955643266268}
   - component: {fileID: 114952232623123348}
   - component: {fileID: 135956106714533014}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Pellet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137,7 +137,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1989797351460218}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e916e4627f823c24ba7de08ec12f59e1, type: 3}
+  m_Script: {fileID: 11500000, guid: b9f9c85c48b0cb14ca3802201e27a1a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 12
@@ -145,8 +145,6 @@ MonoBehaviour:
   lifetime: 5
   activation_sound: {fileID: 0}
   pellet_speed: 25
-  hit_particle: {fileID: 1134118733693108, guid: 4d3a757409902794bb97c94a856ca590,
-    type: 2}
 --- !u!135 &135956106714533014
 SphereCollider:
   m_ObjectHideFlags: 1

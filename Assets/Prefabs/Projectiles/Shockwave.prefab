@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4744701324123988}
   - component: {fileID: 114845572664195776}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Shockwave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1342834061880088}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75ea3060cbfa71143b4443e87cfdab77, type: 3}
+  m_Script: {fileID: 11500000, guid: b47c1c9f6d6b47e41bf69150fc7cc5a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0

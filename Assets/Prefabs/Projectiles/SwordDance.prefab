@@ -36,7 +36,7 @@ GameObject:
   - component: {fileID: 4495728825877140}
   - component: {fileID: 114191681467243448}
   - component: {fileID: 135282109232520534}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SwordDance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -229,7 +229,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1209800069447096}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eade3ee3e2f56cb4e8aacc62c0c9ebfb, type: 3}
+  m_Script: {fileID: 11500000, guid: 68cb0b7588faa8d41874eda7f8494ac6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 15

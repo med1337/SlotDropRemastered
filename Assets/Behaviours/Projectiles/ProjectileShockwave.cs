@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PTitanWave : Projectile
+public class ProjectileShockwave : Projectile
 {
     public GameObject particle_effect;
     public float effect_radius;
@@ -12,9 +12,7 @@ public class PTitanWave : Projectile
     void Start()
     {
         CreateEffect(particle_effect, origin, Vector3.zero);
-
-        CreateExplosion(owner.gameObject, origin, 
-            effect_radius, knockback_force);
+        CreateExplosion(owner.gameObject, origin, effect_radius, knockback_force);
 
         CameraShake.Shake(0.4f, 0.4f);
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PTsunami : Projectile
+public class ProjectileTsunami : Projectile
 {
     public GameObject particle_effect;
     public float effect_radius;
@@ -47,7 +47,7 @@ public class PTsunami : Projectile
 
     void CreateBlast()
     {
-        GameObject.FindObjectOfType<AudioManager>().PlayOneShot("water_explosion");
+        AudioManager.PlayOneShot("water_explosion");
 
         ++blast_times;
         transform.position += facing * blast_spacing;
@@ -59,7 +59,7 @@ public class PTsunami : Projectile
 
         foreach (var elem in elems)
         {
-            USBCharacter character = elem.collider.gameObject.GetComponent<USBCharacter>();
+            USBCharacter character = elem.collider.GetComponent<USBCharacter>();
 
             if (!character)
                 continue;

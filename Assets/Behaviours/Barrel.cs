@@ -33,8 +33,7 @@ public class Barrel : MonoBehaviour
         if (_other.tag == "Barrel")
             return;
 
-        GameObject.FindObjectOfType<AudioManager>().PlayOneShot("explosion");
-
+        AudioManager.PlayOneShot("explosion");
         CameraShake.Shake(0.4f, 0.4f);
 
         Projectile.CreateEffect(shockwave_particle, transform.position, Vector3.zero);

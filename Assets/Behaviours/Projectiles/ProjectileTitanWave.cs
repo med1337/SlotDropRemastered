@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PShockwave : Projectile
+public class ProjectileTitanWave : Projectile
 {
     public GameObject particle_effect;
-    public float effect_radius = 5.0f;
-    public float knockback_force = 5.0f;
+    public float effect_radius;
+    public float knockback_force;
 
 
     void Start()

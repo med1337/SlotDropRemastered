@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4069647111122028}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35,7 +35,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4441815281762680}
   - component: {fileID: 65548162766563078}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Collider (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51,9 +51,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4871589253244936}
   - component: {fileID: 54852265085142068}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: LampRetro
-  m_TagString: Prop
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -67,7 +67,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4849677673005790}
   - component: {fileID: 65676131282629820}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Collider (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,7 +84,7 @@ GameObject:
   - component: {fileID: 4574636793774672}
   - component: {fileID: 33067705925056168}
   - component: {fileID: 23162727205332920}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,7 +100,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4189749941914962}
   - component: {fileID: 65056696809542578}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Collider (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4142035599758258}
   - component: {fileID: 108290060863327416}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Spotlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4227908456835048}
   - component: {fileID: 65187339971785298}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Collider (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -240,8 +240,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1185229820663094}
-  m_LocalRotation: {x: -0, y: -0.34387118, z: -0, w: 0.9390168}
-  m_LocalPosition: {x: 5.304229, y: 2.16, z: -15.254063}
+  m_LocalRotation: {x: -0.40999794, y: -0.21982867, z: 0.10250777, w: 0.87924355}
+  m_LocalPosition: {x: 19.75867, y: -61.00288, z: 13.533146}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4574636793774672}
@@ -249,7 +249,7 @@ Transform:
   - {fileID: 4142035599758258}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -42.525, y: -39.686, z: 29.287}
 --- !u!23 &23162727205332920
 MeshRenderer:
   m_ObjectHideFlags: 1

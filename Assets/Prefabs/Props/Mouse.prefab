@@ -21,9 +21,9 @@ GameObject:
   - component: {fileID: 4291834542067996}
   - component: {fileID: 54055039755781898}
   - component: {fileID: 114270613897842548}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Mouse
-  m_TagString: Prop
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37,7 +37,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4854042262237680}
   - component: {fileID: 65268305316665290}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,7 +54,7 @@ GameObject:
   - component: {fileID: 4680409628330406}
   - component: {fileID: 33777967983057752}
   - component: {fileID: 23950994007648588}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,9 +67,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1261758603356992}
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0.0000002533197}
-  m_LocalPosition: {x: 18.66, y: 1.0992037, z: 22.61}
-  m_LocalScale: {x: 2.6715548, y: 2.67155, z: 2.671553}
+  m_LocalRotation: {x: 0.10938153, y: 0.8754262, z: -0.4082179, w: -0.23456946}
+  m_LocalPosition: {x: 21.712624, y: -28.209793, z: 40.164627}
+  m_LocalScale: {x: 2.6715546, y: 2.6715503, z: 2.6715527}
   m_Children:
   - {fileID: 4680409628330406}
   - {fileID: 4854042262237680}
@@ -180,4 +180,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hud_mouse: {fileID: 0}
-  sensitivity: 0.1
+  sensitivity: 0.5

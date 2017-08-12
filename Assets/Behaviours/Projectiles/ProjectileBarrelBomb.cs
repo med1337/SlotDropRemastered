@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PBarrelBomb : Projectile
+public class ProjectileBarrelBomb : Projectile
 {
     public GameObject barrel_prefab;
     public float effect_radius;

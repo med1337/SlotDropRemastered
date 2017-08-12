@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PArrowHail : Projectile
+public class ProjectileArrowHail : Projectile
 {
     public GameObject particle_effect;
     public float damage_delay;
@@ -54,11 +54,8 @@ public class PArrowHail : Projectile
 
             USBCharacter character = elem.collider.gameObject.GetComponent<USBCharacter>();
 
-            if (character == null ||
-                character == owner)
-            {
+            if (character == owner)
                 continue;
-            }
 
             if (Random.Range(1, 100) < stun_chance)
                 character.Stun(stun_duration);

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PSwordDance : Projectile
+public class ProjectileSwordDance : Projectile
 {
     public float orbit_distance = 5.0f;
     public float rotate_speed = 10.0f;
@@ -56,7 +56,7 @@ public class PSwordDance : Projectile
                 return;
         }
 
-        GameObject.FindObjectOfType<AudioManager>().PlayOneShot("sword_dance_hit");
+        AudioManager.PlayOneShot("sword_dance_hit");
         character.Damage(damage, (_other.transform.position - transform.position) * 5);
     }
 

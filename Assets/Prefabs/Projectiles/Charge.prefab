@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 4102781107537978}
   - component: {fileID: 114723200383608298}
   - component: {fileID: 135225891422922496}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Charge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253,7 +253,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1588044966343266}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 194c534670bfff94b868e9bcca0e4d98, type: 3}
+  m_Script: {fileID: 11500000, guid: ce351ac4041eae141ac3c6f079e1cc29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10

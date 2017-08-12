@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4102111251402668}
   - component: {fileID: 114030819441255518}
   - component: {fileID: 136789728366244870}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ArrowHail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,7 +49,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1705827943364696}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da61df10c752e9f44aa334850153d3ce, type: 3}
+  m_Script: {fileID: 11500000, guid: 827e8b1bf1784304080c80abff3fa5ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 15

@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4246707161388174}
   - component: {fileID: 114875895221006950}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TitanWave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1775031136126692}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74dc618158f5a6848979fde0f28f6a0f, type: 3}
+  m_Script: {fileID: 11500000, guid: 8cf3b0a9411311b43805b7bf6c532500, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0

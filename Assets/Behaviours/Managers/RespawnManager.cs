@@ -6,10 +6,25 @@ public class RespawnManager : MonoBehaviour
 {
     [SerializeField] GameObject usb_character_prefab;
 
+    private static RespawnManager instance;
 
-    void Start()
+
+    void Awake()
     {
-		
+        if (instance == null)
+        {
+            InitSingleton();
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+
+    void InitSingleton()
+    {
+        instance = this;
     }
 
 
@@ -47,8 +62,8 @@ public class RespawnManager : MonoBehaviour
         _player.character.SetColour(_player.color);
         _player.character.name = "Player" + _player.id;
 
-        //GameObject.FindObjectOfType<LoadoutFactory>().AssignLoadout(_player.character, "Base");
-        GameObject.FindObjectOfType<LoadoutFactory>().AssignRandomLoadout(_player.character);
+        //LoadoutFactory.AssignLoadout(_player.character, "Base");
+        LoadoutFactory.AssignRandomLoadout(_player.character);
     }
 
 }

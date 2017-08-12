@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4211443735515458}
   - component: {fileID: 33370360054700196}
   - component: {fileID: 23203976345411314}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,9 +37,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4949063218882942}
   - component: {fileID: 54238763222494234}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Stapler
-  m_TagString: Prop
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -53,7 +53,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4003763388094244}
   - component: {fileID: 65744237221056054}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,15 +92,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1506380221928612}
-  m_LocalRotation: {x: 0.02794844, y: -0.29665464, z: -0.048422888, w: 0.95334685}
-  m_LocalPosition: {x: -22.2, y: 2.73, z: -17}
+  m_LocalRotation: {x: -0.42227095, y: -0.03673525, z: 0.01712992, w: 0.90556306}
+  m_LocalPosition: {x: 28.739063, y: -38.645584, z: 29.997082}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4211443735515458}
   - {fileID: 4003763388094244}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -34.646, z: 0}
 --- !u!23 &23203976345411314
 MeshRenderer:
   m_ObjectHideFlags: 1

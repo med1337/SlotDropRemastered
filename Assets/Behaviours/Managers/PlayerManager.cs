@@ -7,11 +7,27 @@ public class PlayerManager : MonoBehaviour
 {
     public static Dictionary<int, ConnectedPlayer>.ValueCollection players { get { return player_dictionary.Values; } }
 
+    private static PlayerManager instance;
     private static Dictionary<int, ConnectedPlayer> player_dictionary = new Dictionary<int, ConnectedPlayer>();
 
 
     void Awake()
     {
+        if (instance == null)
+        {
+            InitSingleton();
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+
+    void InitSingleton()
+    {
+        instance = this;
+
         // Subscribe to Rewired controller connection events.
         ReInput.ControllerConnectedEvent += OnControllerConnected;
         ReInput.ControllerDisconnectedEvent += OnControllerDisconnected;

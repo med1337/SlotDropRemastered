@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4491480514187908}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35,7 +35,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4080397227532702}
   - component: {fileID: 65223556348593192}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51,7 +51,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4882240151424802}
   - component: {fileID: 64305288968176688}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,7 +67,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4804941978671204}
   - component: {fileID: 108386535450860588}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Spotlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,7 +83,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4984119006890174}
   - component: {fileID: 65763398297671432}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GameObject (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,9 +99,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4674979271478634}
   - component: {fileID: 54453901966765742}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Lamp
-  m_TagString: Prop
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -116,7 +116,7 @@ GameObject:
   - component: {fileID: 4897709378980660}
   - component: {fileID: 33206919135898612}
   - component: {fileID: 23261465833116698}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4487804157797188}
   - component: {fileID: 64209899964075220}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Collider (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -188,16 +188,16 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1645446055011608}
-  m_LocalRotation: {x: 0, y: 0.917668, z: 0, w: 0.39734814}
-  m_LocalPosition: {x: -13.64, y: 14.56, z: -10.41}
-  m_LocalScale: {x: 2.856269, y: 2.856267, z: 2.856269}
+  m_LocalRotation: {x: -0.048701182, y: 0.90027004, z: -0.41980278, w: 0.10444005}
+  m_LocalPosition: {x: -16.680172, y: 3.7787971, z: 53.559513}
+  m_LocalScale: {x: 2.8562708, y: 2.8562672, z: 2.8562708}
   m_Children:
   - {fileID: 4897709378980660}
   - {fileID: 4491480514187908}
   - {fileID: 4804941978671204}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 133.175, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 136.765, z: 0}
 --- !u!4 &4804941978671204
 Transform:
   m_ObjectHideFlags: 1

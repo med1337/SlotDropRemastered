@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PCharge : Projectile
+public class ProjectileCharge : Projectile
 {
     public float charge_speed;
     public float dir_threshold = 0.1f;
@@ -28,6 +28,9 @@ public class PCharge : Projectile
     {
         CalculateRawDirection();
         TrackPlayer();
+
+        if (owner == null)
+            Destroy(this.gameObject);
     }
 
 

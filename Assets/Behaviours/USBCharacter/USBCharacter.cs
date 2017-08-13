@@ -9,6 +9,7 @@ public class USBCharacter : MonoBehaviour
 
     public GameObject body_group;
     public Rigidbody rigid_body;
+    public float move_speed_modifier = 1;
 
     [SerializeField] Projector shadow;
     [SerializeField] Animator animator;
@@ -23,12 +24,12 @@ public class USBCharacter : MonoBehaviour
 
     private USBLoadout loadout = new USBLoadout();
     private int health;
-    private float move_speed_modifier = 1;
 
     private Ability basic_ability = new Ability();
     private Ability special_ability = new Ability();
 
     private Vector3 move_dir;
+    private bool moving;
     private bool slot_dropping;
     private bool face_locked;
     private bool controls_disabled;
@@ -40,10 +41,24 @@ public class USBCharacter : MonoBehaviour
         {
             if (!face_locked)
                 last_facing = _dir.normalized;
+
+            moving = true;
         }
 
         if (!controls_disabled)
             move_dir = _dir;
+
+        UpdateFaceIndicator();
+    }
+
+
+    public void Face(Vector3 _dir)
+    {
+        if (_dir != Vector3.zero)
+        {
+            if (!face_locked)
+                last_facing = _dir.normalized;
+        }
 
         UpdateFaceIndicator();
     }
@@ -134,12 +149,6 @@ public class USBCharacter : MonoBehaviour
     }
 
 
-    public void SetMoveSpeedModifier(float _value)
-    {
-        move_speed_modifier = _value;
-    }
-
-
     void Start()
     {
         // Set ownership of its abilities.
@@ -165,7 +174,8 @@ public class USBCharacter : MonoBehaviour
         }
 
         // Play the walk cycle.
-        animator.SetBool("walking", move_dir != Vector3.zero);
+        animator.SetBool("walking", moving && !controls_disabled);
+        moving = false; // Ensure walking anim never gets stuck.
     }
 
 
@@ -175,6 +185,7 @@ public class USBCharacter : MonoBehaviour
         {
             Vector3 move = move_dir * loadout.move_speed * Time.fixedDeltaTime;
             rigid_body.MovePosition(transform.position + move * move_speed_modifier);
+
             move_dir = Vector3.zero;
         }
     }

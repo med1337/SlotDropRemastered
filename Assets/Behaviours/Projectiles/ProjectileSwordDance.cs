@@ -17,8 +17,6 @@ public class ProjectileSwordDance : Projectile
         {
             orbit_axis = owner.body_group;
             transform.position = orbit_axis.transform.position;
-
-            owner.SetMoveSpeedModifier(speed_modifier);
         }
 
         GetComponent<SphereCollider>().center = new Vector3(orbit_distance, 0, 0);
@@ -35,6 +33,9 @@ public class ProjectileSwordDance : Projectile
             Destroy(gameObject);
             return;
         }
+
+        if (owner.move_speed_modifier == 1)
+            owner.move_speed_modifier = speed_modifier;
 
         transform.position = orbit_axis.transform.position;
         transform.Rotate(Vector3.up * Time.deltaTime * rotate_speed);
@@ -65,6 +66,6 @@ public class ProjectileSwordDance : Projectile
     {
         // Reset player speed.
         if (owner)
-            owner.SetMoveSpeedModifier(1);
+            owner.move_speed_modifier = 1;
     }
 }

@@ -6,6 +6,7 @@ using UnityEngine;
 public class RespawnManager : MonoBehaviour
 {
     [SerializeField] GameObject usb_character_prefab;
+    [SerializeField] Vector3 spawn_point;
 
     private static RespawnManager instance;
 
@@ -76,13 +77,16 @@ public class RespawnManager : MonoBehaviour
     {
         // Create and position the USBCharacter.
         USBCharacter character = Instantiate(usb_character_prefab).GetComponent<USBCharacter>();
-        character.transform.position = new Vector3(0, 5, 0); // Temp.
+        character.transform.position = spawn_point;
 
         // Configure the USBCharacter.
         character.SetColour(_color);
         character.name = _name;
 
         LoadoutFactory.AssignRandomLoadout(character);
+        character.Init();
+        character.Stun(0.9f);
+        character.Flash();
 
         return character;
     }

@@ -6,7 +6,7 @@ public class USBCharacter : MonoBehaviour
 {
     public Vector3 last_facing { get; private set; }
     public string loadout_name { get { return loadout.name; } }
-
+    
     public GameObject body_group;
     public Rigidbody rigid_body;
     public float move_speed_modifier = 1;
@@ -33,6 +33,7 @@ public class USBCharacter : MonoBehaviour
     private bool slot_dropping;
     private bool face_locked;
     private bool controls_disabled;
+    private USBSlot last_slot_hit;
 
 
     public void Move(Vector3 _dir)
@@ -82,6 +83,8 @@ public class USBCharacter : MonoBehaviour
         {
             slot_dropping = true;
             animator.SetTrigger("slot_drop");
+
+            ScanForSlot();
         }
     }
 
@@ -122,8 +125,8 @@ public class USBCharacter : MonoBehaviour
         health -= _damage;
 
         hud.UpdateHealthBar(health);
-        damage_flash.FadeOut(0.2f);
         shake_module.Shake(0.2f, 0.1f);
+        Flash();
 
         if (health <= 0)
             Destroy(this.gameObject);
@@ -149,18 +152,22 @@ public class USBCharacter : MonoBehaviour
     }
 
 
-    void Start()
+    public void Flash(float _duration = 0.2f)
+    {
+        damage_flash.FadeOut(_duration);
+    }
+
+
+    public void Init()
     {
         // Set ownership of its abilities.
         basic_ability.owner = this;
         special_ability.owner = this;
 
-        // Set initial rotation of the face indicator.
+        // Initialise other components & systems.
         last_facing = transform.right;
         UpdateFaceIndicator();
-        
-        // Set initial debug loadout.
-        AssignLoadout(loadout);
+        damage_flash.Init();
     }
 	
 
@@ -214,6 +221,27 @@ public class USBCharacter : MonoBehaviour
     }
 
 
+    void ScanForSlot()
+    {
+        last_slot_hit = null;
+        var hits = Physics.BoxCastAll(transform.position, Vector3.one, Vector3.down);
+
+        foreach (var hit in hits)
+        {
+            USBSlot slot = hit.collider.GetComponent<USBSlot>();
+            
+            if (slot == null || !slot.slottable)
+                continue;
+
+            slot.PostponeDeactivation();
+            last_slot_hit = slot;
+            transform.position = slot.transform.position + new Vector3(0, 0, 0.5f);
+
+            return;
+        }
+    }
+
+
     void FireSpecial()
     {
         special_ability.Activate();
@@ -223,6 +251,20 @@ public class USBCharacter : MonoBehaviour
     void SlotDropDone()
     {
         slot_dropping = false;
+        
+        if (last_slot_hit != null)
+        {
+            if (!last_slot_hit.slottable ||
+                Vector3.Distance(transform.position, last_slot_hit.transform.position) >= 1)
+            {
+                last_slot_hit = null;
+                return;
+            }
+
+            last_slot_hit.SlotDrop(this);
+        }
+        
+        last_slot_hit = null;
     }
 
 

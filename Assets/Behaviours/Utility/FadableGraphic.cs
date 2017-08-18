@@ -1,15 +1,15 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using System.Collections.Generic;
 
-// Attach to a GameObject with an Image component or SpriteRenderer component.
+// Attach to a GameObject with an Image, SpriteRenderer, or Text component.
 public class FadableGraphic : MonoBehaviour
 {
     public ListenerModule listener_module = new ListenerModule();
 
     private Image image;
     private SpriteRenderer sprite;
+    private Text text;
 
     private bool fading;
     private float fade_progress;
@@ -66,11 +66,25 @@ public class FadableGraphic : MonoBehaviour
     }
 
 
-    void Start()
+    public void Init()
     {
         // Detect what sort of graphic we are.
         image = GetComponent<Image>();
         sprite = GetComponent<SpriteRenderer>();
+        text = GetComponent<Text>();
+    }
+
+
+    public void Init(GameObject _listener)
+    {
+        listener_module.AddListener(_listener);
+        Init();
+    }
+
+
+    void Awake()
+    {
+        Init();
     }
 
 
@@ -96,6 +110,10 @@ public class FadableGraphic : MonoBehaviour
         {
             sprite.color = color;
         }
+        else if (text)
+        {
+            text.color = color;
+        }
 
         // Determine if fade is complete.
         if (color == target_color)
@@ -117,6 +135,10 @@ public class FadableGraphic : MonoBehaviour
         {
             sprite.color = starting_color;
         }
+        else if (text)
+        {
+            text.color = starting_color;
+        }
 
         fade_progress = 0;
         fading = true;
@@ -132,7 +154,18 @@ public class FadableGraphic : MonoBehaviour
 
     Color GetGraphicColor()
     {
-        return image != null ? image.color : sprite.color;
+        if (image)
+        {
+            return image.color;
+        }
+        else if (sprite)
+        {
+            return sprite.color;
+        }
+        else
+        {
+            return text.color;
+        }
     }
 
 }

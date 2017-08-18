@@ -146,7 +146,6 @@ public class USBCharacter : MonoBehaviour
     {
         controls_disabled = true;
         stun_effect.SetActive(true);
-        shake_module.Shake(0.2f, 0.1f);
 
         Invoke("RemoveStun", _duration);
     }
@@ -235,7 +234,7 @@ public class USBCharacter : MonoBehaviour
 
             slot.PostponeDeactivation();
             last_slot_hit = slot;
-            transform.position = slot.transform.position + new Vector3(0, 0, 0.5f);
+            transform.position = slot.transform.position + new Vector3(0, 0, 0.6f);
 
             return;
         }

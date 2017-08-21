@@ -7,10 +7,9 @@ public class RespawnManager : MonoBehaviour
 {
     [SerializeField] GameObject usb_character_prefab;
     [SerializeField] Vector3 spawn_point;
-    public static List<GameObject> current_players = new List<GameObject>(); 
-
+    public static List<USBCharacter> current_players = new List<USBCharacter>(); 
+    public static ListenerModule listener_module = new ListenerModule();
     private static RespawnManager instance;
-
 
     void Awake()
     {
@@ -90,7 +89,8 @@ public class RespawnManager : MonoBehaviour
         character.Stun(0.9f);
         character.Flash();
 
-        current_players.Add(character.gameObject);
+        current_players.Add(character);
+        listener_module.NotifyListeners("AddFocusedObject", character.gameObject);
 
         return character;
     }

@@ -21,6 +21,7 @@ public class USBCharacter : MonoBehaviour
     [SerializeField] FadableGraphic damage_flash;
     [SerializeField] ShakeModule shake_module;
     [SerializeField] GameObject hit_particle;
+    [SerializeField] Transform slot_tracker;
 
     private USBLoadout loadout = new USBLoadout();
     private int health;
@@ -34,6 +35,7 @@ public class USBCharacter : MonoBehaviour
     private bool face_locked;
     private bool controls_disabled;
     private USBSlot last_slot_hit;
+    private int slot_streak;
 
 
     public void Move(Vector3 _dir)
@@ -261,6 +263,7 @@ public class USBCharacter : MonoBehaviour
             }
 
             last_slot_hit.SlotDrop(this);
+            IncrementSlotTracker();
         }
         
         last_slot_hit = null;
@@ -271,6 +274,18 @@ public class USBCharacter : MonoBehaviour
     {
         controls_disabled = false;
         stun_effect.SetActive(false);
+    }
+
+
+    void IncrementSlotTracker()
+    {
+        if (slot_streak == 4)
+            return;
+
+        ++slot_streak;
+
+        for (int i = 0; i < slot_tracker.childCount; ++i)
+            slot_tracker.GetChild(i).gameObject.SetActive(slot_streak > i);
     }
 
 }

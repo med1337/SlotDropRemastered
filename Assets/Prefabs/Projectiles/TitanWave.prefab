@@ -54,7 +54,7 @@ MonoBehaviour:
   damage: 0
   cooldown: 3
   lifetime: 2
-  activation_sound: {fileID: 0}
+  activation_sound: {fileID: 8300000, guid: 211964f73ff6e3741ba3ac50e408d0fd, type: 3}
   particle_effect: {fileID: 1762513334407198, guid: 80c3fc89a1053c342ba61df679e56fa1,
     type: 2}
   effect_radius: 10

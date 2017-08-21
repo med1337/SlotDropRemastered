@@ -1,24 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class SlotManager : MonoBehaviour
 {
     [SerializeField] float min_activate_delay = 2;
     [SerializeField] float max_activate_delay = 10;
 
-    private USBSlot[] slots;
+    private List<USBSlot> slots;
     private bool random_slot_queued = false;
-    private PlayerManager player_manager;
 
     bool invoke_called = false;
 
 
 	void Start()
     {
-        player_manager = GameObject.FindObjectOfType<PlayerManager>();
-		slots = GameObject.FindObjectsOfType<USBSlot>();
-	}
+		slots = GameObject.FindObjectsOfType<USBSlot>().ToList();
+    }
 	
 
 	void Update()
@@ -28,31 +27,76 @@ public class SlotManager : MonoBehaviour
             Invoke("OpenRandomSlot", Random.Range(min_activate_delay, max_activate_delay));
             random_slot_queued = true;
         }
+
+        if (GameManager.restarting_scene)
+        {
+            DeactivateAllSlots();
+        }
+        else
+        {
+            ActivateTitanSlots();
+        }
 	}
+
+
+    void ActivateTitanSlots()
+    {
+        bool titan_exists = false;
+
+        foreach (USBCharacter character in RespawnManager.current_players)
+        {
+            if (character.loadout_name == "Gold")
+            {
+                titan_exists = true;
+                break;
+            }
+        }
+
+
+
+        foreach (USBSlot slot in slots)
+        {
+            if (!slot.golden_slot)
+                continue;
+
+            if (titan_exists)
+            {
+                slot.Activate();
+            }
+            else
+            {
+                slot.Deactivate();
+            }
+
+
+        }
+    }
+
 
 
     void DeactivateAllSlots()
     {
         foreach (USBSlot slot in slots)
-        {
             slot.Deactivate();
-        }
     }
 
 
     void OpenRandomSlot()
     {
+        if (GameManager.restarting_scene)
+            return;
+
         USBSlot slot = null;
         int activate_attempts = 0;
 
         do
         {
-            slot = slots[Random.Range(0, slots.Length)];
+            slot = slots[Random.Range(0, slots.Count)];
 
             if (activate_attempts++ >= 10)
                 break;
 
-        } while (slot.slottable);
+        } while (slot.slottable || slot.golden_slot);
 
         if (slot != null)
             slot.Activate();

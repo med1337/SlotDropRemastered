@@ -11,6 +11,13 @@ public class PlayerManager : MonoBehaviour
     private static Dictionary<int, ConnectedPlayer> player_dictionary = new Dictionary<int, ConnectedPlayer>();
 
 
+    public static void IdleAllPlayers()
+    {
+        foreach (ConnectedPlayer player in player_dictionary.Values)
+            player.state = PlayerState.WAITING;
+    }
+
+
     void Awake()
     {
         if (instance == null)

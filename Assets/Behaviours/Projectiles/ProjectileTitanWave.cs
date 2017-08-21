@@ -11,6 +11,9 @@ public class ProjectileTitanWave : Projectile
 
     void Start()
     {
+        origin = owner.transform.Find("Shadow").position;
+        origin.y = 0;
+
         CreateEffect(particle_effect, origin, Vector3.zero);
         CreateExplosion(owner.gameObject, origin, effect_radius, knockback_force);
 

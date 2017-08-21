@@ -7,6 +7,7 @@ public class RespawnManager : MonoBehaviour
 {
     [SerializeField] GameObject usb_character_prefab;
     [SerializeField] Vector3 spawn_point;
+    public static List<GameObject> current_players = new List<GameObject>(); 
 
     private static RespawnManager instance;
 
@@ -32,6 +33,7 @@ public class RespawnManager : MonoBehaviour
 
     void Update()
     {
+        current_players.RemoveAll(item => item == null);
         RespawnPlayers();
 
         // Debug.
@@ -88,7 +90,11 @@ public class RespawnManager : MonoBehaviour
         character.Stun(0.9f);
         character.Flash();
 
+        current_players.Add(character.gameObject);
+
         return character;
     }
+
+
 
 }

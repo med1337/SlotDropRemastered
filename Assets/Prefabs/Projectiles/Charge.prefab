@@ -259,7 +259,7 @@ MonoBehaviour:
   damage: 10
   cooldown: 1.5
   lifetime: 0.6
-  activation_sound: {fileID: 0}
+  activation_sound: {fileID: 8300000, guid: 220841e978c10d344adc1aa661e47113, type: 3}
   charge_speed: 80
   dir_threshold: 0.5
 --- !u!135 &135225891422922496

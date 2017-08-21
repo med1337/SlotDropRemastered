@@ -11,6 +11,7 @@ public class RespawnManager : MonoBehaviour
     public static ListenerModule listener_module = new ListenerModule();
     private static RespawnManager instance;
 
+
     void Awake()
     {
         if (instance == null)
@@ -36,6 +37,12 @@ public class RespawnManager : MonoBehaviour
         RespawnPlayers();
 
         // Debug.
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            foreach (USBCharacter character in current_players)
+                LoadoutFactory.AssignLoadout(character, "Gold");
+        }
+
         DebugSpawnAI();
     }
 

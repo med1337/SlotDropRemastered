@@ -878,6 +878,10 @@ Prefab:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1611181465528194, guid: 1103fb09e1c7a9248aeb6852951dfcd4, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1103fb09e1c7a9248aeb6852951dfcd4, type: 2}
   m_IsPrefabParent: 0
@@ -936,6 +940,32 @@ Transform:
   m_PrefabParentObject: {fileID: 4127752713047544, guid: eab978434f4fb8a4aa0ef5efb752ced2,
     type: 2}
   m_PrefabInternal: {fileID: 986018690}
+--- !u!1 &1011808066 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1600615890437420, guid: 1103fb09e1c7a9248aeb6852951dfcd4,
+    type: 2}
+  m_PrefabInternal: {fileID: 982008912}
+--- !u!114 &1011808068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1011808066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce6bf388cf60d8740b969c8da305c2ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PopupImages:
+  - {fileID: 21300000, guid: 9aad2d14ce45e5144ae3c23707b6ff8f, type: 3}
+  - {fileID: 21300000, guid: dd587080d76f99f4eb0af1fdd50e309a, type: 3}
+  - {fileID: 21300000, guid: ef3a69f2680dc2048b08ee4b12820208, type: 3}
+  - {fileID: 21300000, guid: 73f72e8ef16b9f64788f1f73bda80a19, type: 3}
+  - {fileID: 21300000, guid: d96d970ff185c6e40be7d04b9040ddd6, type: 3}
+  - {fileID: 21300000, guid: cd4573d1486dd6d489e478c6b4892d6f, type: 3}
+  CursorGameObject: {fileID: 1753626496}
+  CursorFreezeTimeDuration: 0.5
+  ActivatePopup: 0
 --- !u!1001 &1058411101
 Prefab:
   m_ObjectHideFlags: 0

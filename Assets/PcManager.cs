@@ -7,7 +7,7 @@ using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 
-public class PopupScript : MonoBehaviour
+public class PcManager : MonoBehaviour
 {
     [Header("DEBUG")] public bool ActivatePopup;
     public bool ActivateQuarantine;

@@ -7,21 +7,39 @@ using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 
+enum PCState
+{
+    Welcome = 0,
+    Load,
+    Running,
+    Freeze,
+    BlueScreen,
+    Reboot
+}
+
 public class PcManager : MonoBehaviour
 {
     [Header("DEBUG")] public bool ActivatePopup;
     public bool ActivateQuarantine;
+    public bool ActivateReboot;
+    public bool ActivateBluescren;
 
     [Header("GameObjects")] public GameObject CursorGameObject;
     public GameObject QuarantineGameObject;
     public Slider ProtectionSlider;
     public Slider TemperatureSlider;
+    public GameObject RebootGameObject;
+    public Slider RebootSlider;
+    public GameObject WelcomeGameObject;
+    public GameObject BluescreenGameObject;
 
     [Header("Time settings")] public float CursorFreezeTimeDuration;
+    [Space(10)] public float RebootDuration;
+    [Space(10)] public float BluescreenDuration;
+    public float loadDelay;
 
     [Space(10)] public float QuarantineProcessDuration;
     public float QuarantinePopupCooldown;
-    public float ChanceOfQuarantineSuccess;
 
     [Header("Slider settings")] [Range(1, 10)] public float ProtectionUpdateRate;
     [Range(0, 1)] public float ProtectionUpdateStep;
@@ -37,6 +55,11 @@ public class PcManager : MonoBehaviour
     private float _cursorSpeed;
 
     private float _protectionTimer = 0;
+
+    private PCState _pcState;
+    private float _rebootTimer = -1;
+
+    private bool _rebootAfterBsod;
 
     private QuarantineStatus _quarantineStatus;
     private bool _quarantineSuccess; // could do in enum but whatever
@@ -57,14 +80,44 @@ public class PcManager : MonoBehaviour
     {
         _popups = new List<GameObject>();
         _protectionUpdateRate = 1 / ProtectionUpdateRate;
+        RebootSlider.maxValue = RebootDuration;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //editor
+        switch (_pcState)
+        {
+            case PCState.Running:
+                DebugOptions();
+                ProcessPopups();
+                ProcessProtectionBar();
+                break;
+            case PCState.Freeze:
+                ProcessQuarantine();
+                break;
+            case PCState.BlueScreen:
+                ProcessBluescreen();
+                break;
+            case PCState.Reboot:
+                ProcessReboot();
+                break;
+            case PCState.Welcome:
+                ProcessWelcome();
+                break;
+            case PCState.Load:
+                ProcessLoad();
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+    }
 
+    private void DebugOptions()
+    {
+        //editor
         _protectionUpdateRate = 1 / ProtectionUpdateRate;
+        RebootSlider.maxValue = RebootDuration;
 
         //debug
         if (ActivatePopup)
@@ -78,19 +131,129 @@ public class PcManager : MonoBehaviour
             AttemptQuarantine();
             ActivateQuarantine = false;
         }
-        _cursorSpeed = _popups.Count;
-        ProcessQuarantine();
-        if (_quarantineStatus != QuarantineStatus.Idle) return;
-        ProcessPopups();
-        ProcessProtectionBar();
+
+        if (ActivateBluescren)
+        {
+            Bluescreen(BluescreenDuration, true);
+            ActivateBluescren = false;
+        }
+        if (ActivateReboot)
+        {
+            Reboot(RebootDuration);
+            ActivateReboot = false;
+        }
+    }
+
+    private void ProcessBluescreen()
+    {
+        //update timer
+        _rebootTimer += Time.deltaTime;
+
+        if (!(_rebootTimer > BluescreenDuration - loadDelay)) return;
+
+        //reinitialise timer
+        _rebootTimer = -loadDelay;
+
+        //reboot if needed
+        if (_rebootAfterBsod)
+            Reboot(RebootDuration);
+    }
+
+    private void ProcessWelcome()
+    {
+        //update timer
+        _rebootTimer += Time.deltaTime;
+
+        if (!(_rebootTimer > 0)) return;
+
+        //reinitialise timer
+        _rebootTimer = -loadDelay;
+
+
+        //change pc state
+        _pcState = PCState.Load;
+        WelcomeGameObject.SetActive(false);
+    }
+
+    private void ProcessLoad()
+    {
+        //update timer
+        _rebootTimer += Time.deltaTime;
+
+        if (!(_rebootTimer > 0)) return;
+
+        //reinitialise timer
+        _rebootTimer = -loadDelay;
+
+        //update pc state and enable pc health scanner
+        _pcState = PCState.Running;
+        transform.GetChild(0).gameObject.SetActive(true);
+    }
+
+    private void ProcessReboot()
+    {
+        //update timer
+        _rebootTimer += Time.deltaTime;
+
+        //update timer after initial delay
+        if (_rebootTimer >= 0)
+        {
+            RebootSlider.value = _rebootTimer;
+        }
+
+        if (!(_rebootTimer > RebootDuration - loadDelay)) return;
+
+        //reinitialise timer
+        _rebootTimer = -loadDelay;
+
+        //disable reboot screen
+        RebootGameObject.SetActive(false);
+        transform.GetChild(0).gameObject.SetActive(false);
+
+        //reload bars
+        RestartBars();
+
+        //proceed to next state and enable welcome screen
+        _pcState = PCState.Welcome;
+        WelcomeGameObject.SetActive(true);
+        WelcomeGameObject.transform.SetAsLastSibling();
+    }
+
+    public void Bluescreen(float duration, bool rebootAfterBsod)
+    {
+        _rebootAfterBsod = rebootAfterBsod;
+        BluescreenDuration = duration;
+
+        //change state
+        _pcState = PCState.BlueScreen;
+
+        //activate image
+        BluescreenGameObject.SetActive(true);
+        BluescreenGameObject.transform.SetAsLastSibling();
+    }
+
+
+    public void Reboot(float rebootDuration)
+    {
+        RebootDuration = rebootDuration;
+
+        //change pc state
+        _pcState = PCState.Reboot;
+
+        //update screen
+        RebootGameObject.SetActive(true);
+        RebootGameObject.transform.SetAsLastSibling();
+        BluescreenGameObject.SetActive(false);
     }
 
     private void ProcessPopups()
     {
         if (_quarantineStatus != QuarantineStatus.Idle) return;
+
         if (!_popupClosed)
         {
             if (_popups.Count <= 0) return;
+            _cursorSpeed = _popups.Count;
             _lastGameObject = _popups[_popups.Count - 1];
             ClosePopup();
         }
@@ -107,6 +270,7 @@ public class PcManager : MonoBehaviour
     {
         TemperatureSlider.value = 0;
         ProtectionSlider.value = 100;
+        RebootSlider.value = 0;
     }
 
     private void IncreaseTemperature()
@@ -149,13 +313,18 @@ public class PcManager : MonoBehaviour
 
     public void ProcessProtectionBar()
     {
+        //update timer
         _protectionTimer += Time.deltaTime;
+
         if (!(_protectionTimer >= _protectionUpdateRate)) return;
-        if (ProtectionSlider.value > 0)
+
+        //update timer if appropriate
+        if (ProtectionSlider.value-ProtectionUpdateStep >= 0)
         {
             ProtectionSlider.value -= ProtectionUpdateStep;
-            ChanceOfQuarantineSuccess = ProtectionSlider.value / 100;
         }
+
+        //reset timer
         _protectionTimer = 0;
     }
 
@@ -198,7 +367,10 @@ public class PcManager : MonoBehaviour
 
     public void AttemptQuarantine()
     {
-        if (_quarantineStatus != QuarantineStatus.Idle) return;
+        if (_pcState != PCState.Running) return;
+
+        //freeze pc
+        _pcState = PCState.Freeze;
 
         //activate quarantine popup
         _quarantineStatus = QuarantineStatus.Processing;
@@ -219,29 +391,44 @@ public class PcManager : MonoBehaviour
         switch (_quarantineStatus)
         {
             case QuarantineStatus.Idle:
+                _pcState=PCState.Running;
                 break;
             case QuarantineStatus.Processing:
+                //update timer
                 _quarantineTimer += Time.deltaTime;
+
                 if (_quarantineTimer >= QuarantineProcessDuration)
                 {
+                    //reset timer
                     _quarantineTimer = 0;
+
+                    //random chance
                     var random = Random.Range(0.0f, 1.0f);
-                    Debug.Log(random);
                     _quarantineSuccess = random < ChanceOfQuarantineSuccess;
+
+                    //update image
                     QuarantineGameObject.GetComponent<Image>().sprite =
                         _quarantineSuccess ? QuarantineSprites[1] : QuarantineSprites[2];
 
+                    //change quarantine state
                     _quarantineStatus = QuarantineStatus.Result;
                 }
                 break;
             case QuarantineStatus.Result:
+                //update timer
                 _quarantineTimer += Time.deltaTime;
+
                 if (_quarantineTimer >= QuarantinePopupCooldown)
                 {
+                    //reset timer
                     _quarantineTimer = 0;
+
+                    //deactivate image and set to idle
                     QuarantineGameObject.SetActive(false);
                     QuarantineGameObject.GetComponent<Image>().sprite = QuarantineSprites[0];
                     _quarantineStatus = QuarantineStatus.Idle;
+
+                    //oh no :(
                     if (!_quarantineSuccess)
                     {
                         IncreaseTemperature();

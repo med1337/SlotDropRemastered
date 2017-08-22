@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static bool round_over;
     public static bool restarting_scene { get; private set; }
+    public static TempSceneRefs scene = new TempSceneRefs();
 
     [SerializeField] PlayerManager player_manager;
     [SerializeField] AudioManager audio_manager;

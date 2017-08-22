@@ -91,7 +91,8 @@ public class RespawnManager : MonoBehaviour
         character.SetColour(_color);
         character.name = _name;
 
-        LoadoutFactory.AssignRandomLoadout(character);
+        LoadoutFactory.AssignLoadout(character, "Base");
+
         character.Init();
         character.Stun(0.9f);
         character.Flash();

@@ -322,6 +322,7 @@ MonoBehaviour:
   - {fileID: 1209800069447096, guid: 6477c3c20634ce349a7e1d094be4d3ef, type: 2}
   - {fileID: 1775031136126692, guid: 815c47e269678d44d9cf33a127ff904d, type: 2}
   - {fileID: 1350698614511382, guid: 50c8aa297fc4cc8438db8c302f30fadc, type: 2}
+  - {fileID: 1052432468127176, guid: 55992d1f57571e0418480a4d5855ad61, type: 2}
   hat_sprites:
   - {fileID: 21300006, guid: 466661224b307e8479a0570ed2e78f6d, type: 3}
   - {fileID: 21300000, guid: 466661224b307e8479a0570ed2e78f6d, type: 3}

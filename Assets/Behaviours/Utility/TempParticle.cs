@@ -12,9 +12,17 @@ public class TempParticle : MonoBehaviour
         if (system == null)
             system = GetComponentInChildren<ParticleSystem>();
 
-        float duration = system.main.duration;
+        StartCoroutine(CleanUp(system));
+    }
 
-        Destroy(this.gameObject, duration);
+
+    IEnumerator CleanUp(ParticleSystem _system)
+    {
+        yield return new WaitForSeconds(_system.main.duration);
+        _system.Stop();
+
+        yield return new WaitUntil(() => !_system.IsAlive());
+        Destroy(this.gameObject);
     }
 
 }

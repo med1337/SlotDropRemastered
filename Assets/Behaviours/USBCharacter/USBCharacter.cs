@@ -246,7 +246,7 @@ public class USBCharacter : MonoBehaviour
 
             slot.PostponeDeactivation();
             last_slot_hit = slot;
-            transform.position = slot.transform.position + new Vector3(0, 0, 0.3f * loadout.scale.z);
+            transform.position = slot.transform.position;
 
             return;
         }

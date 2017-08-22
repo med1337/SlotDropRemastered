@@ -94,7 +94,7 @@ public class RespawnManager : MonoBehaviour
         LoadoutFactory.AssignLoadout(character, "Base");
 
         character.Init();
-        character.Stun(0.9f);
+        character.Stun(0.9f, false);
         character.Flash();
 
         current_players.Add(character);

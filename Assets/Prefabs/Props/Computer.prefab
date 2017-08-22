@@ -1580,6 +1580,7 @@ MonoBehaviour:
   ChanceOfQuarantineSuccess: 0.5
   ProtectionUpdateRate: 4
   ProtectionUpdateStep: 1
+  TemperatureStep: 25
   QuarantineSprites:
   - {fileID: 21300000, guid: 04e3cb36e6278894e97f4e3e8ccac0f0, type: 3}
   - {fileID: 21300000, guid: b77bb73d7be96bb42a4bd7c2c79b438a, type: 3}

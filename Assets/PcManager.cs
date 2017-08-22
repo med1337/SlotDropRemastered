@@ -12,25 +12,24 @@ public class PcManager : MonoBehaviour
     [Header("DEBUG")] public bool ActivatePopup;
     public bool ActivateQuarantine;
 
-    [Header("Settings")] public GameObject CursorGameObject;
+    [Header("GameObjects")] public GameObject CursorGameObject;
     public GameObject QuarantineGameObject;
     public Slider ProtectionSlider;
     public Slider TemperatureSlider;
 
-    [Space(10)] public float CursorFreezeTimeDuration;
+    [Header("Time settings")] public float CursorFreezeTimeDuration;
 
-    [Space(10)]
-    public float QuarantineProcessDuration;
+    [Space(10)] public float QuarantineProcessDuration;
     public float QuarantinePopupCooldown;
     public float ChanceOfQuarantineSuccess;
 
-    [Space(10)]
-    [Range(1, 10)]
-    public float ProtectionUpdateRate;
-    [Range(0, 1)]
-    public float ProtectionUpdateStep;
+    [Header("Slider settings")] [Range(1, 10)] public float ProtectionUpdateRate;
+    [Range(0, 1)] public float ProtectionUpdateStep;
+    [Range(0, 50)] public float TemperatureStep;
 
-    [Tooltip("1st element - processing, 2nd - success, 3rd - failure")] public List<Sprite> QuarantineSprites;
+
+    [Header("Sprites")] [Tooltip("1st element - processing, 2nd - success, 3rd - failure")]
+    public List<Sprite> QuarantineSprites;
 
     [Space(10)] public List<Sprite> PopupImages;
 
@@ -102,6 +101,12 @@ public class PcManager : MonoBehaviour
             _popupTimer = 0;
             _popupClosed = false;
         }
+    }
+
+    private void IncreaseTemperature()
+    {
+        if (TemperatureSlider.value + TemperatureStep <= 100)
+            TemperatureSlider.value += TemperatureStep;
     }
 
     private void ClosePopup()
@@ -177,7 +182,7 @@ public class PcManager : MonoBehaviour
             //add popup to array
             _popups.Add(newpopupGameObject);
 
-
+            //increase counter
             i++;
         }
 
@@ -233,6 +238,7 @@ public class PcManager : MonoBehaviour
                     _quarantineStatus = QuarantineStatus.Idle;
                     if (!_quarantineSuccess)
                     {
+                        IncreaseTemperature();
                         Popup(3);
                     }
                 }

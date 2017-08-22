@@ -15,12 +15,12 @@ public struct TempSceneRefs
         }
     }
 
-    public PCManager pc_manager
+    public PcManager pc_manager
     {
         get
         {
             if (pc_manager_ == null)
-                pc_manager_ = GameObject.FindObjectOfType<PCManager>();
+                pc_manager_ = GameObject.FindObjectOfType<PcManager>();
 
             return pc_manager_;
         }
@@ -28,6 +28,6 @@ public struct TempSceneRefs
 
 
     private SlotManager slot_manager_;
-    private PCManager pc_manager_;
+    private PcManager pc_manager_;
 
 }

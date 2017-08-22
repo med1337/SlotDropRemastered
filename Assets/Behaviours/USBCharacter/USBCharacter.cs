@@ -141,7 +141,16 @@ public class USBCharacter : MonoBehaviour
         Flash();
 
         if (health <= 0)
+        {
+            for (int i = 0; i < 3; ++i)
+            {
+                Projectile.CreateEffect(hit_particle,
+                    body_group.transform.position, transform.position + Vector3.up * 5);
+            }
+
+            AudioManager.PlayOneShot("death");
             Destroy(this.gameObject);
+        }
     }
 
 
@@ -154,10 +163,13 @@ public class USBCharacter : MonoBehaviour
     }
 
 
-    public void Stun(float _duration)
+    public void Stun(float _duration, bool _sound = true)
     {
         controls_disabled = true;
         stun_effect.SetActive(true);
+
+        if (_sound)
+            AudioManager.PlayOneShot("stun");
 
         Invoke("RemoveStun", _duration);
     }

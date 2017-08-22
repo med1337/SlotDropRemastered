@@ -18,6 +18,13 @@ public class SlotManager : MonoBehaviour
     {
 		slots = GameObject.FindObjectsOfType<USBSlot>().ToList();
     }
+
+    
+    void OnDisable()
+    {
+        CancelInvoke();
+        DeactivateAllSlots();
+    }
 	
 
 	void Update()
@@ -52,8 +59,6 @@ public class SlotManager : MonoBehaviour
             }
         }
 
-
-
         foreach (USBSlot slot in slots)
         {
             if (!slot.golden_slot)
@@ -67,8 +72,6 @@ public class SlotManager : MonoBehaviour
             {
                 slot.Deactivate();
             }
-
-
         }
     }
 
@@ -76,8 +79,12 @@ public class SlotManager : MonoBehaviour
 
     void DeactivateAllSlots()
     {
+        slots.RemoveAll(slot => slot == null);
+
         foreach (USBSlot slot in slots)
             slot.Deactivate();
+
+        random_slot_queued = false;
     }
 
 

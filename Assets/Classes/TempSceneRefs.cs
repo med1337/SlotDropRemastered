@@ -27,7 +27,20 @@ public struct TempSceneRefs
     }
 
 
+    public MeteorManager meteor_manager
+    {
+        get
+        {
+            if (meteor_manager_ == null)
+                meteor_manager_ = GameObject.FindObjectOfType<MeteorManager>();
+
+            return meteor_manager_;
+        }
+    }
+
+
     private SlotManager slot_manager_;
     private PcManager pc_manager_;
+    private MeteorManager meteor_manager_;
 
 }

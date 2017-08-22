@@ -73,6 +73,7 @@ public class PcManager : MonoBehaviour
     private float _popupTimer;
     private float _quarantineTimer;
     private float _protectionUpdateRate;
+    
 
 
     // Use this for initialization
@@ -273,11 +274,41 @@ public class PcManager : MonoBehaviour
         RebootSlider.value = 0;
     }
 
-    private void IncreaseTemperature()
+    private float IncreaseTemperature()
     {
         if (TemperatureSlider.value + TemperatureStep <= 100)
+        {
             TemperatureSlider.value += TemperatureStep;
+
+            if (TemperatureSlider.value >= 100)
+            {
+                StartCoroutine(TriggerCataclysm());
+            }
+        }
+        return TemperatureSlider.value;
     }
+
+
+    private IEnumerator TriggerCataclysm()
+    {
+        Light dir_light = GameObject.Find("DirectionalLight").GetComponent<Light>();
+        Color prev_color = dir_light.color;
+        dir_light.color = Color.red;
+
+        GameManager.scene.meteor_manager.SpawnMeteors(BluescreenDuration);
+        GameManager.scene.slot_manager.enabled = false;
+
+        AudioManager.PlayOneShot("alarm");
+
+        Bluescreen(BluescreenDuration, true);
+        yield return new WaitForSeconds(BluescreenDuration);
+
+        dir_light.color = prev_color;
+        yield return new WaitForSeconds(BluescreenDuration + RebootDuration);
+
+        GameManager.scene.slot_manager.enabled = true;
+    }
+
 
     private void ClosePopup()
     {
@@ -402,6 +433,8 @@ public class PcManager : MonoBehaviour
                     //reset timer
                     _quarantineTimer = 0;
 
+                     float ChanceOfQuarantineSuccess = ProtectionSlider.value/100;
+
                     //random chance
                     var random = Random.Range(0.0f, 1.0f);
                     _quarantineSuccess = random < ChanceOfQuarantineSuccess;
@@ -431,8 +464,11 @@ public class PcManager : MonoBehaviour
                     //oh no :(
                     if (!_quarantineSuccess)
                     {
-                        IncreaseTemperature();
-                        Popup(3);
+                        if(IncreaseTemperature()<100)
+                        {
+                            Popup(3);
+                        }
+
                     }
                 }
                 break;

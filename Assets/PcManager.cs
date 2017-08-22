@@ -103,6 +103,12 @@ public class PcManager : MonoBehaviour
         }
     }
 
+    public void RestartBars()
+    {
+        TemperatureSlider.value = 0;
+        ProtectionSlider.value = 100;
+    }
+
     private void IncreaseTemperature()
     {
         if (TemperatureSlider.value + TemperatureStep <= 100)

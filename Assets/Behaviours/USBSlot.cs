@@ -1,11 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel.Design;
 using UnityEngine;
 
 public class USBSlot : MonoBehaviour
 {
     public bool slottable { get { return fx_obj.activeSelf; } }
+    public bool golden_slot;
 
     [SerializeField] BoxCollider box_collider;
     [SerializeField] GameObject fx_obj;
@@ -19,7 +19,8 @@ public class USBSlot : MonoBehaviour
 
         fx_obj.SetActive(true);
 
-        Invoke("Deactivate", time_to_deactivate);
+        if (!golden_slot)
+            Invoke("Deactivate", time_to_deactivate);
     }
 
 
@@ -33,6 +34,9 @@ public class USBSlot : MonoBehaviour
 
     public void PostponeDeactivation()
     {
+        if (golden_slot)
+            return;
+
         CancelInvoke();
 
         Invoke("Deactivate", time_to_deactivate / 2);
@@ -44,8 +48,15 @@ public class USBSlot : MonoBehaviour
         if (!slottable)
             return;
 
-        LoadoutFactory.AssignRandomLoadout(_character);
-        _character.Flash();
+        if (_character.loadout_name == "Gold" && golden_slot)
+        {
+            GameManager.round_over = true;
+        }
+        else
+        {
+            LoadoutFactory.AssignRandomLoadout(_character);
+            _character.Flash();
+        }
 
         Deactivate();
     }

@@ -113,8 +113,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1260275387458766}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.17, y: 0, z: -3.72}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -20.9, y: 0, z: -1}
   m_LocalScale: {x: 0.8496381, y: 1, z: 1}
   m_Children:
   - {fileID: 4702611005003708}
@@ -305,6 +305,11 @@ MonoBehaviour:
   box_collider: {fileID: 65510293109918436}
   fx_obj: {fileID: 1794417414179028}
   time_to_deactivate: 5
+  allowed_loadouts:
+  - Base
+  - Soldier
+  - Pirate
+  - Fisher
 --- !u!212 &212998377346529332
 SpriteRenderer:
   m_ObjectHideFlags: 1

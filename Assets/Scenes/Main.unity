@@ -533,7 +533,7 @@ GameObject:
   m_Component:
   - component: {fileID: 338931205}
   - component: {fileID: 338931206}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -863,6 +863,10 @@ Prefab:
     - target: {fileID: 100000, guid: c22a2a2c8180a4d3fb2a88b43bbe77b1, type: 3}
       propertyPath: m_Name
       value: Mesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: c22a2a2c8180a4d3fb2a88b43bbe77b1, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c22a2a2c8180a4d3fb2a88b43bbe77b1, type: 3}
@@ -1979,7 +1983,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 2015692082}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Desk
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -40,7 +40,7 @@ public class RespawnManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.T))
         {
             foreach (USBCharacter character in current_players)
-                LoadoutFactory.AssignLoadout(character, "Gold");
+                character.BecomeTitan();
         }
 
         DebugSpawnAI();

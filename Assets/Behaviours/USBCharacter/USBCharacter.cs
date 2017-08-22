@@ -122,6 +122,16 @@ public class USBCharacter : MonoBehaviour
     }
 
 
+    public void BecomeTitan()
+    {
+        AudioManager.PlayOneShot("titan_trigger");
+        Damage(0);
+
+        slot_tracker.gameObject.SetActive(false);
+        LoadoutFactory.AssignLoadout(this, "Gold");
+    }
+
+
     public void Damage(int _damage)
     {
         health -= _damage;
@@ -236,7 +246,7 @@ public class USBCharacter : MonoBehaviour
 
             slot.PostponeDeactivation();
             last_slot_hit = slot;
-            transform.position = slot.transform.position + new Vector3(0, 0, 0.3f * loadout.scale.z);
+            transform.position = slot.transform.position;
 
             return;
         }
@@ -291,8 +301,7 @@ public class USBCharacter : MonoBehaviour
 
         if (slot_streak == 5)
         {
-            slot_tracker.gameObject.SetActive(false);
-            LoadoutFactory.AssignLoadout(this, "Gold");
+            BecomeTitan();
         }
     }
 

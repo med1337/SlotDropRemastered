@@ -328,6 +328,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 466661224b307e8479a0570ed2e78f6d, type: 3}
   - {fileID: 21300002, guid: 466661224b307e8479a0570ed2e78f6d, type: 3}
   - {fileID: 21300004, guid: 466661224b307e8479a0570ed2e78f6d, type: 3}
+  download_data_prefab: {fileID: 1707724021457840, guid: a864729950c020f4892209e7e5ab6d18,
+    type: 2}
 --- !u!114 &114201003331070402
 MonoBehaviour:
   m_ObjectHideFlags: 1

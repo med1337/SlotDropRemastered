@@ -9,8 +9,9 @@ public class LoadoutFactory : MonoBehaviour
 {
     public List<GameObject> projectile_prefabs;
     public List<Sprite> hat_sprites;
+    public GameObject download_data_prefab;
 
-    private static LoadoutFactory instance;
+    public static LoadoutFactory instance;
 
     private Dictionary<string, USBLoadout> starter_loadouts = new Dictionary<string, USBLoadout>();
     private Dictionary<string, USBLoadout> general_loadouts = new Dictionary<string, USBLoadout>();

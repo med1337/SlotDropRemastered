@@ -56,6 +56,11 @@ public class USBSlot : MonoBehaviour
         {
             LoadoutFactory.AssignRandomLoadout(_character);
             _character.Flash();
+
+            Projectile.CreateEffect(LoadoutFactory.instance.download_data_prefab, 
+                _character.transform.position, Vector3.zero);
+
+            GameManager.scene.pc_manager.AttemptQuarantine();
         }
 
         Deactivate();

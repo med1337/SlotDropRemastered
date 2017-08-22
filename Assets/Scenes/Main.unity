@@ -993,37 +993,39 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 95166668389145460, guid: 1103fb09e1c7a9248aeb6852951dfcd4,
+    - target: {fileID: 224773146709334760, guid: 1103fb09e1c7a9248aeb6852951dfcd4,
         type: 2}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: cd1715d8285099e41a130fe924996313, type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 224773146709334760, guid: 1103fb09e1c7a9248aeb6852951dfcd4,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224290677596183472, guid: 1103fb09e1c7a9248aeb6852951dfcd4,
+        type: 2}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224290677596183472, guid: 1103fb09e1c7a9248aeb6852951dfcd4,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224290677596183472, guid: 1103fb09e1c7a9248aeb6852951dfcd4,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1611181465528194, guid: 1103fb09e1c7a9248aeb6852951dfcd4, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114867001142301672, guid: 1103fb09e1c7a9248aeb6852951dfcd4,
+    - target: {fileID: 224624819904928670, guid: 1103fb09e1c7a9248aeb6852951dfcd4,
         type: 2}
-      propertyPath: m_Text
-      value: PC HEALTH MONITOR 3000
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 224764940315167066, guid: 1103fb09e1c7a9248aeb6852951dfcd4,
+    - target: {fileID: 224269670217441754, guid: 1103fb09e1c7a9248aeb6852951dfcd4,
         type: 2}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1283016216565968, guid: 1103fb09e1c7a9248aeb6852951dfcd4, type: 2}
-      propertyPath: m_IsActive
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1084,45 +1086,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4127752713047544, guid: eab978434f4fb8a4aa0ef5efb752ced2,
     type: 2}
   m_PrefabInternal: {fileID: 986018690}
---- !u!1 &1011808066 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1600615890437420, guid: 1103fb09e1c7a9248aeb6852951dfcd4,
-    type: 2}
-  m_PrefabInternal: {fileID: 982008912}
---- !u!114 &1011808068
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1011808066}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce6bf388cf60d8740b969c8da305c2ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ActivatePopup: 0
-  ActivateQuarantine: 0
-  CursorGameObject: {fileID: 1753626496}
-  QuarantineGameObject: {fileID: 0}
-  ProtectionSlider: {fileID: 0}
-  TemperatureSlider: {fileID: 0}
-  CursorFreezeTimeDuration: 0.5
-  QuarantineProcessDuration: 3
-  QuarantinePopupCooldown: 2
-  ChanceOfQuarantineSuccess: 0.5
-  ProtectionUpdateRate: 0
-  ProtectionUpdateStep: 0
-  QuarantineSprites:
-  - {fileID: 21300000, guid: 04e3cb36e6278894e97f4e3e8ccac0f0, type: 3}
-  - {fileID: 21300000, guid: b77bb73d7be96bb42a4bd7c2c79b438a, type: 3}
-  - {fileID: 21300000, guid: 79237a1b13917ad488fdd3d2076f8f68, type: 3}
-  PopupImages:
-  - {fileID: 21300000, guid: 9aad2d14ce45e5144ae3c23707b6ff8f, type: 3}
-  - {fileID: 21300000, guid: dd587080d76f99f4eb0af1fdd50e309a, type: 3}
-  - {fileID: 21300000, guid: ef3a69f2680dc2048b08ee4b12820208, type: 3}
-  - {fileID: 21300000, guid: 73f72e8ef16b9f64788f1f73bda80a19, type: 3}
-  - {fileID: 21300000, guid: d96d970ff185c6e40be7d04b9040ddd6, type: 3}
-  - {fileID: 21300000, guid: cd4573d1486dd6d489e478c6b4892d6f, type: 3}
 --- !u!1001 &1058411101
 Prefab:
   m_ObjectHideFlags: 0

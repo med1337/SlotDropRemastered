@@ -54,7 +54,7 @@ MonoBehaviour:
   damage: 5
   cooldown: 2.5
   lifetime: 2
-  activation_sound: {fileID: 0}
+  activation_sound: {fileID: 8300000, guid: 07b5fe4fb5865a147a3a250d75420763, type: 3}
   fire_block: {fileID: 1953485136763882, guid: d89c35659a28fa744a2db7c73c0c1c1a, type: 2}
   blast_delay: 0.05
   blast_spacing: 3

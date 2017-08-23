@@ -9,6 +9,8 @@ public class AudioManager : MonoBehaviour
 
     [Range(0, 1)][SerializeField] float music_volume_ = 1;
     [Range(0, 1)][SerializeField] float sfx_volume_ = 1;
+
+    [SerializeField] AudioClip music;
     [SerializeField] List<AudioClip> audio_clips;
 
     private static AudioManager instance;
@@ -61,6 +63,14 @@ public class AudioManager : MonoBehaviour
 
         music_source = audio_parent.AddComponent<AudioSource>();
         sfx_source = audio_parent.AddComponent<AudioSource>();
+
+        if (music != null)
+        {
+            music_source.clip = music;
+            music_source.loop = true;
+
+            music_source.Play();
+        }
     }
 
 

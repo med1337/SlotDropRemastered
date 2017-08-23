@@ -243,8 +243,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c82c14c2c114ded4f8bd2b3a7527f09a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  music_volume_: 1
-  sfx_volume_: 1
+  music_volume_: 0
+  sfx_volume_: 0.5
+  music: {fileID: 8300000, guid: 38edda0b9f26e2847860f525744fab25, type: 3}
   audio_clips:
   - {fileID: 8300000, guid: 3e40165a11b4e4c41847b1a49f3b1180, type: 3}
   - {fileID: 8300000, guid: 778bcf72c4b48a848ba937e135dab1aa, type: 3}
@@ -268,6 +269,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1185607a52c7f564481b7ccb02233848, type: 3}
   - {fileID: 8300000, guid: 389404dbad80c98479b9ca658cf5e52f, type: 3}
   - {fileID: 8300000, guid: c3c36685547262944bcb23a0bebd5a6b, type: 3}
+  - {fileID: 8300000, guid: 07b5fe4fb5865a147a3a250d75420763, type: 3}
+  - {fileID: 8300000, guid: 92d0384a2b210e147a0386774975104f, type: 3}
 --- !u!114 &114128758828404594
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -328,6 +331,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 466661224b307e8479a0570ed2e78f6d, type: 3}
   - {fileID: 21300002, guid: 466661224b307e8479a0570ed2e78f6d, type: 3}
   - {fileID: 21300004, guid: 466661224b307e8479a0570ed2e78f6d, type: 3}
+  download_data_prefab: {fileID: 1707724021457840, guid: a864729950c020f4892209e7e5ab6d18,
+    type: 2}
 --- !u!114 &114201003331070402
 MonoBehaviour:
   m_ObjectHideFlags: 1

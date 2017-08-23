@@ -11,6 +11,7 @@ public class FireBlock : MonoBehaviour
     private Vector3 damage_box;
     private Vector3 facing;
 
+
     public void Init(USBCharacter _owner, int _damage, float _damage_delay,
         Vector3 _damage_box, Vector3 _facing)
     {

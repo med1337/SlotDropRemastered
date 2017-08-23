@@ -6,17 +6,39 @@ using UnityEngine;
 public class UpgradeBlock : MonoBehaviour 
 {
     public static ListenerModule listener_module = new ListenerModule();
+    public float max_velocity = 10;
     public float snap_speed = 1;
 
     private bool move_to_slot = false;
     private Vector3 upgrade_slot_snap_position = Vector3.zero;
     private const float LERP_TOLERANCE = 0.5f;
     private float t = 0;
+    private Rigidbody upgrade_cube_rigidbody;
+
+
+    void Start()
+    {
+        upgrade_cube_rigidbody = GetComponent<Rigidbody>();
+    }
 
 
     void Update()
     {
         HandleUpgrade();
+    }
+
+
+    void FixedUpdate()
+    {
+        LimitVelocity();
+    }
+
+
+    void LimitVelocity()
+    {
+        if (upgrade_cube_rigidbody.velocity.magnitude > max_velocity)
+            upgrade_cube_rigidbody.velocity = upgrade_cube_rigidbody.velocity.normalized * max_velocity;
+
     }
 
 

@@ -19,7 +19,7 @@
             "max_health": 100,
             "move_speed": 15,
             "snap_distance": 5,
-            "scale": [ 2, 2, 2 ],
+            "scale": [ 3, 3, 3 ],
 			"basic": "Splash",
 			"special": "Tsunami"
 		},
@@ -29,7 +29,7 @@
             "max_health": 100,
             "move_speed": 15,
             "snap_distance": 5,
-            "scale": [ 2, 2, 2 ],
+            "scale": [ 3, 3, 3 ],
 			"basic": "SwordDance",
 			"special": "BarrelBomb"
 		},
@@ -39,7 +39,7 @@
             "max_health": 100,
             "move_speed": 15,
             "snap_distance": 5,
-            "scale": [ 2, 2, 2 ],
+            "scale": [ 3, 3, 3 ],
 			"basic": "Charge",
 			"special": "ArrowHail"
 		}
@@ -52,7 +52,7 @@
             "max_health": 100,
             "move_speed": 15,
             "snap_distance": 5,
-            "scale": [ 2, 2, 2 ],
+            "scale": [ 3, 3, 3 ],
 			"basic": "ShortCircuit",
 			"special": "Null"
 		}

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class UpgradeBlock : MonoBehaviour 
 {
-    public static ListenerModule listener_module = new ListenerModule();
+    public ListenerModule listener_module = new ListenerModule();
     public float max_velocity = 10;
     public float snap_speed = 1;
 
@@ -53,7 +53,7 @@ public class UpgradeBlock : MonoBehaviour
                 move_to_slot = false;
                 t = 0;
                 upgrade_slot_snap_position = Vector3.zero;
-                listener_module.NotifyListeners("UpgradedPC");//notify upgrade event
+                listener_module.NotifyListeners("UpgradedPC", this);//notify upgrade event
                 return;
             }
 

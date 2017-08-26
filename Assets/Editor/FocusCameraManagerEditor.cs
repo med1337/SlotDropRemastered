@@ -17,7 +17,8 @@ public class FocusCameraManagerEditor : Editor
                 return;
 
             var manager = (FocusCameraManager)target;
-            manager.Focus(GameManager.scene.pc_manager.transform.position, 9, 3);
+            //manager.Focus(GameManager.scene.pc_manager.transform.position, 9, 3);
+            manager.Focus(GameObject.Find("Mouse").transform.position, 9, 3);
         }
     }
 

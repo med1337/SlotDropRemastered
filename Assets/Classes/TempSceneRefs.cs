@@ -37,8 +37,20 @@ public struct TempSceneRefs
         }
     }
 
-    private MeteorManager meteor_manager_;
+    public FocusCameraManager focus_camera
+    {
+        get
+        {
+            if (focus_camera_ == null)
+                focus_camera_ = GameObject.FindObjectOfType<FocusCameraManager>();
+
+            return focus_camera_;
+        }
+    }
+
     private SlotManager slot_manager_;
     private PcManager pc_manager_;
+    private MeteorManager meteor_manager_;
+    private FocusCameraManager focus_camera_;
 
 }

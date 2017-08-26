@@ -7,11 +7,20 @@ public class KillZone : MonoBehaviour
 
     void OnTriggerEnter(Collider _other)
     {
-        if (_other.tag != "USBCharacter")
-            return;
+        if (_other.tag == "USBCharacter")
+        {
+            USBCharacter character = _other.GetComponent<USBCharacter>();
+            character.Damage(int.MaxValue);
+        }
+        else if (_other.gameObject.layer == LayerMask.NameToLayer("Prop"))
+        {
+            PropRespawner prop = _other.GetComponentInParent<PropRespawner>();
 
-        USBCharacter character = _other.GetComponent<USBCharacter>();
-        character.Damage(int.MaxValue);
+            if (prop == null)
+                prop = _other.transform.parent.GetComponentInParent<PropRespawner>();
+
+            prop.RespawnProp();
+        }
     }
 
 }

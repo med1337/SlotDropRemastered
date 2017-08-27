@@ -24,6 +24,7 @@ public class FocusCameraManager : MonoBehaviour
 
     private FocusCameraState state;
     private bool focus_complete;
+    private bool affected_timescale;
     private float duration;
     private float timer;
 
@@ -31,9 +32,12 @@ public class FocusCameraManager : MonoBehaviour
     private Vector3 raw_target;
 
 
-    public void Focus(Vector3 _target, float _zoom, float _duration = 3)
+    public void Focus(Vector3 _target, float _zoom, float _duration = 1.5f, bool _affect_timescale = true)
     {
-        Time.timeScale = 0;
+        if (_affect_timescale)
+            Time.timeScale = 0;
+
+        affected_timescale = _affect_timescale;
         focus_complete = false;
 
         raw_target = _target;
@@ -77,7 +81,9 @@ public class FocusCameraManager : MonoBehaviour
             if (focus_complete)
             {
                 state = FocusCameraState.IDLE;
-                Time.timeScale = 1;
+
+                if (affected_timescale && Time.timeScale == 0)
+                    Time.timeScale = 1;
             }
             else
             {

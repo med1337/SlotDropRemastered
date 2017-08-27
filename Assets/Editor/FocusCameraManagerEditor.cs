@@ -17,7 +17,7 @@ public class FocusCameraManagerEditor : Editor
                 return;
 
             var manager = (FocusCameraManager)target;
-            manager.Focus(GameManager.scene.pc_manager.transform.position, 9, 1.5f);
+            manager.Focus(GameManager.scene.pc_manager.transform.position, 9);
         }
 
         if (GUILayout.Button("Focus on Mouse"))
@@ -26,7 +26,7 @@ public class FocusCameraManagerEditor : Editor
                 return;
 
             var manager = (FocusCameraManager)target;
-            manager.Focus(GameObject.Find("Mouse").transform.position, 5, 1.5f);
+            manager.Focus(GameObject.Find("Mouse").transform.position, 5, 1.5f, false);
         }
     }
 

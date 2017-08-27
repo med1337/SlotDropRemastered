@@ -69,7 +69,7 @@ public class USBCharacter : MonoBehaviour
 
     public void Attack()
     {
-        if (slot_dropping || controls_disabled)
+        if (slot_dropping || controls_disabled || Time.timeScale == 0)
             return;
 
         basic_ability.Activate();
@@ -78,7 +78,7 @@ public class USBCharacter : MonoBehaviour
 
     public void SlotDrop()
     {
-        if (slot_dropping || controls_disabled)
+        if (slot_dropping || controls_disabled || Time.timeScale == 0)
             return;
 
         if (special_ability.IsReady())

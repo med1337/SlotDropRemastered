@@ -36,7 +36,7 @@ public class Projectile : MonoBehaviour
 
         var particle_system = particle.GetComponent<ParticleSystem>();
 
-        if (particle_system.collision.enabled)
+        if (particle_system != null && particle_system.collision.enabled)
             particle_system.collision.SetPlane(0, GameObject.Find("Floor").transform);
 
         particle.AddComponent<TempParticle>();

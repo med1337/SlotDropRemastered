@@ -46,6 +46,12 @@ public class GameManager : MonoBehaviour
             round_over = false;
             StartCoroutine(EndOfRound());
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+            Application.Quit();
+
+        if (Input.GetKeyDown(KeyCode.R))
+            SceneManager.LoadScene(0);
     }
 
 

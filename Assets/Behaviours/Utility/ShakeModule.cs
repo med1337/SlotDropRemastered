@@ -62,7 +62,7 @@ public class ShakeModule : MonoBehaviour
         if (shake_time < shake_duration)
         {
             this.transform.localPosition = original_local_pos +
-                ((Random.insideUnitSphere * shake_strength) *
+                ((Random.insideUnitSphere * shake_strength * Time.timeScale) *
                 decay_rate.Evaluate(shake_time / shake_duration));
         }
         else

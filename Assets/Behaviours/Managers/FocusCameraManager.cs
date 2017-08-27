@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class FocusCameraManager : MonoBehaviour
 {
-    public enum FocusCameraState
+    private enum FocusCameraState
     {
         IDLE,
         FOCUSING,
         LOITERING
     }
-
 
     [SerializeField] Camera managed_camera;
     [SerializeField] GameObject scan_plane;
@@ -23,19 +22,22 @@ public class FocusCameraManager : MonoBehaviour
     private Vector3 target_position;
     private float target_zoom;
 
-    public FocusCameraState state;
+    private FocusCameraState state;
     private bool focus_complete;
     private float duration;
     private float timer;
 
+    // Debug.
+    private Vector3 raw_target;
+
 
     public void Focus(Vector3 _target, float _zoom, float _duration = 3)
     {
-        scan_plane.transform.position = new Vector3(0, _target.y, 0);
         Time.timeScale = 0;
         focus_complete = false;
 
-        target_position = _target;
+        raw_target = _target;
+        target_position = CalculateRayToScanPlane(_target);
         target_zoom = _zoom;
 
         state = FocusCameraState.FOCUSING;
@@ -72,8 +74,15 @@ public class FocusCameraManager : MonoBehaviour
     {
         if (!FocusStep(target_position, target_zoom))
         {
-            state = focus_complete ?
-                FocusCameraState.IDLE : FocusCameraState.LOITERING;
+            if (focus_complete)
+            {
+                state = FocusCameraState.IDLE;
+                Time.timeScale = 1;
+            }
+            else
+            {
+                state = FocusCameraState.LOITERING;
+            }
         }
     }
 
@@ -88,7 +97,7 @@ public class FocusCameraManager : MonoBehaviour
             focus_complete = true;
             timer = 0;
 
-            target_position = Vector3.zero;
+            target_position = original_position;
             target_zoom = original_zoom;
         }
     }
@@ -97,15 +106,12 @@ public class FocusCameraManager : MonoBehaviour
     bool FocusStep(Vector3 _target, float _zoom)
     {
         float zoom_diff = Mathf.Abs(_zoom - managed_camera.orthographicSize);
-        float dist_to_target = Vector3.Distance(CalculateRayPosition(), _target);
+        float dist_to_target = Vector3.Distance(transform.position, _target);
 
-        if (dist_to_target > 1 && zoom_diff > 0.1f)
+        if (dist_to_target > 0.1f || zoom_diff > 0.1f)
         {
-            Vector3 target = target_position + original_position;
-            target.y = original_position.y;
-
             ZoomStep(_zoom);
-            MoveStep(target);
+            MoveStep(_target);
 
             return true;
         }
@@ -130,9 +136,9 @@ public class FocusCameraManager : MonoBehaviour
     }
 
 
-    Vector3 CalculateRayPosition()
+    Vector3 CalculateRayToScanPlane(Vector3 _shoot_point)
     {
-        Ray ray = new Ray(transform.position, transform.forward);
+        Ray ray = new Ray(_shoot_point, -transform.forward);
         RaycastHit hit;
 
         Physics.Raycast(ray, out hit, float.MaxValue, scan_layer);
@@ -147,8 +153,13 @@ public class FocusCameraManager : MonoBehaviour
             return;
 
         Gizmos.color = Color.red;
-        Gizmos.DrawRay(transform.position, CalculateRayPosition() - transform.position);
 
+        if (target_position != original_position)
+            Gizmos.DrawRay(raw_target, target_position - raw_target);
+
+        Gizmos.DrawRay(transform.position, transform.forward * 100);
+
+        Gizmos.DrawSphere(raw_target, 2);
         Gizmos.DrawSphere(target_position, 2);
     }
 

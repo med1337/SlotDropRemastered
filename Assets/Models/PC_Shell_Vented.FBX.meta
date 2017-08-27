@@ -1,25 +1,62 @@
 fileFormatVersion: 2
-guid: 4acf53f6685138444a14aeff57ddea2a
-timeCreated: 1503418504
+guid: 43a52b4cf567ad14bb40f21558467f66
+timeCreated: 1503845946
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: Disk Tray
-    100002: //RootNode
-    100004: Upgrade Module
-    400000: Disk Tray
-    400002: //RootNode
-    400004: Upgrade Module
-    2300000: Disk Tray
-    2300002: //RootNode
-    2300004: Upgrade Module
-    3300000: Disk Tray
-    3300002: //RootNode
-    3300004: Upgrade Module
-    4300000: PC
-    4300002: Upgrade Module
-    4300004: Disk Tray
+    100000: Button
+    100002: Logo_ Right
+    100004: Logo_Left
+    100006: PC_Shell_Left
+    100008: PC_Shell_Right
+    100010: //RootNode
+    100012: Upgrade_Door
+    100014: Vent_BL
+    100016: Vent_BR
+    100018: Vent_FL
+    100020: Vent_FR
+    400000: Button
+    400002: Logo_ Right
+    400004: Logo_Left
+    400006: PC_Shell_Left
+    400008: PC_Shell_Right
+    400010: //RootNode
+    400012: Upgrade_Door
+    400014: Vent_BL
+    400016: Vent_BR
+    400018: Vent_FL
+    400020: Vent_FR
+    2300000: Button
+    2300002: Logo_ Right
+    2300004: Logo_Left
+    2300006: PC_Shell_Left
+    2300008: PC_Shell_Right
+    2300010: Upgrade_Door
+    2300012: Vent_BL
+    2300014: Vent_BR
+    2300016: Vent_FL
+    2300018: Vent_FR
+    3300000: Button
+    3300002: Logo_ Right
+    3300004: Logo_Left
+    3300006: PC_Shell_Left
+    3300008: PC_Shell_Right
+    3300010: Upgrade_Door
+    3300012: Vent_BL
+    3300014: Vent_BR
+    3300016: Vent_FL
+    3300018: Vent_FR
+    4300000: PC_Shell_Left
+    4300002: Upgrade_Door
+    4300004: Logo_Left
+    4300006: Vent_BL
+    4300008: Vent_FL
+    4300010: PC_Shell_Right
+    4300012: Logo_ Right
+    4300014: Button
+    4300016: Vent_BR
+    4300018: Vent_FR
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -47,7 +84,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 10
+    globalScale: 80
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1

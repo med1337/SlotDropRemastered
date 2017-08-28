@@ -10,6 +10,7 @@ public class ProjectileShockwave : Projectile
 
     private float wave_speed;
     private SphereCollider sphere_collider;
+    private List<USBCharacter> affected_characters = new List<USBCharacter>();
 
 
     void Start()
@@ -54,7 +55,11 @@ public class ProjectileShockwave : Projectile
 
         if (character != null && character != owner && damage != 0)
         {
-            character.Damage(damage);
+            if (!affected_characters.Contains(character))
+            {
+                character.Damage(damage);
+                affected_characters.Add(character);
+            }
         }
     }
 

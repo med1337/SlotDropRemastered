@@ -53,6 +53,7 @@ public class USBAI : MonoBehaviour
                 character.Face(dist.normalized);
 
             character.Attack();
+            character.SlotDrop();
         }
     }
 

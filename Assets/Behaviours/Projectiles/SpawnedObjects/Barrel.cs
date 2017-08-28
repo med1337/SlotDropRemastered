@@ -30,7 +30,7 @@ public class Barrel : MonoBehaviour
 
     void OnTriggerEnter(Collider _other)
     {
-        if (_other.tag == "Barrel")
+        if (_other.tag == "Barrel" || _other.gameObject.layer == LayerMask.NameToLayer("Projectile"))
             return;
 
         AudioManager.PlayOneShot("explosion");

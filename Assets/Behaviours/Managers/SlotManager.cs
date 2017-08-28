@@ -11,8 +11,6 @@ public class SlotManager : MonoBehaviour
     private List<USBSlot> slots;
     private bool random_slot_queued = false;
 
-    bool invoke_called = false;
-
 
 	void Start()
     {
@@ -50,7 +48,7 @@ public class SlotManager : MonoBehaviour
     {
         bool titan_exists = false;
 
-        foreach (USBCharacter character in RespawnManager.current_players)
+        foreach (USBCharacter character in RespawnManager.alive_characters)
         {
             if (character.loadout_name == "Gold")
             {

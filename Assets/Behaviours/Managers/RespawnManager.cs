@@ -7,7 +7,7 @@ public class RespawnManager : MonoBehaviour
 {
     [SerializeField] GameObject usb_character_prefab;
     [SerializeField] Vector3 spawn_point;
-    public static List<USBCharacter> current_players = new List<USBCharacter>(); 
+    public static List<USBCharacter> alive_characters = new List<USBCharacter>(); 
     public static ListenerModule listener_module = new ListenerModule();
     private static RespawnManager instance;
 
@@ -33,13 +33,13 @@ public class RespawnManager : MonoBehaviour
 
     void Update()
     {
-        current_players.RemoveAll(item => item == null);
+        alive_characters.RemoveAll(item => item == null);
         RespawnPlayers();
 
         // Debug.
         if (Input.GetKeyDown(KeyCode.T))
         {
-            foreach (USBCharacter character in current_players)
+            foreach (USBCharacter character in alive_characters)
                 character.BecomeTitan();
         }
 
@@ -97,7 +97,7 @@ public class RespawnManager : MonoBehaviour
         character.Stun(0.9f, false);
         character.Flash();
 
-        current_players.Add(character);
+        alive_characters.Add(character);
         listener_module.NotifyListeners("AddFocusedObject", character.gameObject);
 
         return character;

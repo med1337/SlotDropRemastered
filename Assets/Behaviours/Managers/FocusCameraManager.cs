@@ -61,6 +61,18 @@ public class FocusCameraManager : MonoBehaviour
     {
         switch (state)
         {
+            case FocusCameraState.IDLE:
+            {
+                Vector3 avg_position = new Vector3();
+                foreach (USBCharacter character in RespawnManager.alive_characters)
+                    avg_position += character.transform.position;
+
+                avg_position += GameManager.scene.pc_manager.transform.position;
+                avg_position /= RespawnManager.alive_characters.Count + 2;
+
+                FocusStep(CalculateRayToScanPlane(avg_position), 30);
+            } break;
+
             case FocusCameraState.FOCUSING:
             {
                 FocusState();
@@ -102,9 +114,6 @@ public class FocusCameraManager : MonoBehaviour
             state = FocusCameraState.FOCUSING;
             focus_complete = true;
             timer = 0;
-
-            target_position = original_position;
-            target_zoom = original_zoom;
         }
     }
 

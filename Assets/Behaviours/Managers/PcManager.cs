@@ -143,6 +143,9 @@ public class PcManager : MonoBehaviour
             Reboot(RebootDuration);
             ActivateReboot = false;
         }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+            IncreaseTemperature();
     }
 
     private void ProcessBluescreen()
@@ -301,6 +304,8 @@ public class PcManager : MonoBehaviour
         AudioManager.PlayOneShot("alarm");
 
         Bluescreen(BluescreenDuration, true);
+        GameManager.scene.focus_camera.Focus(GameManager.scene.pc_manager.transform.position, 9, 0.5f);
+
         yield return new WaitForSeconds(BluescreenDuration);
 
         dir_light.color = prev_color;

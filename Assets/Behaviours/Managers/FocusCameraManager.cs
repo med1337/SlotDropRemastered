@@ -82,11 +82,11 @@ public class FocusCameraManager : MonoBehaviour
     void IdleState()
     {
         Vector3 avg_position = new Vector3();
-        foreach (USBCharacter character in RespawnManager.alive_characters)
+        foreach (USBCharacter character in GameManager.scene.respawn_manager.alive_characters)
             avg_position += character.transform.position;
 
         avg_position += GameManager.scene.pc_manager.transform.position;
-        avg_position /= RespawnManager.alive_characters.Count + 2;
+        avg_position /= GameManager.scene.respawn_manager.alive_characters.Count + 2;
 
         FocusStep(CalculateRayToScanPlane(avg_position), 30);
     }

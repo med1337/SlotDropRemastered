@@ -1,40 +1,31 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.Remoting.Messaging;
 using UnityEngine;
 
 public class RespawnManager : MonoBehaviour
 {
+    public List<USBCharacter> alive_characters = new List<USBCharacter>();
+
     [SerializeField] GameObject usb_character_prefab;
     [SerializeField] Vector3 spawn_point;
-    public static List<USBCharacter> alive_characters = new List<USBCharacter>(); 
-    public static ListenerModule listener_module = new ListenerModule();
-    private static RespawnManager instance;
+
+    private List<USBCharacter> alive_ai = new List<USBCharacter>();
+    private int min_ai;
 
 
-    void Awake()
+    void Start()
     {
-        if (instance == null)
-        {
-            InitSingleton();
-        }
-        else
-        {
-            Destroy(this.gameObject);
-        }
-    }
 
-
-    void InitSingleton()
-    {
-        instance = this;
     }
 
 
     void Update()
     {
-        alive_characters.RemoveAll(item => item == null);
+        alive_characters.RemoveAll(elem => elem == null);
+        alive_ai.RemoveAll(elem => elem == null);
+
         RespawnPlayers();
+        RespawnAI();
 
         // Debug.
         if (Input.GetKeyDown(KeyCode.T))
@@ -43,7 +34,7 @@ public class RespawnManager : MonoBehaviour
                 character.BecomeTitan();
         }
 
-        DebugSpawnAI();
+        Debug();
     }
 
 
@@ -59,18 +50,25 @@ public class RespawnManager : MonoBehaviour
     }
 
 
-    void DebugSpawnAI()
+    void RespawnAI()
     {
-        if (!Input.GetKeyDown(KeyCode.I))
-            return;
+        if (alive_ai.Count < min_ai)
+            CreateUSBAICharacter();
 
-        USBCharacter character = CreateUSBCharacter("AIDude", Color.black);
-        character.gameObject.AddComponent<USBAI>();
+        if (alive_ai.Count > min_ai)
+            Destroy(alive_ai[alive_ai.Count - 1].gameObject);
+    }
 
-        Vector2 random_circle_location = Random.insideUnitCircle * 30;
 
-        character.transform.position = new Vector3(character.transform.position.x + random_circle_location.x,
-            character.transform.position.y, character.transform.position.z + random_circle_location.y);
+    void Debug()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftBracket))
+            --min_ai;
+
+        if (Input.GetKeyDown(KeyCode.RightBracket))
+            ++min_ai;
+
+        min_ai = Mathf.Clamp(min_ai, 0, 32);
     }
 
 
@@ -83,6 +81,20 @@ public class RespawnManager : MonoBehaviour
     void RespawnPlayer(ConnectedPlayer _player)
     {
         _player.character = CreateUSBCharacter("Player" + _player.id.ToString(), _player.color);
+    }
+
+
+    void CreateUSBAICharacter()
+    {
+        USBCharacter character = CreateUSBCharacter("AIDude", Color.black);
+        character.gameObject.AddComponent<USBAI>();
+
+        Vector2 random_circle_location = Random.insideUnitCircle * 30;
+
+        character.transform.position = new Vector3(character.transform.position.x + random_circle_location.x,
+            character.transform.position.y, character.transform.position.z + random_circle_location.y);
+
+        alive_ai.Add(character);
     }
 
 
@@ -103,7 +115,6 @@ public class RespawnManager : MonoBehaviour
         character.Flash();
 
         alive_characters.Add(character);
-        listener_module.NotifyListeners("AddFocusedObject", character.gameObject);
 
         return character;
     }

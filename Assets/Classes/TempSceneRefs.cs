@@ -4,6 +4,17 @@ using UnityEngine;
 
 public struct TempSceneRefs
 {
+    public RespawnManager respawn_manager
+    {
+        get
+        {
+            if (respawn_manager_ == null)
+                respawn_manager_ = GameObject.FindObjectOfType<RespawnManager>();
+
+            return respawn_manager_;
+        }
+    }
+
     public SlotManager slot_manager
     {
         get
@@ -48,6 +59,7 @@ public struct TempSceneRefs
         }
     }
 
+    private RespawnManager respawn_manager_;
     private SlotManager slot_manager_;
     private PcManager pc_manager_;
     private MeteorManager meteor_manager_;

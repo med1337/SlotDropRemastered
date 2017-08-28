@@ -48,7 +48,7 @@ public class SlotManager : MonoBehaviour
     {
         bool titan_exists = false;
 
-        foreach (USBCharacter character in RespawnManager.alive_characters)
+        foreach (USBCharacter character in GameManager.scene.respawn_manager.alive_characters)
         {
             if (character.loadout_name == "Gold")
             {

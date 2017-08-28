@@ -11,7 +11,6 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] PlayerManager player_manager;
     [SerializeField] AudioManager audio_manager;
-    [SerializeField] RespawnManager respawn_manager;
     [SerializeField] LoadoutFactory loadout_factory;
     [SerializeField] GameObject end_game_canvas;
 
@@ -72,6 +71,12 @@ public class GameManager : MonoBehaviour
 
         PlayerManager.IdleAllPlayers();
         SceneManager.LoadScene(0);
+    }
+
+
+    void OnLevelWasLoaded(int _level)
+    {
+        PlayerManager.IdleAllPlayers();
     }
 
 }

@@ -39,7 +39,7 @@ public class FireBlock : MonoBehaviour
     void DamageAllInRadius()
     {
         RaycastHit[] box = Physics.BoxCastAll(transform.position, damage_box, Vector3.up,
-            Quaternion.LookRotation(facing));
+            Quaternion.LookRotation(facing), 0);
 
         foreach (var elem in box)
         {

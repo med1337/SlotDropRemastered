@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class USBAI : MonoBehaviour
 {
     private USBCharacter character;
+    private float t = 0;
 
 
     void Awake()
@@ -25,21 +26,26 @@ public class USBAI : MonoBehaviour
 
     void Update()
     {
-        var enemies = GameObject.FindObjectsOfType<USBCharacter>();
+        t += Time.deltaTime;
         USBCharacter closest_enemy = null;
-        float closest_distance = float.PositiveInfinity;
 
-        foreach (var enemy in enemies)
+        if (t >= 0.2f)
         {
-            if (enemy == character)
-                continue;
+            var enemies = GameObject.FindObjectsOfType<USBCharacter>();
+            float closest_distance = float.PositiveInfinity;
 
-            float dist = Vector3.Distance(enemy.transform.position, transform.position);
-            if (dist >= closest_distance)
-                continue;
+            foreach (var enemy in enemies)
+            {
+                if (enemy == character)
+                    continue;
 
-            closest_distance = dist;
-            closest_enemy = enemy;
+                float dist = Vector3.Distance(enemy.transform.position, transform.position);
+                if (dist >= closest_distance)
+                    continue;
+
+                closest_distance = dist;
+                closest_enemy = enemy;
+            }
         }
 
         if (closest_enemy != null)

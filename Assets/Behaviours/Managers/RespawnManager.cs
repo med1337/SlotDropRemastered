@@ -86,8 +86,10 @@ public class RespawnManager : MonoBehaviour
 
     void CreateUSBAICharacter()
     {
-        USBCharacter character = CreateUSBCharacter("AIDude", Color.black);
+        USBCharacter character = CreateUSBCharacter("AIDude", Color.white);
         character.gameObject.AddComponent<USBAI>();
+
+        //LoadoutFactory.AssignLoadout(character, "Base");
 
         Vector2 random_circle_location = Random.insideUnitCircle * 30;
 

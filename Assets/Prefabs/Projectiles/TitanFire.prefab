@@ -58,5 +58,5 @@ MonoBehaviour:
   fire_block: {fileID: 1953485136763882, guid: d89c35659a28fa744a2db7c73c0c1c1a, type: 2}
   blast_delay: 0.05
   blast_spacing: 3
-  max_blasts: 10
+  max_blasts: 8
   damage_delay: 0.5

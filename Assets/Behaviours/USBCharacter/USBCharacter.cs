@@ -278,7 +278,8 @@ public class USBCharacter : MonoBehaviour
         if (last_slot_hit != null)
         {
             if (!last_slot_hit.slottable ||
-                Vector3.Distance(transform.position, last_slot_hit.transform.position) >= 1 * loadout.scale)
+                Vector3.Distance(transform.position, last_slot_hit.transform.position) >= 1 * loadout.scale ||
+                controls_disabled)
             {
                 last_slot_hit = null;
                 return;

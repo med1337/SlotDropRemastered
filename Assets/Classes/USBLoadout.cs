@@ -8,7 +8,7 @@ public class USBLoadout
     public int max_health       = 100;
     public float move_speed     = 15;
     public float snap_distance  = 5;
-    public Vector3 scale        = new Vector3(2, 2, 2);
+    public float scale          = 2;
 
     public GameObject basic_projectile;
     public GameObject special_projectile;

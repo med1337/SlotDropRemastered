@@ -104,10 +104,7 @@ public class LoadoutFactory : MonoBehaviour
 
         loadout.max_health = int.Parse(elem["max_health"].ToString());
         loadout.move_speed = float.Parse(elem["move_speed"].ToString());
-        loadout.snap_distance = float.Parse(elem["snap_distance"].ToString());
-        loadout.scale = new Vector3(float.Parse(elem["scale"][0].ToString()),
-                                    float.Parse(elem["scale"][1].ToString()),
-                                    float.Parse(elem["scale"][2].ToString()));
+        loadout.scale = float.Parse(elem["scale"].ToString());
 
         loadout.basic_projectile = projectile_prefabs.Find(item => item.name.Substring(0) == elem["basic"].ToString());
         loadout.special_projectile = projectile_prefabs.Find(item => item.name.Substring(0) == elem["special"].ToString());

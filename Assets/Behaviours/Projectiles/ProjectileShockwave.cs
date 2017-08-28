@@ -46,12 +46,13 @@ public class ProjectileShockwave : Projectile
 
         if (rb != null)
         {
-            rb.AddExplosionForce(knockback_force, origin, effect_radius);
+            if (owner != null && owner.rigid_body != rb)
+                rb.AddExplosionForce(knockback_force, origin, effect_radius);
         }
 
         USBCharacter character = _other.GetComponent<USBCharacter>();
 
-        if (character != null)
+        if (character != null && character != owner && damage != 0)
         {
             character.Damage(damage);
         }

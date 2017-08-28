@@ -114,8 +114,8 @@ public class USBCharacter : MonoBehaviour
         hud.UpdateHealthBar(health);
 
         hat_renderer.sprite = _loadout.hat;
-        transform.localScale = _loadout.scale;
-        shadow.orthographicSize = 1.5f * (_loadout.scale.x / 2);
+        transform.localScale = Vector3.one * _loadout.scale;
+        shadow.orthographicSize = 1.5f * (_loadout.scale / 2);
 
         basic_ability.projectile_prefab = _loadout.basic_projectile;
         special_ability.projectile_prefab = _loadout.special_projectile;
@@ -278,7 +278,7 @@ public class USBCharacter : MonoBehaviour
         if (last_slot_hit != null)
         {
             if (!last_slot_hit.slottable ||
-                Vector3.Distance(transform.position, last_slot_hit.transform.position) >= 1 * loadout.scale.x)
+                Vector3.Distance(transform.position, last_slot_hit.transform.position) >= 1 * loadout.scale)
             {
                 last_slot_hit = null;
                 return;

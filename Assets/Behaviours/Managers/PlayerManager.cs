@@ -131,7 +131,9 @@ public class PlayerManager : MonoBehaviour
     {
         ConnectedPlayer connected_player = player_dictionary[_player_id];
 
-        Destroy(connected_player.character.gameObject);
+        if (connected_player.character != null)
+            Destroy(connected_player.character.gameObject);
+
         connected_player.state = PlayerState.WAITING;
     }
 

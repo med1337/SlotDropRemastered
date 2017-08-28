@@ -16,10 +16,11 @@ public class PropRespawner : MonoBehaviour
     public void RespawnProp()
     {
         transform.rotation = start_rot;
-        transform.position = new Vector3(start_pos.x, start_pos.y +
-                                                      respawn_height, start_pos.z);
+        transform.position = new Vector3(start_pos.x, start_pos.y + respawn_height, start_pos.z);
 
-        prop_rigidbody.velocity = respawn_velocity;//reset velocity
+        //reset velocity
+        prop_rigidbody.velocity = respawn_velocity;
+        prop_rigidbody.angularVelocity = Vector3.zero;
     }
 
 
@@ -38,6 +39,7 @@ public class PropRespawner : MonoBehaviour
 
         Gizmos.color = Color.blue;
         Gizmos.DrawLine(transform.position, respawn_location);
+
         Gizmos.color = Color.green;
         Gizmos.DrawLine(respawn_location, respawn_location + respawn_velocity);
     }

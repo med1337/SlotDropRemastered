@@ -6,11 +6,14 @@ public class RespawnManager : MonoBehaviour
 {
     public List<USBCharacter> alive_characters = new List<USBCharacter>();
 
+    [Range(0, MAX_AI)]
+    public int min_ai;
+
     [SerializeField] GameObject usb_character_prefab;
     [SerializeField] Vector3 spawn_point;
 
     private List<USBCharacter> alive_ai = new List<USBCharacter>();
-    private int min_ai;
+    private const int MAX_AI = 32;
 
 
     void Start()
@@ -68,7 +71,7 @@ public class RespawnManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.RightBracket))
             ++min_ai;
 
-        min_ai = Mathf.Clamp(min_ai, 0, 32);
+        min_ai = Mathf.Clamp(min_ai, 0, MAX_AI);
     }
 
 

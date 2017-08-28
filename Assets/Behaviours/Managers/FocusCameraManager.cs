@@ -16,8 +16,7 @@ public class FocusCameraManager : MonoBehaviour
     [SerializeField] LayerMask scan_layer;
     [SerializeField] float step = 5;
 
-    private Vector3 original_position;
-    private float original_zoom;
+    private Vector3 last_idle_position;
 
     private Vector3 target_position;
     private float target_zoom;
@@ -26,7 +25,8 @@ public class FocusCameraManager : MonoBehaviour
     private bool focus_complete;
     private bool affected_timescale;
     private float duration;
-    private float timer;
+    private float idle_timer;
+    private float loiter_timer;
 
     // Debug.
     private Vector3 raw_target;
@@ -46,14 +46,13 @@ public class FocusCameraManager : MonoBehaviour
 
         state = FocusCameraState.FOCUSING;
         duration = _duration;
-        timer = 0;
+        loiter_timer = 0;
     }
 
 
     void Start()
     {
-        original_position = this.transform.position;
-        original_zoom = managed_camera.orthographicSize;
+        last_idle_position = transform.position;
     }
 
 
@@ -81,14 +80,23 @@ public class FocusCameraManager : MonoBehaviour
 
     void IdleState()
     {
-        Vector3 avg_position = new Vector3();
-        foreach (USBCharacter character in GameManager.scene.respawn_manager.alive_characters)
-            avg_position += character.transform.position;
+        idle_timer += Time.deltaTime;
 
-        avg_position += GameManager.scene.pc_manager.transform.position;
-        avg_position /= GameManager.scene.respawn_manager.alive_characters.Count + 2;
+        if (idle_timer >= 0.1f)
+        {
+            idle_timer = 0;
 
-        FocusStep(CalculateRayToScanPlane(avg_position), 30);
+            Vector3 avg_position = new Vector3();
+            foreach (USBCharacter character in GameManager.scene.respawn_manager.alive_characters)
+                avg_position += character.transform.position;
+
+            avg_position += GameManager.scene.pc_manager.transform.position;
+            avg_position /= GameManager.scene.respawn_manager.alive_characters.Count + 2;
+
+            last_idle_position = CalculateRayToScanPlane(avg_position);
+        }
+
+        FocusStep(last_idle_position, 30);
     }
 
 
@@ -113,13 +121,13 @@ public class FocusCameraManager : MonoBehaviour
 
     void LoiterState()
     {
-        timer += Time.unscaledDeltaTime;
+        loiter_timer += Time.unscaledDeltaTime;
 
-        if (timer >= duration)
+        if (loiter_timer >= duration)
         {
             state = FocusCameraState.FOCUSING;
             focus_complete = true;
-            timer = 0;
+            loiter_timer = 0;
         }
     }
 
@@ -127,7 +135,7 @@ public class FocusCameraManager : MonoBehaviour
     bool FocusStep(Vector3 _target, float _zoom)
     {
         float zoom_diff = Mathf.Abs(_zoom - managed_camera.orthographicSize);
-        float dist_to_target = Vector3.Distance(transform.position, _target);
+        float dist_to_target = (_target - transform.position).sqrMagnitude;
 
         if (dist_to_target > 0.1f || zoom_diff > 0.1f)
         {
@@ -175,9 +183,7 @@ public class FocusCameraManager : MonoBehaviour
 
         Gizmos.color = Color.red;
 
-        if (target_position != original_position)
-            Gizmos.DrawRay(raw_target, target_position - raw_target);
-
+        Gizmos.DrawRay(raw_target, target_position - raw_target);
         Gizmos.DrawRay(transform.position, transform.forward * 100);
 
         Gizmos.DrawSphere(raw_target, 2);

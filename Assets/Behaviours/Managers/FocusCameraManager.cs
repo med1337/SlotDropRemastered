@@ -63,14 +63,7 @@ public class FocusCameraManager : MonoBehaviour
         {
             case FocusCameraState.IDLE:
             {
-                Vector3 avg_position = new Vector3();
-                foreach (USBCharacter character in RespawnManager.alive_characters)
-                    avg_position += character.transform.position;
-
-                avg_position += GameManager.scene.pc_manager.transform.position;
-                avg_position /= RespawnManager.alive_characters.Count + 2;
-
-                FocusStep(CalculateRayToScanPlane(avg_position), 30);
+                IdleState();
             } break;
 
             case FocusCameraState.FOCUSING:
@@ -83,6 +76,19 @@ public class FocusCameraManager : MonoBehaviour
                 LoiterState();
             } break;
         }
+    }
+
+
+    void IdleState()
+    {
+        Vector3 avg_position = new Vector3();
+        foreach (USBCharacter character in RespawnManager.alive_characters)
+            avg_position += character.transform.position;
+
+        avg_position += GameManager.scene.pc_manager.transform.position;
+        avg_position /= RespawnManager.alive_characters.Count + 2;
+
+        FocusStep(CalculateRayToScanPlane(avg_position), 30);
     }
 
 

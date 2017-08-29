@@ -6,9 +6,10 @@ using UnityEngine.UI;
 public class PlayerHUD : MonoBehaviour
 {
     public Slider health_bar;
+    public Text score_text;
+    public ShakeModule text_shake;
     public List<Image> slot_drop_tokens = new List<Image>();
     public int active_slot_token_count = 0;
-    public Text score_text;
 
 
     public void SetHealthBarMaxHealth(int max_health)
@@ -39,6 +40,7 @@ public class PlayerHUD : MonoBehaviour
     public void UpdateScoreText(int number)
     {
         score_text.text = number.ToString();
+        text_shake.Shake(0.3f, 0.3f);
     }
 
 

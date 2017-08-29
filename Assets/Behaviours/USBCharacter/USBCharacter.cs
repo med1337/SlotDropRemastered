@@ -126,6 +126,9 @@ public class USBCharacter : MonoBehaviour
     public void BecomeTitan()
     {
         AudioManager.PlayOneShot("titan_trigger");
+        var clone = Instantiate(LoadoutFactory.instance.titan_aura, this.transform);
+        clone.GetComponent<TitanAura>().Init(this);
+
         Damage(0);
 
         slot_tracker.gameObject.SetActive(false);

@@ -333,6 +333,7 @@ MonoBehaviour:
   - {fileID: 21300004, guid: 466661224b307e8479a0570ed2e78f6d, type: 3}
   download_data_prefab: {fileID: 1707724021457840, guid: a864729950c020f4892209e7e5ab6d18,
     type: 2}
+  titan_aura: {fileID: 1544142469384998, guid: 493de20d8ab3e5a44a4986881b4f2d97, type: 2}
 --- !u!114 &114469535218965402
 MonoBehaviour:
   m_ObjectHideFlags: 1

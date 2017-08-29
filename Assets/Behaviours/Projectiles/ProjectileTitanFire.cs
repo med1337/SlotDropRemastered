@@ -49,7 +49,7 @@ public class ProjectileTitanFire : Projectile
         ++blast_times;
         Vector3 next_pos = origin + (facing * blast_spacing) * blast_times;
 
-        var hits = Physics.RaycastAll(next_pos + new Vector3(0, 5), -Vector3.up, LayerMask.NameToLayer("Floor"));
+        var hits = Physics.RaycastAll(next_pos + new Vector3(0, 5, 0), -Vector3.up, LayerMask.NameToLayer("Floor"));
 
         if (hits.Length > 0)
         {

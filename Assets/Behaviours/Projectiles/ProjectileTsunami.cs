@@ -47,10 +47,11 @@ public class ProjectileTsunami : Projectile
 
     void CreateBlast()
     {
-        AudioManager.PlayOneShot("water_explosion");
-
         ++blast_times;
         transform.position += facing * blast_spacing;
+
+        if (!PositionValid())
+            return;
 
         CreateEffect(particle_effect, transform.position, Vector3.zero);
 
@@ -68,7 +69,16 @@ public class ProjectileTsunami : Projectile
                 character.Stun(stun_duration);
         }
 
+        AudioManager.PlayOneShot("water_explosion");
         CameraShake.Shake(0.4f, 0.4f);
+    }
+
+
+    bool PositionValid()
+    {
+        var hits = Physics.RaycastAll(transform.position + new Vector3(0, 5, 0), -Vector3.up, LayerMask.NameToLayer("Floor"));
+
+        return hits.Length > 0;
     }
 
 }

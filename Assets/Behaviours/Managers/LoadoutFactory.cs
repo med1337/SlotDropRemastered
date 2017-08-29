@@ -9,7 +9,9 @@ public class LoadoutFactory : MonoBehaviour
 {
     public List<GameObject> projectile_prefabs;
     public List<Sprite> hat_sprites;
+
     public GameObject download_data_prefab;
+    public GameObject titan_aura;
 
     public static LoadoutFactory instance;
 

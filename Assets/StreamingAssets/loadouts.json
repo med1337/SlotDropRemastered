@@ -3,7 +3,7 @@
 	[
         {
 			"name": "Base",
-            "max_health": 100,
+            "max_health": 70,
             "move_speed": 15,
             "scale": 2,
 			"basic": "Pellet",
@@ -45,7 +45,7 @@
 	[
 		{
 			"name": "Broken",
-            "max_health": 100,
+            "max_health": 50,
             "move_speed": 15,
             "scale": 2,
 			"basic": "ShortCircuit",

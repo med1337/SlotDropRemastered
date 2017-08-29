@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VR.WSA.Persistence;
 
 public class USBCharacter : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class USBCharacter : MonoBehaviour
     public GameObject body_group;
     public Rigidbody rigid_body;
     public float move_speed_modifier = 1;
+    public Vector3 move_dir;
 
     [SerializeField] Projector shadow;
     [SerializeField] Animator animator;
@@ -29,7 +31,6 @@ public class USBCharacter : MonoBehaviour
     private Ability basic_ability = new Ability();
     private Ability special_ability = new Ability();
 
-    private Vector3 move_dir;
     private bool moving;
     private bool slot_dropping;
     private bool face_locked;

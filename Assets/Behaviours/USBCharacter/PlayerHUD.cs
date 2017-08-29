@@ -8,9 +8,10 @@ public class PlayerHUD : MonoBehaviour
     public Slider health_bar;
     public List<Image> slot_drop_tokens = new List<Image>();
     public int active_slot_token_count = 0;
+    public Text score_text;
 
 
-        public void SetHealthBarMaxHealth(int max_health)
+    public void SetHealthBarMaxHealth(int max_health)
     {
         health_bar.maxValue = max_health;
         health_bar.value = max_health;
@@ -32,6 +33,12 @@ public class PlayerHUD : MonoBehaviour
 
             slot_drop_tokens[i].color = color;
         }
+    }
+
+
+    public void UpdateScoreText(int number)
+    {
+        score_text.text = number.ToString();
     }
 
 

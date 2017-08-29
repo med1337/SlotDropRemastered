@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class USBCharacter : MonoBehaviour
 {
@@ -13,6 +12,11 @@ public class USBCharacter : MonoBehaviour
     public float move_speed_modifier = 1;
     public Vector3 move_dir;
     public int heal_on_kill = 20;
+    public int score
+    {
+        get { return score_; }
+        set { score_ = value; hud.UpdateScoreText(score_); }
+    }
 
     [SerializeField] Projector shadow;
     [SerializeField] Animator animator;
@@ -39,6 +43,7 @@ public class USBCharacter : MonoBehaviour
     private bool controls_disabled;
     private USBSlot last_slot_hit;
     private int slot_streak;
+    private int score_;
 
 
     public void Move(Vector3 _dir)
@@ -156,7 +161,10 @@ public class USBCharacter : MonoBehaviour
             AudioManager.PlayOneShot("death");
 
             if (_dealer != null)
+            {
                 _dealer.Heal(_dealer.heal_on_kill);
+                _dealer.score += 100;
+            }
 
             Destroy(this.gameObject);
         }

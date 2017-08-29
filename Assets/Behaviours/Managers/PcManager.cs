@@ -336,21 +336,20 @@ public class PcManager : MonoBehaviour
     Vector3 CalculatePopupCloseOffset(GameObject _popup)
     {
         RectTransform popup_rect = _lastGameObject.GetComponent<Image>().rectTransform;
-        if (popup_rect)
-        {
-            const float border_offset_percent_x = 0.93f;
-            const float border_offset_percent_y = 0.87f;
 
-            float x = (popup_rect.sizeDelta.x * _lastGameObject.transform.localScale.x) *
-                0.5f * border_offset_percent_x;
+        if (popup_rect == null)
+            return Vector3.zero;
 
-            float y = (popup_rect.sizeDelta.y * _lastGameObject.transform.localScale.y) *
-                0.5f * border_offset_percent_y;
+        const float border_offset_percent_x = 0.93f;
+        const float border_offset_percent_y = 0.87f;
 
-            return new Vector3(x, y);
-        }
+        float x = (popup_rect.sizeDelta.x * _lastGameObject.transform.localScale.x) *
+            0.5f * border_offset_percent_x;
 
-        return Vector3.zero;
+        float y = (popup_rect.sizeDelta.y * _lastGameObject.transform.localScale.y) *
+            0.5f * border_offset_percent_y;
+
+        return new Vector3(x, y);  
     }
 
 

@@ -26,7 +26,9 @@ public class ConnectedPlayer
 
         if (character)
         {
+#if UNITY_EDITOR
             DebugCheats();
+#endif
             ControlCharacter();
         }
     }
@@ -70,6 +72,9 @@ public class ConnectedPlayer
 
     void DebugCheats()
     {
+        if (!GameManager.cheats_enabled)
+            return;
+
         if (input.GetButton("Back") && input.GetButton("Down") &&
             character != null)
         {
@@ -94,13 +99,10 @@ public class ConnectedPlayer
             LoadoutFactory.AssignLoadout(character, "Pirate");
     }
 
-
+    //put any stat related cheats here
     void DebugPlayerStats()
     {
         if (input.GetButtonDown("FaceLock"))
             character.Heal(99999);
-
-        if (input.GetButtonDown("RB"))
-            character.move_speed_modifier = 3;
     }
 }

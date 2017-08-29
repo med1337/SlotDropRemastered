@@ -8,11 +8,13 @@ public class GameManager : MonoBehaviour
     public static bool round_over;
     public static bool restarting_scene { get; private set; }
     public static TempSceneRefs scene = new TempSceneRefs();
+    public static bool cheats_enabled { get; set; }
 
     [SerializeField] PlayerManager player_manager;
     [SerializeField] AudioManager audio_manager;
     [SerializeField] LoadoutFactory loadout_factory;
     [SerializeField] GameObject end_game_canvas;
+    [SerializeField] private bool cheats_enabled_ = false;
 
     private static GameManager instance;
 
@@ -54,6 +56,8 @@ public class GameManager : MonoBehaviour
             AudioManager.StopAllSFX();
             SceneManager.LoadScene(1);
         }
+
+        cheats_enabled = cheats_enabled_;
     }
 
 

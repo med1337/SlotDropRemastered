@@ -163,7 +163,7 @@ public class USBCharacter : MonoBehaviour
             if (_dealer != null)
             {
                 _dealer.Heal(_dealer.heal_on_kill);
-                _dealer.score += 100;
+                _dealer.score += 50;
             }
 
             Destroy(this.gameObject);

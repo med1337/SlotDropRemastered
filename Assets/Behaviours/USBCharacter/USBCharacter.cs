@@ -177,6 +177,11 @@ public class USBCharacter : MonoBehaviour
         health += _amount;
         Flash(Color.red);
 
+        if (health >= loadout.max_health)
+            health = loadout.max_health;
+
+        hud.UpdateHealthBar(health);
+
         Projectile.CreateEffect(heal_particle,
             body_group.transform.position, transform.position + (Vector3.up * 5));
     }

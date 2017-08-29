@@ -54,7 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4556955643266268}
   - component: {fileID: 114952232623123348}
-  - component: {fileID: 135956106714533014}
+  - component: {fileID: 65326792173770078}
   m_Layer: 9
   m_Name: Pellet
   m_TagString: Untagged
@@ -96,13 +96,25 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1989797351460218}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.895682, y: 8.91, z: -16.616798}
+  m_LocalPosition: {x: -1.3917248, y: 2.39, z: -3.439475}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
   - {fileID: 4254373030151474}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &65326792173770078
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1989797351460218}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5516683, y: 0.25741965, z: 0.4678181}
+  m_Center: {x: 0.034735728, y: 0.053391483, z: 0.029270196}
 --- !u!114 &114084413886134562
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -145,18 +157,6 @@ MonoBehaviour:
   lifetime: 5
   activation_sound: {fileID: 8300000, guid: 15380699bb4c98a49a859fe33bd91b12, type: 3}
   pellet_speed: 25
---- !u!135 &135956106714533014
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1989797351460218}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.35
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!212 &212054720229019290
 SpriteRenderer:
   m_ObjectHideFlags: 1

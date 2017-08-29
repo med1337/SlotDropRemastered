@@ -26,6 +26,7 @@ public class ConnectedPlayer
 
         if (character)
         {
+            DebugCheats();
             ControlCharacter();
         }
     }
@@ -66,4 +67,40 @@ public class ConnectedPlayer
         }
     }
 
+
+    void DebugCheats()
+    {
+        if (input.GetButton("Back") && input.GetButton("Down") &&
+            character != null)
+        {
+            DebugLoadoutSelect();
+            DebugPlayerStats();
+        }
+    }
+
+
+    void DebugLoadoutSelect()
+    {
+        if (input.GetButtonDown("SlotDrop"))
+            LoadoutFactory.AssignLoadout(character, "Base");
+
+        if (input.GetButtonDown("Y"))
+            LoadoutFactory.AssignLoadout(character, "Fisher");
+
+        if (input.GetButtonDown("B"))
+            LoadoutFactory.AssignLoadout(character, "Soldier");
+
+        if (input.GetButtonDown("Attack"))
+            LoadoutFactory.AssignLoadout(character, "Pirate");
+    }
+
+
+    void DebugPlayerStats()
+    {
+        if (input.GetButtonDown("FaceLock"))
+            character.Heal(99999);
+
+        if (input.GetButtonDown("RB"))
+            character.move_speed_modifier = 3;
+    }
 }

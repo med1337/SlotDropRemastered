@@ -320,25 +320,10 @@ public class PcManager : MonoBehaviour
         if (_lastGameObject == null) return;
 
         _targetVector3 = _lastGameObject.transform.localPosition;
-
-        //TODO: X position calculation, which does not work sadly [couldn't wrap my head around]
-        {
-//_lastGameObject.GetComponent<RectTransform>().
-            //float offsetx = _lastGameObject.GetComponent<Image>().sprite.rect.width *
-            //                _lastGameObject.transform.localScale.x;
-            //float offsety = _lastGameObject.GetComponent<Image>().sprite.rect.height *
-            //                _lastGameObject.transform.localScale.y;
-
-            //Vector3 offset = new Vector3(offsetx, offsety);
-
-            //Debug.Log(offset);
-            //_targetVector3 += offset;
-            //Debug .Log( _lastGameObject.GetComponent<SpriteRenderer>().bounds);
-        }
+        _targetVector3 += CalculatePopupCloseOffset(_lastGameObject);
 
         CursorGameObject.transform.localPosition = Vector3.MoveTowards(CursorGameObject.transform.localPosition,
             _targetVector3, Time.deltaTime * _cursorSpeed);
-
 
         if (CursorGameObject.transform.localPosition != _targetVector3) return;
 
@@ -346,6 +331,28 @@ public class PcManager : MonoBehaviour
         GameObject.Destroy(_lastGameObject);
         _popupClosed = true;
     }
+
+
+    Vector3 CalculatePopupCloseOffset(GameObject _popup)
+    {
+        RectTransform popup_rect = _lastGameObject.GetComponent<Image>().rectTransform;
+        if (popup_rect)
+        {
+            const float border_offset_percent_x = 0.93f;
+            const float border_offset_percent_y = 0.87f;
+
+            float x = (popup_rect.sizeDelta.x * _lastGameObject.transform.localScale.x) *
+                0.5f * border_offset_percent_x;
+
+            float y = (popup_rect.sizeDelta.y * _lastGameObject.transform.localScale.y) *
+                0.5f * border_offset_percent_y;
+
+            return new Vector3(x, y);
+        }
+
+        return Vector3.zero;
+    }
+
 
     public void ProcessProtectionBar()
     {

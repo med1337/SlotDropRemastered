@@ -50,7 +50,10 @@ public class GameManager : MonoBehaviour
             Application.Quit();
 
         if (Input.GetKeyDown(KeyCode.R))
+        {
+            AudioManager.StopAllSFX();
             SceneManager.LoadScene(1);
+        }
     }
 
 
@@ -70,6 +73,8 @@ public class GameManager : MonoBehaviour
         end_game_canvas.SetActive(false);
 
         PlayerManager.IdleAllPlayers();
+        AudioManager.StopAllSFX();
+
         SceneManager.LoadScene(0);
     }
 

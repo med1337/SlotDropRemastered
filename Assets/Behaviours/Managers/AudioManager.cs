@@ -18,20 +18,30 @@ public class AudioManager : MonoBehaviour
     private AudioSource music_source;
     private AudioSource sfx_source;
 
+    private bool sfx_delay;
+
 
     public static void PlayOneShot(string _clip_name)
     {
-        AudioClip clip = instance.GetAudioClip(_clip_name);
-
-        if (clip != null)
-            instance.sfx_source.PlayOneShot(clip);
+        PlayOneShot(instance.GetAudioClip(_clip_name));
     }
 
 
     public static void PlayOneShot(AudioClip _clip)
     {
+        if (instance.sfx_delay)
+            return;
+
+        instance.sfx_delay = true;
+
         if (_clip != null)
             instance.sfx_source.PlayOneShot(_clip);
+    }
+
+
+    public static void StopAllSFX()
+    {
+        instance.sfx_source.Stop();
     }
 
 
@@ -78,6 +88,8 @@ public class AudioManager : MonoBehaviour
     {
         music_source.volume = music_volume_;
         sfx_source.volume = sfx_volume_;
+
+        sfx_delay = false;
     }
 
 }

@@ -35,7 +35,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1539828825544224}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -24.87505, y: 0, z: -9.891228}
+  m_LocalPosition: {x: -8.027516, y: 0.023326874, z: -21.250168}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -450,7 +450,7 @@ ParticleSystem:
     serializedVersion: 4
     enabled: 1
     type: 4
-    angle: 25
+    angle: 15
     length: 5
     boxX: 1
     boxY: 1
@@ -2074,7 +2074,7 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 3
     type: 0
     collisionMode: 0
@@ -2086,7 +2086,7 @@ ParticleSystem:
     plane5: {fileID: 0}
     m_Dampen:
       minMaxState: 0
-      scalar: 0
+      scalar: 0.34
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -2164,7 +2164,7 @@ ParticleSystem:
         m_RotationOrder: 4
     m_EnergyLossOnCollision:
       minMaxState: 0
-      scalar: 0
+      scalar: 0.5
       maxCurve:
         serializedVersion: 2
         m_Curve:

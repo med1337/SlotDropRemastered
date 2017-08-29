@@ -7,6 +7,8 @@ public class ProjectileSwordDance : Projectile
     public float orbit_distance = 5.0f;
     public float rotate_speed = 10.0f;
     public float speed_modifier = 0.5f;
+    public float stun_duration = 0.5f;
+    public float stun_chance = 10;
 
     private GameObject orbit_axis;
 
@@ -17,6 +19,9 @@ public class ProjectileSwordDance : Projectile
         {
             orbit_axis = owner.body_group;
             transform.position = orbit_axis.transform.position;
+
+            if (owner.move_dir.magnitude > 0.05f)
+                owner.rigid_body.AddForce(facing * 10000);
         }
 
         GetComponent<SphereCollider>().center = new Vector3(orbit_distance, 0, 0);
@@ -59,6 +64,9 @@ public class ProjectileSwordDance : Projectile
 
         AudioManager.PlayOneShot("sword_dance_hit");
         character.Damage(damage, (_other.transform.position - transform.position) * 5);
+
+        if (Random.Range(1, 100) <= stun_chance)
+            character.Stun(stun_duration);
     }
 
 

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class USBCharacter : MonoBehaviour
 {
@@ -132,7 +133,6 @@ public class USBCharacter : MonoBehaviour
 
         Damage(0);
 
-        slot_tracker.gameObject.SetActive(false);
         LoadoutFactory.AssignLoadout(this, "Gold");
     }
 
@@ -334,12 +334,13 @@ public class USBCharacter : MonoBehaviour
 
         ++slot_streak;
 
-        for (int i = 0; i < slot_tracker.childCount; ++i)
-            slot_tracker.GetChild(i).gameObject.SetActive(slot_streak > i);
-
         if (slot_streak == 5)
         {
             BecomeTitan();
+        }
+        else
+        {
+            hud.UpdateSlotProgress(slot_streak);
         }
     }
 

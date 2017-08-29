@@ -10,14 +10,7 @@ public class PlayerHUD : MonoBehaviour
     public int active_slot_token_count = 0;
 
 
-    private void Start()
-    {
-        ResetSlotTokens();
-        UpdateHealthBar((int)health_bar.maxValue);
-    }
-
-
-    public void SetHealthBarMaxHealth(int max_health)
+        public void SetHealthBarMaxHealth(int max_health)
     {
         health_bar.maxValue = max_health;
         health_bar.value = max_health;
@@ -30,25 +23,21 @@ public class PlayerHUD : MonoBehaviour
     }
 
 
-	public int AddSlotToken()
+	public void UpdateSlotProgress(int number)
     {
-        if (active_slot_token_count < slot_drop_tokens.Count)
+        for (int i = 0; i < number; ++i)
         {
-            slot_drop_tokens[active_slot_token_count].gameObject.SetActive(true);
-            ++active_slot_token_count;
-        }
+            Color color = slot_drop_tokens[i].color;
+            color.a = 1;
 
-        return active_slot_token_count; //returns the count of active streak tokens for checking if streak is complete
-    }
-
-
-    public void ResetSlotTokens()
-    {
-        active_slot_token_count = 0;
-
-        foreach (Image token in slot_drop_tokens)
-        {
-            token.gameObject.SetActive(false);
+            slot_drop_tokens[i].color = color;
         }
     }
+
+
+    void Start()
+    {
+        UpdateHealthBar((int)health_bar.maxValue);
+    }
+
 }

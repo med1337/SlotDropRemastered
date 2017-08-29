@@ -309,7 +309,7 @@ public class PcManager : MonoBehaviour
         yield return new WaitForSeconds(BluescreenDuration);
 
         dir_light.color = prev_color;
-        yield return new WaitForSeconds(BluescreenDuration + RebootDuration);
+        yield return new WaitForSeconds(RebootDuration);
 
         GameManager.scene.slot_manager.enabled = true;
     }

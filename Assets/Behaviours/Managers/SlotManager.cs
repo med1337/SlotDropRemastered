@@ -29,7 +29,9 @@ public class SlotManager : MonoBehaviour
     {
 		if (!random_slot_queued)
         {
-            Invoke("OpenRandomSlot", Random.Range(min_activate_delay, max_activate_delay));
+            float delay = Random.Range(min_activate_delay, max_activate_delay);
+
+            Invoke("OpenRandomSlot", delay);
             random_slot_queued = true;
         }
 

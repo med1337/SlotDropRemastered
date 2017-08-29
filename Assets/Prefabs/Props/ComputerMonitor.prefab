@@ -499,7 +499,6 @@ GameObject:
   - component: {fileID: 4282904877312148}
   - component: {fileID: 33046046049726192}
   - component: {fileID: 23300149589224316}
-  - component: {fileID: 65928937337232560}
   m_Layer: 10
   m_Name: Arm
   m_TagString: Untagged
@@ -638,7 +637,6 @@ GameObject:
   - component: {fileID: 4191769090635934}
   - component: {fileID: 33884385714261050}
   - component: {fileID: 23112576339872032}
-  - component: {fileID: 65437759528758432}
   m_Layer: 10
   m_Name: Joint
   m_TagString: Untagged
@@ -691,6 +689,8 @@ GameObject:
   - component: {fileID: 33635317227445814}
   - component: {fileID: 23983665150302958}
   - component: {fileID: 65486883172752136}
+  - component: {fileID: 65379880723909926}
+  - component: {fileID: 65997893280861834}
   m_Layer: 10
   m_Name: ComputerMonitor
   m_TagString: Untagged
@@ -1163,18 +1163,18 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &65437759528758432
+--- !u!65 &65379880723909926
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1770130203679370}
+  m_GameObject: {fileID: 1830500141919300}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.1753297, y: 0.45284417, z: 0.47614858}
-  m_Center: {x: -0.00000002980234, y: 0.000000014901161, z: 0.000000044703484}
+  m_Size: {x: 3.130496, y: 0.37909287, z: 2.4225395}
+  m_Center: {x: 2.9788262e-15, y: 0.6066355, z: 1.2112696}
 --- !u!65 &65486883172752136
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -1185,8 +1185,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.130496, y: 1.592366, z: 0.18143032}
-  m_Center: {x: 0, y: -0.000000021628132, z: 0.090714976}
+  m_Size: {x: 3.130496, y: 1.592366, z: 0.989432}
+  m_Center: {x: -5.5104607e-16, y: 3.362819e-15, z: 0.49471572}
 --- !u!65 &65723178455131876
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -1199,18 +1199,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.2146173, y: 0.23893315, z: 2.703085}
   m_Center: {x: 0, y: -0.000000230968, z: 0.00000023841858}
---- !u!65 &65928937337232560
+--- !u!65 &65997893280861834
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1600436432982944}
+  m_GameObject: {fileID: 1830500141919300}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.97596, y: 0.21589547, z: 1.2021258}
-  m_Center: {x: 0, y: -0.00000014330455, z: 0.6010629}
+  m_Size: {x: 3.130496, y: 0.8849141, z: 1.7601525}
+  m_Center: {x: 8.8640484e-16, y: 0.35372514, z: 0.88007593}
 --- !u!95 &95166668389145460
 Animator:
   serializedVersion: 3
@@ -1763,7 +1763,7 @@ MonoBehaviour:
   BluescreenGameObject: {fileID: 1301298026860646}
   CursorFreezeTimeDuration: 0.5
   RebootDuration: 3
-  BluescreenDuration: 15
+  BluescreenDuration: 10
   loadDelay: 0
   QuarantineProcessDuration: 3
   QuarantinePopupCooldown: 2

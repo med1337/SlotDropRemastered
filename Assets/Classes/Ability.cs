@@ -11,10 +11,7 @@ public class Ability
 
     public void Activate()
     {
-        if (!IsReady())
-            return;
-
-        if (!projectile_prefab)
+        if (!IsReady() || projectile_prefab == null)
             return;
 
         Projectile projectile = GameObject.Instantiate(projectile_prefab, 

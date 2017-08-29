@@ -30,8 +30,12 @@ public class Barrel : MonoBehaviour
 
     void OnTriggerEnter(Collider _other)
     {
-        if (_other.tag == "Barrel" || _other.gameObject.layer == LayerMask.NameToLayer("Projectile"))
+        if (_other.tag == "Barrel" ||
+            _other.gameObject.layer == LayerMask.NameToLayer("Projectile") ||
+            (owner != null && _other.transform.GetInstanceID() == owner.transform.GetInstanceID()))
+        {
             return;
+        }
 
         AudioManager.PlayOneShot("explosion");
         CameraShake.Shake(0.4f, 0.4f);
@@ -39,11 +43,16 @@ public class Barrel : MonoBehaviour
         Projectile.CreateEffect(shockwave_particle, transform.position, Vector3.zero);
         RaycastHit[] elems = Projectile.CreateExplosion(gameObject, transform.position, effect_radius, knockback_force);
 
+        int player_layer = LayerMask.NameToLayer("Player");
+
         foreach (var elem in elems)
         {
+            if (elem.collider.gameObject.layer != player_layer)
+                continue;
+
             USBCharacter character = elem.collider.GetComponent<USBCharacter>();
 
-            if (character == null || character == owner)
+            if (character == owner)
                 continue;
 
             character.Stun(stun_duration);

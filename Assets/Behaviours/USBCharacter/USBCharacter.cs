@@ -150,7 +150,7 @@ public class USBCharacter : MonoBehaviour
             for (int i = 0; i < 3; ++i)
             {
                 Projectile.CreateEffect(hit_particle,
-                    body_group.transform.position, transform.position + (Vector3.up * 5));
+                    body_group.transform.position, transform.position + (Vector3.up * 10));
             }
 
             AudioManager.PlayOneShot("death");
@@ -183,7 +183,7 @@ public class USBCharacter : MonoBehaviour
         hud.UpdateHealthBar(health);
 
         Projectile.CreateEffect(heal_particle,
-            body_group.transform.position, transform.position + (Vector3.up * 5));
+            body_group.transform.position, transform.position + (Vector3.up * 10));
     }
 
 

@@ -8,6 +8,7 @@ public class PlayerHUD : MonoBehaviour
     public Slider health_bar;
     public Text score_text;
     public ShakeModule text_shake;
+    public FadableGraphic text_fade;
     public List<Image> slot_drop_tokens = new List<Image>();
     public int active_slot_token_count = 0;
 
@@ -41,6 +42,8 @@ public class PlayerHUD : MonoBehaviour
     {
         score_text.text = number.ToString();
         text_shake.Shake(0.3f, 0.3f);
+        
+        text_fade.FadeColor(Color.green, Color.white, 0.5f);
     }
 
 

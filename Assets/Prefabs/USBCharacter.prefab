@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 114906688605334884}
   - component: {fileID: 114929530666937982}
   - component: {fileID: 114821970576925470}
+  - component: {fileID: 114902143092428320}
   m_Layer: 8
   m_Name: Score
   m_TagString: Untagged
@@ -485,7 +486,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1407569977858368}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.574304, y: 0.023326874, z: -8.173669}
+  m_LocalPosition: {x: -2.129421, y: 0.023326874, z: -16.66315}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4417497652370508}
@@ -818,6 +819,7 @@ MonoBehaviour:
   health_bar: {fileID: 114404557215095576}
   score_text: {fileID: 114906688605334884}
   text_shake: {fileID: 114821970576925470}
+  text_fade: {fileID: 114902143092428320}
   slot_drop_tokens:
   - {fileID: 114810791493932194}
   - {fileID: 114667756537644806}
@@ -1187,6 +1189,17 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &114902143092428320
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1156089050394154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbf2c961b8e21164595fbec59cb9a3a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114906688605334884
 MonoBehaviour:
   m_ObjectHideFlags: 1

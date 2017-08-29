@@ -35,7 +35,7 @@ public class ProjectilePellet : Projectile
                     return;
             }
 
-            character.Damage(damage, origin);
+            character.Damage(damage, origin, owner);
         }
 
         AudioManager.PlayOneShot("projectile_impact");

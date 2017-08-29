@@ -59,7 +59,7 @@ public class ProjectileCharge : Projectile
                 return;
         }
 
-        character.Damage(damage, _other.transform.position + (absolute_direction * 5));
+        character.Damage(damage, _other.transform.position + (absolute_direction * 5), owner);
     }
 
 

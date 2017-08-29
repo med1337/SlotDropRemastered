@@ -57,7 +57,7 @@ public class ProjectileShockwave : Projectile
         {
             if (!affected_characters.Contains(character))
             {
-                character.Damage(damage);
+                character.Damage(damage, owner);
                 affected_characters.Add(character);
             }
         }

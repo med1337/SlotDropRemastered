@@ -19,6 +19,19 @@ public class FadableGraphic : MonoBehaviour
     private Color target_color;
 
 
+    public void SetBaseColor(Color _color)
+    {
+        if (image != null)
+            image.color = _color;
+
+        if (sprite != null)
+            sprite.color = _color;
+
+        if (text != null)
+            text.color = _color;
+    }
+
+
     public void FadeColor(Color _from, Color _to, float _t)
     {
         starting_color = _from;

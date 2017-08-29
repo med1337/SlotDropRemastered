@@ -117,7 +117,7 @@ public class RespawnManager : MonoBehaviour
 
         character.Init();
         character.Stun(0.9f, false);
-        character.Flash();
+        character.Flash(Color.white);
 
         alive_characters.Add(character);
 

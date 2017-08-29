@@ -56,7 +56,7 @@ public class USBSlot : MonoBehaviour
         else
         {
             LoadoutFactory.AssignRandomLoadout(_character);
-            _character.Flash();
+            _character.Flash(Color.green);
 
             AudioManager.PlayOneShot("new_data");
             Projectile.CreateEffect(LoadoutFactory.instance.download_data_prefab, 

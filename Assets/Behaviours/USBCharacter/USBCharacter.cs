@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.VR.WSA.Persistence;
 
 public class USBCharacter : MonoBehaviour
 {
@@ -12,6 +11,7 @@ public class USBCharacter : MonoBehaviour
     public Rigidbody rigid_body;
     public float move_speed_modifier = 1;
     public Vector3 move_dir;
+    public int heal_on_kill = 20;
 
     [SerializeField] Projector shadow;
     [SerializeField] Animator animator;
@@ -23,7 +23,8 @@ public class USBCharacter : MonoBehaviour
     [SerializeField] FadableGraphic damage_flash;
     [SerializeField] ShakeModule shake_module;
     [SerializeField] GameObject hit_particle;
-    [SerializeField] Transform slot_tracker;   
+    [SerializeField] GameObject heal_particle;
+    [SerializeField] Transform slot_tracker;
 
     private USBLoadout loadout = new USBLoadout();
     private int health;
@@ -136,34 +137,48 @@ public class USBCharacter : MonoBehaviour
     }
 
 
-    public void Damage(int _damage)
+    public void Damage(int _damage, USBCharacter _dealer = null)
     {
         health -= _damage;
 
         hud.UpdateHealthBar(health);
         shake_module.Shake(0.2f, 0.1f);
-        Flash();
+        Flash(Color.white);
 
         if (health <= 0)
         {
             for (int i = 0; i < 3; ++i)
             {
                 Projectile.CreateEffect(hit_particle,
-                    body_group.transform.position, transform.position + Vector3.up * 5);
+                    body_group.transform.position, transform.position + (Vector3.up * 5));
             }
 
             AudioManager.PlayOneShot("death");
+
+            if (_dealer != null)
+                _dealer.Heal(_dealer.heal_on_kill);
+
             Destroy(this.gameObject);
         }
     }
 
 
-    public void Damage(int _damage, Vector3 _hit_direction)
+    public void Damage(int _damage, Vector3 _hit_direction, USBCharacter _dealer = null)
     {
-        Damage(_damage);
+        Damage(_damage, _dealer);
 
         Projectile.CreateEffect(hit_particle,
             body_group.transform.position, _hit_direction);
+    }
+
+
+    public void Heal(int _amount)
+    {
+        health += _amount;
+        Flash(Color.red);
+
+        Projectile.CreateEffect(heal_particle,
+            body_group.transform.position, transform.position + (Vector3.up * 5));
     }
 
 
@@ -179,8 +194,9 @@ public class USBCharacter : MonoBehaviour
     }
 
 
-    public void Flash(float _duration = 0.2f)
+    public void Flash(Color _color, float _duration = 0.2f)
     {
+        damage_flash.SetBaseColor(_color);
         damage_flash.FadeOut(_duration);
     }
 
@@ -282,8 +298,8 @@ public class USBCharacter : MonoBehaviour
         if (last_slot_hit != null)
         {
             if (!last_slot_hit.slottable ||
-                Vector3.Distance(transform.position, last_slot_hit.transform.position) >= 1 * loadout.scale ||
-                controls_disabled)
+                (Vector3.Distance(transform.position, last_slot_hit.transform.position) >= 1 * loadout.scale) ||
+                stun_effect.activeSelf)
             {
                 last_slot_hit = null;
                 return;

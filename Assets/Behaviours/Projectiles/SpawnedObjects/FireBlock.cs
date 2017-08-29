@@ -51,7 +51,7 @@ public class FireBlock : MonoBehaviour
             if (character == owner)
                 continue;
 
-            character.Damage(damage);
+            character.Damage(damage, owner);
         }
     }
 

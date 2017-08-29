@@ -63,7 +63,7 @@ public class ProjectileSwordDance : Projectile
         }
 
         AudioManager.PlayOneShot("sword_dance_hit");
-        character.Damage(damage, (_other.transform.position - transform.position) * 5);
+        character.Damage(damage, (_other.transform.position - transform.position) * 5, owner);
 
         if (Random.Range(1, 100) <= stun_chance)
             character.Stun(stun_duration);

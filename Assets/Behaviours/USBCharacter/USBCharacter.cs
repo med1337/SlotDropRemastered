@@ -50,6 +50,7 @@ public class USBCharacter : MonoBehaviour
     private USBSlot last_slot_hit;
     private float energy;
     private int score_;
+    private TitanAura titan_aura;
 
 
     public void Move(Vector3 _dir)
@@ -150,7 +151,8 @@ public class USBCharacter : MonoBehaviour
     {
         AudioManager.PlayOneShot("titan_trigger");
         var clone = Instantiate(LoadoutFactory.instance.titan_aura, this.transform);
-        clone.GetComponent<TitanAura>().Init(this);
+        titan_aura = clone.GetComponent<TitanAura>();
+        titan_aura.Init(this);
 
         Damage(0);
 
@@ -282,6 +284,9 @@ public class USBCharacter : MonoBehaviour
             AudioManager.PlayOneShot("new_data");
             Projectile.CreateEffect(LoadoutFactory.instance.download_data_prefab,
                 transform.position, Vector3.zero);
+
+            if (titan_aura != null)
+                Destroy(titan_aura.gameObject);
         }
     }
 
@@ -348,6 +353,9 @@ public class USBCharacter : MonoBehaviour
 
     void FireSpecial()
     {
+        if (controls_disabled)
+            return;
+
         special_ability.Activate();
     }
 
@@ -360,14 +368,16 @@ public class USBCharacter : MonoBehaviour
         {
             if (!last_slot_hit.slottable ||
                 (Vector3.Distance(transform.position, last_slot_hit.transform.position) >= 1 * loadout.scale) ||
-                stun_effect.activeSelf)
+                controls_disabled)
             {
                 last_slot_hit = null;
                 return;
             }
 
             last_slot_hit.SlotDrop(this);
-            IncreaseEnergy();
+
+            if (loadout_name != "Gold")
+                IncreaseEnergy();
 
             AudioManager.PlayOneShot("usb_slot");
         }

@@ -93,7 +93,7 @@ public class ConnectedPlayer
             LoadoutFactory.AssignLoadout(character, "Fisher");
 
         if (input.GetButtonDown("B"))
-            LoadoutFactory.AssignLoadout(character, "Soldier");
+            LoadoutFactory.AssignLoadout(character, "Trojan");
 
         if (input.GetButtonDown("Attack"))
             LoadoutFactory.AssignLoadout(character, "Pirate");

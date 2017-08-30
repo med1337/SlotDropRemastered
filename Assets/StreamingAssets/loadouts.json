@@ -32,7 +32,7 @@
 		},
 
 		{
-			"name": "Soldier",
+			"name": "Trojan",
             "max_health": 100,
             "move_speed": 15,
             "scale": 3,

@@ -691,6 +691,8 @@ GameObject:
   - component: {fileID: 65486883172752136}
   - component: {fileID: 65379880723909926}
   - component: {fileID: 65997893280861834}
+  - component: {fileID: 65310431272308050}
+  - component: {fileID: 65330289613083190}
   m_Layer: 10
   m_Name: ComputerMonitor
   m_TagString: Untagged
@@ -1163,6 +1165,30 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &65310431272308050
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1830500141919300}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.130496, y: 0.37909287, z: 2.4225395}
+  m_Center: {x: 2.9788262e-15, y: 0.6066355, z: 1.2112696}
+--- !u!65 &65330289613083190
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1830500141919300}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.130496, y: 0.8849141, z: 1.7601525}
+  m_Center: {x: 8.8640484e-16, y: 0.35372514, z: 0.88007593}
 --- !u!65 &65379880723909926
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -1761,6 +1787,7 @@ MonoBehaviour:
   RebootSlider: {fileID: 114751375084911896}
   WelcomeGameObject: {fileID: 1567439939825030}
   BluescreenGameObject: {fileID: 1301298026860646}
+  upgrade_manager: {fileID: 0}
   CursorFreezeTimeDuration: 0.5
   RebootDuration: 3
   BluescreenDuration: 10

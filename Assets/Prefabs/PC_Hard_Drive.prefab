@@ -41,6 +41,8 @@ GameObject:
   - component: {fileID: 54794532547587846}
   - component: {fileID: 65749205182614032}
   - component: {fileID: 114352785242917406}
+  - component: {fileID: 136150721805300294}
+  - component: {fileID: 136706200144781820}
   m_Layer: 10
   m_Name: PC_Hard_Drive
   m_TagString: Untagged
@@ -89,7 +91,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1606068203551718}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 8.2, y: 3.3, z: -9.4}
+  m_LocalPosition: {x: 7.6478214, y: 0.023326874, z: -14.618541}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4496410783065042}
@@ -213,8 +215,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 8, y: 12.034878, z: 1.9957992}
-  m_Center: {x: 0, y: 0.017437462, z: 0.9978996}
+  m_Size: {x: 8, y: 12.034878, z: 1.5508443}
+  m_Center: {x: 0, y: 0.017437458, z: 1.220377}
 --- !u!114 &114352785242917406
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -282,6 +284,32 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: UPDATE
+--- !u!136 &136150721805300294
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1606068203551718}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1.2
+  m_Height: 7.5
+  m_Direction: 0
+  m_Center: {x: 0, y: 5.18, z: 0.9978996}
+--- !u!136 &136706200144781820
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1606068203551718}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1.2
+  m_Height: 7.5
+  m_Direction: 0
+  m_Center: {x: 0, y: -5.05, z: 0.9978996}
 --- !u!222 &222336840437281004
 CanvasRenderer:
   m_ObjectHideFlags: 1

@@ -244,21 +244,24 @@ public class USBCharacter : MonoBehaviour
         animator.SetBool("walking", moving && !controls_disabled);
         moving = false; // Ensure walking anim never gets stuck.
 
-        ManageEnergy();
+        DrainEnergy();
     }
 
 
-    void ManageEnergy()
+    void DrainEnergy()
     {
-        float delta_time_factor = 1.75f * Time.deltaTime;
+        if (energy == 0)
+            return;
 
-        if (energy - delta_time_factor <= 0 && energy > 0)
-            LoadoutFactory.AssignLoadout(this, "Base");
-
-        energy -= delta_time_factor;
+        energy -= 1.75f * Time.deltaTime;
         energy = Mathf.Clamp(energy, 0, 100);
 
         hud.UpdateEnergy(energy);
+
+        if (energy == 0)
+        {
+            LoadoutFactory.AssignLoadout(this, "Base");
+        }
     }
 
 

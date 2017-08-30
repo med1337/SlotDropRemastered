@@ -28,7 +28,11 @@ public class PlayerHUD : MonoBehaviour
 
     public void UpdateEnergy(float _energy)
     {
-        if (_energy < 25)
+        if (_energy == 0)
+        {
+
+        }
+        else if (_energy < 25)
         {
             slot_drop_tokens[0].fillAmount = _energy / 25;
             slot_drop_tokens[1].fillAmount = 0;

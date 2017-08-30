@@ -26,14 +26,35 @@ public class PlayerHUD : MonoBehaviour
     }
 
 
-	public void UpdateSlotProgress(int number)
+    public void UpdateEnergy(float _energy)
     {
-        for (int i = 0; i < number; ++i)
+        if (_energy < 25)
         {
-            Color color = slot_drop_tokens[i].color;
-            color.a = 1;
-
-            slot_drop_tokens[i].color = color;
+            slot_drop_tokens[0].fillAmount = _energy / 25;
+            slot_drop_tokens[1].fillAmount = 0;
+            slot_drop_tokens[2].fillAmount = 0;
+            slot_drop_tokens[3].fillAmount = 0;
+        }
+        else if (_energy < 50)
+        {
+            slot_drop_tokens[0].fillAmount = 1;
+            slot_drop_tokens[1].fillAmount = (_energy - 25) / 25;
+            slot_drop_tokens[2].fillAmount = 0;
+            slot_drop_tokens[3].fillAmount = 0;
+        }
+        else if (_energy < 75)
+        {
+            slot_drop_tokens[0].fillAmount = 1;
+            slot_drop_tokens[1].fillAmount = 1;
+            slot_drop_tokens[2].fillAmount = (_energy - 50) / 25;
+            slot_drop_tokens[3].fillAmount = 0;
+        }
+        else if (_energy < 100)
+        {
+            slot_drop_tokens[0].fillAmount = 1;
+            slot_drop_tokens[1].fillAmount = 1;
+            slot_drop_tokens[2].fillAmount = 1;
+            slot_drop_tokens[3].fillAmount = (_energy - 75) / 25;
         }
     }
 

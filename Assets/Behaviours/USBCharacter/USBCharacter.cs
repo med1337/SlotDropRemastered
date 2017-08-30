@@ -42,7 +42,7 @@ public class USBCharacter : MonoBehaviour
     private bool face_locked;
     private bool controls_disabled;
     private USBSlot last_slot_hit;
-    private int slot_streak;
+    private float energy;
     private int score_;
 
 
@@ -138,6 +138,7 @@ public class USBCharacter : MonoBehaviour
 
         Damage(0);
 
+        energy = 100;
         LoadoutFactory.AssignLoadout(this, "Gold");
     }
 
@@ -242,6 +243,22 @@ public class USBCharacter : MonoBehaviour
         // Play the walk cycle.
         animator.SetBool("walking", moving && !controls_disabled);
         moving = false; // Ensure walking anim never gets stuck.
+
+        ManageEnergy();
+    }
+
+
+    void ManageEnergy()
+    {
+        float delta_time_factor = 1.75f * Time.deltaTime;
+
+        if (energy - delta_time_factor <= 0 && energy > 0)
+            LoadoutFactory.AssignLoadout(this, "Base");
+
+        energy -= delta_time_factor;
+        energy = Mathf.Clamp(energy, 0, 100);
+
+        hud.UpdateEnergy(energy);
     }
 
 
@@ -289,8 +306,12 @@ public class USBCharacter : MonoBehaviour
         {
             USBSlot slot = hit.collider.GetComponent<USBSlot>();
             
-            if (slot == null || !slot.slottable || (slot.golden_slot && loadout_name != "Gold"))
+            if (slot == null || !slot.slottable ||
+                (slot.golden_slot && loadout_name != "Gold") ||
+                (!slot.golden_slot) && loadout_name == "Gold")
+            {
                 continue;
+            }
 
             slot.PostponeDeactivation();
             last_slot_hit = slot;
@@ -322,7 +343,7 @@ public class USBCharacter : MonoBehaviour
             }
 
             last_slot_hit.SlotDrop(this);
-            IncrementSlotTracker();
+            IncreaseEnergy();
 
             AudioManager.PlayOneShot("usb_slot");
         }
@@ -338,20 +359,16 @@ public class USBCharacter : MonoBehaviour
     }
 
 
-    void IncrementSlotTracker()
+    void IncreaseEnergy()
     {
-        if (slot_streak == 5)
+        if (energy >= 100)
             return;
 
-        ++slot_streak;
+        energy += 25;
 
-        if (slot_streak == 5)
+        if (energy >= 100)
         {
             BecomeTitan();
-        }
-        else
-        {
-            hud.UpdateSlotProgress(slot_streak);
         }
     }
 

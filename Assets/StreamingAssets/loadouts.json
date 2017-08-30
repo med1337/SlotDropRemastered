@@ -17,7 +17,7 @@
 			"name": "Fisher",
             "max_health": 100,
             "move_speed": 15,
-            "scale": 2.5,
+            "scale": 3,
 			"basic": "Splash",
 			"special": "Tsunami"
 		},
@@ -26,7 +26,7 @@
 			"name": "Pirate",
             "max_health": 100,
             "move_speed": 15,
-            "scale": 2.5,
+            "scale": 3,
 			"basic": "SwordDance",
 			"special": "BarrelBomb"
 		},
@@ -35,7 +35,7 @@
 			"name": "Soldier",
             "max_health": 100,
             "move_speed": 15,
-            "scale": 2.5,
+            "scale": 3,
 			"basic": "Charge",
 			"special": "ArrowHail"
 		}

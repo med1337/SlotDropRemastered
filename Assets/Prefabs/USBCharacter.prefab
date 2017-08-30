@@ -1479,6 +1479,7 @@ MonoBehaviour:
   move_speed_modifier: 1
   move_dir: {x: 0, y: 0, z: 0}
   heal_on_kill: 20
+  energy_on_slot: 35
   shadow: {fileID: 119234882019570808}
   animator: {fileID: 95478726582640122}
   face_indicator: {fileID: 1343346038068712}

@@ -12,6 +12,8 @@ public class USBCharacter : MonoBehaviour
     public float move_speed_modifier = 1;
     public Vector3 move_dir;
     public int heal_on_kill = 20;
+    public int energy_on_slot = 25;
+
     public int score
     {
         get { return score_; }
@@ -378,7 +380,7 @@ public class USBCharacter : MonoBehaviour
         if (energy >= 100)
             return;
 
-        energy += 25;
+        energy += energy_on_slot;
 
         if (energy >= 100)
         {

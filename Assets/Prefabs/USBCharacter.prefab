@@ -1474,12 +1474,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06c78349a2da4a44ea0346a9654ed36e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  body_group: {fileID: 1868444851001498}
-  rigid_body: {fileID: 54928263774891892}
   move_speed_modifier: 1
   move_dir: {x: 0, y: 0, z: 0}
   heal_on_kill: 20
   energy_on_slot: 35
+  energy_drain_rate: 1.5
+  body_group: {fileID: 1868444851001498}
+  rigid_body: {fileID: 54928263774891892}
   shadow: {fileID: 119234882019570808}
   animator: {fileID: 95478726582640122}
   face_indicator: {fileID: 1343346038068712}

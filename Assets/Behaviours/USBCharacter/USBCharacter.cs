@@ -6,19 +6,23 @@ public class USBCharacter : MonoBehaviour
 {
     public Vector3 last_facing { get; private set; }
     public string loadout_name { get { return loadout.name; } }
+    [HideInInspector] public float move_speed_modifier = 1;
+    [HideInInspector] public Vector3 move_dir;
 
-    public GameObject body_group;
-    public Rigidbody rigid_body;
-    public float move_speed_modifier = 1;
-    public Vector3 move_dir;
+    [Header("Parameters")]
     public int heal_on_kill = 20;
     public int energy_on_slot = 25;
+    public float energy_drain_rate = 1.25f;
 
     public int score
     {
         get { return score_; }
         set { score_ = value; hud.UpdateScoreText(score_); }
     }
+
+    [Header("References")]
+    public GameObject body_group;
+    public Rigidbody rigid_body;
 
     [SerializeField] Projector shadow;
     [SerializeField] Animator animator;
@@ -265,7 +269,7 @@ public class USBCharacter : MonoBehaviour
         if (energy == 0)
             return;
 
-        energy -= 1.25f * Time.deltaTime;
+        energy -= energy_drain_rate * Time.deltaTime;
         energy = Mathf.Clamp(energy, 0, 100);
 
         hud.UpdateEnergy(energy);
@@ -274,6 +278,10 @@ public class USBCharacter : MonoBehaviour
         {
             LoadoutFactory.AssignLoadout(this, "Base", false);
             Flash(Color.yellow);
+
+            AudioManager.PlayOneShot("new_data");
+            Projectile.CreateEffect(LoadoutFactory.instance.download_data_prefab,
+                transform.position, Vector3.zero);
         }
     }
 

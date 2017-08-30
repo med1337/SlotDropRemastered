@@ -59,7 +59,7 @@ public class USBSlot : MonoBehaviour
             _character.Flash(Color.yellow);
 
             AudioManager.PlayOneShot("new_data");
-            Projectile.CreateEffect(LoadoutFactory.instance.download_data_prefab, 
+            Projectile.CreateEffect(LoadoutFactory.instance.download_data_prefab,
                 _character.transform.position, Vector3.zero);
 
             GameManager.scene.pc_manager.AttemptQuarantine();

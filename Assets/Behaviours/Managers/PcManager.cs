@@ -32,6 +32,7 @@ public class PcManager : MonoBehaviour
     public Slider RebootSlider;
     public GameObject WelcomeGameObject;
     public GameObject BluescreenGameObject;
+    public UpgradePC upgrade_manager;
 
     [Header("Time settings")] public float CursorFreezeTimeDuration;
     [Space(10)] public float RebootDuration;
@@ -277,6 +278,16 @@ public class PcManager : MonoBehaviour
         RebootSlider.value = 0;
     }
 
+    public void SetProtectionBar(int _fill_amount)
+    {
+        ProtectionSlider.value = _fill_amount;
+    }
+
+    public void ResetProtectionBarToMax()
+    {
+        ProtectionSlider.value = ProtectionSlider.maxValue;
+    }
+
     private float IncreaseTemperature()
     {
         if (TemperatureSlider.value + TemperatureStep <= 100)
@@ -368,6 +379,13 @@ public class PcManager : MonoBehaviour
 
         //reset timer
         _protectionTimer = 0;
+
+        if (upgrade_manager != null)
+        {
+            if (ProtectionSlider.value <= 0)
+                upgrade_manager.TriggerUpgrade();
+        }
+
     }
 
     private void Popup(int amount)

@@ -253,7 +253,7 @@ public class USBCharacter : MonoBehaviour
         if (energy == 0)
             return;
 
-        energy -= 1.75f * Time.deltaTime;
+        energy -= 1.25f * Time.deltaTime;
         energy = Mathf.Clamp(energy, 0, 100);
 
         hud.UpdateEnergy(energy);

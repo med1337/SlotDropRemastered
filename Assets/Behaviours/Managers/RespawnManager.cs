@@ -10,15 +10,15 @@ public class RespawnManager : MonoBehaviour
     public int min_ai;
 
     [SerializeField] GameObject usb_character_prefab;
-    [SerializeField] Vector3 spawn_point;
 
     private List<USBCharacter> alive_ai = new List<USBCharacter>();
     private const int MAX_AI = 32;
+    private SpawnAreaCircle spawn_area;
 
 
     void Start()
     {
-
+        spawn_area = GetComponent<SpawnAreaCircle>();
     }
 
 
@@ -92,22 +92,19 @@ public class RespawnManager : MonoBehaviour
         USBCharacter character = CreateUSBCharacter("AIDude", Color.white);
         character.gameObject.AddComponent<USBAI>();
 
-        //LoadoutFactory.AssignLoadout(character, "Base");
-
-        Vector2 random_circle_location = Random.insideUnitCircle * 30;
-
-        character.transform.position = new Vector3(character.transform.position.x + random_circle_location.x,
-            character.transform.position.y, character.transform.position.z + random_circle_location.y);
-
         alive_ai.Add(character);
     }
 
 
     USBCharacter CreateUSBCharacter(string _name, Color _color)
     {
-        // Create and position the USBCharacter.
+        // Create the USBCharacter.
         USBCharacter character = Instantiate(usb_character_prefab).GetComponent<USBCharacter>();
-        character.transform.position = spawn_point;
+
+        // Randomly position the USBCharacter.
+        Vector2 random_circle_location = Random.insideUnitCircle * spawn_area.spawn_radius;
+        character.transform.position = transform.position +
+            new Vector3(random_circle_location.x, 0, random_circle_location.y);
 
         // Configure the USBCharacter.
         character.SetColour(_color);

@@ -6,6 +6,7 @@ using Rewired;
 public class PlayerManager : MonoBehaviour
 {
     public static Dictionary<int, ConnectedPlayer>.ValueCollection players { get { return player_dictionary.Values; } }
+    public static int active_player_count;
 
     private static PlayerManager instance;
     private static Dictionary<int, ConnectedPlayer> player_dictionary = new Dictionary<int, ConnectedPlayer>();
@@ -123,6 +124,7 @@ public class PlayerManager : MonoBehaviour
         connected_player.color = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
 
         connected_player.state = PlayerState.PLAYING;
+        ++active_player_count;
     }
 
 
@@ -135,6 +137,7 @@ public class PlayerManager : MonoBehaviour
             Destroy(connected_player.character.gameObject);
 
         connected_player.state = PlayerState.WAITING;
+        --active_player_count;
     }
 
 }

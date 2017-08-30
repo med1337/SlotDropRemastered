@@ -150,9 +150,13 @@ public class USBCharacter : MonoBehaviour
     public void BecomeTitan()
     {
         AudioManager.PlayOneShot("titan_trigger");
-        var clone = Instantiate(LoadoutFactory.instance.titan_aura, this.transform);
-        titan_aura = clone.GetComponent<TitanAura>();
-        titan_aura.Init(this);
+
+        if (titan_aura == null)
+        {
+            var clone = Instantiate(LoadoutFactory.instance.titan_aura, this.transform);
+            titan_aura = clone.GetComponent<TitanAura>();
+            titan_aura.Init(this);
+        }
 
         Damage(0);
 

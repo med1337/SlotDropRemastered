@@ -112,12 +112,22 @@ public class USBCharacter : MonoBehaviour
     }
 
 
-    public void AssignLoadout(USBLoadout _loadout)
+    public void AssignLoadout(USBLoadout _loadout, bool _heal = true)
     {
         // TODO: remove previous particle effect ..
 
         loadout = _loadout;
-        health = _loadout.max_health;
+
+        if (_heal)
+        {
+            health = _loadout.max_health;
+        }
+        else
+        {
+            if (health > _loadout.max_health)
+                health = _loadout.max_health;
+        }
+
         hud.SetHealthBarMaxHealth(_loadout.max_health);
         hud.UpdateHealthBar(health);
 
@@ -260,7 +270,8 @@ public class USBCharacter : MonoBehaviour
 
         if (energy == 0)
         {
-            LoadoutFactory.AssignLoadout(this, "Base");
+            LoadoutFactory.AssignLoadout(this, "Base", false);
+            Flash(Color.yellow);
         }
     }
 

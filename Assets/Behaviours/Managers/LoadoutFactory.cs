@@ -21,12 +21,12 @@ public class LoadoutFactory : MonoBehaviour
     private Dictionary<string, USBLoadout> titan_loadouts = new Dictionary<string, USBLoadout>();
 
 
-    public static void AssignLoadout(USBCharacter _character, string _loadout_name)
+    public static void AssignLoadout(USBCharacter _character, string _loadout_name, bool _heal = true)
     {
         USBLoadout loadout = instance.FindLoadout(_loadout_name);
 
         if (loadout != null)
-            _character.AssignLoadout(loadout);
+            _character.AssignLoadout(loadout, _heal);
     }
 
 

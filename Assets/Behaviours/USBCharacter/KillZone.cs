@@ -14,7 +14,10 @@ public class KillZone : MonoBehaviour
         }
         else if (_other.gameObject.layer == LayerMask.NameToLayer("Prop"))
         {
-            PropRespawner prop = _other.GetComponentInParent<PropRespawner>();
+            PropRespawner prop = _other.GetComponent<PropRespawner>();
+
+            if (prop == null)
+                _other.GetComponentInParent<PropRespawner>();
 
             if (prop == null)
                 prop = _other.transform.parent.GetComponentInParent<PropRespawner>();

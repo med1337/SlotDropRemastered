@@ -197,6 +197,9 @@ public class USBCharacter : MonoBehaviour
 
     public void Stun(float _duration, bool _sound = true)
     {
+        if (loadout_name == "Gold")
+            return;
+
         controls_disabled = true;
         stun_effect.SetActive(true);
 

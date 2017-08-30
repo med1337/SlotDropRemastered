@@ -9,6 +9,9 @@ public class ProjectileSplash : Projectile
     public float stun_duration;
     public float dist_from_player = 2;
     public float damage_radius = 3;
+    public float forward_speed = 5;
+
+    private List<USBCharacter> affected_characters = new List<USBCharacter>();
 
 
 	void Start()
@@ -22,6 +25,12 @@ public class ProjectileSplash : Projectile
         transform.position = offset_pos + (facing * dist_from_player);
 
         CreateEffect(particle_effect, origin + (facing * 3), origin + (facing * 10));
+    }
+
+
+    void Update()
+    {
+        transform.position += facing * forward_speed * Time.deltaTime;
     }
 
 
@@ -43,7 +52,11 @@ public class ProjectileSplash : Projectile
         if (Random.Range(0, 100) < stun_chance)
             character.Stun(stun_duration);
 
-        character.Damage(damage, origin, owner);
+        if (!affected_characters.Contains(character))
+        {
+            character.Damage(damage, origin, owner);
+            affected_characters.Add(character);
+        }
     }
 
 }

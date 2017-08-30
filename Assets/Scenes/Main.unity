@@ -1699,6 +1699,11 @@ Prefab:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 114982454852223790, guid: a396d2489cc5d4140accda6bf0a8a329,
+        type: 2}
+      propertyPath: cheats_enabled_
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a396d2489cc5d4140accda6bf0a8a329, type: 2}
   m_IsPrefabParent: 0

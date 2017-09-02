@@ -41,7 +41,8 @@ public class Barrel : MonoBehaviour
         CameraShake.Shake(0.4f, 0.4f);
 
         Projectile.CreateEffect(shockwave_particle, transform.position, Vector3.zero);
-        RaycastHit[] elems = Projectile.CreateExplosion(gameObject, transform.position, effect_radius, knockback_force);
+        RaycastHit[] elems = Physics.SphereCastAll(transform.position, effect_radius,
+            Vector3.down, 0, LayerMask.NameToLayer("Player"));
 
         int player_layer = LayerMask.NameToLayer("Player");
 

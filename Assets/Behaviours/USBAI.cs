@@ -6,7 +6,8 @@ using UnityEngine.AI;
 public class USBAI : MonoBehaviour
 {
     private USBCharacter character;
-    private float t = 0;
+    private float timer = 0;
+    private USBCharacter closest_enemy;
 
 
     void Awake()
@@ -26,12 +27,12 @@ public class USBAI : MonoBehaviour
 
     void Update()
     {
-        t += Time.deltaTime;
-        USBCharacter closest_enemy = null;
+        timer += Time.deltaTime;
 
-        if (t >= 0.2f)
+        if (timer >= 0.2f)
         {
-            var enemies = GameObject.FindObjectsOfType<USBCharacter>();
+            timer = 0;
+            var enemies = GameManager.scene.respawn_manager.alive_characters;
             float closest_distance = float.PositiveInfinity;
 
             foreach (var enemy in enemies)
@@ -39,7 +40,7 @@ public class USBAI : MonoBehaviour
                 if (enemy == character)
                     continue;
 
-                float dist = Vector3.Distance(enemy.transform.position, transform.position);
+                float dist = (enemy.transform.position - transform.position).sqrMagnitude;
                 if (dist >= closest_distance)
                     continue;
 

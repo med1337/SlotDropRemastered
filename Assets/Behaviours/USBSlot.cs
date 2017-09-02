@@ -48,7 +48,7 @@ public class USBSlot : MonoBehaviour
         if (!slottable)
             return;
 
-        if (_character.loadout_name == "Gold" && golden_slot)
+        if (_character.is_titan && golden_slot)
         {
             GameManager.round_over = true;
             GameManager.scene.focus_camera.Focus(transform.position, 15, 10, false);

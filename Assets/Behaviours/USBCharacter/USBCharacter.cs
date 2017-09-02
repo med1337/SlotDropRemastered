@@ -6,19 +6,24 @@ public class USBCharacter : MonoBehaviour
 {
     public Vector3 last_facing { get; private set; }
     public string loadout_name { get { return loadout.name; } }
-    [HideInInspector] public float move_speed_modifier = 1;
-    [HideInInspector] public Vector3 move_dir;
-
-    [Header("Parameters")]
-    public int heal_on_kill = 20;
-    public int energy_on_slot = 25;
-    public float energy_drain_rate = 1.25f;
+    public Vector3 move_dir { get; private set; }
+    public bool is_titan { get; private set; }
 
     public int score
     {
         get { return score_; }
         set { score_ = value; hud.UpdateScoreText(score_); }
     }
+
+    // TODO: make a system to calculate move speed based on a list of modifiers.
+    [HideInInspector] public float move_speed_modifier = 1;
+
+    [Header("Parameters")]
+    [SerializeField] int score_on_kill = 50;
+    [SerializeField] int score_on_slot = 100;
+    [SerializeField] int heal_on_kill = 20;
+    [SerializeField] int energy_on_slot = 25;
+    [SerializeField] float energy_drain_rate = 1.25f;
 
     [Header("References")]
     public GameObject body_group;
@@ -159,9 +164,10 @@ public class USBCharacter : MonoBehaviour
         }
 
         Damage(0);
-
         energy = 100;
+
         LoadoutFactory.AssignLoadout(this, "Gold");
+        is_titan = true;
     }
 
 
@@ -186,7 +192,7 @@ public class USBCharacter : MonoBehaviour
             if (_dealer != null)
             {
                 _dealer.Heal(_dealer.heal_on_kill);
-                _dealer.score += 50;
+                _dealer.score += score_on_kill;
             }
 
             Destroy(this.gameObject);
@@ -220,7 +226,7 @@ public class USBCharacter : MonoBehaviour
 
     public void Stun(float _duration, bool _sound = true)
     {
-        if (loadout_name == "Gold")
+        if (is_titan)
             return;
 
         controls_disabled = true;
@@ -282,16 +288,24 @@ public class USBCharacter : MonoBehaviour
 
         if (energy == 0)
         {
-            LoadoutFactory.AssignLoadout(this, "Base", false);
-            Flash(Color.yellow);
-
-            AudioManager.PlayOneShot("new_data");
-            Projectile.CreateEffect(LoadoutFactory.instance.download_data_prefab,
-                transform.position, Vector3.zero);
-
-            if (titan_aura != null)
-                Destroy(titan_aura.gameObject);
+            PowerDown();
         }
+    }
+
+
+    void PowerDown()
+    {
+        LoadoutFactory.AssignLoadout(this, "Base", false);
+        Flash(Color.yellow);
+
+        AudioManager.PlayOneShot("new_data");
+        Projectile.CreateEffect(LoadoutFactory.instance.download_data_prefab,
+            transform.position, Vector3.zero);
+
+        if (titan_aura != null)
+            Destroy(titan_aura.gameObject);
+
+        is_titan = false;
     }
 
 
@@ -340,8 +354,8 @@ public class USBCharacter : MonoBehaviour
             USBSlot slot = hit.collider.GetComponent<USBSlot>();
             
             if (slot == null || !slot.slottable ||
-                (slot.golden_slot && loadout_name != "Gold") ||
-                (!slot.golden_slot) && loadout_name == "Gold")
+                (slot.golden_slot && !is_titan) ||
+                (!slot.golden_slot) && is_titan)
             {
                 continue;
             }
@@ -380,10 +394,11 @@ public class USBCharacter : MonoBehaviour
 
             last_slot_hit.SlotDrop(this);
 
-            if (loadout_name != "Gold")
+            if (!is_titan)
                 IncreaseEnergy();
 
             AudioManager.PlayOneShot("usb_slot");
+            score += score_on_slot;
         }
         
         last_slot_hit = null;

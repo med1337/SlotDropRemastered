@@ -53,13 +53,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  cooldown: 3
+  cooldown: 2.5
   lifetime: 1
   activation_sound: {fileID: 8300000, guid: 211964f73ff6e3741ba3ac50e408d0fd, type: 3}
   particle_effect: {fileID: 1762513334407198, guid: 80c3fc89a1053c342ba61df679e56fa1,
     type: 2}
-  effect_radius: 10
-  knockback_force: 30
+  effect_radius: 50
+  knockback_force: 25
 --- !u!135 &135395033346480246
 SphereCollider:
   m_ObjectHideFlags: 1

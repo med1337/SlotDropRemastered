@@ -21,7 +21,8 @@ public class Sparkle : MonoBehaviour
 
     void OnTriggerEnter(Collider _other)
     {
-        if (owner != null && _other.transform.GetInstanceID() == owner.transform.GetInstanceID())
+        if (owner != null && _other.transform.GetInstanceID() == owner.transform.GetInstanceID() ||
+            _other.gameObject.layer == LayerMask.NameToLayer("Projectile"))
             return;
 
         var clone = Instantiate(fire_block_prefab, transform.position, Quaternion.identity);

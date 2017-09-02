@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Rewired;
 using UnityEngine;
 
 public class ProjectileShockwave : Projectile
@@ -11,12 +12,20 @@ public class ProjectileShockwave : Projectile
     private float wave_speed;
     private SphereCollider sphere_collider;
     private List<USBCharacter> affected_characters = new List<USBCharacter>();
+    private List<Rigidbody> affected_bodies = new List<Rigidbody>();
 
 
     void Start()
     {
         CreateEffect(particle_effect, origin, Vector3.zero);
-        CreateExplosion(owner.gameObject, origin, effect_radius, knockback_force);
+
+        var elems = Physics.SphereCastAll(origin, effect_radius / 10, Vector3.down, 0,
+            1 << LayerMask.NameToLayer("Player") | 1 << LayerMask.NameToLayer("Prop") | 1 << LayerMask.NameToLayer("PhysicsProjectile"));
+
+        foreach (var elem in elems)
+        {
+            AffectRigidBody(elem.rigidbody);
+        }
 
         wave_speed = particle_effect.GetComponent<ParticleSystem>().main.startSpeed.constantMax;
         sphere_collider = GetComponent<SphereCollider>();
@@ -40,15 +49,22 @@ public class ProjectileShockwave : Projectile
 
     void OnTriggerEnter(Collider _other)
     {
-        Rigidbody rb = _other.GetComponent<Rigidbody>();
+        AffectRigidBody(_other.GetComponent<Rigidbody>());
+    }
 
-        if (rb != null)
+
+    void AffectRigidBody(Rigidbody _body)
+    {
+        if (_body == null || _body.tag == "Sparkle")
+            return;
+
+        if (owner != null && owner.rigid_body != _body && !affected_bodies.Contains(_body))
         {
-            if (owner != null && owner.rigid_body != rb)
-                rb.AddExplosionForce(knockback_force, origin, effect_radius);
+            _body.AddExplosionForce(knockback_force * 1000, origin, effect_radius);
+            affected_bodies.Add(_body);
         }
 
-        USBCharacter character = _other.GetComponent<USBCharacter>();
+        USBCharacter character = _body.GetComponent<USBCharacter>();
 
         if (character != null && character != owner && damage != 0)
         {

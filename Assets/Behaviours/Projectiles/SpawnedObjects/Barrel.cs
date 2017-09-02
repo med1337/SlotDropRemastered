@@ -42,15 +42,10 @@ public class Barrel : MonoBehaviour
 
         Projectile.CreateEffect(shockwave_particle, transform.position, Vector3.zero);
         RaycastHit[] elems = Physics.SphereCastAll(transform.position, effect_radius,
-            Vector3.down, 0, LayerMask.NameToLayer("Player"));
-
-        int player_layer = LayerMask.NameToLayer("Player");
+            Vector3.down, 0, 1 << LayerMask.NameToLayer("Player"));
 
         foreach (var elem in elems)
         {
-            if (elem.collider.gameObject.layer != player_layer)
-                continue;
-
             USBCharacter character = elem.collider.GetComponent<USBCharacter>();
 
             if (character == owner)

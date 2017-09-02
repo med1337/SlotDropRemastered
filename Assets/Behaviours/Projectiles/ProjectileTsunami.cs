@@ -55,8 +55,8 @@ public class ProjectileTsunami : Projectile
 
         CreateEffect(particle_effect, transform.position, Vector3.zero);
 
-        var elems = Physics.SphereCastAll(transform.position, effect_radius,
-            Vector3.down, 0, LayerMask.NameToLayer("Player"));
+        var elems = Projectile.CreateExplosion(owner != null? owner.gameObject : null,
+            transform.position, effect_radius, knockback_force);
 
         foreach (var elem in elems)
         {

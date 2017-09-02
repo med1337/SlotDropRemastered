@@ -43,7 +43,8 @@ public class Meteor : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Impact(other);
+        if (other.gameObject.layer != LayerMask.NameToLayer("Projectile"))
+            Impact(other);
     }
 
 

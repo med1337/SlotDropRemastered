@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 54889580044500034}
   - component: {fileID: 33122846018553942}
   - component: {fileID: 23229465016130844}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Barrel
   m_TagString: Barrel
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 4834360544439694}
   - component: {fileID: 33021924121531154}
   - component: {fileID: 23837505870399208}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Metal Band001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 4706585930734746}
   - component: {fileID: 119703505874718824}
   - component: {fileID: 114381850330456726}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 4235258911174784}
   - component: {fileID: 33888603253108946}
   - component: {fileID: 23977233431181122}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Metal Band
   m_TagString: Untagged
   m_Icon: {fileID: 0}

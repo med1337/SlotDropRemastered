@@ -9,6 +9,7 @@ TagManager:
   - Floor
   - USBSlot
   - Meteor
+  - Sparkle
   layers:
   - Default
   - TransparentFX
@@ -26,7 +27,7 @@ TagManager:
   - InvisibleWall
   - CameraScanPlane
   - PCCore
-  - 
+  - PhysicsProjectile
   - 
   - 
   - 

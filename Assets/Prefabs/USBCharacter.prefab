@@ -1475,10 +1475,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   move_speed_modifier: 1
-  move_dir: {x: 0, y: 0, z: 0}
+  score_on_kill: 50
   heal_on_kill: 20
-  energy_on_slot: 35
-  energy_drain_rate: 1.5
+  energy_on_slot: 20
+  energy_drain_rate: 1.25
+  energy_score_factor: 0.3
   body_group: {fileID: 1868444851001498}
   rigid_body: {fileID: 54928263774891892}
   shadow: {fileID: 119234882019570808}

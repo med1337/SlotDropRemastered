@@ -20,10 +20,10 @@ public class USBCharacter : MonoBehaviour
 
     [Header("Parameters")]
     [SerializeField] int score_on_kill = 50;
-    [SerializeField] int score_on_slot = 100;
     [SerializeField] int heal_on_kill = 20;
     [SerializeField] int energy_on_slot = 25;
     [SerializeField] float energy_drain_rate = 1.25f;
+    [SerializeField] float energy_score_factor = 0.1f;
 
     [Header("References")]
     public GameObject body_group;
@@ -398,7 +398,6 @@ public class USBCharacter : MonoBehaviour
                 IncreaseEnergy();
 
             AudioManager.PlayOneShot("usb_slot");
-            score += score_on_slot;
         }
         
         last_slot_hit = null;
@@ -417,7 +416,8 @@ public class USBCharacter : MonoBehaviour
         if (energy >= 100)
             return;
 
-        energy += energy_on_slot;
+        energy += energy_on_slot + (score * energy_score_factor);
+        score = 0;
 
         if (energy >= 100)
         {

@@ -49,8 +49,7 @@ public class SlotManager : MonoBehaviour
 
     void ActivateTitanSlots()
     {
-        bool titan_exists = GameManager.scene.respawn_manager.alive_characters.Count > 0 &&
-            GameManager.scene.respawn_manager.alive_characters.TrueForAll(elem => elem.is_titan);
+        bool titan_exists = GameManager.scene.respawn_manager.alive_characters.Any(elem => elem.is_titan);
 
         foreach (USBSlot slot in slots)
         {

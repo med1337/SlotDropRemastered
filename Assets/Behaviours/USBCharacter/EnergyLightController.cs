@@ -6,28 +6,30 @@ public class EnergyLightController : MonoBehaviour
 {
     [SerializeField] USBCharacter owner;
     [SerializeField] Light energy_light;
+    [SerializeField] float pulse_rate;
+    [SerializeField] float max_light_range;
 
 
     void Update()
     {
-        if (owner.is_titan)
-            return;
-
         float titan_proximity = CalculateTitanProximity();
 
-        if (titan_proximity < 20)
+        if (owner.is_titan || titan_proximity < owner.energy_on_slot * 2)
         {
             energy_light.range = 0;
-            return;
+            energy_light.intensity = 0;
         }
-
-        energy_light.range = Mathf.PingPong(titan_proximity / 10, 10);
+        else
+        {
+            energy_light.range = Mathf.PingPong(Time.time * pulse_rate, max_light_range);
+            energy_light.intensity = titan_proximity / 50;
+        }
     }
 
 
     float CalculateTitanProximity()
     {
-        return owner.energy + (owner.score * owner.energy_score_factor);
+        return owner.energy + (owner.score * owner.energy_score_factor) + owner.energy_on_slot;
     }
 
 }

@@ -16,13 +16,10 @@ public class USBCharacter : MonoBehaviour
         set { score_ = value; hud.UpdateScoreText(score_); }
     }
 
-    // TODO: make a system to calculate move speed based on a list of modifiers.
-    [HideInInspector] public float move_speed_modifier = 1;
-
     [Header("Parameters")]
     [SerializeField] int score_on_kill = 50;
     [SerializeField] int heal_on_kill = 20;
-    [SerializeField] int energy_on_slot = 25;
+    public int energy_on_slot = 25;
     [SerializeField] float energy_drain_rate = 1.25f;
     public float energy_score_factor = 0.1f;
 
@@ -43,6 +40,7 @@ public class USBCharacter : MonoBehaviour
     [SerializeField] GameObject heal_particle;
     [SerializeField] Transform slot_tracker;
 
+    private MovementCalculator movement_calculator = new MovementCalculator();
     private USBLoadout loadout = new USBLoadout();
     private int health;
 
@@ -124,6 +122,12 @@ public class USBCharacter : MonoBehaviour
     }
 
 
+    public void AddSpeedModifier(float _modifier, float _duration)
+    {
+        movement_calculator.AddSpeedModifier(_modifier, _duration);
+    }
+
+
     public void AssignLoadout(USBLoadout _loadout, bool _heal = true)
     {
         // TODO: remove previous particle effect ..
@@ -142,6 +146,7 @@ public class USBCharacter : MonoBehaviour
 
         hud.SetHealthBarMaxHealth(_loadout.max_health);
         hud.UpdateHealthBar(health);
+        movement_calculator.SetBaseSpeed(_loadout.move_speed);
 
         hat_renderer.sprite = _loadout.hat;
         transform.localScale = Vector3.one * _loadout.scale;
@@ -313,8 +318,8 @@ public class USBCharacter : MonoBehaviour
     {
         if (!slot_dropping)
         {
-            Vector3 move = move_dir * loadout.move_speed * Time.fixedDeltaTime;
-            rigid_body.MovePosition(transform.position + move * move_speed_modifier);
+            Vector3 move = move_dir * movement_calculator.CalculateMoveSpeed() * Time.fixedDeltaTime;
+            rigid_body.MovePosition(transform.position + move);
 
             move_dir = Vector3.zero;
         }

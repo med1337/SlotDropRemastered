@@ -22,6 +22,8 @@ public class ProjectileSwordDance : Projectile
 
             if (owner.move_dir.magnitude > 0.05f)
                 owner.rigid_body.AddForce(facing * 10000);
+
+            owner.AddSpeedModifier(speed_modifier, lifetime);
         }
 
         GetComponent<SphereCollider>().center = new Vector3(orbit_distance, 0, 0);
@@ -38,9 +40,6 @@ public class ProjectileSwordDance : Projectile
             Destroy(gameObject);
             return;
         }
-
-        if (owner.move_speed_modifier == 1)
-            owner.move_speed_modifier = speed_modifier;
 
         transform.position = orbit_axis.transform.position;
         transform.Rotate(Vector3.up * Time.deltaTime * rotate_speed);
@@ -69,11 +68,4 @@ public class ProjectileSwordDance : Projectile
             character.Stun(stun_duration);
     }
 
-
-    private void OnDestroy()
-    {
-        // Reset player speed.
-        if (owner)
-            owner.move_speed_modifier = 1;
-    }
 }

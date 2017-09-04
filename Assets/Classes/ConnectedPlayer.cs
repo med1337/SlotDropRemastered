@@ -67,6 +67,11 @@ public class ConnectedPlayer
         {
             character.SlotDrop();
         }
+
+        if (input.GetButtonDown("RB"))
+        {
+            character.score += 50;
+        }
     }
 
 

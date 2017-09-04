@@ -8,6 +8,7 @@ public class USBCharacter : MonoBehaviour
     public string loadout_name { get { return loadout.name; } }
     public Vector3 move_dir { get; private set; }
     public bool is_titan { get; private set; }
+    public float energy { get; private set; }
 
     public int score
     {
@@ -23,7 +24,7 @@ public class USBCharacter : MonoBehaviour
     [SerializeField] int heal_on_kill = 20;
     [SerializeField] int energy_on_slot = 25;
     [SerializeField] float energy_drain_rate = 1.25f;
-    [SerializeField] float energy_score_factor = 0.1f;
+    public float energy_score_factor = 0.1f;
 
     [Header("References")]
     public GameObject body_group;
@@ -53,7 +54,6 @@ public class USBCharacter : MonoBehaviour
     private bool face_locked;
     private bool controls_disabled;
     private USBSlot last_slot_hit;
-    private float energy;
     private int score_;
     private TitanAura titan_aura;
 

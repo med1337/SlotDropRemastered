@@ -1,13 +1,15 @@
 fileFormatVersion: 2
 guid: 466661224b307e8479a0570ed2e78f6d
-timeCreated: 1504114302
+timeCreated: 1504620555
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: FisherHat
     21300002: PirateHat
     21300004: TrojanHat
-    21300006: BrokenHat
+    21300006: LumberJackHat
+    21300008: EgyptianHat
+    21300010: ThiefHat
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -113,15 +115,41 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: BrokenHat
+      name: LumberJackHat
       rect:
         serializedVersion: 2
-        x: 1114
+        x: 1068
         y: 0
-        width: 351
+        width: 291
         height: 771
       alignment: 9
       pivot: {x: 0.5, y: 0.66}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: EgyptianHat
+      rect:
+        serializedVersion: 2
+        x: 1373
+        y: 0
+        width: 465
+        height: 771
+      alignment: 9
+      pivot: {x: 0.48612678, y: 0.6642876}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ThiefHat
+      rect:
+        serializedVersion: 2
+        x: 1875
+        y: 0
+        width: 343
+        height: 771
+      alignment: 9
+      pivot: {x: 0.6012999, y: 0.6742599}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0

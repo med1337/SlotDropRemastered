@@ -281,6 +281,7 @@ GameObject:
   - component: {fileID: 224321582899938194}
   - component: {fileID: 222536635118071326}
   - component: {fileID: 114258997365479584}
+  - component: {fileID: 114875998032667834}
   m_Layer: 10
   m_Name: Quarantine
   m_TagString: Untagged
@@ -315,8 +316,9 @@ GameObject:
   - component: {fileID: 224394945143126628}
   - component: {fileID: 222658912203812494}
   - component: {fileID: 114368185600429796}
+  - component: {fileID: 114512741300799696}
   m_Layer: 10
-  m_Name: Bluescreen
+  m_Name: UpdateScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -465,6 +467,7 @@ GameObject:
   - component: {fileID: 224126870661481026}
   - component: {fileID: 222617564756474432}
   - component: {fileID: 114283186366499682}
+  - component: {fileID: 114855456235203950}
   m_Layer: 10
   m_Name: WelcomeScreen
   m_TagString: Untagged
@@ -521,6 +524,7 @@ GameObject:
   - component: {fileID: 114122851024011984}
   - component: {fileID: 114450932280896640}
   - component: {fileID: 114666850776018196}
+  - component: {fileID: 114258726268222976}
   m_Layer: 10
   m_Name: PC UI
   m_TagString: Untagged
@@ -610,6 +614,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
+--- !u!1 &1722427444053096
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 224271673174183746}
+  - component: {fileID: 222503604512990572}
+  - component: {fileID: 114659640694066264}
+  - component: {fileID: 114640262612140756}
+  m_Layer: 10
+  m_Name: Bluescreen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
 --- !u!1 &1724715970650956
 GameObject:
   m_ObjectHideFlags: 1
@@ -671,6 +693,7 @@ GameObject:
   - component: {fileID: 223910211813326964}
   - component: {fileID: 222615920711976920}
   - component: {fileID: 114360324242390144}
+  - component: {fileID: 114049364596170540}
   m_Layer: 10
   m_Name: RebootProcedure
   m_TagString: Untagged
@@ -1290,6 +1313,23 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &114049364596170540
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1805228833313532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f58cd37d64a8b044addba2b10cbdab6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OsSprites:
+  - {fileID: 21300000, guid: 3fbb30ff252d7c4459fbf3c4e4a409ee, type: 3}
+  - {fileID: 21300000, guid: 54dbdb6dc848df94181b55b0f3803cb9, type: 3}
+  - {fileID: 21300000, guid: 3582941c2d96b044aac0e803e407dc3c, type: 3}
+  - {fileID: 21300000, guid: 9829af3ac890cc94ca3ab3967b58ad91, type: 3}
+  - {fileID: 21300000, guid: 9829af3ac890cc94ca3ab3967b58ad91, type: 3}
 --- !u!114 &114096251957894916
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1323,7 +1363,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 5daf9ac2a5e0e344f8d487448aa5a9c3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 07121bcbda944024c99d24c3882ecfd5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1507,6 +1547,23 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114258726268222976
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1600615890437420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f58cd37d64a8b044addba2b10cbdab6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OsSprites:
+  - {fileID: 21300000, guid: 07121bcbda944024c99d24c3882ecfd5, type: 3}
+  - {fileID: 21300000, guid: b1806f44816cc9344a5b590ee36cd231, type: 3}
+  - {fileID: 21300000, guid: ce1cfb3e11a4a79439a2d905b00cbc1d, type: 3}
+  - {fileID: 21300000, guid: 6d9e9dfa6ecc71c4fbcfaa20c718f795, type: 3}
+  - {fileID: 21300000, guid: ce0b2df96392ac84c81529cece759ea0, type: 3}
 --- !u!114 &114258997365479584
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1607,7 +1664,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 9897d0ba344fe7f408e58aedc1389c94, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7ada69d0d4e95b44d8b5b49951def831, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1694,6 +1751,18 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.359}
   m_EffectDistance: {x: 0, y: -0.02}
   m_UseGraphicAlpha: 1
+--- !u!114 &114512741300799696
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1301298026860646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f58cd37d64a8b044addba2b10cbdab6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OsSprites: []
 --- !u!114 &114542223630870774
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1710,6 +1779,23 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114640262612140756
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1722427444053096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f58cd37d64a8b044addba2b10cbdab6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OsSprites:
+  - {fileID: 21300000, guid: 0d540f7ddb24d934c9a4cadecd385168, type: 3}
+  - {fileID: 21300000, guid: 0d540f7ddb24d934c9a4cadecd385168, type: 3}
+  - {fileID: 21300000, guid: 0d540f7ddb24d934c9a4cadecd385168, type: 3}
+  - {fileID: 21300000, guid: 20328741f7d9dbb4bb8f70dec63df692, type: 3}
+  - {fileID: 21300000, guid: d5fbafa2d3316b94b90807d8a86a00ec, type: 3}
 --- !u!114 &114654208980792796
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1731,6 +1817,33 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 0}
   m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!114 &114659640694066264
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1722427444053096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 9897d0ba344fe7f408e58aedc1389c94, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1780,18 +1893,18 @@ MonoBehaviour:
   ActivateReboot: 0
   ActivateBluescren: 0
   CursorGameObject: {fileID: 1208708105435874}
-  QuarantineGameObject: {fileID: 1283016216565968}
+  QuarantineGameObject: {fileID: 114875998032667834}
   ProtectionSlider: {fileID: 114685515913231476}
   TemperatureSlider: {fileID: 114248368760431686}
-  RebootGameObject: {fileID: 1805228833313532}
+  RebootGameObject: {fileID: 114049364596170540}
   RebootSlider: {fileID: 114751375084911896}
-  WelcomeGameObject: {fileID: 1567439939825030}
-  BluescreenGameObject: {fileID: 1301298026860646}
-  upgrade_manager: {fileID: 0}
+  WelcomeGameObject: {fileID: 114855456235203950}
+  BluescreenGameObject: {fileID: 114640262612140756}
+  UpgradeManager: {fileID: 0}
+  UpgradeGameObject: {fileID: 114512741300799696}
   CursorFreezeTimeDuration: 0.5
   RebootDuration: 3
   BluescreenDuration: 10
-  loadDelay: 0
   QuarantineProcessDuration: 3
   QuarantinePopupCooldown: 2
   ProtectionUpdateRate: 4
@@ -1808,6 +1921,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 73f72e8ef16b9f64788f1f73bda80a19, type: 3}
   - {fileID: 21300000, guid: d96d970ff185c6e40be7d04b9040ddd6, type: 3}
   - {fileID: 21300000, guid: cd4573d1486dd6d489e478c6b4892d6f, type: 3}
+  SystemCurrentOs: 0
 --- !u!114 &114677381777867632
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2150,6 +2264,23 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: TEMPERATURE
+--- !u!114 &114855456235203950
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1567439939825030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f58cd37d64a8b044addba2b10cbdab6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OsSprites:
+  - {fileID: 21300000, guid: 23a5e0b9d5425474a86b87f3b884dd75, type: 3}
+  - {fileID: 21300000, guid: dc88e981c6be77d4bb69bfc29e5b3253, type: 3}
+  - {fileID: 21300000, guid: 10f1b1a7c9e46a048958c7bd1f31a0ed, type: 3}
+  - {fileID: 21300000, guid: fe6e3f85f0acf9d45be880ab1874ffcc, type: 3}
+  - {fileID: 21300000, guid: 93a4d4174f7a9bd49baf094565f8b5ea, type: 3}
 --- !u!114 &114867001142301672
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2183,6 +2314,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: PC HEALTH MONITOR V1.337
+--- !u!114 &114875998032667834
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1283016216565968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f58cd37d64a8b044addba2b10cbdab6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OsSprites:
+  - {fileID: 0}
 --- !u!114 &114895305844176322
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2428,6 +2572,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1312720258016992}
+--- !u!222 &222503604512990572
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1722427444053096}
 --- !u!222 &222536635118071326
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -2629,6 +2779,7 @@ RectTransform:
   - {fileID: 224764940315167066}
   - {fileID: 224329976444284740}
   - {fileID: 224126870661481026}
+  - {fileID: 224271673174183746}
   - {fileID: 224394945143126628}
   m_Father: {fileID: 4266888577055204}
   m_RootOrder: 2
@@ -2765,6 +2916,24 @@ RectTransform:
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &224271673174183746
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1722427444053096}
+  m_LocalRotation: {x: -0, y: 0.0000000048398863, z: 0.00000004687238, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.0000006480841}
+  m_LocalScale: {x: 1.0000038, y: 1.0000007, z: 1.0000045}
+  m_Children: []
+  m_Father: {fileID: 224047999900078962}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 1.9350009, y: 1.0509949}
+  m_SizeDelta: {x: 3.87, y: 2.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224285244559906336
 RectTransform:
@@ -2904,16 +3073,17 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1301298026860646}
-  m_LocalRotation: {x: -0, y: 0.0000000048398863, z: 0.00000004687238, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.0000006480841}
-  m_LocalScale: {x: 1.0000038, y: 1.0000007, z: 1.0000045}
+  m_LocalRotation: {x: -0.000000059604616, y: 0.000000004839888, z: 0.000000046872376,
+    w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.0000008865027}
+  m_LocalScale: {x: 1.0000076, y: 1.0000021, z: 1.0000082}
   m_Children: []
   m_Father: {fileID: 224047999900078962}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 1.9350009, y: 1.0509949}
+  m_AnchoredPosition: {x: 1.9350005, y: 1.050993}
   m_SizeDelta: {x: 3.87, y: 2.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224440290754751408

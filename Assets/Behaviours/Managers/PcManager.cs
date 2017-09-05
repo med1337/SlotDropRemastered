@@ -10,11 +10,20 @@ using Random = UnityEngine.Random;
 enum PCState
 {
     Welcome = 0,
-    Load,
+    Load = 1,
     Running,
     Freeze,
     BlueScreen,
     Reboot
+}
+
+public enum CurrentOS
+{
+    XP = 0,
+    Vista = 1,
+    Seven,
+    Eight,
+    Ten
 }
 
 public class PcManager : MonoBehaviour
@@ -25,19 +34,20 @@ public class PcManager : MonoBehaviour
     public bool ActivateBluescren;
 
     [Header("GameObjects")] public GameObject CursorGameObject;
-    public GameObject QuarantineGameObject;
+    public OsScreen QuarantineGameObject;
     public Slider ProtectionSlider;
     public Slider TemperatureSlider;
-    public GameObject RebootGameObject;
+    public OsScreen RebootGameObject;
     public Slider RebootSlider;
-    public GameObject WelcomeGameObject;
-    public GameObject BluescreenGameObject;
-    public UpgradePC upgrade_manager;
+    public OsScreen WelcomeGameObject;
+    public OsScreen BluescreenGameObject;
+    public UpgradePC UpgradeManager;
+    public OsScreen UpgradeGameObject;
 
     [Header("Time settings")] public float CursorFreezeTimeDuration;
     [Space(10)] public float RebootDuration;
     [Space(10)] public float BluescreenDuration;
-    public float loadDelay;
+    private float loadDelay =1.0f;
 
     [Space(10)] public float QuarantineProcessDuration;
     public float QuarantinePopupCooldown;
@@ -51,6 +61,8 @@ public class PcManager : MonoBehaviour
     public List<Sprite> QuarantineSprites;
 
     [Space(10)] public List<Sprite> PopupImages;
+
+    [Space(10)] public CurrentOS SystemCurrentOs;
 
     //private
     private float _cursorSpeed;
@@ -74,7 +86,8 @@ public class PcManager : MonoBehaviour
     private float _popupTimer;
     private float _quarantineTimer;
     private float _protectionUpdateRate;
-    
+
+    private OsScreen _osScreen;
 
 
     // Use this for initialization
@@ -83,12 +96,18 @@ public class PcManager : MonoBehaviour
         _popups = new List<GameObject>();
         _protectionUpdateRate = 1 / ProtectionUpdateRate;
         RebootSlider.maxValue = RebootDuration;
+        _osScreen = GetComponent<OsScreen>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        switch (_pcState)
+        if (Input.GetKeyUp(KeyCode.O))
+        {
+            UpgradeOs();
+        }
+
+            switch (_pcState)
         {
             case PCState.Running:
                 DebugOptions();
@@ -177,7 +196,7 @@ public class PcManager : MonoBehaviour
 
         //change pc state
         _pcState = PCState.Load;
-        WelcomeGameObject.SetActive(false);
+        WelcomeGameObject.gameObject .SetActive(false);
     }
 
     private void ProcessLoad()
@@ -212,7 +231,7 @@ public class PcManager : MonoBehaviour
         _rebootTimer = -loadDelay;
 
         //disable reboot screen
-        RebootGameObject.SetActive(false);
+        RebootGameObject.gameObject.SetActive(false);
         transform.GetChild(0).gameObject.SetActive(false);
 
         //reload bars
@@ -220,7 +239,7 @@ public class PcManager : MonoBehaviour
 
         //proceed to next state and enable welcome screen
         _pcState = PCState.Welcome;
-        WelcomeGameObject.SetActive(true);
+        WelcomeGameObject.gameObject.SetActive(true);
         WelcomeGameObject.transform.SetAsLastSibling();
     }
 
@@ -233,7 +252,7 @@ public class PcManager : MonoBehaviour
         _pcState = PCState.BlueScreen;
 
         //activate image
-        BluescreenGameObject.SetActive(true);
+        BluescreenGameObject.gameObject.SetActive(true);
         BluescreenGameObject.transform.SetAsLastSibling();
     }
 
@@ -246,9 +265,9 @@ public class PcManager : MonoBehaviour
         _pcState = PCState.Reboot;
 
         //update screen
-        RebootGameObject.SetActive(true);
+        RebootGameObject.gameObject.SetActive(true);
         RebootGameObject.transform.SetAsLastSibling();
-        BluescreenGameObject.SetActive(false);
+        BluescreenGameObject.gameObject.SetActive(false);
     }
 
     private void ProcessPopups()
@@ -274,7 +293,7 @@ public class PcManager : MonoBehaviour
     public void RestartBars()
     {
         TemperatureSlider.value = 0;
-        ProtectionSlider.value = 100;
+        
         RebootSlider.value = 0;
     }
 
@@ -380,10 +399,10 @@ public class PcManager : MonoBehaviour
         //reset timer
         _protectionTimer = 0;
 
-        if (upgrade_manager != null)
+        if (UpgradeManager != null)
         {
             if (ProtectionSlider.value <= 0)
-                upgrade_manager.TriggerUpgrade();
+                UpgradeManager.TriggerUpgrade();
         }
 
     }
@@ -429,12 +448,19 @@ public class PcManager : MonoBehaviour
     {
         if (_pcState != PCState.Running) return;
 
+
+        if (SystemCurrentOs == CurrentOS.Ten)
+        {
+            IncreaseTemperature();
+            return;
+        }
+
         //freeze pc
         _pcState = PCState.Freeze;
 
         //activate quarantine popup
         _quarantineStatus = QuarantineStatus.Processing;
-        QuarantineGameObject.SetActive(true);
+        QuarantineGameObject.gameObject.SetActive(true);
 
         //set appropriate image [0] for checking image
         QuarantineGameObject.GetComponent<Image>().sprite = QuarantineSprites[0];
@@ -486,7 +512,7 @@ public class PcManager : MonoBehaviour
                     _quarantineTimer = 0;
 
                     //deactivate image and set to idle
-                    QuarantineGameObject.SetActive(false);
+                    QuarantineGameObject.gameObject.SetActive(false);
                     QuarantineGameObject.GetComponent<Image>().sprite = QuarantineSprites[0];
                     _quarantineStatus = QuarantineStatus.Idle;
 
@@ -507,5 +533,58 @@ public class PcManager : MonoBehaviour
     private static float Remap(float value, float from1, float to1, float from2, float to2)
     {
         return ((value - from1) / (to1 - from1) * (to2 - from2)) + from2;
+    }
+
+    public void UpgradePc()
+    {
+       UpgradeGameObject.gameObject.SetActive(true);
+        UpgradeGameObject.transform.SetAsLastSibling();
+        
+    }
+
+    public void UpgradeOs()
+    {
+        UpgradeGameObject.gameObject.SetActive(false);
+        if (SystemCurrentOs != CurrentOS.Ten)
+        {
+            SystemCurrentOs++;
+            Debug.Log(SystemCurrentOs);
+            Debug.Log((int)SystemCurrentOs);
+            _osScreen.ChangeOS((int)SystemCurrentOs);
+            WelcomeGameObject.ChangeOS((int)SystemCurrentOs);
+            RebootGameObject.ChangeOS((int)SystemCurrentOs);
+            Reboot(3);
+            ProtectionSlider.value = 100;
+            ChangeSettings();
+        }
+    }
+
+    private void ChangeSettings()
+    {
+        switch (SystemCurrentOs)
+        {
+            case CurrentOS.XP:
+                TemperatureStep = 25;
+                ProtectionUpdateStep = 1;
+                break;
+            case CurrentOS.Vista:
+                TemperatureStep = 20;
+                ProtectionUpdateStep = 0.75f;
+                break;
+            case CurrentOS.Seven:
+                TemperatureStep = 15;
+                ProtectionUpdateStep = 0.5f;
+                break;
+            case CurrentOS.Eight:
+                TemperatureStep = 10;
+                ProtectionUpdateStep = 0.25f;
+                break;
+            case CurrentOS.Ten:
+                TemperatureStep = 5;
+                ProtectionUpdateStep = 0;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
     }
 }

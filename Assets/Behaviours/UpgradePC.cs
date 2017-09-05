@@ -35,6 +35,8 @@ public class UpgradePC : MonoBehaviour
 
         OpenUpgradeSlot(false);
 
+        pc_manager.UpgradeOs();
+
         if (pc_manager)
             pc_manager.ResetProtectionBarToMax();
     }
@@ -46,6 +48,7 @@ public class UpgradePC : MonoBehaviour
             return;
         
         upgrading = true;
+        pc_manager.UpgradePc();
         OpenUpgradeSlot(true);
         SpawnUpgradeHardDrive();
     }

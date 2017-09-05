@@ -1,13 +1,13 @@
 fileFormatVersion: 2
 guid: 466661224b307e8479a0570ed2e78f6d
-timeCreated: 1504620555
+timeCreated: 1504624996
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: FisherHat
     21300002: PirateHat
     21300004: TrojanHat
-    21300006: LumberJackHat
+    21300006: LoggerHat
     21300008: EgyptianHat
     21300010: ThiefHat
   serializedVersion: 4
@@ -115,7 +115,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: LumberJackHat
+      name: LoggerHat
       rect:
         serializedVersion: 2
         x: 1068
@@ -131,7 +131,7 @@ TextureImporter:
       name: EgyptianHat
       rect:
         serializedVersion: 2
-        x: 1373
+        x: 1370
         y: 0
         width: 465
         height: 771

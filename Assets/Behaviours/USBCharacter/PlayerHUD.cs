@@ -63,7 +63,7 @@ public class PlayerHUD : MonoBehaviour
     }
 
 
-    public void UpdateScoreText(int number)
+    public void UpdateScore(int number)
     {
         score_text.text = number.ToString();
         text_shake.Shake(0.3f, 0.3f);

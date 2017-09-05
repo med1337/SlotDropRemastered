@@ -67,11 +67,6 @@ public class ConnectedPlayer
         {
             character.SlotDrop();
         }
-
-        if (input.GetButtonDown("RB"))
-        {
-            character.score += 50;
-        }
     }
 
 
@@ -102,6 +97,9 @@ public class ConnectedPlayer
 
         if (input.GetButtonDown("Attack"))
             LoadoutFactory.AssignLoadout(character, "Pirate");
+
+        if (input.GetButtonDown("RB"))
+            character.stats.target_score += 50;
     }
 
     //put any stat related cheats here

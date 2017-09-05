@@ -2,19 +2,141 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public class CharacterStats
+{
+    private enum EnergyState
+    {
+        DRAINING,
+        INCREASING
+    }
+
+
+    public int target_score
+    {
+        get { return target_score_; }
+        set { target_score_ = value; }
+    }
+
+    public float target_energy
+    {
+        get { return target_energy_; }
+        set
+        {
+            if (value > target_energy_)
+                energy_state = EnergyState.INCREASING;
+
+            target_energy_ = Mathf.Clamp(value, 0, 100);
+        }
+    }
+
+    public int score { get; private set; }
+    public float energy { get; private set; }
+
+    private float energy_lerp_speed;
+    private int score_lerp_speed;
+    private float energy_drain_rate;
+
+    private USBCharacter owner;
+    private PlayerHUD hud;
+    private EnergyState energy_state;
+
+    private int target_score_;
+    private float target_energy_;
+
+
+    public CharacterStats(USBCharacter _owner, PlayerHUD _hud,
+        ref float _energy_lerp_speed, ref int _score_lerp_speed, ref float _energy_drain_rate)
+    {
+        owner = _owner;
+        hud = _hud;
+        energy_lerp_speed = _energy_lerp_speed;
+        score_lerp_speed = _score_lerp_speed;
+        energy_drain_rate = _energy_drain_rate;
+    }
+
+
+    public void Update()
+    {
+        UpdateScore();
+        UpdateEnergy();
+    }
+
+
+    void UpdateScore()
+    {
+        if (score == target_score)
+            return;
+
+        switch (energy_state)
+        {
+            case EnergyState.DRAINING:
+            {
+                int adjustment = Random.Range(0, score_lerp_speed - 1);
+                score += target_score > score ? adjustment : -adjustment;
+
+                if (Mathf.Abs(target_score - score) <= adjustment)
+                    score = target_score;
+            } break;
+
+            case EnergyState.INCREASING:
+            {
+                int adjustment = Random.Range(0, score_lerp_speed - 1);
+                score += target_score > score ? adjustment : -adjustment;
+
+                if (score < target_score)
+                    score = target_score;
+            } break;
+        }
+
+        hud.UpdateScore(score);
+    }
+
+
+    void UpdateEnergy()
+    {
+        float prev_energy = energy;
+
+        switch (energy_state)
+        {
+            case EnergyState.DRAINING:
+            {
+                target_energy -= energy_drain_rate * Time.deltaTime;
+
+                if (energy > target_energy)
+                    energy = target_energy;
+            } break;
+
+            case EnergyState.INCREASING:
+            {
+                energy += target_energy > energy ? energy_lerp_speed : -energy_lerp_speed;
+                energy = Mathf.Clamp(energy, 0, 100);
+
+                if (Mathf.Abs(target_energy - energy) <= energy_lerp_speed)
+                    energy = target_energy;
+
+                if (energy == target_energy)
+                    energy_state = EnergyState.DRAINING;
+            } break;
+        }
+
+        if (prev_energy > 0 && energy <= 0)
+            owner.gameObject.SendMessage("PowerDown");
+        else if (!owner.is_titan && (prev_energy < 100 && energy >= 100))
+            owner.gameObject.SendMessage("BecomeTitan");
+
+        hud.UpdateEnergy(energy);
+    }
+
+}
+
+
 public class USBCharacter : MonoBehaviour
 {
+    public CharacterStats stats { get; private set; }
     public Vector3 last_facing { get; private set; }
     public string loadout_name { get { return loadout.name; } }
     public Vector3 move_dir { get; private set; }
     public bool is_titan { get; private set; }
-    public float energy { get; private set; }
-
-    public int score
-    {
-        get { return score_; }
-        set { score_ = value; hud.UpdateScoreText(score_); }
-    }
 
     [Header("Parameters")]
     [SerializeField] int score_on_kill = 50;
@@ -22,6 +144,8 @@ public class USBCharacter : MonoBehaviour
     public int energy_on_slot = 25;
     [SerializeField] float energy_drain_rate = 1.25f;
     public float energy_score_factor = 0.1f;
+    [SerializeField] float energy_lerp_speed = 0.5f;
+    [SerializeField] int score_lerp_speed = 5;
 
     [Header("References")]
     public GameObject body_group;
@@ -54,6 +178,9 @@ public class USBCharacter : MonoBehaviour
     private USBSlot last_slot_hit;
     private int score_;
     private TitanAura titan_aura;
+
+    private int shown_score;
+    private int shown_energy;
 
 
     public void Move(Vector3 _dir)
@@ -169,7 +296,7 @@ public class USBCharacter : MonoBehaviour
         }
 
         Damage(0);
-        energy = 100;
+        stats.target_energy = 100;
 
         LoadoutFactory.AssignLoadout(this, "Gold");
         is_titan = true;
@@ -197,7 +324,7 @@ public class USBCharacter : MonoBehaviour
             if (_dealer != null)
             {
                 _dealer.Heal(_dealer.heal_on_kill);
-                _dealer.score += score_on_kill;
+                _dealer.stats.target_score += score_on_kill;
             }
 
             Destroy(this.gameObject);
@@ -258,6 +385,7 @@ public class USBCharacter : MonoBehaviour
         special_ability.owner = this;
 
         // Initialise other components & systems.
+        stats = new CharacterStats(this, hud, ref energy_lerp_speed, ref score_lerp_speed, ref energy_drain_rate);
         last_facing = transform.right;
         UpdateFaceIndicator();
         damage_flash.Init();
@@ -277,24 +405,7 @@ public class USBCharacter : MonoBehaviour
         animator.SetBool("walking", moving && !controls_disabled);
         moving = false; // Ensure walking anim never gets stuck.
 
-        DrainEnergy();
-    }
-
-
-    void DrainEnergy()
-    {
-        if (energy == 0)
-            return;
-
-        energy -= energy_drain_rate * Time.deltaTime;
-        energy = Mathf.Clamp(energy, 0, 100);
-
-        hud.UpdateEnergy(energy);
-
-        if (energy == 0)
-        {
-            PowerDown();
-        }
+        stats.Update();
     }
 
 
@@ -400,7 +511,7 @@ public class USBCharacter : MonoBehaviour
             last_slot_hit.SlotDrop(this);
 
             if (!is_titan)
-                IncreaseEnergy();
+                GrantSlotDropBenefit();
 
             AudioManager.PlayOneShot("usb_slot");
         }
@@ -416,18 +527,13 @@ public class USBCharacter : MonoBehaviour
     }
 
 
-    void IncreaseEnergy()
+    void GrantSlotDropBenefit()
     {
-        if (energy >= 100)
+        if (stats.target_energy >= 100)
             return;
 
-        energy += energy_on_slot + (score * energy_score_factor);
-        score = 0;
-
-        if (energy >= 100)
-        {
-            BecomeTitan();
-        }
+        stats.target_energy += energy_on_slot + (stats.target_score * energy_score_factor);
+        stats.target_score = 0;
     }
 
 }

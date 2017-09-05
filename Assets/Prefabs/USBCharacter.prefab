@@ -1210,8 +1210,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   owner: {fileID: 114946348605589010}
   energy_light: {fileID: 108017532209365582}
-  pulse_rate: 70
-  max_light_range: 4
+  pulse_rate: 20
+  max_light_range: 6
 --- !u!114 &114574593909742262
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1556,12 +1556,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06c78349a2da4a44ea0346a9654ed36e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  move_speed_modifier: 1
   score_on_kill: 50
   heal_on_kill: 20
   energy_on_slot: 20
   energy_drain_rate: 1.25
-  energy_score_factor: 0.2
+  energy_score_factor: 0.3
+  energy_lerp_speed: 1
+  score_lerp_speed: 6
   body_group: {fileID: 1868444851001498}
   rigid_body: {fileID: 54928263774891892}
   shadow: {fileID: 119234882019570808}

@@ -29,7 +29,7 @@ public class EnergyLightController : MonoBehaviour
 
     float CalculateTitanProximity()
     {
-        return owner.energy + (owner.score * owner.energy_score_factor) + owner.energy_on_slot;
+        return owner.stats.energy + (owner.stats.score * owner.energy_score_factor) + owner.energy_on_slot;
     }
 
 }

@@ -25,7 +25,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1079380475078074
 GameObject:
@@ -42,7 +42,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1140724847788584
 GameObject:
@@ -58,7 +58,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1373779516126222
 GameObject:
@@ -74,7 +74,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1501877238107664
 GameObject:
@@ -90,7 +90,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1537283039393732
 GameObject:
@@ -106,7 +106,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1898291009767714
 GameObject:
@@ -125,7 +125,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1963264631223138
 GameObject:
@@ -143,7 +143,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 0
 --- !u!4 &4177415190936900
 Transform:
@@ -243,8 +243,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c82c14c2c114ded4f8bd2b3a7527f09a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  music_volume_: 0.3
-  sfx_volume_: 0.3
+  music_volume_: 0
+  sfx_volume_: 0
   music: {fileID: 8300000, guid: 38edda0b9f26e2847860f525744fab25, type: 3}
   audio_clips:
   - {fileID: 8300000, guid: 3e40165a11b4e4c41847b1a49f3b1180, type: 3}
@@ -327,9 +327,11 @@ MonoBehaviour:
   - {fileID: 1350698614511382, guid: 50c8aa297fc4cc8438db8c302f30fadc, type: 2}
   - {fileID: 1052432468127176, guid: 55992d1f57571e0418480a4d5855ad61, type: 2}
   hat_sprites:
-  - {fileID: 21300006, guid: 466661224b307e8479a0570ed2e78f6d, type: 3}
+  - {fileID: 21300008, guid: 466661224b307e8479a0570ed2e78f6d, type: 3}
   - {fileID: 21300000, guid: 466661224b307e8479a0570ed2e78f6d, type: 3}
+  - {fileID: 21300006, guid: 466661224b307e8479a0570ed2e78f6d, type: 3}
   - {fileID: 21300002, guid: 466661224b307e8479a0570ed2e78f6d, type: 3}
+  - {fileID: 21300010, guid: 466661224b307e8479a0570ed2e78f6d, type: 3}
   - {fileID: 21300004, guid: 466661224b307e8479a0570ed2e78f6d, type: 3}
   download_data_prefab: {fileID: 1707724021457840, guid: a864729950c020f4892209e7e5ab6d18,
     type: 2}
@@ -1357,6 +1359,7 @@ MonoBehaviour:
   audio_manager: {fileID: 114022213767662548}
   loadout_factory: {fileID: 114154708499624756}
   end_game_canvas: {fileID: 1963264631223138}
+  cheats_enabled_: 1
 --- !u!114 &114991270907002424
 MonoBehaviour:
   m_ObjectHideFlags: 1

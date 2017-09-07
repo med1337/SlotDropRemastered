@@ -19,6 +19,7 @@ public class ProjectilePellet : Projectile
             origin = owner.body_group.transform.position + (facing * 2);
 
         transform.position = origin;
+        transform.rotation = Quaternion.LookRotation(-facing);
     }
 
 

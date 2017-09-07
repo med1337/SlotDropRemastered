@@ -159,7 +159,7 @@ MonoBehaviour:
   min_ai: 0
   usb_character_prefab: {fileID: 1407569977858368, guid: f8ff4307f64ce9340b63eb5f7a698bc5,
     type: 2}
-  starting_loadout: Logger
+  starting_loadout: Base
   spawn_ai_with_random_loadout: 1
 --- !u!114 &114390676246776846
 MonoBehaviour:

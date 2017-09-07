@@ -17,7 +17,6 @@ public class LoadoutFactory : MonoBehaviour
 
     private Dictionary<string, USBLoadout> starter_loadouts = new Dictionary<string, USBLoadout>();
     private Dictionary<string, USBLoadout> general_loadouts = new Dictionary<string, USBLoadout>();
-    private Dictionary<string, USBLoadout> misc_loadouts = new Dictionary<string, USBLoadout>();
     private Dictionary<string, USBLoadout> titan_loadouts = new Dictionary<string, USBLoadout>();
 
 
@@ -82,12 +81,6 @@ public class LoadoutFactory : MonoBehaviour
             PushLoadout(current_array[i], general_loadouts);
         }
 
-        current_array = loadouts_data["Misc"];
-        for (int i = 0; i < current_array.Count; ++i)
-        {
-            PushLoadout(current_array[i], misc_loadouts);
-        }
-
         current_array = loadouts_data["Titan"];
         for (int i = 0; i < current_array.Count; ++i)
         {
@@ -124,10 +117,6 @@ public class LoadoutFactory : MonoBehaviour
         else if (general_loadouts.ContainsKey(loadout_name))
         {
             return general_loadouts[loadout_name];
-        }
-        else if (misc_loadouts.ContainsKey(loadout_name))
-        {
-            return misc_loadouts[loadout_name];
         }
         else if (titan_loadouts.ContainsKey(loadout_name))
         {

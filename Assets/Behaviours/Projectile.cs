@@ -20,7 +20,7 @@ public class Projectile : MonoBehaviour
         origin = _owner.transform.position;
         facing = _owner.last_facing;
 
-        Destroy(this.gameObject, lifetime);
+        Invoke("DestroyProjectile", lifetime);
     }
 
 
@@ -67,6 +67,12 @@ public class Projectile : MonoBehaviour
         }
 
         return sphere;
+    }
+
+
+    void DestroyProjectile()
+    {
+        Destroy(this.gameObject);
     }
 
 }

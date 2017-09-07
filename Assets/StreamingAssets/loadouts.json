@@ -45,6 +45,18 @@
 			"max_health": 100,
 			"move_speed": 15,
 			"scale": 3,
+			"basic": "MoonAxe",
+			"special": "LogSlam"
+		}
+	],
+    
+    "Unused":
+	[
+        {
+			"name": "Egyptian",
+			"max_health": 100,
+			"move_speed": 15,
+			"scale": 3,
 			"basic": "Null",
 			"special": "Null"
 		},
@@ -55,27 +67,6 @@
 			"move_speed": 15,
 			"scale": 3,
 			"basic": "Null",
-			"special": "Null"
-		},
-
-		{
-			"name": "Egyptian",
-			"max_health": 100,
-			"move_speed": 15,
-			"scale": 3,
-			"basic": "Null",
-			"special": "Null"
-		}
-	],
-
-    "Misc":
-	[
-		{
-			"name": "Broken",
-			"max_health": 50,
-			"move_speed": 15,
-			"scale": 2,
-			"basic": "ShortCircuit",
 			"special": "Null"
 		}
 	],

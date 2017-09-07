@@ -10,6 +10,8 @@ public class RespawnManager : MonoBehaviour
     public int min_ai;
 
     [SerializeField] GameObject usb_character_prefab;
+    [SerializeField] string starting_loadout = "Base";
+    [SerializeField] bool spawn_ai_with_random_loadout;
 
     private List<USBCharacter> alive_ai = new List<USBCharacter>();
     private const int MAX_AI = 32;
@@ -92,6 +94,12 @@ public class RespawnManager : MonoBehaviour
         USBCharacter character = CreateUSBCharacter("AIDude", Color.white);
         character.gameObject.AddComponent<USBAI>();
 
+        if (spawn_ai_with_random_loadout)
+        {
+            LoadoutFactory.AssignLoadout(character, "Base");
+            LoadoutFactory.AssignRandomLoadout(character);
+        }
+
         alive_ai.Add(character);
     }
 
@@ -110,7 +118,7 @@ public class RespawnManager : MonoBehaviour
         character.SetColour(_color);
         character.name = _name;
 
-        LoadoutFactory.AssignLoadout(character, "Base");
+        LoadoutFactory.AssignLoadout(character, starting_loadout);
 
         character.Init();
         character.Stun(0.9f, false);

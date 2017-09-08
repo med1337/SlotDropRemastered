@@ -547,9 +547,10 @@ public class PcManager : MonoBehaviour
         UpgradeGameObject.gameObject.SetActive(false);
         if (SystemCurrentOs != CurrentOS.Ten)
         {
-            SystemCurrentOs++;
-            Debug.Log(SystemCurrentOs);
-            Debug.Log((int)SystemCurrentOs);
+            ++SystemCurrentOs;
+
+            GameManager.scene.stat_tracker.LogPCUpgrade(SystemCurrentOs.ToString(), Time.time);
+
             _osScreen.ChangeOS((int)SystemCurrentOs);
             WelcomeGameObject.ChangeOS((int)SystemCurrentOs);
             RebootGameObject.ChangeOS((int)SystemCurrentOs);

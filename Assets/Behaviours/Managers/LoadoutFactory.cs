@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 using LitJson;
 
@@ -61,6 +62,7 @@ public class LoadoutFactory : MonoBehaviour
         instance = this;
 
         EnumerateLoadouts();
+        OnLevelWasLoaded(0);
     }
 
 
@@ -125,6 +127,17 @@ public class LoadoutFactory : MonoBehaviour
         else
         {
             return null;
+        }
+    }
+
+
+    void OnLevelWasLoaded(int _level)
+    {
+        StatTracker stat_tracker = GameManager.scene.stat_tracker;
+
+        if (stat_tracker != null)
+        {
+            stat_tracker.Init(general_loadouts.Keys.ToList());
         }
     }
 

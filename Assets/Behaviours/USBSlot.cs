@@ -55,6 +55,8 @@ public class USBSlot : MonoBehaviour
         }
         else
         {
+            GameManager.scene.stat_tracker.LogScoreDeposited(_character.loadout_name, _character.stats.target_score);
+
             LoadoutFactory.AssignRandomLoadout(_character);
             _character.Flash(Color.yellow);
 

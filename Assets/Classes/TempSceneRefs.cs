@@ -4,6 +4,17 @@ using UnityEngine;
 
 public struct TempSceneRefs
 {
+    public StatTracker stat_tracker
+    {
+        get
+        {
+            if (stat_tracker_ == null)
+                stat_tracker_ = GameObject.FindObjectOfType<StatTracker>();
+
+            return stat_tracker_;
+        }
+    }
+
     public RespawnManager respawn_manager
     {
         get
@@ -59,6 +70,7 @@ public struct TempSceneRefs
         }
     }
 
+    private StatTracker stat_tracker_;
     private RespawnManager respawn_manager_;
     private SlotManager slot_manager_;
     private PcManager pc_manager_;

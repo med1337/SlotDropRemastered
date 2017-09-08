@@ -286,6 +286,7 @@ public class USBCharacter : MonoBehaviour
 
     public void BecomeTitan()
     {
+        GameManager.scene.stat_tracker.LogTitanAchieved();
         AudioManager.PlayOneShot("titan_trigger");
 
         if (titan_aura == null)
@@ -319,12 +320,12 @@ public class USBCharacter : MonoBehaviour
                     body_group.transform.position, transform.position + (Vector3.up * 10));
             }
 
+            GameManager.scene.stat_tracker.LogDeath(loadout_name);
             AudioManager.PlayOneShot("death");
 
             if (_dealer != null)
             {
-                _dealer.Heal(_dealer.heal_on_kill);
-                _dealer.stats.target_score += score_on_kill;
+                AwardKill(_dealer);
             }
 
             Destroy(this.gameObject);
@@ -534,6 +535,16 @@ public class USBCharacter : MonoBehaviour
 
         stats.target_energy += energy_on_slot + (stats.target_score * energy_score_factor);
         stats.target_score = 0;
+    }
+
+
+    void AwardKill(USBCharacter _killer)
+    {
+        _killer.Heal(_killer.heal_on_kill);
+        _killer.stats.target_score += score_on_kill;
+
+        GameManager.scene.stat_tracker.LogKill(_killer.loadout_name);
+        GameManager.scene.stat_tracker.LogScoreIncrease(_killer.loadout_name, score_on_kill);
     }
 
 }

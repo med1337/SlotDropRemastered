@@ -99,6 +99,7 @@ public class ProjectilePellet : Projectile
                 HandleBounce(bounce_target);
 
             facing = (bounce_target.body_group.transform.position - transform.position).normalized;
+            transform.rotation = Quaternion.LookRotation(-facing);
         }
     }
 

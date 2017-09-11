@@ -106,8 +106,12 @@ public class PcManager : MonoBehaviour
         {
             UpgradeOs();
         }
+        if (Input.GetKeyUp(KeyCode.B))
+        {
+            Bluescreen(BluescreenDuration,true);
+        }
 
-            switch (_pcState)
+        switch (_pcState)
         {
             case PCState.Running:
                 DebugOptions();
@@ -173,7 +177,7 @@ public class PcManager : MonoBehaviour
         //update timer
         _rebootTimer += Time.deltaTime;
 
-        if (!(_rebootTimer > BluescreenDuration - loadDelay)) return;
+        if (!(_rebootTimer > BluescreenDuration)) return;
 
         //reinitialise timer
         _rebootTimer = -loadDelay;
@@ -225,7 +229,7 @@ public class PcManager : MonoBehaviour
             RebootSlider.value = _rebootTimer;
         }
 
-        if (!(_rebootTimer > RebootDuration - loadDelay)) return;
+        if (!(_rebootTimer > RebootDuration)) return;
 
         //reinitialise timer
         _rebootTimer = -loadDelay;

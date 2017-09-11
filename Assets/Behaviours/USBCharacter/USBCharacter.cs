@@ -296,8 +296,9 @@ public class USBCharacter : MonoBehaviour
             titan_aura.Init(this);
         }
 
-        Damage(0);
         stats.target_energy = 100;
+        shake_module.Shake(0.2f, 0.1f);
+        Flash(Color.white);
 
         LoadoutFactory.AssignLoadout(this, "Gold");
         is_titan = true;
@@ -306,9 +307,12 @@ public class USBCharacter : MonoBehaviour
 
     public void Damage(int _damage, USBCharacter _dealer = null)
     {
-        health -= _damage;
+        if (_damage == 0)
+            return;
 
+        health -= _damage;
         hud.UpdateHealthBar(health);
+
         shake_module.Shake(0.2f, 0.1f);
         Flash(Color.white);
 

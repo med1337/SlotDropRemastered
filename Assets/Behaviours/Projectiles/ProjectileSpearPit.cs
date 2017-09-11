@@ -42,7 +42,7 @@ public class ProjectileSpearPit : Projectile
             if (character == null || character == owner)
                 continue;
 
-            character.Damage(damage);
+            character.Damage(damage, owner);
             character.Stun(stun_duration);
         }
 

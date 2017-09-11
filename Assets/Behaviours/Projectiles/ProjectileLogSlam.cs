@@ -51,10 +51,8 @@ public class ProjectileLogSlam : Projectile
             if (character == null || character == owner)
                 continue;
 
+            character.Damage(damage, owner);
             character.Stun(stun_duration);
-
-            if (damage != 0)
-                character.Damage(damage);
         }
 
         AudioManager.PlayOneShot(hit_sound);

@@ -69,7 +69,7 @@ public class ProjectileTsunami : Projectile
                 character.Stun(stun_duration);
         }
 
-        AudioManager.PlayOneShot("water_explosion");
+        AudioManager.PlayOneShot(hit_sound);
         CameraShake.Shake(0.4f, 0.4f);
     }
 

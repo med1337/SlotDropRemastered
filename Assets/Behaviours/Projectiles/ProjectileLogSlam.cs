@@ -19,6 +19,8 @@ public class ProjectileLogSlam : Projectile
     {
         transform.position = origin + (facing * dist_from_player);
         transform.rotation = Quaternion.LookRotation(-facing);
+
+        AudioManager.PlayOneShot(activation_sound);
     }
 
 
@@ -55,6 +57,7 @@ public class ProjectileLogSlam : Projectile
                 character.Damage(damage);
         }
 
+        AudioManager.PlayOneShot(hit_sound);
         CameraShake.Shake(0.4f, 0.4f);
 
         impacted = true;

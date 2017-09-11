@@ -75,16 +75,20 @@ public class ConnectedPlayer
         if (!GameManager.cheats_enabled)
             return;
 
-        if (input.GetButton("Back") && input.GetButton("Down") &&
-            character != null)
+        if (input.GetButton("Back") && character != null)
         {
-            DebugLoadoutSelect();
+            if (input.GetButton("Down"))
+                DebugLoadoutSelectOne();
+
+            if (input.GetButton("Right"))
+                DebugLoadoutSelectTwo();
+
             DebugPlayerStats();
         }
     }
 
 
-    void DebugLoadoutSelect()
+    void DebugLoadoutSelectOne()
     {
         if (input.GetButtonDown("SlotDrop"))
             LoadoutFactory.AssignLoadout(character, "Base");
@@ -97,9 +101,13 @@ public class ConnectedPlayer
 
         if (input.GetButtonDown("Attack"))
             LoadoutFactory.AssignLoadout(character, "Pirate");
+    }
 
-        if (input.GetButtonDown("RB"))
-            character.stats.target_score += 50;
+
+    void DebugLoadoutSelectTwo()
+    {
+        if (input.GetButtonDown("Attack"))
+            LoadoutFactory.AssignLoadout(character, "Logger");
     }
 
     //put any stat related cheats here
@@ -107,5 +115,8 @@ public class ConnectedPlayer
     {
         if (input.GetButtonDown("FaceLock"))
             character.Heal(99999);
+
+        if (input.GetButtonDown("RB"))
+            character.stats.target_score += 50;
     }
 }

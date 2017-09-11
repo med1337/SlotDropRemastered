@@ -260,8 +260,13 @@ MonoBehaviour:
   cooldown: 1.5
   lifetime: 0.6
   activation_sound: {fileID: 8300000, guid: 220841e978c10d344adc1aa661e47113, type: 3}
+  hit_sound: {fileID: 0}
   charge_speed: 80
   dir_threshold: 0.5
+  hit_sounds:
+  - {fileID: 8300000, guid: 40a3462fa1596674eb7d1e8d07f510f2, type: 3}
+  - {fileID: 8300000, guid: d8b1cd6a338089c4998dfa41461b75e2, type: 3}
+  - {fileID: 8300000, guid: 95d48006ddd5fe448b360e85776029f5, type: 3}
 --- !u!135 &135225891422922496
 SphereCollider:
   m_ObjectHideFlags: 1

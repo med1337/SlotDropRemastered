@@ -7,6 +7,8 @@ public class ProjectileCharge : Projectile
     public float charge_speed;
     public float dir_threshold = 0.1f;
 
+    [SerializeField] List<AudioClip> hit_sounds = new List<AudioClip>();
+
     private Transform torso_mount;
     private Rigidbody rigid_body;
     private Vector3 absolute_direction;
@@ -59,6 +61,7 @@ public class ProjectileCharge : Projectile
                 return;
         }
 
+        AudioManager.PlayOneShot(hit_sounds[Random.Range(0, hit_sounds.Count - 1)]);
         character.Damage(damage, _other.transform.position + (absolute_direction * 5), owner);
     }
 

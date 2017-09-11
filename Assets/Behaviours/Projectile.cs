@@ -8,6 +8,7 @@ public class Projectile : MonoBehaviour
     public float cooldown;
     public float lifetime;
     public AudioClip activation_sound;
+    public AudioClip hit_sound;
 
     protected USBCharacter owner;
     protected Vector3 origin;

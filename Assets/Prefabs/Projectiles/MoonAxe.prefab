@@ -259,10 +259,11 @@ MonoBehaviour:
   damage: 10
   cooldown: 1
   lifetime: 1
-  activation_sound: {fileID: 8300000, guid: 15380699bb4c98a49a859fe33bd91b12, type: 3}
+  activation_sound: {fileID: 8300000, guid: 73170dc011d0e73499e7f5c01f62f157, type: 3}
+  hit_sound: {fileID: 8300000, guid: 51687a9a385615d4081d4ef4d06d5a06, type: 3}
   pellet_speed: 30
   num_bounces: 2
-  bounce_radius: 12
+  bounce_radius: 30
   bounce_damage_reduction_factor: 0.2
 --- !u!135 &135468515552426428
 SphereCollider:

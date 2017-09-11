@@ -40,7 +40,7 @@ public class ProjectilePellet : Projectile
                 return;
         }
 
-        AudioManager.PlayOneShot("projectile_impact");
+        AudioManager.PlayOneShot(hit_sound);
 
         if (character == null)
         {

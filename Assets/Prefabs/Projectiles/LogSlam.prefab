@@ -578,11 +578,10 @@ MonoBehaviour:
   damage: 20
   cooldown: 2
   lifetime: 2
-  activation_sound: {fileID: 0}
+  activation_sound: {fileID: 8300000, guid: 448604b7b11d80a4ea1e8779262c9c7b, type: 3}
+  hit_sound: {fileID: 8300000, guid: 3f63b3a975f8dd04bb3c2a026778626b, type: 3}
   box_cast_point: {fileID: 4467087157469956}
   box_cast_extents: {x: 4, y: 4, z: 12}
   animator: {fileID: 95884311861937596}
   dist_from_player: 2
-  knockback_force: 5
-  effect_radius: 5
   stun_duration: 1

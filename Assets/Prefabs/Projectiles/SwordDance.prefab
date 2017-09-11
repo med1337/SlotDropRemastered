@@ -237,6 +237,7 @@ MonoBehaviour:
   cooldown: 2
   lifetime: 2
   activation_sound: {fileID: 8300000, guid: a0379fe462594854687d3f14f193bddb, type: 3}
+  hit_sound: {fileID: 8300000, guid: 9077b3b437a9d6b4ca34f8d56028562e, type: 3}
   orbit_distance: 3
   rotate_speed: 500
   speed_modifier: 0.5

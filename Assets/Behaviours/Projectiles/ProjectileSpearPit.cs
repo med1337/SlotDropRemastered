@@ -5,14 +5,16 @@ using UnityEngine;
 public class ProjectileSpearPit : Projectile
 {
     [SerializeField] float damage_delay = 0.5f;
-    [SerializeField] Vector3 damage_box_size;
+    [SerializeField] float effect_radius = 3;
     [SerializeField] float stun_duration = 0.5f;
+    [SerializeField] float origin_z_offset = 0.5f;
 
     private float timer;
 
 
     void Start()
     {
+        transform.position = new Vector3(origin.x, origin.y, origin.z + origin_z_offset);
         CameraShake.Shake(0.1f, 0.1f);
     }
 
@@ -32,8 +34,7 @@ public class ProjectileSpearPit : Projectile
 
     void DealDamage()
     {
-        var hits = Physics.BoxCastAll(origin, damage_box_size / 2, Vector3.down,
-            Quaternion.identity, 0, 1 << LayerMask.NameToLayer("Player"));
+        var hits = Physics.SphereCastAll(origin, effect_radius, Vector3.down, 1 << LayerMask.NameToLayer("Player"), 0);
 
         foreach (var hit in hits)
         {
@@ -54,7 +55,7 @@ public class ProjectileSpearPit : Projectile
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawCube(origin, damage_box_size / 2);
+        Gizmos.DrawSphere(origin, effect_radius);
     }
 
 }

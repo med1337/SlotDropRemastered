@@ -9,6 +9,7 @@ public class ProjectilePellet : Projectile
     [SerializeField] int num_bounces = 0;
     [SerializeField] float bounce_radius = 5.0f;
     [SerializeField] float bounce_damage_reduction_factor = 0.5f;
+    [SerializeField] bool billboard;
 
     private int bounce_times = 0;
     private USBCharacter last_character_hit;
@@ -20,7 +21,15 @@ public class ProjectilePellet : Projectile
             origin = owner.body_group.transform.position + (facing * 2);
 
         transform.position = origin;
-        transform.rotation = Quaternion.LookRotation(-facing);
+
+        if (billboard)
+        {
+            this.gameObject.AddComponent<Billboard>();
+        }
+        else
+        {
+            transform.rotation = Quaternion.LookRotation(-facing);
+        }
     }
 
 
@@ -100,7 +109,9 @@ public class ProjectilePellet : Projectile
                 HandleBounce(bounce_target);
 
             facing = (bounce_target.body_group.transform.position - transform.position).normalized;
-            transform.rotation = Quaternion.LookRotation(-facing);
+
+            if (!billboard)
+                transform.rotation = Quaternion.LookRotation(-facing);
         }
     }
 

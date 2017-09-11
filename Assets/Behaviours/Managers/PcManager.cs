@@ -408,7 +408,7 @@ public class PcManager : MonoBehaviour
 
         if (UpgradeManager != null)
         {
-            if (ProtectionSlider.value <= 0)
+            if (ProtectionSlider.value <= 1)
                 UpgradeManager.TriggerUpgrade();
         }
 

@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class Barrel : MonoBehaviour
 {
+    [SerializeField] AudioSource audio_source;
+
     public GameObject shockwave_particle;
     public USBCharacter owner;
     public Rigidbody rigid_body;
 
-    public float torque_x = 15.0f;
-    public float torque_z = 12.0f;
-
     public float effect_radius;
     public float knockback_force;
     public float stun_duration;
+
+    public float fuse_time;
+    private float timer;
 
 
     public void AddForce(Vector3 force)
@@ -22,25 +24,35 @@ public class Barrel : MonoBehaviour
     }
 
 
-    void FixedUpdate()
+    void Start()
     {
-        rigid_body.AddTorque(new Vector3(torque_x, 0, torque_z));
+        audio_source.volume = AudioManager.sfx_volume;
     }
 
 
-    void OnTriggerEnter(Collider _other)
+    void Update()
     {
-        if (_other.tag == "Barrel" ||
-            _other.gameObject.layer == LayerMask.NameToLayer("Projectile") ||
-            _other.gameObject.layer == LayerMask.NameToLayer("Player") ||
+        timer += Time.deltaTime;
+
+        if (timer >= fuse_time)
+            Explode();
+    }
+
+
+    void OnCollisionEnter(Collision _other)
+    {
+        if (_other.gameObject.layer == LayerMask.NameToLayer("Floor") ||
             (owner != null && _other.transform.GetInstanceID() == owner.transform.GetInstanceID()))
         {
             return;
         }
 
-        AudioManager.PlayOneShot("explosion");
-        CameraShake.Shake(0.4f, 0.4f);
+        Explode();
+    }
 
+
+    void Explode()
+    {
         Projectile.CreateEffect(shockwave_particle, transform.position, Vector3.zero);
         RaycastHit[] elems = Physics.SphereCastAll(transform.position, effect_radius,
             Vector3.down, 0, 1 << LayerMask.NameToLayer("Player"));
@@ -54,6 +66,9 @@ public class Barrel : MonoBehaviour
 
             character.Stun(stun_duration);
         }
+
+        AudioManager.PlayOneShot("explosion");
+        CameraShake.Shake(0.4f, 0.4f);
 
         Destroy(this.gameObject);
     }

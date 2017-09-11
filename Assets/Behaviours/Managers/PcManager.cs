@@ -455,7 +455,6 @@ public class PcManager : MonoBehaviour
     {
         if (_pcState != PCState.Running) return;
 
-
         if (SystemCurrentOs == CurrentOS.Ten)
         {
             IncreaseTemperature();
@@ -467,6 +466,7 @@ public class PcManager : MonoBehaviour
 
         //activate quarantine popup
         _quarantineStatus = QuarantineStatus.Processing;
+
         QuarantineGameObject.gameObject.SetActive(true);
 
         //set appropriate image [0] for checking image

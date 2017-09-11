@@ -9,31 +9,30 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1705827943364696}
+  m_RootGameObject: {fileID: 1595433128862398}
   m_IsPrefabParent: 1
---- !u!1 &1705827943364696
+--- !u!1 &1595433128862398
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4102111251402668}
-  - component: {fileID: 114030819441255518}
-  - component: {fileID: 136789728366244870}
-  m_Layer: 9
-  m_Name: ArrowHail
+  - component: {fileID: 4175730132968046}
+  - component: {fileID: 114577971783514040}
+  m_Layer: 0
+  m_Name: ZombieSlow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4102111251402668
+--- !u!4 &4175730132968046
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1705827943364696}
+  m_GameObject: {fileID: 1595433128862398}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -41,43 +40,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114030819441255518
+--- !u!114 &114577971783514040
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1705827943364696}
+  m_GameObject: {fileID: 1595433128862398}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 827e8b1bf1784304080c80abff3fa5ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 15
+  damage: 0
   cooldown: 3
-  lifetime: 6
-  activation_sound: {fileID: 8300000, guid: 778bcf72c4b48a848ba937e135dab1aa, type: 3}
+  lifetime: 2
+  activation_sound: {fileID: 0}
   hit_sound: {fileID: 0}
-  particle_effect: {fileID: 1876971625736494, guid: 3b1bed8590368e441909014d89ff6c66,
+  particle_effect: {fileID: 1066957204509492, guid: ca34e131fe4dddc4cbde12ee7c6af69f,
     type: 2}
-  delay_before_active: 2
+  delay_before_active: 0
   damage_interval: 0.5
-  stun_chance: 50
-  stun_duration: 0.5
-  slow_modifier: 0
-  slow_duration: 0
-  effect_radius: 4
-  sink_after_lifetime: 0
-  sink_speed: 0
---- !u!136 &136789728366244870
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1705827943364696}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 5
-  m_Height: 50
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  stun_chance: 0
+  stun_duration: 0
+  slow_modifier: 0.5
+  slow_duration: 0.5
+  effect_radius: 9.5
+  sink_after_lifetime: 1
+  sink_speed: 5

@@ -336,6 +336,7 @@ MonoBehaviour:
   - {fileID: 1350698614511382, guid: 50c8aa297fc4cc8438db8c302f30fadc, type: 2}
   - {fileID: 1847547687062232, guid: db242942adb26a44f9a633aef0c91800, type: 2}
   - {fileID: 1081623352581976, guid: a609b087c5215344f8f2144fa2019972, type: 2}
+  - {fileID: 1595433128862398, guid: 8e36872cb3e49c74cb8fb1b9f20c85b5, type: 2}
   hat_sprites:
   - {fileID: 21300008, guid: 466661224b307e8479a0570ed2e78f6d, type: 3}
   - {fileID: 21300000, guid: 466661224b307e8479a0570ed2e78f6d, type: 3}

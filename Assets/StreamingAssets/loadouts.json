@@ -47,20 +47,20 @@
 			"scale": 3,
 			"basic": "MoonAxe",
 			"special": "LogSlam"
-		}
-	],
-    
-    "Unused":
-	[
+		},
+
         {
 			"name": "Egyptian",
 			"max_health": 100,
 			"move_speed": 15,
 			"scale": 3,
-			"basic": "Null",
-			"special": "Null"
-		},
+			"basic": "Pellet",
+			"special": "ZombieSlow"
+		}
+	],
 
+    "Unused":
+    [
 		{
 			"name": "Thief",
 			"max_health": 100,

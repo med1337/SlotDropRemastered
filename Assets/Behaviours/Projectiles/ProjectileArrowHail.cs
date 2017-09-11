@@ -5,19 +5,33 @@ using UnityEngine;
 public class ProjectileArrowHail : Projectile
 {
     public GameObject particle_effect;
-    public float damage_delay;
+    public float delay_before_active;
+    public float damage_interval;
     public float stun_chance;
     public float stun_duration;
+    public float slow_modifier;
+    public float slow_duration;
     public float effect_radius;
+    public bool sink_after_lifetime;
+    public float sink_speed;
 
     private float timer;
+    private float damage_timer;
     private bool can_damage;
+    private GameObject created_particle;
 
 
     void Start()
     {
-        CreateEffect(particle_effect, origin, Vector3.zero);
-        Invoke("EnableDamage", 2.0f);
+        if (sink_after_lifetime)
+            CancelInvoke("DestroyProjectile");
+
+        created_particle = CreateEffect(particle_effect, origin, Vector3.zero);
+
+        if (delay_before_active > 0)
+            Invoke("EnableDamage", delay_before_active);
+        else
+            EnableDamage();
     }
 
 
@@ -27,12 +41,28 @@ public class ProjectileArrowHail : Projectile
             return;
 
         timer += Time.deltaTime;
+        damage_timer += Time.deltaTime;
 
-        if (timer >= damage_delay)
+        if (damage_timer >= damage_interval)
         {
-            timer = 0;
+            damage_timer = 0;
 
             DamageAllInRadius();
+        }
+
+        // Sink.
+        if (sink_after_lifetime && timer >= lifetime)
+        {
+            if (created_particle == null)
+                return;
+
+            created_particle.transform.position -= new Vector3(0, sink_speed, 0) * Time.deltaTime;
+
+            if (timer >= lifetime + 0.5f)
+            {
+                Destroy(this.gameObject);
+                Destroy(created_particle.gameObject);
+            }
         }
     }
 
@@ -58,11 +88,21 @@ public class ProjectileArrowHail : Projectile
             if (character == owner)
                 continue;
 
-            if (Random.Range(1, 100) < stun_chance)
+            if (stun_chance != 0 && Random.Range(1, 100) < stun_chance)
                 character.Stun(stun_duration);
 
             character.Damage(damage, owner);
+
+            if (slow_modifier != 0)
+                character.AddSpeedModifier(slow_modifier, slow_duration);
         }
+    }
+
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(transform.position, effect_radius);
     }
 
 

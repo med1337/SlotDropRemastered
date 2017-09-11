@@ -26,7 +26,7 @@ public class Projectile : MonoBehaviour
 
 
     // Instantiates a particle prefab and attaches a garbage collection script to it.
-    public static void CreateEffect(GameObject _particle_prefab, Vector3 _position, Vector3 _direction)
+    public static GameObject CreateEffect(GameObject _particle_prefab, Vector3 _position, Vector3 _direction)
     {
         GameObject particle = Instantiate(_particle_prefab);
 
@@ -41,6 +41,8 @@ public class Projectile : MonoBehaviour
             particle_system.collision.SetPlane(0, GameObject.Find("Floor").transform);
 
         particle.AddComponent<TempParticle>();
+
+        return particle;
     }
 
 

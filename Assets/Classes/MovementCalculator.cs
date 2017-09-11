@@ -39,29 +39,16 @@ public class MovementCalculator
         CleanUpModifiers();
 
         float biggest_bonus = 0;
-        float biggest_penalty = 0;
 
         foreach (SpeedModifier mod in speed_modifiers)
         {
-            if (mod.modifier > 0)
-            {
-                // Speed Bonus.
-                if (mod.modifier <= biggest_bonus)
-                    continue;
+            if (mod.modifier <= biggest_bonus)
+                continue;
 
-                biggest_bonus = mod.modifier;
-            }
-            else if (mod.modifier < 0)
-            {
-                // Speed Penalty.
-                if (mod.modifier <= biggest_penalty)
-                    continue;
-
-                biggest_penalty = mod.modifier;
-            }
+            biggest_bonus = mod.modifier;
         }
 
-        return base_speed * SanityCheckModifier(biggest_penalty) * SanityCheckModifier(biggest_bonus);
+        return base_speed * SanityCheckModifier(biggest_bonus);
     }
 
 

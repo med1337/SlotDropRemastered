@@ -34,7 +34,7 @@ public class ProjectileSpearPit : Projectile
 
     void DealDamage()
     {
-        var hits = Physics.SphereCastAll(origin, effect_radius, Vector3.down, 1 << LayerMask.NameToLayer("Player"), 0);
+        var hits = Physics.SphereCastAll(origin, effect_radius, Vector3.down, 0, 1 << LayerMask.NameToLayer("Player"));
 
         foreach (var hit in hits)
         {

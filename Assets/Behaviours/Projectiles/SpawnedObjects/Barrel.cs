@@ -32,6 +32,7 @@ public class Barrel : MonoBehaviour
     {
         if (_other.tag == "Barrel" ||
             _other.gameObject.layer == LayerMask.NameToLayer("Projectile") ||
+            _other.gameObject.layer == LayerMask.NameToLayer("Player") ||
             (owner != null && _other.transform.GetInstanceID() == owner.transform.GetInstanceID()))
         {
             return;

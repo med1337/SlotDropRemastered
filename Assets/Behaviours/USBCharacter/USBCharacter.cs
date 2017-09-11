@@ -368,6 +368,7 @@ public class USBCharacter : MonoBehaviour
         if (_sound)
             AudioManager.PlayOneShot("stun");
 
+        CancelInvoke("RemoveStun");
         Invoke("RemoveStun", _duration);
     }
 

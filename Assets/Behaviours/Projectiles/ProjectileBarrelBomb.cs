@@ -23,6 +23,10 @@ public class ProjectileBarrelBomb : Projectile
 
     void Start()
     {
+        // Hacky contingency to prevent infinite loops.
+        if (max_bombs > 5)
+            max_bombs = 5;
+
         // Spawn bombs!
         for (int i = 0; i < max_bombs; ++i)
         {

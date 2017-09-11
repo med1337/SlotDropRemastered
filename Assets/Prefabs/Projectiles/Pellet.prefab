@@ -143,6 +143,7 @@ MonoBehaviour:
   lifetime: 5
   activation_sound: {fileID: 8300000, guid: 15380699bb4c98a49a859fe33bd91b12, type: 3}
   hit_sound: {fileID: 8300000, guid: 584d32759988d6141bb1604f5dec553c, type: 3}
+  whiff_sound: {fileID: 8300000, guid: 8181ddf962b7a804a819b7d983c6564e, type: 3}
   pellet_speed: 20
   num_bounces: 0
   bounce_radius: 5

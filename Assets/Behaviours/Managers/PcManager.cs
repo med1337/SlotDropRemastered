@@ -35,6 +35,8 @@ public class PcManager : MonoBehaviour
 
     [Header("GameObjects")] public GameObject CursorGameObject;
     public OsScreen QuarantineGameObject;
+    public Slider QuarantineSlider;
+    public Text QuarantineText;
     public Slider ProtectionSlider;
     public Slider TemperatureSlider;
     public OsScreen RebootGameObject;
@@ -43,6 +45,7 @@ public class PcManager : MonoBehaviour
     public OsScreen BluescreenGameObject;
     public UpgradePC UpgradeManager;
     public OsScreen UpgradeGameObject;
+    public GameObject ClassnotificationGameObject;
 
     [Header("Time settings")] public float CursorFreezeTimeDuration;
     [Space(10)] public float RebootDuration;
@@ -467,9 +470,14 @@ public class PcManager : MonoBehaviour
         QuarantineGameObject.gameObject.SetActive(true);
 
         //set appropriate image [0] for checking image
-        QuarantineGameObject.GetComponent<Image>().sprite = QuarantineSprites[0];
+        //QuarantineGameObject.GetComponent<Image>().sprite = QuarantineSprites[0];
+        QuarantineSlider.gameObject.SetActive(true);
 
-        //make sure it is on top
+        QuarantineSlider.value = 0;
+        QuarantineSlider.maxValue = QuarantineProcessDuration;
+        _quarantineTimer = -loadDelay;
+
+//make sure it is on top
         QuarantineGameObject.transform.SetAsLastSibling();
 
         //but doesn't cover the cursor ;)
@@ -485,8 +493,9 @@ public class PcManager : MonoBehaviour
                 break;
             case QuarantineStatus.Processing:
                 //update timer
-                _quarantineTimer += Time.deltaTime;
 
+                _quarantineTimer += Time.deltaTime;
+                QuarantineSlider.value = _quarantineTimer;
                 if (_quarantineTimer >= QuarantineProcessDuration)
                 {
                     //reset timer
@@ -499,9 +508,24 @@ public class PcManager : MonoBehaviour
                     _quarantineSuccess = random < ChanceOfQuarantineSuccess;
 
                     //update image
-                    QuarantineGameObject.GetComponent<Image>().sprite =
-                        _quarantineSuccess ? QuarantineSprites[1] : QuarantineSprites[2];
+                    //QuarantineGameObject.GetComponent<Image>().sprite =
+                    //    _quarantineSuccess ? QuarantineSprites[1] : QuarantineSprites[2];
 
+                    QuarantineText.gameObject.SetActive(true);
+                    QuarantineSlider.gameObject.SetActive(false);
+
+                    if (_quarantineSuccess)
+                    {
+                        QuarantineText.text = "SUCCESS";
+                        QuarantineText.color = Color.green;
+
+                    }
+                    else
+                    {
+                        QuarantineText.text = "FAILURE";
+                        QuarantineText.color = Color.red;
+
+                    }
                     //change quarantine state
                     _quarantineStatus = QuarantineStatus.Result;
                 }
@@ -516,8 +540,9 @@ public class PcManager : MonoBehaviour
                     _quarantineTimer = 0;
 
                     //deactivate image and set to idle
+                    QuarantineGameObject.GetComponentInChildren<Text>().gameObject.SetActive(false);
                     QuarantineGameObject.gameObject.SetActive(false);
-                    QuarantineGameObject.GetComponent<Image>().sprite = QuarantineSprites[0];
+                    //QuarantineGameObject.GetComponent<Image>().sprite = QuarantineSprites[0];
                     _quarantineStatus = QuarantineStatus.Idle;
 
                     //oh no :(

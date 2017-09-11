@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ProjectilePellet : Projectile
 {
+    [SerializeField] AudioClip whiff_sound;
     [SerializeField] float pellet_speed = 5.0f;
     [SerializeField] int num_bounces = 0;
     [SerializeField] float bounce_radius = 5.0f;
@@ -40,14 +41,14 @@ public class ProjectilePellet : Projectile
                 return;
         }
 
-        AudioManager.PlayOneShot(hit_sound);
-
         if (character == null)
         {
+            AudioManager.PlayOneShot(whiff_sound);
             Destroy(this.gameObject);
         }
         else
         {
+            AudioManager.PlayOneShot(hit_sound);
             HandleBounce(character);
         }
     }

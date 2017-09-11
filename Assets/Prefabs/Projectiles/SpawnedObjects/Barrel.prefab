@@ -120,8 +120,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1287636111107352}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 7.5511074, y: 2.59, z: -14.019282}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalPosition: {x: -6.3928094, y: 4.43, z: -0.9756098}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_Children:
   - {fileID: 4933553548473324}
   - {fileID: 4420244566095698}
@@ -395,7 +395,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -435,9 +435,6 @@ MonoBehaviour:
     type: 2}
   owner: {fileID: 0}
   rigid_body: {fileID: 54674686723798798}
-  torque_x: 0
-  torque_y: 0
-  torque_z: 0
   effect_radius: 5
   knockback_force: 0
   stun_duration: 2
@@ -466,7 +463,7 @@ CapsuleCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1908258896352078}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 7dabf18e883a61c488ceb4fcb15f4f25, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5

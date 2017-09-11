@@ -37,7 +37,7 @@
 			"move_speed": 15,
 			"scale": 3,
 			"basic": "Charge",
-			"special": "ArrowHail"
+			"special": "SpearPit"
 		},
 
 		{

@@ -38,7 +38,7 @@ public class ProjectileCharge : Projectile
 
     void FixedUpdate()
     {
-        if (!owner)
+        if (owner == null || owner.controls_disabled)
             return;
 
         rigid_body.MovePosition(owner.transform.position + 

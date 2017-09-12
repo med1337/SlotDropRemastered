@@ -137,6 +137,7 @@ public class USBCharacter : MonoBehaviour
     public string loadout_name { get { return loadout.name; } }
     public Vector3 move_dir { get; private set; }
     public bool is_titan { get; private set; }
+    public bool controls_disabled { get; private set; }
 
     [Header("Parameters")]
     [SerializeField] int score_on_kill = 50;
@@ -175,7 +176,6 @@ public class USBCharacter : MonoBehaviour
     private bool moving;
     private bool slot_dropping;
     private bool face_locked;
-    private bool controls_disabled;
     private USBSlot last_slot_hit;
     private int score_;
     private TitanAura titan_aura;

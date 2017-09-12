@@ -62,7 +62,7 @@ MonoBehaviour:
   y_offset: 2
   effect_radius: 7
   knockback_force: 5
-  stun_duration: 1.5
+  stun_duration: 1
   throw_force: 25
   fuse_time: 2
   barrel_torque: -1000

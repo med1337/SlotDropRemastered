@@ -8,6 +8,7 @@ public class UpgradePC : MonoBehaviour
     public Animator upgrade_slot_controller;
     public GameObject upgrade_hard_drive_prefab;
     public Vector3 spawn_location = new Vector3(0, 0, 10);
+    public HandItemDropper hand_dropper;
     public float snap_speed = 1;
     public float door_close_delay = 1f;
     public float destroy_delay = 2f;
@@ -72,7 +73,15 @@ public class UpgradePC : MonoBehaviour
         if (upgrade_hard_drive_prefab)
         {
             spawned_hard_drive = Instantiate(upgrade_hard_drive_prefab);
-            spawned_hard_drive.transform.position = spawn_location;
+
+            if (hand_dropper)
+            {
+                hand_dropper.PlaceObject(spawned_hard_drive);//place object with hand
+            }
+            else
+            {
+                spawned_hard_drive.transform.position = spawn_location;//fallback
+            }  
         }
     }
 

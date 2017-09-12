@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using Assets;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 
-enum PCState
+public enum PCState
 {
     Welcome = 0,
     Load = 1,
     Running,
-    Freeze,
+    Quarantine,
     BlueScreen,
-    Reboot
+    Reboot,
+    Titan
 }
 
 public enum CurrentOS
@@ -34,9 +34,7 @@ public class PcManager : MonoBehaviour
     public bool ActivateBluescren;
 
     [Header("GameObjects")] public GameObject CursorGameObject;
-    public OsScreen QuarantineGameObject;
-    public Slider QuarantineSlider;
-    public Text QuarantineText;
+    public Quarantine QuarantineGameObject;
     public Slider ProtectionSlider;
     public Slider TemperatureSlider;
     public OsScreen RebootGameObject;
@@ -45,12 +43,11 @@ public class PcManager : MonoBehaviour
     public OsScreen BluescreenGameObject;
     public UpgradePC UpgradeManager;
     public OsScreen UpgradeGameObject;
-    public GameObject ClassnotificationGameObject;
 
     [Header("Time settings")] public float CursorFreezeTimeDuration;
     [Space(10)] public float RebootDuration;
     [Space(10)] public float BluescreenDuration;
-    private float loadDelay =1.0f;
+    private const float LoadDelay = 1.0f;
 
     [Space(10)] public float QuarantineProcessDuration;
     public float QuarantinePopupCooldown;
@@ -77,9 +74,6 @@ public class PcManager : MonoBehaviour
 
     private bool _rebootAfterBsod;
 
-    private QuarantineStatus _quarantineStatus;
-    private bool _quarantineSuccess; // could do in enum but whatever
-
     private List<GameObject> _popups;
     private GameObject _lastGameObject;
     private bool _popupClosed;
@@ -87,7 +81,6 @@ public class PcManager : MonoBehaviour
     private Vector3 _targetVector3;
 
     private float _popupTimer;
-    private float _quarantineTimer;
     private float _protectionUpdateRate;
 
     private OsScreen _osScreen;
@@ -111,7 +104,7 @@ public class PcManager : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.B))
         {
-            Bluescreen(BluescreenDuration,true);
+            Bluescreen(BluescreenDuration, true);
         }
 
         switch (_pcState)
@@ -121,8 +114,8 @@ public class PcManager : MonoBehaviour
                 ProcessPopups();
                 ProcessProtectionBar();
                 break;
-            case PCState.Freeze:
-                ProcessQuarantine();
+            case PCState.Quarantine:
+                //ProcessQuarantine();
                 break;
             case PCState.BlueScreen:
                 ProcessBluescreen();
@@ -156,7 +149,7 @@ public class PcManager : MonoBehaviour
 
         if (ActivateQuarantine)
         {
-            AttemptQuarantine();
+            //AttemptQuarantine();
             ActivateQuarantine = false;
         }
 
@@ -183,7 +176,7 @@ public class PcManager : MonoBehaviour
         if (!(_rebootTimer > BluescreenDuration)) return;
 
         //reinitialise timer
-        _rebootTimer = -loadDelay;
+        _rebootTimer = -LoadDelay;
 
         //reboot if needed
         if (_rebootAfterBsod)
@@ -198,12 +191,12 @@ public class PcManager : MonoBehaviour
         if (!(_rebootTimer > 0)) return;
 
         //reinitialise timer
-        _rebootTimer = -loadDelay;
+        _rebootTimer = -LoadDelay;
 
 
         //change pc state
         _pcState = PCState.Load;
-        WelcomeGameObject.gameObject .SetActive(false);
+        WelcomeGameObject.gameObject.SetActive(false);
     }
 
     private void ProcessLoad()
@@ -214,7 +207,7 @@ public class PcManager : MonoBehaviour
         if (!(_rebootTimer > 0)) return;
 
         //reinitialise timer
-        _rebootTimer = -loadDelay;
+        _rebootTimer = -LoadDelay;
 
         //update pc state and enable pc health scanner
         _pcState = PCState.Running;
@@ -235,7 +228,7 @@ public class PcManager : MonoBehaviour
         if (!(_rebootTimer > RebootDuration)) return;
 
         //reinitialise timer
-        _rebootTimer = -loadDelay;
+        _rebootTimer = -LoadDelay;
 
         //disable reboot screen
         RebootGameObject.gameObject.SetActive(false);
@@ -279,7 +272,7 @@ public class PcManager : MonoBehaviour
 
     private void ProcessPopups()
     {
-        if (_quarantineStatus != QuarantineStatus.Idle) return;
+        if (_pcState != PCState.Running) return;
 
         if (!_popupClosed)
         {
@@ -300,7 +293,7 @@ public class PcManager : MonoBehaviour
     public void RestartBars()
     {
         TemperatureSlider.value = 0;
-        
+
         RebootSlider.value = 0;
     }
 
@@ -381,12 +374,12 @@ public class PcManager : MonoBehaviour
         const float border_offset_percent_y = 0.87f;
 
         float x = (popup_rect.sizeDelta.x * _lastGameObject.transform.localScale.x) *
-            0.5f * border_offset_percent_x;
+                  0.5f * border_offset_percent_x;
 
         float y = (popup_rect.sizeDelta.y * _lastGameObject.transform.localScale.y) *
-            0.5f * border_offset_percent_y;
+                  0.5f * border_offset_percent_y;
 
-        return new Vector3(x, y);  
+        return new Vector3(x, y);
     }
 
 
@@ -398,7 +391,7 @@ public class PcManager : MonoBehaviour
         if (!(_protectionTimer >= _protectionUpdateRate)) return;
 
         //update timer if appropriate
-        if (ProtectionSlider.value-ProtectionUpdateStep >= 0)
+        if (ProtectionSlider.value - ProtectionUpdateStep >= 0)
         {
             ProtectionSlider.value -= ProtectionUpdateStep;
         }
@@ -411,7 +404,6 @@ public class PcManager : MonoBehaviour
             if (ProtectionSlider.value <= 0)
                 UpgradeManager.TriggerUpgrade();
         }
-
     }
 
     private void Popup(int amount)
@@ -451,7 +443,7 @@ public class PcManager : MonoBehaviour
         CursorGameObject.transform.SetAsLastSibling();
     }
 
-    public void AttemptQuarantine()
+    public void AttemptQuarantine(USBCharacter aCharacter)
     {
         if (_pcState != PCState.Running) return;
 
@@ -461,103 +453,24 @@ public class PcManager : MonoBehaviour
             return;
         }
 
-        //freeze pc
-        _pcState = PCState.Freeze;
-
-        //activate quarantine popup
-        _quarantineStatus = QuarantineStatus.Processing;
-
+        //activate quarantine popup and make sure it is on top
         QuarantineGameObject.gameObject.SetActive(true);
-
-        //set appropriate image [0] for checking image
-        //QuarantineGameObject.GetComponent<Image>().sprite = QuarantineSprites[0];
-        QuarantineSlider.gameObject.SetActive(true);
-
-        QuarantineSlider.value = 0;
-        QuarantineSlider.maxValue = QuarantineProcessDuration;
-        _quarantineTimer = -loadDelay;
-
-//make sure it is on top
         QuarantineGameObject.transform.SetAsLastSibling();
+
+        //attempt quarantine
+        if (!QuarantineGameObject.AttemptQuarantine(QuarantineProcessDuration, LoadDelay, ProtectionSlider.value, aCharacter))
+        {
+            QuarantineGameObject.gameObject.SetActive(false);
+            return;
+        }
+
+        //freeze PC
+        _pcState = PCState.Quarantine;
 
         //but doesn't cover the cursor ;)
         CursorGameObject.transform.SetAsLastSibling();
     }
 
-    private void ProcessQuarantine()
-    {
-        switch (_quarantineStatus)
-        {
-            case QuarantineStatus.Idle:
-                _pcState=PCState.Running;
-                break;
-            case QuarantineStatus.Processing:
-                //update timer
-
-                _quarantineTimer += Time.deltaTime;
-                QuarantineSlider.value = _quarantineTimer;
-                if (_quarantineTimer >= QuarantineProcessDuration)
-                {
-                    //reset timer
-                    _quarantineTimer = 0;
-
-                     float ChanceOfQuarantineSuccess = ProtectionSlider.value/100;
-
-                    //random chance
-                    var random = Random.Range(0.0f, 1.0f);
-                    _quarantineSuccess = random < ChanceOfQuarantineSuccess;
-
-                    //update image
-                    //QuarantineGameObject.GetComponent<Image>().sprite =
-                    //    _quarantineSuccess ? QuarantineSprites[1] : QuarantineSprites[2];
-
-                    QuarantineText.gameObject.SetActive(true);
-                    QuarantineSlider.gameObject.SetActive(false);
-
-                    if (_quarantineSuccess)
-                    {
-                        QuarantineText.text = "SUCCESS";
-                        QuarantineText.color = Color.green;
-
-                    }
-                    else
-                    {
-                        QuarantineText.text = "FAILURE";
-                        QuarantineText.color = Color.red;
-
-                    }
-                    //change quarantine state
-                    _quarantineStatus = QuarantineStatus.Result;
-                }
-                break;
-            case QuarantineStatus.Result:
-                //update timer
-                _quarantineTimer += Time.deltaTime;
-
-                if (_quarantineTimer >= QuarantinePopupCooldown)
-                {
-                    //reset timer
-                    _quarantineTimer = 0;
-
-                    //deactivate image and set to idle
-                    QuarantineGameObject.GetComponentInChildren<Text>().gameObject.SetActive(false);
-                    QuarantineGameObject.gameObject.SetActive(false);
-                    //QuarantineGameObject.GetComponent<Image>().sprite = QuarantineSprites[0];
-                    _quarantineStatus = QuarantineStatus.Idle;
-
-                    //oh no :(
-                    if (!_quarantineSuccess)
-                    {
-                        if(IncreaseTemperature()<100)
-                        {
-                            Popup(3);
-                        }
-
-                    }
-                }
-                break;
-        }
-    }
 
     private static float Remap(float value, float from1, float to1, float from2, float to2)
     {
@@ -566,27 +479,36 @@ public class PcManager : MonoBehaviour
 
     public void UpgradePc()
     {
-       UpgradeGameObject.gameObject.SetActive(true);
+        UpgradeGameObject.gameObject.SetActive(true);
         UpgradeGameObject.transform.SetAsLastSibling();
-        
     }
 
     public void UpgradeOs()
     {
+        //disable upgrade popup
         UpgradeGameObject.gameObject.SetActive(false);
-        if (SystemCurrentOs != CurrentOS.Ten)
-        {
-            ++SystemCurrentOs;
 
-            GameManager.scene.stat_tracker.LogPCUpgrade(SystemCurrentOs.ToString(), Time.time);
+        //don't upgrade above \/
+        if (SystemCurrentOs == CurrentOS.Ten) return;
 
-            _osScreen.ChangeOS((int)SystemCurrentOs);
-            WelcomeGameObject.ChangeOS((int)SystemCurrentOs);
-            RebootGameObject.ChangeOS((int)SystemCurrentOs);
-            Reboot(3);
-            ProtectionSlider.value = 100;
-            ChangeSettings();
-        }
+        ++SystemCurrentOs;
+
+        //log timestamp of update
+        GameManager.scene.stat_tracker.LogPCUpgrade(SystemCurrentOs.ToString(), Time.time);
+
+        //update look of OS related objects
+        _osScreen.ChangeOS((int) SystemCurrentOs);
+        WelcomeGameObject.ChangeOS((int) SystemCurrentOs);
+        RebootGameObject.ChangeOS((int) SystemCurrentOs);
+
+        //reboot PC
+        Reboot(3);
+
+        //reset protection
+        ProtectionSlider.value = ProtectionSlider.maxValue;
+
+        //update OS settings
+        ChangeSettings();
     }
 
     private void ChangeSettings()
@@ -617,4 +539,97 @@ public class PcManager : MonoBehaviour
                 throw new ArgumentOutOfRangeException();
         }
     }
+
+    public void QuarantineResult(bool quarantineSuccess)
+    {
+        _pcState = PCState.Running;
+        QuarantineGameObject.gameObject.SetActive(false);
+
+        if (quarantineSuccess)
+        {
+            //whatever on successful quarantine
+        }
+        else
+        {
+            //disable quarantine popup
+
+            //increase temperature
+            if (IncreaseTemperature() < 100)
+            {
+                Popup(3);
+            }
+        }
+    }
+
+    //private void ProcessQuarantine()
+    //{
+    //    switch (_quarantineStatus)
+    //    {
+    //        case QuarantineStatus.Idle:
+    //            _pcState = PCState.Running;
+    //            break;
+    //        case QuarantineStatus.Processing:
+    //            //update timer
+
+    //            _quarantineTimer += Time.deltaTime;
+    //            QuarantineSlider.value = _quarantineTimer;
+    //            if (_quarantineTimer >= QuarantineProcessDuration)
+    //            {
+    //                //reset timer
+    //                _quarantineTimer = 0;
+
+    //                float ChanceOfQuarantineSuccess = ProtectionSlider.value / 100;
+
+    //                //random chance
+    //                var random = Random.Range(0.0f, 1.0f);
+    //                _quarantineSuccess = random < ChanceOfQuarantineSuccess;
+
+    //                //update image
+    //                //QuarantineGameObject.GetComponent<Image>().sprite =
+    //                //    _quarantineSuccess ? QuarantineSprites[1] : QuarantineSprites[2];
+
+    //                QuarantineText.gameObject.SetActive(true);
+    //                QuarantineSlider.gameObject.SetActive(false);
+
+    //                if (_quarantineSuccess)
+    //                {
+    //                    QuarantineText.text = "SUCCESS";
+    //                    QuarantineText.color = Color.green;
+    //                }
+    //                else
+    //                {
+    //                    QuarantineText.text = "FAILURE";
+    //                    QuarantineText.color = Color.red;
+    //                }
+    //                //change quarantine state
+    //                _quarantineStatus = QuarantineStatus.Result;
+    //            }
+    //            break;
+    //        case QuarantineStatus.Result:
+    //            //update timer
+    //            _quarantineTimer += Time.deltaTime;
+
+    //            if (_quarantineTimer >= QuarantinePopupCooldown)
+    //            {
+    //                //reset timer
+    //                _quarantineTimer = 0;
+
+    //                //deactivate image and set to idle
+    //                QuarantineGameObject.GetComponentInChildren<Text>().gameObject.SetActive(false);
+    //                QuarantineGameObject.gameObject.SetActive(false);
+    //                //QuarantineGameObject.GetComponent<Image>().sprite = QuarantineSprites[0];
+    //                _quarantineStatus = QuarantineStatus.Idle;
+
+    //                //oh no :(
+    //                if (!_quarantineSuccess)
+    //                {
+    //                    if (IncreaseTemperature() < 100)
+    //                    {
+    //                        Popup(3);
+    //                    }
+    //                }
+    //            }
+    //            break;
+    //    }
+    //}
 }

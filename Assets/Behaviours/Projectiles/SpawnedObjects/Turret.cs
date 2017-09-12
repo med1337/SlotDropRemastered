@@ -9,6 +9,7 @@ public class Turret : MonoBehaviour
     [SerializeField] LineRenderer line;
     [SerializeField] AudioClip charge_sound;
     [SerializeField] AudioClip fire_sound;
+    [SerializeField] GameObject face_indicator;
 
     public USBCharacter owner;
     public float lifetime;
@@ -59,15 +60,17 @@ public class Turret : MonoBehaviour
         else
         {
             Vector3 closest_target = CalculateClosestTarget(hits);
+            Vector3 direction = (closest_target - eye.transform.position).normalized;
+
+            UpdateFaceIndicator(direction);
             AudioManager.PlayOneShot(charge_sound);
 
             yield return new WaitForSeconds(0.5f);
 
             float distance;
-            Vector3 direction = (closest_target - eye.transform.position).normalized;
             Vector3 hit_point = CalculateHitPoint(direction, out distance);
 
-            line.startWidth = laser_radius / 2;
+            line.startWidth = laser_radius * 0.33f;
             line.positionCount = 2;
             line.SetPosition(0, eye.transform.position);
             line.SetPosition(1, hit_point);
@@ -77,6 +80,7 @@ public class Turret : MonoBehaviour
 
             yield return new WaitForSeconds(lifetime * 0.2f);
 
+            face_indicator.SetActive(false);
             line.positionCount = 0;
 
             yield return new WaitForSeconds(lifetime * 0.2f);
@@ -93,7 +97,9 @@ public class Turret : MonoBehaviour
 
         foreach (var hit in _hits)
         {
-            float dist = (hit.transform.position - transform.position).sqrMagnitude;
+            USBCharacter character = hit.collider.GetComponent<USBCharacter>();
+
+            float dist = (character.body_group.transform.position - transform.position).sqrMagnitude;
             if (dist >= closest_dist)
                 continue;
 
@@ -107,6 +113,16 @@ public class Turret : MonoBehaviour
     }
 
 
+    void UpdateFaceIndicator(Vector3 _direction)
+    {
+        face_indicator.SetActive(true);
+
+        Vector3 look_at = face_indicator.transform.position + (_direction * 3);
+        face_indicator.transform.LookAt(look_at);
+        face_indicator.transform.Rotate(new Vector3(90, 0, 0));
+    }
+
+
     Vector3 CalculateHitPoint(Vector3 _direction, out float _distance)
     {
         int layer_mask = 1 << LayerMask.NameToLayer("Default") |
@@ -117,7 +133,10 @@ public class Turret : MonoBehaviour
         Physics.Raycast(eye.transform.position, _direction, out hit, Mathf.Infinity, layer_mask);
 
         if (hit.point == Vector3.zero)
-            hit.point = _direction * 1000;
+        {
+            hit.distance = 1000;
+            hit.point = _direction * hit.distance;
+        }
 
         _distance = hit.distance;
         return hit.point;

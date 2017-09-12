@@ -11,6 +11,7 @@ public class ProjectilePyramidTurret : Projectile
     [SerializeField] float upward_throw_force;
     [SerializeField] float scan_radius = 30;
     [SerializeField] float laser_radius = 1.5f;
+    [SerializeField] float stun_duration = 1;
 
     
     void Start()
@@ -71,6 +72,7 @@ public class ProjectilePyramidTurret : Projectile
         _turret.damage = this.damage;
         _turret.scan_radius = this.scan_radius;
         _turret.laser_radius = this.laser_radius;
+        _turret.stun_duration = this.stun_duration;
     }
 
 }

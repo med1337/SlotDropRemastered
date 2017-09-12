@@ -368,7 +368,7 @@ public class USBCharacter : MonoBehaviour
 
     public void Stun(float _duration, bool _sound = true)
     {
-        if (is_titan)
+        if (is_titan || _duration == 0)
             return;
 
         controls_disabled = true;

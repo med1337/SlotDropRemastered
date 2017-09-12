@@ -17,6 +17,7 @@ public class Turret : MonoBehaviour
     public float scan_radius;
     public float laser_radius;
     public float grow_speed = 10;
+    public float stun_duration;
 
     private Vector3 original_scale;
     private Vector3 target_scale = Vector3.one;
@@ -156,6 +157,7 @@ public class Turret : MonoBehaviour
                 continue;
 
             character.Damage(damage, eye.position, owner);
+            character.Stun(stun_duration);
         }
     }
 

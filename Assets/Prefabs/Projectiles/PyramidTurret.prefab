@@ -188,7 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9b4cb58a94663c47aa2db8f275525aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 18
+  damage: 20
   cooldown: 2.5
   lifetime: 4
   activation_sound: {fileID: 8300000, guid: 02990ea1fd36b4440b935b997028398f, type: 3}
@@ -201,6 +201,7 @@ MonoBehaviour:
   upward_throw_force: 2
   scan_radius: 30
   laser_radius: 2
+  stun_duration: 0.5
 --- !u!119 &119295948712421652
 Projector:
   m_ObjectHideFlags: 1

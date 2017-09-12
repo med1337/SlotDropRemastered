@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4087266978503492}
   - component: {fileID: 96082556045750196}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35,7 +35,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4467087157469956}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BoxCastPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,7 +52,7 @@ GameObject:
   - component: {fileID: 4330320059813500}
   - component: {fileID: 95884311861937596}
   - component: {fileID: 114785568173427844}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LogSlam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ GameObject:
   - component: {fileID: 33401307935139926}
   - component: {fileID: 23319325979988494}
   - component: {fileID: 95571421406676986}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Log
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,7 +85,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4784010656803412}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Log Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4285024610287080}
   - component: {fileID: 96048548235546720}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Trail (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4566175750316296}
   - component: {fileID: 96302002829138134}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Trail (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

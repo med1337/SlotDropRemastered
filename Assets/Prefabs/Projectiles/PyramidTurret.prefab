@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4005904267104106}
   - component: {fileID: 119295948712421652}
   - component: {fileID: 114352218155531306}
-  m_Layer: 16
+  m_Layer: 9
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 54619251373637026}
   - component: {fileID: 135978212775917062}
   - component: {fileID: 114478520325403378}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PyramidTurret
   m_TagString: Untagged
   m_Icon: {fileID: 0}

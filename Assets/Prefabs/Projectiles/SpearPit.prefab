@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4097713262380432}
   - component: {fileID: 198207168218615334}
   - component: {fileID: 199139455075461740}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Dirt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 33792534335996492}
   - component: {fileID: 23060312923658368}
   - component: {fileID: 95617737125691740}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Spear (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 33559567952136906}
   - component: {fileID: 23265075234397604}
   - component: {fileID: 95645707976106656}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Dirt Patch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 4989757360576472}
   - component: {fileID: 33540461889742388}
   - component: {fileID: 23763736828775014}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Tabards
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 4725636305270458}
   - component: {fileID: 95084099716337642}
   - component: {fileID: 114972255463826322}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SpearPit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 4642009377741410}
   - component: {fileID: 33550013238108892}
   - component: {fileID: 23951660926428418}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Tabards
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 33050943390415666}
   - component: {fileID: 23550332011273364}
   - component: {fileID: 95109539028675104}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Spear (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144,7 +144,7 @@ GameObject:
   - component: {fileID: 33180458127112734}
   - component: {fileID: 23295788826759870}
   - component: {fileID: 95762424726228878}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Spear (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -162,7 +162,7 @@ GameObject:
   - component: {fileID: 33892956991037696}
   - component: {fileID: 23539868520425510}
   - component: {fileID: 95111879305716260}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Spear (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 4594471569341076}
   - component: {fileID: 33241514799024442}
   - component: {fileID: 23530334380326690}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Tabards
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -197,7 +197,7 @@ GameObject:
   - component: {fileID: 33842859180658468}
   - component: {fileID: 23462242022686726}
   - component: {fileID: 95972528906576386}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Spear (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -215,7 +215,7 @@ GameObject:
   - component: {fileID: 33898297996394566}
   - component: {fileID: 23263711372529914}
   - component: {fileID: 95078465864922218}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Spear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -233,7 +233,7 @@ GameObject:
   - component: {fileID: 33451005768113672}
   - component: {fileID: 23994218118533286}
   - component: {fileID: 95558675151997714}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Spear (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -250,7 +250,7 @@ GameObject:
   - component: {fileID: 4954046596346684}
   - component: {fileID: 198703768779537130}
   - component: {fileID: 199025645933186204}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Dust
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -268,7 +268,7 @@ GameObject:
   - component: {fileID: 33037462773986632}
   - component: {fileID: 23174625555499250}
   - component: {fileID: 95629824433608262}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Spear (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -286,7 +286,7 @@ GameObject:
   - component: {fileID: 33411892216273096}
   - component: {fileID: 23080822920165084}
   - component: {fileID: 95475264695344630}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Spear (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

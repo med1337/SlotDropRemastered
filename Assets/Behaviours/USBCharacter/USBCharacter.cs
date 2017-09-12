@@ -146,6 +146,7 @@ public class USBCharacter : MonoBehaviour
     public float energy_score_factor = 0.1f;
     [SerializeField] float energy_lerp_speed = 0.5f;
     [SerializeField] int score_lerp_speed = 5;
+    [SerializeField] float velocity_limit = 20;
 
     [Header("References")]
     public GameObject body_group;
@@ -298,6 +299,7 @@ public class USBCharacter : MonoBehaviour
 
         stats.target_energy = 100;
         shake_module.Shake(0.2f, 0.1f);
+        rigid_body.mass = 30;
         Flash(Color.white);
 
         LoadoutFactory.AssignLoadout(this, "Gold");
@@ -307,7 +309,7 @@ public class USBCharacter : MonoBehaviour
 
     public void Damage(int _damage, USBCharacter _dealer = null)
     {
-        if (_damage == 0)
+        if (_damage <= 0)
             return;
 
         health -= _damage;
@@ -439,6 +441,11 @@ public class USBCharacter : MonoBehaviour
             rigid_body.MovePosition(transform.position + move);
 
             move_dir = Vector3.zero;
+        }
+
+        if (rigid_body.velocity.magnitude >= velocity_limit)
+        {
+            rigid_body.velocity = rigid_body.velocity.normalized * velocity_limit;
         }
     }
 

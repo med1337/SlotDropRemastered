@@ -421,7 +421,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4256217923625924}
   - component: {fileID: 108017532209365582}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EnergyLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1563,6 +1563,7 @@ MonoBehaviour:
   energy_score_factor: 0.2
   energy_lerp_speed: 1
   score_lerp_speed: 6
+  velocity_limit: 40
   body_group: {fileID: 1868444851001498}
   rigid_body: {fileID: 54928263774891892}
   shadow: {fileID: 119234882019570808}

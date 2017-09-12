@@ -243,8 +243,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c82c14c2c114ded4f8bd2b3a7527f09a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  music_volume_: 0.05
-  sfx_volume_: 0.2
+  music_volume_: 0.25
+  sfx_volume_: 0.5
   music: {fileID: 8300000, guid: 38edda0b9f26e2847860f525744fab25, type: 3}
   audio_clips:
   - {fileID: 8300000, guid: 3e40165a11b4e4c41847b1a49f3b1180, type: 3}
@@ -279,6 +279,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d8b1cd6a338089c4998dfa41461b75e2, type: 3}
   - {fileID: 8300000, guid: 95d48006ddd5fe448b360e85776029f5, type: 3}
   - {fileID: 8300000, guid: 31099cbf3c3042b428eacf42c5571bf2, type: 3}
+  - {fileID: 8300000, guid: a23dfc524fce2f44bb65548fd9e8014b, type: 3}
+  - {fileID: 8300000, guid: 8265fcb33894c714db7d6815822a33bf, type: 3}
+  - {fileID: 8300000, guid: 53ef13c65eadf974999fb932554b2aff, type: 3}
+  - {fileID: 8300000, guid: 02990ea1fd36b4440b935b997028398f, type: 3}
+  - {fileID: 8300000, guid: 29be20e21c29e5a418d96a0bb0a038d1, type: 3}
 --- !u!114 &114128758828404594
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -337,6 +342,7 @@ MonoBehaviour:
   - {fileID: 1847547687062232, guid: db242942adb26a44f9a633aef0c91800, type: 2}
   - {fileID: 1081623352581976, guid: a609b087c5215344f8f2144fa2019972, type: 2}
   - {fileID: 1595433128862398, guid: 8e36872cb3e49c74cb8fb1b9f20c85b5, type: 2}
+  - {fileID: 1949867998321996, guid: 3130c4aceb66c56419468a826631e254, type: 2}
   hat_sprites:
   - {fileID: 21300008, guid: 466661224b307e8479a0570ed2e78f6d, type: 3}
   - {fileID: 21300000, guid: 466661224b307e8479a0570ed2e78f6d, type: 3}

@@ -10,7 +10,6 @@ public class ProjectileArrowHail : Projectile
     public float stun_chance;
     public float stun_duration;
     public float slow_modifier;
-    public float slow_duration;
     public float effect_radius;
     public bool sink_after_lifetime;
     public float sink_speed;
@@ -26,7 +25,8 @@ public class ProjectileArrowHail : Projectile
         if (sink_after_lifetime)
             CancelInvoke("DestroyProjectile");
 
-        created_particle = CreateEffect(particle_effect, origin, Vector3.zero);
+        created_particle = Instantiate(particle_effect, origin, Quaternion.identity);
+        created_particle.transform.Rotate(-90, 0, Random.Range(0, 360));
 
         if (delay_before_active > 0)
             Invoke("EnableDamage", delay_before_active);
@@ -80,9 +80,6 @@ public class ProjectileArrowHail : Projectile
 
         foreach (var elem in sphere)
         {
-            if (elem.collider.tag != "USBCharacter")
-                continue;
-
             USBCharacter character = elem.collider.gameObject.GetComponent<USBCharacter>();
 
             if (character == owner)
@@ -94,7 +91,7 @@ public class ProjectileArrowHail : Projectile
             character.Damage(damage, owner);
 
             if (slow_modifier != 0)
-                character.AddSpeedModifier(slow_modifier, slow_duration);
+                character.AddSpeedModifier(slow_modifier, damage_interval);
         }
     }
 

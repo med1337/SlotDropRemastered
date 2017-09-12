@@ -521,9 +521,8 @@ GameObject:
   - component: {fileID: 4043128358833392}
   - component: {fileID: 198864809968484284}
   - component: {fileID: 199410825912482928}
-  - component: {fileID: 135169825625053702}
   m_Layer: 0
-  m_Name: ZombieSlow
+  m_Name: ZombieSlowParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9193,7 +9192,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1366228715648606}
-  m_LocalRotation: {x: 0.25714156, y: -0.6586943, z: -0.6586943, w: 0.25714156}
+  m_LocalRotation: {x: 0.2571416, y: -0.6586944, z: -0.6586944, w: 0.2571416}
   m_LocalPosition: {x: -1.82, y: 0.13, z: 0.02}
   m_LocalScale: {x: 1.0000015, y: 1.0000004, z: 1.0000013}
   m_Children:
@@ -12748,18 +12747,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 95699789625194750}
   animation_name: Zombie Hand
---- !u!135 &135169825625053702
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1066957204509492}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 9.73
-  m_Center: {x: 0.0033898354, y: 0.084773086, z: 0}
 --- !u!137 &137067122231087146
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

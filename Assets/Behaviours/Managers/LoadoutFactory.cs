@@ -62,7 +62,10 @@ public class LoadoutFactory : MonoBehaviour
         instance = this;
 
         EnumerateLoadouts();
+
+#if UNITY_EDITOR
         OnLevelWasLoaded(0);
+#endif
     }
 
 

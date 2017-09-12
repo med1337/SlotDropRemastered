@@ -71,6 +71,9 @@ public class CharacterStats
         {
             case EnergyState.DRAINING:
             {
+                if (energy >= target_energy && score > target_score)
+                    score = target_score;
+
                 int adjustment = Random.Range(0, score_lerp_speed - 1);
                 score += target_score > score ? adjustment : -adjustment;
 

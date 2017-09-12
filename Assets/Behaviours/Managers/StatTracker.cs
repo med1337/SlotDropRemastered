@@ -22,7 +22,7 @@ public class StatTracker : MonoBehaviour
 
     public Dictionary<string, LoadoutStats> loadout_stats = new Dictionary<string, LoadoutStats>();
     public List<UpgradeTimestamp> upgrade_timestamps = new List<UpgradeTimestamp>();
-    public int num_titans { get; private set; }
+    public List<float> titan_timestamps = new List<float>();
 
     private float awake_time;
 
@@ -100,29 +100,32 @@ public class StatTracker : MonoBehaviour
     }
 
 
-    public void LogPCUpgrade(string _upgrade_name, float _time)
+    public void LogPCUpgrade(string _upgrade_name)
     {
         UpgradeTimestamp timestamp = new UpgradeTimestamp();
 
         timestamp.name = _upgrade_name;
-        timestamp.time = _time - awake_time;
+        timestamp.time = Time.time - awake_time;
 
         upgrade_timestamps.Add(timestamp);
 
         if (debug_log_enabled)
         {
-            Debug.Log("PC Upgraded to: " + _upgrade_name + " at " + _time.ToString());
+            Debug.Log("PC Upgraded to: " + _upgrade_name + " at " + timestamp.time.ToString());
         }
     }
 
 
     public void LogTitanAchieved()
     {
-        ++num_titans;
+        float timestamp = Time.time - awake_time;
+
+        titan_timestamps.Add(timestamp);
 
         if (debug_log_enabled)
         {
-            Debug.Log("Titan Achieved. " + "[Total Titans this Session: " + num_titans.ToString() + "]");
+            Debug.Log("Titan Achieved at: " + timestamp.ToString() +
+                " [Total Titans this Session: " + titan_timestamps.Count.ToString() + "]");
         }
     }
 

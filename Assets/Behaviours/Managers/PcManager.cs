@@ -494,7 +494,7 @@ public class PcManager : MonoBehaviour
         ++SystemCurrentOs;
 
         //log timestamp of update
-        GameManager.scene.stat_tracker.LogPCUpgrade(SystemCurrentOs.ToString(), Time.time);
+        GameManager.scene.stat_tracker.LogPCUpgrade(SystemCurrentOs.ToString());
 
         //update look of OS related objects
         _osScreen.ChangeOS((int) SystemCurrentOs);

@@ -8,6 +8,7 @@ public class HandItemDropper : MonoBehaviour
     public Transform hand_grip_transform;
 
     private GameObject held_game_object;
+    private Rigidbody held_rigidbody;
     private Animator arm_animator;
     private bool dropping_item = false;
 
@@ -28,11 +29,11 @@ public class HandItemDropper : MonoBehaviour
 
         held_game_object.transform.parent = null;//drop item
 
-        Rigidbody held_rigidbody = held_game_object.GetComponent<Rigidbody>();
         if (held_rigidbody)
             held_rigidbody.isKinematic = false;//re-enable physics
 
         held_game_object = null;//clear held
+        held_rigidbody = null;
     }
 
 
@@ -43,9 +44,9 @@ public class HandItemDropper : MonoBehaviour
             Debug.Log("Hand Busy! Item Not Dropped");
             return;
         }
-
-        dropping_item = true;
+       
         AttachToHand(_game_object);
+        dropping_item = true;
         arm_animator.SetTrigger("DropItem");
     }
 
@@ -56,14 +57,19 @@ public class HandItemDropper : MonoBehaviour
 
         if (hand_grip_transform == null)
         {
-            Debug.LogWarning("Hand Dropper Grip transform ref not set!");
+            Debug.LogWarning("Hand Dropper Grip transform reference not set!");
             return;
         }
 
         held_game_object.transform.parent = hand_grip_transform;
         held_game_object.transform.localPosition = Vector3.zero;//centre on grip point
+        DisableHeldObjectsPhysics();
+    }
 
-        Rigidbody held_rigidbody = held_game_object.GetComponent<Rigidbody>();
+
+    private void DisableHeldObjectsPhysics()
+    {
+        held_rigidbody = held_game_object.GetComponent<Rigidbody>();
         if (held_rigidbody)
             held_rigidbody.isKinematic = true;//re-enable physics
     }

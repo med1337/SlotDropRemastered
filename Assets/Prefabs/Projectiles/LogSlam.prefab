@@ -579,7 +579,7 @@ MonoBehaviour:
   cooldown: 2
   lifetime: 2
   activation_sound: {fileID: 8300000, guid: 448604b7b11d80a4ea1e8779262c9c7b, type: 3}
-  hit_sound: {fileID: 8300000, guid: 3f63b3a975f8dd04bb3c2a026778626b, type: 3}
+  hit_sound: {fileID: 8300000, guid: 211964f73ff6e3741ba3ac50e408d0fd, type: 3}
   box_cast_point: {fileID: 4467087157469956}
   box_cast_extents: {x: 4, y: 4, z: 12}
   animator: {fileID: 95884311861937596}

@@ -76,7 +76,7 @@ public class PcManager : MonoBehaviour
 
     private float _protectionTimer = 0;
 
-    private PCState _pcState;
+    public PCState PcState;
     private OSState _osState;
     private float _rebootTimer = -1;
 
@@ -115,7 +115,7 @@ public class PcManager : MonoBehaviour
             Bluescreen(BluescreenDuration, true);
         }
 
-        switch (_pcState)
+        switch (PcState)
         {
             case PCState.None:
                 ProcessPC();
@@ -139,6 +139,7 @@ public class PcManager : MonoBehaviour
                 DebugOptions();
                 ProcessPopups();
                 ProcessProtectionBar();
+                ProcessTemperatureBar();
                 break;
             case OSState.Freeze:
                 break;
@@ -156,6 +157,15 @@ public class PcManager : MonoBehaviour
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
+        }
+    }
+
+    private void ProcessTemperatureBar()
+    {
+        if (TemperatureSlider.value >= 100 && PcState == PCState.None)
+        {
+            StartCoroutine(TriggerCataclysm());
+            PcState = PCState.MeteorRain;
         }
     }
 
@@ -236,7 +246,7 @@ public class PcManager : MonoBehaviour
 
         //update pc state and enable pc health scanner
         _osState = OSState.Running;
-        _pcState = PCState.None;
+        PcState = PCState.None;
         GameManager.scene.slot_manager.enabled = true;
         transform.GetChild(0).gameObject.SetActive(true);
     }
@@ -339,12 +349,6 @@ public class PcManager : MonoBehaviour
         if (TemperatureSlider.value + TemperatureStep <= 100)
         {
             TemperatureSlider.value += TemperatureStep;
-
-            if (TemperatureSlider.value >= 100 && _pcState == PCState.None)
-            {
-                StartCoroutine(TriggerCataclysm());
-                _pcState = PCState.MeteorRain;
-            }
         }
         return TemperatureSlider.value;
     }
@@ -429,10 +433,10 @@ public class PcManager : MonoBehaviour
 
         if (UpgradeManager != null)
         {
-            if (ProtectionSlider.value <= 1 && _pcState == PCState.None)
+            if (ProtectionSlider.value <= 1 && PcState == PCState.None)
             {
                 UpgradeManager.TriggerUpgrade();
-                _pcState = PCState.Upgrade;
+                PcState = PCState.Upgrade;
                 GameManager.scene.slot_manager.enabled = true;
             }
         }

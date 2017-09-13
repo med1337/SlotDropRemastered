@@ -212,6 +212,8 @@ public class PcManager : MonoBehaviour
         _rebootTimer = -LoadDelay;
 
         //update pc state and enable pc health scanner
+
+        GameManager.scene.slot_manager.enabled = true;
         _pcState = PCState.Running;
         transform.GetChild(0).gameObject.SetActive(true);
     }
@@ -404,7 +406,10 @@ public class PcManager : MonoBehaviour
         if (UpgradeManager != null)
         {
             if (ProtectionSlider.value <= 1)
+            {
                 UpgradeManager.TriggerUpgrade();
+                GameManager.scene.slot_manager.enabled = false;
+            }
         }
     }
 

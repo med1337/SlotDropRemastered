@@ -114,6 +114,11 @@ public class PcManager : MonoBehaviour
         {
             Bluescreen(BluescreenDuration, true);
         }
+        if (Input.GetKeyUp(KeyCode.Q))//debug
+        {
+            if (PcState == PCState.None)
+                ProtectionSlider.value = 0;
+        }
 
         ProcessPC();
         switch (PcState)
@@ -437,7 +442,7 @@ public class PcManager : MonoBehaviour
             {
                 UpgradeManager.TriggerUpgrade();
                 PcState = PCState.Upgrade;
-                GameManager.scene.slot_manager.enabled = true;
+                GameManager.scene.slot_manager.enabled = false;
             }
         }
     }

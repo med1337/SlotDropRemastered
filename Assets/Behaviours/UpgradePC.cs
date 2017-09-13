@@ -27,9 +27,6 @@ public class UpgradePC : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Q))//debug
-            TriggerUpgrade();
-
         SuckHardDrive();
     }
 

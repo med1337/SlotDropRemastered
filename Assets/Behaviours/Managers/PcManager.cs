@@ -14,7 +14,8 @@ public enum PCState
     Quarantine,
     BlueScreen,
     Reboot,
-    Titan
+    Titan,
+    Upgrade
 }
 
 public enum CurrentOS
@@ -43,6 +44,7 @@ public class PcManager : MonoBehaviour
     public OsScreen BluescreenGameObject;
     public UpgradePC UpgradeManager;
     public OsScreen UpgradeGameObject;
+    public OsScreen HealthOsScreen;
 
     [Header("Time settings")] public float CursorFreezeTimeDuration;
     [Space(10)] public float RebootDuration;
@@ -500,6 +502,8 @@ public class PcManager : MonoBehaviour
         _osScreen.ChangeOS((int) SystemCurrentOs);
         WelcomeGameObject.ChangeOS((int) SystemCurrentOs);
         RebootGameObject.ChangeOS((int) SystemCurrentOs);
+        HealthOsScreen.ChangeOS((int)SystemCurrentOs);
+        QuarantineGameObject.ChangeOS((int)SystemCurrentOs);
 
         //reboot PC
         Reboot(3);

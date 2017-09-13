@@ -1559,7 +1559,7 @@ MonoBehaviour:
   score_on_kill: 50
   heal_on_kill: 20
   energy_on_slot: 30
-  energy_drain_rate: 1.25
+  energy_drain_rate: 1
   energy_score_factor: 0.2
   energy_lerp_speed: 1
   score_lerp_speed: 6

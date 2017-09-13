@@ -172,6 +172,7 @@ public class USBCharacter : MonoBehaviour
     private MovementCalculator movement_calculator = new MovementCalculator();
     private USBLoadout loadout = new USBLoadout();
     private int health;
+    private float original_mass;
 
     private Ability basic_ability = new Ability();
     private Ability special_ability = new Ability();
@@ -400,6 +401,7 @@ public class USBCharacter : MonoBehaviour
         last_facing = transform.right;
         UpdateFaceIndicator();
         damage_flash.Init();
+        original_mass = rigid_body.mass;
     }
 	
 
@@ -433,6 +435,7 @@ public class USBCharacter : MonoBehaviour
             Destroy(titan_aura.gameObject);
 
         is_titan = false;
+        rigid_body.mass = original_mass;
     }
 
 

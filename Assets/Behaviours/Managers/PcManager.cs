@@ -115,10 +115,10 @@ public class PcManager : MonoBehaviour
             Bluescreen(BluescreenDuration, true);
         }
 
+        ProcessPC();
         switch (PcState)
         {
             case PCState.None:
-                ProcessPC();
                 break;
             case PCState.Upgrade:
                 //process upgrade screen

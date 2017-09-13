@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ProjectilePyramidTurret : Projectile
 {
+    [SerializeField] AudioClip bounce_sound;
     [SerializeField] Rigidbody rigid_body;
     [SerializeField] GameObject turret_prefab;
     [SerializeField] float dist_from_player;
@@ -12,6 +13,8 @@ public class ProjectilePyramidTurret : Projectile
     [SerializeField] float scan_radius = 30;
     [SerializeField] float laser_radius = 1.5f;
     [SerializeField] float stun_duration = 1;
+
+    private List<USBCharacter> affected_characters = new List<USBCharacter>();
 
     
     void Start()
@@ -45,11 +48,21 @@ public class ProjectilePyramidTurret : Projectile
             SpawnTurret();
             Destroy(this.gameObject);
         }
-
-        if (_other.gameObject.layer != LayerMask.NameToLayer("Player") &&
-            _other.gameObject.layer != LayerMask.NameToLayer("Projectile"))
+        else if (_other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            rigid_body.AddForce(-rigid_body.velocity * 350);
+            USBCharacter character = _other.GetComponent<USBCharacter>();
+
+            if (!affected_characters.Contains(character))
+            {
+                character.Damage(damage / 5, owner);
+                Bounce(400);
+
+                affected_characters.Add(character);
+            }
+        }
+        else if (_other.gameObject.layer != LayerMask.NameToLayer("Projectile"))
+        {
+            Bounce(350);
         }
     }
 
@@ -62,6 +75,14 @@ public class ProjectilePyramidTurret : Projectile
         clone.transform.Rotate(-90, 0, 0);
 
         ConfigureTurret(clone.GetComponent<Turret>());
+    }
+
+
+    void Bounce(float _force)
+    {
+        AudioManager.PlayOneShot(bounce_sound);
+
+        rigid_body.AddForce(-rigid_body.velocity * _force);
     }
 
 

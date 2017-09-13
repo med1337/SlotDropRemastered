@@ -193,6 +193,7 @@ MonoBehaviour:
   lifetime: 4
   activation_sound: {fileID: 8300000, guid: 02990ea1fd36b4440b935b997028398f, type: 3}
   hit_sound: {fileID: 8300000, guid: a23dfc524fce2f44bb65548fd9e8014b, type: 3}
+  bounce_sound: {fileID: 8300000, guid: b118db89fc51bc54395981f2066c56dc, type: 3}
   rigid_body: {fileID: 54619251373637026}
   turret_prefab: {fileID: 1238371831446688, guid: cce6a87faef0bdb4980bc639a05f5bb6,
     type: 2}

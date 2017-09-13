@@ -9,6 +9,7 @@ public class Turret : MonoBehaviour
     [SerializeField] LineRenderer line;
     [SerializeField] AudioClip charge_sound;
     [SerializeField] AudioClip fire_sound;
+    [SerializeField] AudioClip no_target_sound;
     [SerializeField] GameObject face_indicator;
 
     public USBCharacter owner;
@@ -56,6 +57,8 @@ public class Turret : MonoBehaviour
 
         if (hits.Count == 0)
         {
+            AudioManager.PlayOneShot(no_target_sound);
+
             ScheduleDeletion();
         }
         else

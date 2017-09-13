@@ -228,6 +228,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f36eeace43ce164493a6a0bcd1d2514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  start_pos: {x: 0, y: 0, z: 0}
+  autodetect_start_position: 0
+  start_rot: {x: 0, y: 0, z: 0, w: 0}
   respawn_height: 60
   respawn_velocity: {x: 0, y: -5, z: 0}
 --- !u!114 &114398343561698558

@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class PropRespawner : MonoBehaviour
 {
-    private Vector3 start_pos;
-    private Quaternion start_rot;
+    public Vector3 start_pos;
+    public bool autodetect_start_position = true;
+    public Quaternion start_rot;
     private Rigidbody prop_rigidbody;
     private const float MAX_SPAWN_HEIGHT = 60;
 
@@ -30,8 +31,11 @@ public class PropRespawner : MonoBehaviour
 
     void Start()
     {
-        start_pos = transform.position;
-        start_rot = transform.rotation;
+        if (autodetect_start_position)
+        {
+            start_pos = transform.position;
+            start_rot = transform.rotation;
+        }
 
         prop_rigidbody = GetComponent<Rigidbody>();
     }

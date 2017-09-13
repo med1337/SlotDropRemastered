@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 2
-  cooldown: 4
+  cooldown: 3
   lifetime: 3
   activation_sound: {fileID: 8300000, guid: 29be20e21c29e5a418d96a0bb0a038d1, type: 3}
   hit_sound: {fileID: 0}

@@ -64,6 +64,9 @@ public class UpgradePC : MonoBehaviour
         if (upgrade_hard_drive_prefab)
         {
             spawned_hard_drive = Instantiate(upgrade_hard_drive_prefab);
+            spawned_hard_drive.GetComponent<PropRespawner>().start_pos = spawn_location;
+            spawned_hard_drive.GetComponent<PropRespawner>().start_rot = spawned_hard_drive.transform.rotation;
+
             PositionHardDrive();     
         }
     }

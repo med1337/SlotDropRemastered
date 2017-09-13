@@ -266,6 +266,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f36eeace43ce164493a6a0bcd1d2514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  start_pos: {x: 0, y: 0, z: 0}
+  autodetect_start_position: 1
+  start_rot: {x: 0, y: 0, z: 0, w: 0}
   respawn_height: 40
   respawn_velocity: {x: 0, y: -5, z: 0}
 --- !u!1 &70965828
@@ -357,6 +360,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f36eeace43ce164493a6a0bcd1d2514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  start_pos: {x: 0, y: 0, z: 0}
+  autodetect_start_position: 1
+  start_rot: {x: 0, y: 0, z: 0, w: 0}
   respawn_height: 40
   respawn_velocity: {x: 0, y: -5, z: 0}
 --- !u!1001 &71496564
@@ -1610,6 +1616,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f36eeace43ce164493a6a0bcd1d2514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  start_pos: {x: 0, y: 0, z: 0}
+  autodetect_start_position: 1
+  start_rot: {x: 0, y: 0, z: 0, w: 0}
   respawn_height: 40
   respawn_velocity: {x: 0, y: -5, z: 0}
 --- !u!1001 &635570700
@@ -2876,6 +2885,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f36eeace43ce164493a6a0bcd1d2514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  start_pos: {x: 0, y: 0, z: 0}
+  autodetect_start_position: 1
+  start_rot: {x: 0, y: 0, z: 0, w: 0}
   respawn_height: 40
   respawn_velocity: {x: 0, y: -5, z: 0}
 --- !u!1001 &1022720336
@@ -3748,6 +3760,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f36eeace43ce164493a6a0bcd1d2514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  start_pos: {x: 0, y: 0, z: 0}
+  autodetect_start_position: 1
+  start_rot: {x: 0, y: 0, z: 0, w: 0}
   respawn_height: 40
   respawn_velocity: {x: 0, y: -5, z: 0}
 --- !u!1 &1374712732
@@ -5998,6 +6013,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 23239173270231434, guid: 01c7bfe2ee1a1014c91c1eaf3ea28bd0,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8d13925dd544043d7aac1b34928b1c60, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 01c7bfe2ee1a1014c91c1eaf3ea28bd0, type: 2}
   m_IsPrefabParent: 0
@@ -6229,6 +6249,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f36eeace43ce164493a6a0bcd1d2514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  start_pos: {x: 0, y: 0, z: 0}
+  autodetect_start_position: 1
+  start_rot: {x: 0, y: 0, z: 0, w: 0}
   respawn_height: 40
   respawn_velocity: {x: 0, y: -5, z: 0}
 --- !u!1 &2047583656 stripped
@@ -6247,6 +6270,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f36eeace43ce164493a6a0bcd1d2514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  start_pos: {x: 0, y: 0, z: 0}
+  autodetect_start_position: 1
+  start_rot: {x: 0, y: 0, z: 0, w: 0}
   respawn_height: 40
   respawn_velocity: {x: 0, y: -5, z: 0}
 --- !u!4 &2053352858 stripped

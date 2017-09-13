@@ -5,17 +5,22 @@ using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-
 public enum PCState
+{
+    None = 0,
+    Upgrade,
+    Titan,
+    MeteorRain
+}
+
+public enum OSState
 {
     Welcome = 0,
     Load = 1,
     Running,
-    Quarantine,
+    Freeze,
     BlueScreen,
-    Reboot,
-    Titan,
-    Upgrade
+    Reboot
 }
 
 public enum CurrentOS
@@ -72,6 +77,7 @@ public class PcManager : MonoBehaviour
     private float _protectionTimer = 0;
 
     private PCState _pcState;
+    private OSState _osState;
     private float _rebootTimer = -1;
 
     private bool _rebootAfterBsod;
@@ -111,24 +117,41 @@ public class PcManager : MonoBehaviour
 
         switch (_pcState)
         {
-            case PCState.Running:
+            case PCState.None:
+                ProcessPC();
+                break;
+            case PCState.Upgrade:
+                //process upgrade screen
+                break;
+            case PCState.Titan:
+                //process titan screen
+                break;
+            case PCState.MeteorRain:
+                break;
+        }
+    }
+
+    private void ProcessPC()
+    {
+        switch (_osState)
+        {
+            case OSState.Running:
                 DebugOptions();
                 ProcessPopups();
                 ProcessProtectionBar();
                 break;
-            case PCState.Quarantine:
-                //ProcessQuarantine();
+            case OSState.Freeze:
                 break;
-            case PCState.BlueScreen:
+            case OSState.BlueScreen:
                 ProcessBluescreen();
                 break;
-            case PCState.Reboot:
+            case OSState.Reboot:
                 ProcessReboot();
                 break;
-            case PCState.Welcome:
+            case OSState.Welcome:
                 ProcessWelcome();
                 break;
-            case PCState.Load:
+            case OSState.Load:
                 ProcessLoad();
                 break;
             default:
@@ -197,7 +220,7 @@ public class PcManager : MonoBehaviour
 
 
         //change pc state
-        _pcState = PCState.Load;
+        _osState = OSState.Load;
         WelcomeGameObject.gameObject.SetActive(false);
     }
 
@@ -212,9 +235,8 @@ public class PcManager : MonoBehaviour
         _rebootTimer = -LoadDelay;
 
         //update pc state and enable pc health scanner
-
-        GameManager.scene.slot_manager.enabled = true;
-        _pcState = PCState.Running;
+        _osState = OSState.Running;
+        _pcState = PCState.None;
         transform.GetChild(0).gameObject.SetActive(true);
     }
 
@@ -242,7 +264,7 @@ public class PcManager : MonoBehaviour
         RestartBars();
 
         //proceed to next state and enable welcome screen
-        _pcState = PCState.Welcome;
+        _osState = OSState.Welcome;
         WelcomeGameObject.gameObject.SetActive(true);
         WelcomeGameObject.transform.SetAsLastSibling();
     }
@@ -253,7 +275,7 @@ public class PcManager : MonoBehaviour
         BluescreenDuration = duration;
 
         //change state
-        _pcState = PCState.BlueScreen;
+        _osState = OSState.BlueScreen;
 
         //activate image
         BluescreenGameObject.gameObject.SetActive(true);
@@ -266,7 +288,7 @@ public class PcManager : MonoBehaviour
         RebootDuration = rebootDuration;
 
         //change pc state
-        _pcState = PCState.Reboot;
+        _osState = OSState.Reboot;
 
         //update screen
         RebootGameObject.gameObject.SetActive(true);
@@ -276,7 +298,7 @@ public class PcManager : MonoBehaviour
 
     private void ProcessPopups()
     {
-        if (_pcState != PCState.Running) return;
+        if (_osState != OSState.Running) return;
 
         if (!_popupClosed)
         {
@@ -317,9 +339,10 @@ public class PcManager : MonoBehaviour
         {
             TemperatureSlider.value += TemperatureStep;
 
-            if (TemperatureSlider.value >= 100)
+            if (TemperatureSlider.value >= 100 && _pcState == PCState.None)
             {
                 StartCoroutine(TriggerCataclysm());
+                _pcState = PCState.MeteorRain;
             }
         }
         return TemperatureSlider.value;
@@ -405,10 +428,10 @@ public class PcManager : MonoBehaviour
 
         if (UpgradeManager != null)
         {
-            if (ProtectionSlider.value <= 1)
+            if (ProtectionSlider.value <= 1 && _pcState == PCState.None)
             {
                 UpgradeManager.TriggerUpgrade();
-                GameManager.scene.slot_manager.enabled = false;
+                _pcState = PCState.Upgrade;
             }
         }
     }
@@ -452,7 +475,7 @@ public class PcManager : MonoBehaviour
 
     public void AttemptQuarantine(USBCharacter aCharacter)
     {
-        if (_pcState != PCState.Running) return;
+        if (_osState != OSState.Running) return;
 
         if (SystemCurrentOs == CurrentOS.Ten)
         {
@@ -465,14 +488,15 @@ public class PcManager : MonoBehaviour
         QuarantineGameObject.transform.SetAsLastSibling();
 
         //attempt quarantine
-        if (!QuarantineGameObject.AttemptQuarantine(QuarantineProcessDuration, LoadDelay, ProtectionSlider.value, aCharacter))
+        if (!QuarantineGameObject.AttemptQuarantine(QuarantineProcessDuration, LoadDelay, ProtectionSlider.value,
+            aCharacter))
         {
             QuarantineGameObject.gameObject.SetActive(false);
             return;
         }
 
         //freeze PC
-        _pcState = PCState.Quarantine;
+        _osState = OSState.Freeze;
 
         //but doesn't cover the cursor ;)
         CursorGameObject.transform.SetAsLastSibling();
@@ -507,8 +531,8 @@ public class PcManager : MonoBehaviour
         _osScreen.ChangeOS((int) SystemCurrentOs);
         WelcomeGameObject.ChangeOS((int) SystemCurrentOs);
         RebootGameObject.ChangeOS((int) SystemCurrentOs);
-        HealthOsScreen.ChangeOS((int)SystemCurrentOs);
-        QuarantineGameObject.ChangeOS((int)SystemCurrentOs);
+        HealthOsScreen.ChangeOS((int) SystemCurrentOs);
+        QuarantineGameObject.ChangeOS((int) SystemCurrentOs);
 
         //reboot PC
         Reboot(3);
@@ -551,7 +575,7 @@ public class PcManager : MonoBehaviour
 
     public void QuarantineResult(bool quarantineSuccess)
     {
-        _pcState = PCState.Running;
+        _osState = OSState.Running;
         QuarantineGameObject.gameObject.SetActive(false);
 
         if (quarantineSuccess)
@@ -575,7 +599,7 @@ public class PcManager : MonoBehaviour
     //    switch (_quarantineStatus)
     //    {
     //        case QuarantineStatus.Idle:
-    //            _pcState = PCState.Running;
+    //            _osState = OSState.Running;
     //            break;
     //        case QuarantineStatus.Processing:
     //            //update timer

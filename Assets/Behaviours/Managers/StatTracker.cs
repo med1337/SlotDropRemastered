@@ -25,14 +25,20 @@ public class StatTracker : MonoBehaviour
     public List<float> titan_timestamps = new List<float>();
 
     private float awake_time;
+    private bool initialised;
 
 
     public void Init(List<string> _loadout_names)
     {
+        if (initialised)
+            return;
+
         foreach (string loadout_name in _loadout_names)
         {
             loadout_stats.Add(loadout_name, new LoadoutStats());
         }
+
+        initialised = true;
     }
 
 

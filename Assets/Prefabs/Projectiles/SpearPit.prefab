@@ -1227,7 +1227,7 @@ MonoBehaviour:
   activation_sound: {fileID: 8300000, guid: f0581c22b72251448b85b023f7c18493, type: 3}
   hit_sound: {fileID: 0}
   damage_delay: 0.2
-  effect_radius: 5
+  effect_radius: 5.5
   stun_duration: 0.5
   origin_z_offset: -2
 --- !u!198 &198207168218615334

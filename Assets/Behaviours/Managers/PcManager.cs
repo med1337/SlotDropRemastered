@@ -237,6 +237,7 @@ public class PcManager : MonoBehaviour
         //update pc state and enable pc health scanner
         _osState = OSState.Running;
         _pcState = PCState.None;
+        GameManager.scene.slot_manager.enabled = true;
         transform.GetChild(0).gameObject.SetActive(true);
     }
 
@@ -432,6 +433,7 @@ public class PcManager : MonoBehaviour
             {
                 UpgradeManager.TriggerUpgrade();
                 _pcState = PCState.Upgrade;
+                GameManager.scene.slot_manager.enabled = true;
             }
         }
     }

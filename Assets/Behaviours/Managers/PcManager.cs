@@ -192,7 +192,7 @@ public class PcManager : MonoBehaviour
     {
         Light dir_light = GameObject.Find("DirectionalLight").GetComponent<Light>();
         Color prev_color = dir_light.color;
-        dir_light.color = Color.yellow;
+        dir_light.color = new Color(0.5f, 0.5f, 0);
 
         GameManager.scene.slot_manager.enabled = false;
         AudioManager.PlayOneShot("alarm");

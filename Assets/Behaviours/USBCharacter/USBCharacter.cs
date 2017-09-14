@@ -291,6 +291,13 @@ public class USBCharacter : MonoBehaviour
 
     public void BecomeTitan()
     {
+        // Can't become titan during another Cataclysm event.
+        if (GameManager.scene.pc_manager.PcState != PCState.None)
+        {
+            stats.target_energy = 99;
+            return;
+        }
+
         GameManager.scene.stat_tracker.LogTitanAchieved();
         AudioManager.PlayOneShot("titan_trigger");
 
@@ -308,6 +315,8 @@ public class USBCharacter : MonoBehaviour
 
         LoadoutFactory.AssignLoadout(this, "Gold");
         is_titan = true;
+
+        GameManager.scene.pc_manager.TriggerTitanState(this);
     }
 
 

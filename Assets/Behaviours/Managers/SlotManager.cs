@@ -13,6 +13,25 @@ public class SlotManager : MonoBehaviour
     private USBSlot last_opened_slot;
 
 
+    public void ActivateTitanSlots()
+    {
+        foreach (USBSlot slot in slots)
+        {
+            if (!slot.golden_slot)
+                continue;
+
+            if (GameManager.scene.respawn_manager.titan_exists)
+            {
+                slot.Activate();
+            }
+            else
+            {
+                slot.Deactivate();
+            }
+        }
+    }
+
+
     void Start()
     {
 		slots = GameObject.FindObjectsOfType<USBSlot>().ToList();
@@ -47,34 +66,14 @@ public class SlotManager : MonoBehaviour
 	}
 
 
-    void ActivateTitanSlots()
-    {
-        bool titan_exists = GameManager.scene.respawn_manager.alive_characters.Any(elem => elem.is_titan);
-
-        foreach (USBSlot slot in slots)
-        {
-            if (!slot.golden_slot)
-                continue;
-
-            if (titan_exists)
-            {
-                slot.Activate();
-            }
-            else
-            {
-                slot.Deactivate();
-            }
-        }
-    }
-
-
-
     void DeactivateAllSlots()
     {
         slots.RemoveAll(slot => slot == null);
 
         foreach (USBSlot slot in slots)
+        {
             slot.Deactivate();
+        }
 
         random_slot_queued = false;
     }

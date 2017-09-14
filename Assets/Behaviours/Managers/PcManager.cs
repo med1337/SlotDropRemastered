@@ -169,10 +169,53 @@ public class PcManager : MonoBehaviour
     {
         if (TemperatureSlider.value >= 100 && PcState == PCState.None)
         {
-            StartCoroutine(TriggerCataclysm());
             PcState = PCState.MeteorRain;
+            StartCoroutine(TriggerCataclysm());
         }
     }
+
+
+
+    public void TriggerTitanState(USBCharacter _character)
+    {
+        if (PcState == PCState.Titan)
+            return;
+
+        PcState = PCState.Titan;
+        _osState = OSState.Freeze;
+
+        StartCoroutine(TitanState(_character));
+    }
+
+
+    IEnumerator TitanState(USBCharacter _character)
+    {
+        Light dir_light = GameObject.Find("DirectionalLight").GetComponent<Light>();
+        Color prev_color = dir_light.color;
+        dir_light.color = Color.yellow;
+
+        GameManager.scene.slot_manager.enabled = false;
+        AudioManager.PlayOneShot("alarm");
+
+        float focus_duration = 0.5f;
+        Time.timeScale = 0.5f;
+        GameManager.scene.focus_camera.Focus(_character.body_group.transform.position, 15, focus_duration, false);
+
+        yield return new WaitForSeconds(focus_duration);
+
+        Time.timeScale = 1;
+        GameManager.scene.slot_manager.ActivateTitanSlots();
+
+        yield return new WaitUntil(() => !GameManager.scene.respawn_manager.titan_exists);
+
+        dir_light.color = prev_color;
+        GameManager.scene.slot_manager.enabled = true;
+
+        PcState = PCState.None;
+        _osState = OSState.Running;
+    }
+
+
 
     private void DebugOptions()
     {
@@ -351,10 +394,14 @@ public class PcManager : MonoBehaviour
 
     private float IncreaseTemperature()
     {
-        if (TemperatureSlider.value + TemperatureStep <= 100)
+        if (PcState != PCState.None)
         {
-            TemperatureSlider.value += TemperatureStep;
+            if (TemperatureSlider.value + TemperatureStep <= 100)
+            {
+                TemperatureSlider.value += TemperatureStep;
+            }
         }
+
         return TemperatureSlider.value;
     }
 
@@ -371,7 +418,7 @@ public class PcManager : MonoBehaviour
         AudioManager.PlayOneShot("alarm");
 
         Bluescreen(BluescreenDuration, true);
-        GameManager.scene.focus_camera.Focus(GameManager.scene.pc_manager.transform.position, 9, 0.5f);
+        GameManager.scene.focus_camera.Focus(GameManager.scene.pc_manager.transform.position, 9, 1f);
 
         yield return new WaitForSeconds(BluescreenDuration);
 
@@ -440,12 +487,31 @@ public class PcManager : MonoBehaviour
         {
             if (ProtectionSlider.value <= 1 && PcState == PCState.None)
             {
-                UpgradeManager.TriggerUpgrade();
                 PcState = PCState.Upgrade;
-                GameManager.scene.slot_manager.enabled = false;
+                StartCoroutine(TriggerUpgrade());
             }
         }
     }
+
+
+    IEnumerator TriggerUpgrade()
+    {
+        Light dir_light = GameObject.Find("DirectionalLight").GetComponent<Light>();
+        Color prev_color = dir_light.color;
+        dir_light.color = Color.blue;
+
+        UpgradeManager.TriggerUpgrade();
+        GameManager.scene.slot_manager.enabled = false;
+
+        AudioManager.PlayOneShot("alarm");
+        GameManager.scene.focus_camera.Focus(GameManager.scene.pc_manager.transform.position, 9, 1f);
+
+        yield return new WaitUntil(() => PcState == PCState.None);
+
+        dir_light.color = prev_color;
+        GameManager.scene.slot_manager.enabled = true;
+    }
+
 
     private void Popup(int amount)
     {

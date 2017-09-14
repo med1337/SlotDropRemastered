@@ -8,6 +8,7 @@ public class ProjectileShockwave : Projectile
     public GameObject particle_effect;
     public float effect_radius;
     public float knockback_force;
+    public float stun_duration;
 
     private float wave_speed;
     private SphereCollider sphere_collider;
@@ -66,11 +67,13 @@ public class ProjectileShockwave : Projectile
 
         USBCharacter character = _body.GetComponent<USBCharacter>();
 
-        if (character != null && character != owner && damage != 0)
+        if (character != null && character != owner)
         {
             if (!affected_characters.Contains(character))
             {
                 character.Damage(damage, owner);
+                character.Stun(stun_duration);
+
                 affected_characters.Add(character);
             }
         }

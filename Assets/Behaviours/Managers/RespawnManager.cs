@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class RespawnManager : MonoBehaviour
 {
     public List<USBCharacter> alive_characters = new List<USBCharacter>();
+    public bool titan_exists { get { return alive_characters.Any(elem => elem.is_titan); } }
 
     [Range(0, MAX_AI)]
     public int min_ai;

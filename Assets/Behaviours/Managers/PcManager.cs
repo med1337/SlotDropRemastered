@@ -194,7 +194,7 @@ public class PcManager : MonoBehaviour
         Color prev_color = dir_light.color;
         dir_light.color = new Color(0.5f, 0.5f, 0);
 
-        GameManager.scene.slot_manager.enabled = false;
+        //GameManager.scene.slot_manager.enabled = false;
         AudioManager.PlayOneShot("alarm");
 
         float focus_duration = 0.5f;
@@ -209,7 +209,7 @@ public class PcManager : MonoBehaviour
         yield return new WaitUntil(() => !GameManager.scene.respawn_manager.titan_exists);
 
         dir_light.color = prev_color;
-        GameManager.scene.slot_manager.enabled = true;
+        //GameManager.scene.slot_manager.enabled = true;
 
         PcState = PCState.None;
         _osState = OSState.Running;

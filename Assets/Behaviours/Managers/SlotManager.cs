@@ -37,11 +37,24 @@ public class SlotManager : MonoBehaviour
 		slots = GameObject.FindObjectsOfType<USBSlot>().ToList();
     }
 
+
+    void OnEnable()
+    {
+        if (slots == null)
+            return;
+
+        foreach (USBSlot slot in slots)
+            slot.ShowDisabledIndicator(false);
+    }
+
     
     void OnDisable()
     {
         CancelInvoke();
         DeactivateAllSlots();
+
+        foreach (USBSlot slot in slots)
+            slot.ShowDisabledIndicator(true);
     }
 	
 

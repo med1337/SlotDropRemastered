@@ -7,6 +7,11 @@ public class FadableGraphic : MonoBehaviour
 {
     public ListenerModule listener_module = new ListenerModule();
 
+    [SerializeField] bool pulse_mode;
+    [SerializeField] float pulse_speed;
+    [SerializeField] float pulse_low;
+    [SerializeField] float pulse_high;
+
     private Image image;
     private SpriteRenderer sprite;
     private Text text;
@@ -107,6 +112,10 @@ public class FadableGraphic : MonoBehaviour
         {
             HandleFade();
         }
+        else if (pulse_mode)
+        {
+            HandlePulse();
+        }
     }
 
 
@@ -134,6 +143,44 @@ public class FadableGraphic : MonoBehaviour
             StopFade();
             
             listener_module.NotifyListeners("FadableGraphicDone");
+        }
+    }
+
+
+    void HandlePulse()
+    {
+        float alpha_pulse = (1 + pulse_low) + Mathf.Sin(Time.time * pulse_speed);
+        if (alpha_pulse > pulse_high)
+            alpha_pulse = pulse_high;
+
+        Color color = new Color();
+
+        if (image)
+        {
+            color = image.color;
+        }
+        else if (sprite)
+        {
+            color = sprite.color;
+        }
+        else if (text)
+        {
+            color = text.color;
+        }
+
+        color.a = alpha_pulse;
+
+        if (image)
+        {
+            image.color = color;
+        }
+        else if (sprite)
+        {
+            sprite.color = color;
+        }
+        else if (text)
+        {
+            text.color = color;
         }
     }
 

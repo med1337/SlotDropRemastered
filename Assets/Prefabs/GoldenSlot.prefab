@@ -306,6 +306,7 @@ MonoBehaviour:
   box_collider: {fileID: 65970653553291306}
   fx_obj: {fileID: 1234045530033620}
   time_to_deactivate: 5
+  disabled_indicator: {fileID: 0}
 --- !u!212 &212676322942719912
 SpriteRenderer:
   m_ObjectHideFlags: 1

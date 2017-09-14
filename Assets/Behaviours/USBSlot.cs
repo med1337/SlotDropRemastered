@@ -10,6 +10,7 @@ public class USBSlot : MonoBehaviour
     [SerializeField] BoxCollider box_collider;
     [SerializeField] GameObject fx_obj;
     [SerializeField] float time_to_deactivate = 5.0f;
+    [SerializeField] FadableGraphic disabled_indicator;
 
 
     public void Activate()
@@ -32,6 +33,13 @@ public class USBSlot : MonoBehaviour
     }
 
 
+    public void ShowDisabledIndicator(bool _show)
+    {
+        if (disabled_indicator != null)
+            disabled_indicator.gameObject.SetActive(_show);
+    }
+
+
     public void PostponeDeactivation()
     {
         if (golden_slot)
@@ -42,7 +50,7 @@ public class USBSlot : MonoBehaviour
         Invoke("Deactivate", time_to_deactivate / 2);
     }
 
-    
+
     public void SlotDrop(USBCharacter _character)
     {
         if (!slottable)

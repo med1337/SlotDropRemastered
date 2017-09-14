@@ -28,6 +28,14 @@ public class ProjectileCharge : Projectile
 
     void Update()
     {
+        if (owner != null && owner.controls_disabled)
+        {
+            owner = null;
+            Destroy(this.gameObject);
+
+            return;
+        }
+
         CalculateRawDirection();
         TrackPlayer();
 
@@ -38,7 +46,7 @@ public class ProjectileCharge : Projectile
 
     void FixedUpdate()
     {
-        if (owner == null || owner.controls_disabled)
+        if (owner == null)
             return;
 
         rigid_body.MovePosition(owner.transform.position + 

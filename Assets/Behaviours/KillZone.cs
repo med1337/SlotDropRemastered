@@ -17,7 +17,7 @@ public class KillZone : MonoBehaviour
             PropRespawner prop = _other.GetComponent<PropRespawner>();
 
             if (prop == null)
-                _other.GetComponentInParent<PropRespawner>();
+                prop = _other.GetComponentInParent<PropRespawner>();
 
             if (prop == null)
                 prop = _other.transform.parent.GetComponentInParent<PropRespawner>();

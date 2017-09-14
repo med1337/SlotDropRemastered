@@ -13,11 +13,14 @@ public class RespawnManager : MonoBehaviour
 
     [SerializeField] GameObject usb_character_prefab;
     [SerializeField] string starting_loadout = "Base";
-    [SerializeField] bool spawn_ai_with_random_loadout;
+    [SerializeField] bool spawn_ai_with_random_loadout = true;
+    [SerializeField] bool disable_ai_during_upgrade_event = true;
 
     private List<USBCharacter> alive_ai = new List<USBCharacter>();
     private const int MAX_AI = 32;
     private SpawnAreaCircle spawn_area;
+
+    private int ai_modifier;
 
 
     void Start()
@@ -41,6 +44,11 @@ public class RespawnManager : MonoBehaviour
                 character.BecomeTitan();
         }
 
+
+        // Disable AI during Upgrade event.
+        ai_modifier = GameManager.scene.pc_manager.PcState == PCState.Upgrade &&
+            disable_ai_during_upgrade_event ? -min_ai : 0;
+
         Debug();
     }
 
@@ -59,10 +67,10 @@ public class RespawnManager : MonoBehaviour
 
     void RespawnAI()
     {
-        if (alive_ai.Count < min_ai)
+        if (alive_ai.Count < min_ai + ai_modifier)
             CreateUSBAICharacter();
 
-        if (alive_ai.Count > min_ai)
+        if (alive_ai.Count > min_ai + ai_modifier)
             Destroy(alive_ai[alive_ai.Count - 1].gameObject);
     }
 

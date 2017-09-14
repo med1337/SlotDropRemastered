@@ -13,6 +13,8 @@ public class UpgradePC : MonoBehaviour
     public float snap_speed = 1;
     public float door_close_delay = 1f;
     public float destroy_delay = 2f;
+    public TransformFollower pc_upgrade_indicator;
+    public GameObject upgrade_slot_indicator;
     #endregion
 
     #region Private Vars
@@ -40,6 +42,9 @@ public class UpgradePC : MonoBehaviour
         pc_manager.UpgradePc();
         OpenUpgradeSlot(true);
         SpawnUpgradeHardDrive();
+
+        pc_upgrade_indicator.target = spawned_hard_drive.transform;
+        upgrade_slot_indicator.SetActive(true);
     }
 
 
@@ -64,7 +69,7 @@ public class UpgradePC : MonoBehaviour
             spawned_hard_drive.GetComponent<PropRespawner>().start_pos = spawn_location;
             spawned_hard_drive.GetComponent<PropRespawner>().start_rot = spawned_hard_drive.transform.rotation;
 
-            PositionHardDrive();     
+            PositionHardDrive();
         }
     }
 
@@ -90,6 +95,9 @@ public class UpgradePC : MonoBehaviour
         if (CheckHardDriveDistance())//check if move complete
         {
             EndHardDriveSuck();
+            pc_upgrade_indicator.target = null;
+            upgrade_slot_indicator.SetActive(false);
+
             return;
         }
 

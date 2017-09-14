@@ -35,7 +35,7 @@ public class ProjectileSwordDance : Projectile
 
     void Update()
     {
-        if (!owner)
+        if (owner == null || owner.controls_disabled)
         {
             Destroy(gameObject);
             return;

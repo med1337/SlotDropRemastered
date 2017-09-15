@@ -50,6 +50,7 @@ public class PcManager : MonoBehaviour
     public UpgradePC UpgradeManager;
     public OsScreen UpgradeGameObject;
     public OsScreen HealthOsScreen;
+    public TitanScreen TitanScreenX;
 
     [Header("Time settings")] public float CursorFreezeTimeDuration;
     [Space(10)] public float RebootDuration;
@@ -70,6 +71,9 @@ public class PcManager : MonoBehaviour
     [Space(10)] public List<Sprite> PopupImages;
 
     [Space(10)] public CurrentOS SystemCurrentOs;
+
+
+    public int TitanScore { get; set; }
 
     //private
     private float _cursorSpeed;
@@ -114,7 +118,7 @@ public class PcManager : MonoBehaviour
         {
             Bluescreen(BluescreenDuration, true);
         }
-        if (Input.GetKeyUp(KeyCode.Q))//debug
+        if (Input.GetKeyUp(KeyCode.Q)) //debug
         {
             if (PcState == PCState.None)
                 ProtectionSlider.value = 0;
@@ -135,6 +139,7 @@ public class PcManager : MonoBehaviour
                 break;
         }
     }
+
 
     private void ProcessPC()
     {
@@ -175,7 +180,6 @@ public class PcManager : MonoBehaviour
     }
 
 
-
     public void TriggerTitanState(USBCharacter _character)
     {
         if (PcState == PCState.Titan)
@@ -183,6 +187,9 @@ public class PcManager : MonoBehaviour
 
         PcState = PCState.Titan;
         _osState = OSState.Freeze;
+
+        TitanScreenX.gameObject.SetActive(true);
+        TitanScreenX.transform.SetAsLastSibling();
 
         StartCoroutine(TitanState(_character));
     }
@@ -211,10 +218,10 @@ public class PcManager : MonoBehaviour
         dir_light.color = prev_color;
         //GameManager.scene.slot_manager.enabled = true;
 
+        TitanScreenX.gameObject.SetActive(false);
         PcState = PCState.None;
         _osState = OSState.Running;
     }
-
 
 
     private void DebugOptions()
@@ -557,7 +564,7 @@ public class PcManager : MonoBehaviour
 
     public void AttemptQuarantine(USBCharacter aCharacter)
     {
-        if (_osState != OSState.Running) return;
+        if (_osState != OSState.Running || PcState != PCState.None) return;
 
         if (SystemCurrentOs == CurrentOS.Ten)
         {
@@ -747,4 +754,13 @@ public class PcManager : MonoBehaviour
     //            break;
     //    }
     //}
+    public void DepositScore(int statsScore)
+    {
+        if (statsScore == 0) return;
+
+        TitanScore += statsScore;
+
+        GameManager.scene.focus_camera.Focus(GameManager.scene.pc_manager.transform.position, 9, 1f);
+        TitanScreenX.UpdateScreen();
+    }
 }

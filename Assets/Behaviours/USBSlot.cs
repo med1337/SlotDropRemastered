@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class USBSlot : MonoBehaviour
 {
-    public bool slottable { get { return fx_obj.activeSelf; } }
+    public bool slottable
+    {
+        get { return fx_obj.activeSelf; }
+    }
+
     public bool golden_slot;
 
     [SerializeField] BoxCollider box_collider;
@@ -58,8 +62,14 @@ public class USBSlot : MonoBehaviour
 
         if (_character.is_titan && golden_slot)
         {
-            GameManager.round_over = true;
-            GameManager.scene.focus_camera.Focus(transform.position, 15, 10, false);
+            GameManager.scene.stat_tracker.LogScoreDeposited(_character.loadout_name, _character.stats.target_score);
+            _character.Flash(Color.yellow);
+            AudioManager.PlayOneShot("new_data");
+            Projectile.CreateEffect(LoadoutFactory.instance.download_data_prefab,
+                _character.transform.position, Vector3.zero);
+            
+            GameManager.scene.pc_manager.DepositScore(_character.stats.score);
+            _character.stats.target_score = 0;
         }
         else
         {
@@ -81,13 +91,10 @@ public class USBSlot : MonoBehaviour
 
     void Start()
     {
-
     }
 
 
-	void Update()
+    void Update()
     {
-
-	}
-
+    }
 }

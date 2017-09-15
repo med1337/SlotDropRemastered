@@ -79,7 +79,8 @@ public class CharacterStats
 
                 if (Mathf.Abs(target_score - score) <= adjustment)
                     score = target_score;
-            } break;
+            }
+                break;
 
             case EnergyState.INCREASING:
             {
@@ -88,7 +89,8 @@ public class CharacterStats
 
                 if (score < target_score)
                     score = target_score;
-            } break;
+            }
+                break;
         }
 
         hud.UpdateScore(score);
@@ -107,7 +109,8 @@ public class CharacterStats
 
                 if (energy > target_energy)
                     energy = target_energy;
-            } break;
+            }
+                break;
 
             case EnergyState.INCREASING:
             {
@@ -119,7 +122,8 @@ public class CharacterStats
 
                 if (energy == target_energy)
                     energy_state = EnergyState.DRAINING;
-            } break;
+            }
+                break;
         }
 
         if (prev_energy > 0 && energy <= 0)
@@ -129,7 +133,6 @@ public class CharacterStats
 
         hud.UpdateEnergy(energy);
     }
-
 }
 
 
@@ -137,13 +140,17 @@ public class USBCharacter : MonoBehaviour
 {
     public CharacterStats stats { get; private set; }
     public Vector3 last_facing { get; private set; }
-    public string loadout_name { get { return loadout.name; } }
+
+    public string loadout_name
+    {
+        get { return loadout.name; }
+    }
+
     public Vector3 move_dir { get; private set; }
     public bool is_titan { get; private set; }
     public bool controls_disabled { get; private set; }
 
-    [Header("Parameters")]
-    [SerializeField] int score_on_kill = 50;
+    [Header("Parameters")] [SerializeField] int score_on_kill = 50;
     [SerializeField] int heal_on_kill = 20;
     public int energy_on_slot = 25;
     [SerializeField] float energy_drain_rate = 1.25f;
@@ -152,8 +159,7 @@ public class USBCharacter : MonoBehaviour
     [SerializeField] int score_lerp_speed = 5;
     [SerializeField] float velocity_limit = 20;
 
-    [Header("References")]
-    public GameObject body_group;
+    [Header("References")] public GameObject body_group;
     public Rigidbody rigid_body;
 
     [SerializeField] Projector shadow;
@@ -412,7 +418,7 @@ public class USBCharacter : MonoBehaviour
         damage_flash.Init();
         original_mass = rigid_body.mass;
     }
-	
+
 
     void Update()
     {
@@ -496,7 +502,7 @@ public class USBCharacter : MonoBehaviour
         foreach (var hit in hits)
         {
             USBSlot slot = hit.collider.GetComponent<USBSlot>();
-            
+
             if (slot == null || !slot.slottable ||
                 (slot.golden_slot && !is_titan) ||
                 (!slot.golden_slot) && is_titan)
@@ -525,7 +531,7 @@ public class USBCharacter : MonoBehaviour
     void SlotDropDone()
     {
         slot_dropping = false;
-        
+
         if (last_slot_hit != null)
         {
             if (!last_slot_hit.slottable ||
@@ -543,7 +549,7 @@ public class USBCharacter : MonoBehaviour
 
             AudioManager.PlayOneShot("usb_slot");
         }
-        
+
         last_slot_hit = null;
     }
 
@@ -573,5 +579,4 @@ public class USBCharacter : MonoBehaviour
         GameManager.scene.stat_tracker.LogKill(_killer.loadout_name);
         GameManager.scene.stat_tracker.LogScoreIncrease(_killer.loadout_name, score_on_kill);
     }
-
 }

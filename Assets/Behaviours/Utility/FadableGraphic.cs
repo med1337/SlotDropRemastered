@@ -10,7 +10,7 @@ public class FadableGraphic : MonoBehaviour
     [SerializeField] bool pulse_mode;
     [SerializeField] float pulse_speed;
     [SerializeField] float pulse_low;
-    [SerializeField] float pulse_high;
+    [SerializeField] float pulse_high = 1;
 
     private Image image;
     private SpriteRenderer sprite;

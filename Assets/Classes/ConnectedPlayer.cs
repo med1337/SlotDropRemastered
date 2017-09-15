@@ -19,19 +19,24 @@ public class ConnectedPlayer
     public USBCharacter character;
     public Color color;
 
+    private const float TIME_TO_IDLE = 20;
+    private float idle_timer;
+
+    private float horizontal;
+    private float vertical;
+
 
     public void Update()
     {
         HandleDropIn();
+        HandleIdle();
 
-        if (character)
-        {
+        ControlCharacter();
+
 #if UNITY_EDITOR
-            DebugCheats();
+        DebugCheats();
 #endif
-            ControlCharacter();
-        }
-    }
+}
 
 
     void HandleDropIn()
@@ -41,32 +46,77 @@ public class ConnectedPlayer
             if (state == PlayerState.WAITING)
             {
                 state = PlayerState.JOINING;
+                idle_timer = 0;
             }
             else if (state == PlayerState.PLAYING)
             {
                 state = PlayerState.LEAVING;
+                idle_timer = 0;
             }
+        }
+    }
+
+
+    void HandleIdle()
+    {
+        if (state != PlayerState.PLAYING)
+            return;
+
+        idle_timer += Time.unscaledDeltaTime;
+
+        if (idle_timer >= TIME_TO_IDLE)
+        {
+            state = PlayerState.LEAVING;
+            idle_timer = 0;
         }
     }
 
 
     void ControlCharacter()
     {
-        float horizontal = input.GetAxis("Horizontal");
-        float vertical = input.GetAxis("Vertical");
+        horizontal = input.GetAxis("Horizontal");
+        vertical = input.GetAxis("Vertical");
 
-        character.SetFaceLocked(input.GetButton("FaceLock"));
-        character.Move(new Vector3(horizontal, 0, vertical));
+        if (horizontal != 0 || vertical != 0)
+            idle_timer = 0;
+
+        if (character != null)
+        {
+            character.SetFaceLocked(input.GetButton("FaceLock"));
+            character.Move(new Vector3(horizontal, 0, vertical));
+        }
 
         if (input.GetButton("Attack"))
         {
-            character.Attack();
+            if (character != null)
+                character.Attack();
+
+            WakePlayer();
         }
 
         if (input.GetButtonDown("SlotDrop"))
         {
-            character.SlotDrop();
+            if (character != null)
+                character.SlotDrop();
+
+            WakePlayer();
         }
+
+        if (input.GetButtonDown("Y"))
+            WakePlayer();
+
+        if (input.GetButtonDown("B"))
+            WakePlayer();
+    }
+
+
+    void WakePlayer()
+    {
+        if (state != PlayerState.WAITING)
+            return;
+
+        state = PlayerState.JOINING;
+        idle_timer = 0;
     }
 
 

@@ -15,6 +15,7 @@ public class RespawnManager : MonoBehaviour
     [SerializeField] string starting_loadout = "Base";
     [SerializeField] bool spawn_ai_with_random_loadout = true;
     [SerializeField] bool disable_ai_during_upgrade_event = true;
+    [SerializeField] GameObject players_needed_prompt;
 
     private List<USBCharacter> alive_ai = new List<USBCharacter>();
     private const int MAX_AI = 32;
@@ -44,6 +45,7 @@ public class RespawnManager : MonoBehaviour
                 character.BecomeTitan();
         }
 
+        players_needed_prompt.SetActive(PlayerManager.active_player_count < 2);
 
         // Disable AI during Upgrade event.
         ai_modifier = GameManager.scene.pc_manager.PcState == PCState.Upgrade &&

@@ -117,7 +117,10 @@ public class PcManager : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Q))//debug
         {
             if (PcState == PCState.None)
-                ProtectionSlider.value = 0;
+            {
+                PcState = PCState.Upgrade;
+                StartCoroutine(TriggerUpgrade());
+            }
         }
 
         ProcessPC();

@@ -45,7 +45,8 @@ public class RespawnManager : MonoBehaviour
                 character.BecomeTitan();
         }
 
-        players_needed_prompt.SetActive(PlayerManager.active_player_count < 2);
+        bool players_needed = PlayerManager.active_player_count < 2 && !GameManager.restarting_scene;
+        players_needed_prompt.SetActive(players_needed);
 
         // Disable AI during Upgrade event.
         ai_modifier = GameManager.scene.pc_manager.PcState == PCState.Upgrade &&

@@ -16,6 +16,7 @@ public class USBAI : MonoBehaviour
 
     private float current_basic_delay;
     private float current_special_delay;
+    private float panic_chance = 0.9f;
     private float panic_timer;
     private float panic_duration = 0.9f;
 

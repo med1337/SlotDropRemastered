@@ -472,7 +472,12 @@ public class PcManager : MonoBehaviour
         //update timer
         _protectionTimer += Time.deltaTime;
 
-        if (!(_protectionTimer >= _protectionUpdateRate)) return;
+        if (!(_protectionTimer >= _protectionUpdateRate) ||
+            GameManager.scene.respawn_manager.alive_characters.Count < 2 &&
+            !Input.GetKey(KeyCode.P))
+        {
+            return;
+        }
 
         //update timer if appropriate
         if (ProtectionSlider.value - ProtectionUpdateStep >= 0)
@@ -627,19 +632,19 @@ public class PcManager : MonoBehaviour
         {
             case CurrentOS.XP:
                 TemperatureStep = 25;
-                ProtectionUpdateStep = 1;
+                ProtectionUpdateStep = 0.8f;
                 break;
             case CurrentOS.Vista:
                 TemperatureStep = 20;
-                ProtectionUpdateStep = 0.75f;
+                ProtectionUpdateStep = 0.6f;
                 break;
             case CurrentOS.Seven:
                 TemperatureStep = 15;
-                ProtectionUpdateStep = 0.5f;
+                ProtectionUpdateStep = 0.4f;
                 break;
             case CurrentOS.Eight:
                 TemperatureStep = 10;
-                ProtectionUpdateStep = 0.25f;
+                ProtectionUpdateStep = 0.2f;
                 break;
             case CurrentOS.Ten:
                 TemperatureStep = 5;

@@ -524,6 +524,13 @@ public class USBCharacter : MonoBehaviour
         if (controls_disabled)
             return;
 
+        // Only fire slot drop ability while standing on a solid surface.
+        if (!Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), -Vector3.up, 1,
+            1 << LayerMask.NameToLayer("Prop") | 1 << LayerMask.NameToLayer("Default") | 1 << LayerMask.NameToLayer("Floor")))
+        {
+            return;
+        }
+
         special_ability.Activate();
     }
 

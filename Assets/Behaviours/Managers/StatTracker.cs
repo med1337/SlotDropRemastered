@@ -21,6 +21,8 @@ public class StatTracker : MonoBehaviour
     public bool debug_log_enabled = true;
 
     public Dictionary<string, LoadoutStats> loadout_stats = new Dictionary<string, LoadoutStats>();
+    public LoadoutStats largest_stats = new LoadoutStats();
+
     public List<UpgradeTimestamp> upgrade_timestamps = new List<UpgradeTimestamp>();
     public List<float> titan_timestamps = new List<float>();
 
@@ -50,6 +52,9 @@ public class StatTracker : MonoBehaviour
         LoadoutStats stats = loadout_stats[_loadout_name];
         ++stats.deaths;
 
+        if (stats.deaths > largest_stats.deaths)
+            largest_stats.deaths = stats.deaths;
+
         if (debug_log_enabled)
         {
             Debug.Log("Loadout: " + _loadout_name + " died. " +
@@ -65,6 +70,9 @@ public class StatTracker : MonoBehaviour
 
         LoadoutStats stats = loadout_stats[_loadout_name];
         ++stats.kills;
+
+        if (stats.kills > largest_stats.kills)
+            largest_stats.kills = stats.kills;
 
         if (debug_log_enabled)
         {
@@ -82,6 +90,9 @@ public class StatTracker : MonoBehaviour
         LoadoutStats stats = loadout_stats[_loadout_name];
         stats.score_earned += _amount;
 
+        if (stats.score_earned > largest_stats.score_earned)
+            largest_stats.score_earned = stats.score_earned;
+
         if (debug_log_enabled)
         {
             Debug.Log("Loadout: " + _loadout_name + " earned " + _amount.ToString() + " score. " +
@@ -97,6 +108,9 @@ public class StatTracker : MonoBehaviour
 
         LoadoutStats stats = loadout_stats[_loadout_name];
         stats.score_deposited += _amount;
+
+        if (stats.score_deposited > largest_stats.score_deposited)
+            largest_stats.score_deposited = stats.score_deposited;
 
         if (debug_log_enabled)
         {

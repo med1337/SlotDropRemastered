@@ -481,7 +481,7 @@ public class PcManager : MonoBehaviour
         _protectionTimer += Time.deltaTime;
 
         if (!(_protectionTimer >= _protectionUpdateRate) ||
-            GameManager.scene.respawn_manager.alive_characters.Count < 2 &&
+            PlayerManager.active_player_count < 2 &&
             !Input.GetKey(KeyCode.P))
         {
             return;

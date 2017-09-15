@@ -50,6 +50,9 @@ public class SlotManager : MonoBehaviour
     
     void OnDisable()
     {
+        if (slots == null)
+            return;
+
         CancelInvoke();
         DeactivateAllSlots();
 

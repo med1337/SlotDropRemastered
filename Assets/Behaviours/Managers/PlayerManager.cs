@@ -16,6 +16,8 @@ public class PlayerManager : MonoBehaviour
     {
         foreach (ConnectedPlayer player in player_dictionary.Values)
             player.state = PlayerState.WAITING;
+
+        active_player_count = 0;
     }
 
 

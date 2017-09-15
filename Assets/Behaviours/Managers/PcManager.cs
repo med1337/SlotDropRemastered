@@ -397,7 +397,7 @@ public class PcManager : MonoBehaviour
 
     private float IncreaseTemperature()
     {
-        if (PcState != PCState.None)
+        if (PcState == PCState.None)
         {
             if (TemperatureSlider.value + TemperatureStep <= 100)
             {
@@ -423,11 +423,9 @@ public class PcManager : MonoBehaviour
         Bluescreen(BluescreenDuration, true);
         GameManager.scene.focus_camera.Focus(GameManager.scene.pc_manager.transform.position, 9, 1f);
 
-        yield return new WaitForSeconds(BluescreenDuration);
+        yield return new WaitUntil(() => PcState == PCState.None);
 
         dir_light.color = prev_color;
-        yield return new WaitForSeconds(RebootDuration);
-
         GameManager.scene.slot_manager.enabled = true;
     }
 

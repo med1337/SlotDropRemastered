@@ -16,9 +16,9 @@ public class LoadoutFactory : MonoBehaviour
 
     public static LoadoutFactory instance;
 
-    private Dictionary<string, USBLoadout> starter_loadouts = new Dictionary<string, USBLoadout>();
-    private Dictionary<string, USBLoadout> general_loadouts = new Dictionary<string, USBLoadout>();
-    private Dictionary<string, USBLoadout> titan_loadouts = new Dictionary<string, USBLoadout>();
+    public Dictionary<string, USBLoadout> starter_loadouts = new Dictionary<string, USBLoadout>();
+    public Dictionary<string, USBLoadout> general_loadouts = new Dictionary<string, USBLoadout>();
+    public Dictionary<string, USBLoadout> titan_loadouts = new Dictionary<string, USBLoadout>();
 
 
     public static void AssignLoadout(USBCharacter _character, string _loadout_name, bool _heal = true)
@@ -62,10 +62,6 @@ public class LoadoutFactory : MonoBehaviour
         instance = this;
 
         EnumerateLoadouts();
-
-#if UNITY_EDITOR
-        OnLevelWasLoaded(0);
-#endif
     }
 
 
@@ -130,17 +126,6 @@ public class LoadoutFactory : MonoBehaviour
         else
         {
             return null;
-        }
-    }
-
-
-    void OnLevelWasLoaded(int _level)
-    {
-        StatTracker stat_tracker = GameManager.scene.stat_tracker;
-
-        if (stat_tracker != null)
-        {
-            stat_tracker.Init(general_loadouts.Keys.ToList());
         }
     }
 

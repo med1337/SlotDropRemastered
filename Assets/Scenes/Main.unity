@@ -922,6 +922,27 @@ Prefab:
       propertyPath: upgrade_slot_indicator
       value: 
       objectReference: {fileID: 2077649783}
+    - target: {fileID: 114893203599334484, guid: 582c3c919c0f19a438e92f3ff361c79e,
+        type: 2}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 0c46d60540240934492e75f7c85ace62,
+        type: 3}
+    - target: {fileID: 114561889199301858, guid: 582c3c919c0f19a438e92f3ff361c79e,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 0.102941155
+      objectReference: {fileID: 0}
+    - target: {fileID: 114561889199301858, guid: 582c3c919c0f19a438e92f3ff361c79e,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 0.102941155
+      objectReference: {fileID: 0}
+    - target: {fileID: 114561889199301858, guid: 582c3c919c0f19a438e92f3ff361c79e,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 0.102941155
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 582c3c919c0f19a438e92f3ff361c79e, type: 2}
   m_IsPrefabParent: 0

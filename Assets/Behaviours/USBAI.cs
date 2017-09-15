@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class USBAI : MonoBehaviour
 {
     private USBCharacter character;
@@ -15,6 +16,8 @@ public class USBAI : MonoBehaviour
 
     private float current_basic_delay;
     private float current_special_delay;
+    private float panic_timer;
+    private float panic_duration = 0.9f;
 
 
     void Awake()
@@ -35,12 +38,40 @@ public class USBAI : MonoBehaviour
     void Update()
     {
         HandleMovement();
-        HandleBasic();
-        HandleSpecial();
+        if (panic_timer <= 0)
+        {
+            HandleBasic();
+            HandleSpecial();
+        }
     }
 
 
     void HandleMovement()
+    {
+        CalculateWaypoint();
+        CalculateMovementBehaviour();
+    }
+
+
+    void CalculateMovementBehaviour()
+    {
+        if (closest_enemy != null)
+        {
+            var dist = (closest_enemy.transform.position - transform.position);
+            dist.y = 0;
+
+            if (RollForPanic())
+                dist *= -1;
+
+            if (dist.magnitude > 3)
+                character.Move(dist.normalized);
+            else
+                character.Face(dist.normalized);
+        }
+    }
+
+
+    void CalculateWaypoint()
     {
         waypoint_timer += Time.deltaTime;
 
@@ -63,16 +94,27 @@ public class USBAI : MonoBehaviour
                 closest_enemy = enemy;
             }
         }
+    }
 
-        if (closest_enemy != null)
+
+    bool RollForPanic()
+    {
+        if (panic_timer <= 0)
         {
-            var dist = (closest_enemy.transform.position - transform.position);
-            dist.y = 0;
-
-            if (dist.magnitude > 3)
-                character.Move(dist.normalized);
+            if (Random.Range(0, 100) < panic_chance)//roll for panic
+            {
+                panic_timer = panic_duration;//start panic
+                return true;
+            }
             else
-                character.Face(dist.normalized);
+            {
+                return false;//no panic
+            }
+        }
+        else
+        {
+            panic_timer -= Time.deltaTime;//already in panic
+            return true;
         }
     }
 

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class LoadoutStats
@@ -153,6 +154,8 @@ public class StatTracker : MonoBehaviour
     void Awake()
     {
         awake_time = Time.time;
+
+        Init(LoadoutFactory.instance.general_loadouts.Keys.ToList());
     }
 
 }

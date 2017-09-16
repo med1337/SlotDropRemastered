@@ -51,10 +51,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a882d692daa53740b6cdc0261ff4668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 4
   cooldown: 2.5
   lifetime: 2
   activation_sound: {fileID: 8300000, guid: 07b5fe4fb5865a147a3a250d75420763, type: 3}
+  hit_sound: {fileID: 0}
   fire_block: {fileID: 1953485136763882, guid: d89c35659a28fa744a2db7c73c0c1c1a, type: 2}
   blast_delay: 0.05
   blast_spacing: 3

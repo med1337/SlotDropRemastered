@@ -75,7 +75,7 @@
 	[
 		{
 			"name": "Gold",
-            "max_health": 400,
+            "max_health": 300,
             "move_speed": 10,
             "scale": 7,
 			"basic": "TitanFire",

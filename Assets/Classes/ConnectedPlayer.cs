@@ -122,10 +122,10 @@ public class ConnectedPlayer
 
     void DebugCheats()
     {
-        if (!GameManager.cheats_enabled)
+        if (!GameManager.cheats_enabled || !input.GetButton("Back"))
             return;
 
-        if (input.GetButton("Back") && character != null)
+        if (character != null)
         {
             if (input.GetButton("Down"))
                 DebugLoadoutSelectOne();
@@ -133,7 +133,13 @@ public class ConnectedPlayer
             if (input.GetButton("Right"))
                 DebugLoadoutSelectTwo();
 
-            DebugPlayerStats();
+            if (input.GetButton("Left"))
+                DebugPlayerStats();
+        }
+
+        if (input.GetButton("Up"))
+        {
+            DebugSystem();
         }
     }
 
@@ -172,4 +178,37 @@ public class ConnectedPlayer
         if (input.GetButtonDown("RB"))
             character.stats.target_score += 50;
     }
+
+
+    void DebugSystem()
+    {
+        if (input.GetButtonDown("FaceLock"))
+        {
+            var respawn_manager = GameManager.scene.respawn_manager;
+
+            if (respawn_manager == null)
+                return;
+
+            --respawn_manager.min_ai;
+        }
+        else if (input.GetButtonDown("RB"))
+        {
+            var respawn_manager = GameManager.scene.respawn_manager;
+
+            if (respawn_manager == null)
+                return;
+
+            ++respawn_manager.min_ai;
+        }
+        else if (input.GetButtonDown("SlotDrop"))
+        {
+            var respawn_manager = GameManager.scene.respawn_manager;
+
+            if (respawn_manager == null)
+                return;
+
+            respawn_manager.TitanAllCharacters();
+        }
+    }
+
 }

@@ -158,6 +158,7 @@ public class USBCharacter : MonoBehaviour
     [SerializeField] float energy_lerp_speed = 0.5f;
     [SerializeField] int score_lerp_speed = 5;
     [SerializeField] float velocity_limit = 20;
+    [HideInInspector] public int health;
 
     [Header("References")] public GameObject body_group;
     public Rigidbody rigid_body;
@@ -177,7 +178,6 @@ public class USBCharacter : MonoBehaviour
 
     private MovementCalculator movement_calculator = new MovementCalculator();
     private USBLoadout loadout = new USBLoadout();
-    private int health;
     private float original_mass;
 
     private Ability basic_ability = new Ability();

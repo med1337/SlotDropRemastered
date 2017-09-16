@@ -24,6 +24,18 @@ public class RespawnManager : MonoBehaviour
     private int ai_modifier;
 
 
+    public bool MorePlayersNeeded()
+    {
+        if ((PlayerManager.active_player_count <= 1 && min_ai == 0) ||
+            (PlayerManager.active_player_count == 0 && min_ai > 0))
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+
     public void TitanAllCharacters()
     {
         foreach (USBCharacter character in alive_characters)
@@ -48,7 +60,8 @@ public class RespawnManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.T))
             TitanAllCharacters();
 
-        bool players_needed = GameManager.scene.respawn_manager.alive_characters.Count < 2 && !GameManager.restarting_scene;
+        bool players_needed = MorePlayersNeeded() && !GameManager.restarting_scene;
+
         players_needed_prompt.SetActive(players_needed);
 
         // Disable AI during Upgrade event.

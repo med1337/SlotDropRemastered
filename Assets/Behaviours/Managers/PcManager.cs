@@ -77,8 +77,8 @@ public class PcManager : MonoBehaviour
 
     //private
     private float _cursorSpeed;
-
     private float _protectionTimer = 0;
+    private float minimum_failure_chance = 10;
 
     public PCState PcState;
     private OSState _osState;
@@ -105,6 +105,8 @@ public class PcManager : MonoBehaviour
         _protectionUpdateRate = 1 / ProtectionUpdateRate;
         RebootSlider.maxValue = RebootDuration;
         _osScreen = GetComponent<OsScreen>();
+
+        ChangeSettings();
     }
 
     // Update is called once per frame
@@ -487,8 +489,7 @@ public class PcManager : MonoBehaviour
         //update timer
         _protectionTimer += Time.deltaTime;
 
-        if (!(_protectionTimer >= _protectionUpdateRate) ||
-            GameManager.scene.respawn_manager.alive_characters.Count < 2 &&
+        if (!(_protectionTimer >= _protectionUpdateRate) || GameManager.scene.respawn_manager.MorePlayersNeeded() &&
             !Input.GetKey(KeyCode.P))
         {
             return;
@@ -585,8 +586,8 @@ public class PcManager : MonoBehaviour
         QuarantineGameObject.transform.SetAsLastSibling();
 
         //attempt quarantine
-        if (!QuarantineGameObject.AttemptQuarantine(QuarantineProcessDuration, LoadDelay, ProtectionSlider.value,
-            aCharacter))
+        if (!QuarantineGameObject.AttemptQuarantine(QuarantineProcessDuration, LoadDelay,
+            ProtectionSlider.value - minimum_failure_chance, aCharacter))
         {
             QuarantineGameObject.gameObject.SetActive(false);
             return;
@@ -647,23 +648,28 @@ public class PcManager : MonoBehaviour
         {
             case CurrentOS.XP:
                 TemperatureStep = 25;
-                ProtectionUpdateStep = 0.8f;
+                ProtectionUpdateStep = 0.5f;
+                minimum_failure_chance = 50f;
                 break;
             case CurrentOS.Vista:
-                TemperatureStep = 20;
-                ProtectionUpdateStep = 0.6f;
+                TemperatureStep = 25;
+                ProtectionUpdateStep = 0.4f;
+                minimum_failure_chance = 40f;
                 break;
             case CurrentOS.Seven:
-                TemperatureStep = 15;
-                ProtectionUpdateStep = 0.4f;
+                TemperatureStep = 25;
+                ProtectionUpdateStep = 0.3f;
+                minimum_failure_chance = 30f;
                 break;
             case CurrentOS.Eight:
-                TemperatureStep = 10;
+                TemperatureStep = 25;
                 ProtectionUpdateStep = 0.2f;
+                minimum_failure_chance = 20f;
                 break;
             case CurrentOS.Ten:
-                TemperatureStep = 5;
+                TemperatureStep = 25;
                 ProtectionUpdateStep = 0;
+                minimum_failure_chance = 10f;
                 break;
             default:
                 throw new ArgumentOutOfRangeException();

@@ -52,14 +52,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b47c1c9f6d6b47e41bf69150fc7cc5a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 9
   cooldown: 2.5
   lifetime: 1
   activation_sound: {fileID: 8300000, guid: 211964f73ff6e3741ba3ac50e408d0fd, type: 3}
+  hit_sound: {fileID: 0}
   particle_effect: {fileID: 1762513334407198, guid: 80c3fc89a1053c342ba61df679e56fa1,
     type: 2}
   effect_radius: 50
   knockback_force: 25
+  stun_duration: 0
 --- !u!135 &135395033346480246
 SphereCollider:
   m_ObjectHideFlags: 1

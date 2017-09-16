@@ -24,6 +24,13 @@ public class RespawnManager : MonoBehaviour
     private int ai_modifier;
 
 
+    public void TitanAllCharacters()
+    {
+        foreach (USBCharacter character in alive_characters)
+            character.BecomeTitan();
+    }
+
+
     void Start()
     {
         spawn_area = GetComponent<SpawnAreaCircle>();
@@ -38,14 +45,10 @@ public class RespawnManager : MonoBehaviour
         RespawnPlayers();
         RespawnAI();
 
-        // Debug.
         if (Input.GetKeyDown(KeyCode.T))
-        {
-            foreach (USBCharacter character in alive_characters)
-                character.BecomeTitan();
-        }
+            TitanAllCharacters();
 
-        bool players_needed = PlayerManager.active_player_count < 2 && !GameManager.restarting_scene;
+        bool players_needed = GameManager.scene.respawn_manager.alive_characters.Count < 2 && !GameManager.restarting_scene;
         players_needed_prompt.SetActive(players_needed);
 
         // Disable AI during Upgrade event.
@@ -70,6 +73,8 @@ public class RespawnManager : MonoBehaviour
 
     void RespawnAI()
     {
+        min_ai = Mathf.Clamp(min_ai, 0, MAX_AI);
+
         if (alive_ai.Count < min_ai + ai_modifier)
             CreateUSBAICharacter();
 
@@ -85,8 +90,6 @@ public class RespawnManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.RightBracket))
             ++min_ai;
-
-        min_ai = Mathf.Clamp(min_ai, 0, MAX_AI);
     }
 
 

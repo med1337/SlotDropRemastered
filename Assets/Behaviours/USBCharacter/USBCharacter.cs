@@ -580,7 +580,7 @@ public class USBCharacter : MonoBehaviour
 
     void AwardKill(USBCharacter _killer)
     {
-        _killer.Heal(_killer.heal_on_kill);
+        _killer.Heal(_killer.is_titan ? _killer.heal_on_kill / 2 : _killer.heal_on_kill);
         _killer.stats.target_score += score_on_kill;
 
         GameManager.scene.stat_tracker.LogKill(_killer.loadout_name);

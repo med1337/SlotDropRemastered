@@ -68,7 +68,7 @@ public class USBSlot : MonoBehaviour
             Projectile.CreateEffect(LoadoutFactory.instance.download_data_prefab,
                 _character.transform.position, Vector3.zero);
             
-            GameManager.scene.pc_manager.DepositScore(_character.stats.score);
+            GameManager.scene.pc_manager.DepositScore(_character.stats.target_score);
             _character.stats.target_score = 0;
         }
         else
@@ -91,10 +91,13 @@ public class USBSlot : MonoBehaviour
 
     void Start()
     {
+
     }
 
 
     void Update()
     {
+
     }
+
 }

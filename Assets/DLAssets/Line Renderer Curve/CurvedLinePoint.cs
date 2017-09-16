@@ -24,7 +24,7 @@ public class CurvedLinePoint : MonoBehaviour
 
 		if( curvedLine != null )
 		{
-			curvedLine.Update();
+			curvedLine.UpdatePoints();
 		}
 	}
 }

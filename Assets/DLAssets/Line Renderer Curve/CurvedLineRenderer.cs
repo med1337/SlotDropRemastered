@@ -17,8 +17,8 @@ public class CurvedLineRenderer : MonoBehaviour
 	private Vector3[] linePositions = new Vector3[0];
 	private Vector3[] linePositionsOld = new Vector3[0];
 
-	// Update is called once per frame
-	public void Update () 
+
+	public void UpdatePoints()
 	{
 		GetPoints();
 		SetPointsToLine();
@@ -73,7 +73,7 @@ public class CurvedLineRenderer : MonoBehaviour
 
 	void OnDrawGizmosSelected()
 	{
-		Update();
+	    UpdatePoints();
 	}
 
 	void OnDrawGizmos()

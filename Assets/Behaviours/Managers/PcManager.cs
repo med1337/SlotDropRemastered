@@ -126,6 +126,13 @@ public class PcManager : MonoBehaviour
                 StartCoroutine(TriggerUpgrade());
             }
         }
+        if (Input.GetKeyUp(KeyCode.U))
+        {
+            if (PcState == PCState.None && _osState == OSState.Running)
+            {
+                UpgradeOs();
+            }
+        }
 
         ProcessPC();
         switch (PcState)
@@ -481,7 +488,7 @@ public class PcManager : MonoBehaviour
         _protectionTimer += Time.deltaTime;
 
         if (!(_protectionTimer >= _protectionUpdateRate) ||
-            PlayerManager.active_player_count < 2 &&
+            GameManager.scene.respawn_manager.alive_characters.Count < 2 &&
             !Input.GetKey(KeyCode.P))
         {
             return;
@@ -759,9 +766,25 @@ public class PcManager : MonoBehaviour
     {
         if (statsScore == 0) return;
 
-        TitanScore += statsScore;
+        float target = TitanScore + statsScore;
 
-        GameManager.scene.focus_camera.Focus(GameManager.scene.pc_manager.transform.position, 9, 1f);
+        TitanScore += statsScore;
         TitanScreenX.UpdateScreen();
+
+        StartCoroutine(TitanSlotEvent(target));
+    }
+
+
+    IEnumerator TitanSlotEvent(float _target_score)
+    {
+        // Begin focus.
+        GameManager.scene.focus_camera.Focus(GameManager.scene.pc_manager.transform.position, 9, 999f);
+
+        // Wait until the point slider has finished incrementing.
+        yield return new WaitUntil(() => TitanScreenX.PointSlider.value >= _target_score ||
+            TitanScreenX.PointSlider.value >= TitanScreenX.PointSlider.maxValue);
+
+        // End focus.
+        GameManager.scene.focus_camera.Focus(GameManager.scene.pc_manager.transform.position, 9, 0.5f);
     }
 }

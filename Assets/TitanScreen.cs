@@ -15,6 +15,7 @@ public class TitanScreen : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        UpdateScreen();
     }
 
     // Update is called once per frame
@@ -31,7 +32,7 @@ public class TitanScreen : MonoBehaviour
                 _updateScore = false;
             }
 
-            PointToWinText.text = (PointSlider.maxValue - PointSlider.value) + " points to win";
+            PointToWinText.text = (PointSlider.maxValue - PointSlider.value) + " points\nto win";
             PointSliderText.text = PointSlider.value + "/" + PointSlider.maxValue;
 
             if (PointSlider.value >= PointSlider.maxValue)

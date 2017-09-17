@@ -12,10 +12,12 @@ public class RespawnManager : MonoBehaviour
     public int min_ai;
 
     [SerializeField] GameObject usb_character_prefab;
+    [SerializeField] GameObject players_needed_prompt;
     [SerializeField] string starting_loadout = "Base";
     [SerializeField] bool spawn_ai_with_random_loadout = true;
     [SerializeField] bool disable_ai_during_upgrade_event = true;
-    [SerializeField] GameObject players_needed_prompt;
+    [SerializeField] public StateMachine ai_behaviour;
+    [Space]
 
     private List<USBCharacter> alive_ai = new List<USBCharacter>();
     private const int MAX_AI = 32;
@@ -121,7 +123,10 @@ public class RespawnManager : MonoBehaviour
     void CreateUSBAICharacter()
     {
         USBCharacter character = CreateUSBCharacter("AIDude", Color.white);
-        character.gameObject.AddComponent<USBAI>();
+        USBAI created_ai = character.gameObject.AddComponent<USBAI>();
+
+        if (ai_behaviour != null)
+            created_ai.SetAIBehaviour(ai_behaviour);
 
         if (spawn_ai_with_random_loadout)
         {

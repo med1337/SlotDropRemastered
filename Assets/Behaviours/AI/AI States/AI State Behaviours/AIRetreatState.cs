@@ -24,7 +24,7 @@ public class AIRetreatState : State
         if (ai_controller == null)
             return NO_TRANSITION;
 
-        if (retreat_timer >= retreat_duration)
+        if (retreat_timer <= 0)
             return (int)AIState.Wandering;
 
         if (ai_controller.character.loadout_name == "Gold")
@@ -40,7 +40,7 @@ public class AIRetreatState : State
             return;
 
         RetreatMovement();
-        retreat_timer += Time.deltaTime;
+        retreat_timer -= Time.deltaTime;
     }
 
 

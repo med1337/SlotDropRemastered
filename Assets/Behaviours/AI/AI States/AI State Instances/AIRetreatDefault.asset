@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Name: AIRetreatDefault
   m_EditorClassIdentifier: 
   state_id: 2
-  retreat_duration: 10
+  retreat_duration: 1

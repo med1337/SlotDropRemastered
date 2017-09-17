@@ -32,6 +32,7 @@ public class USBAI : MonoBehaviour
     private float panic_low_health_mod = 1.1f;
     private int max_health = 0;
 
+
     private void OnDestroy()
     {
         if (ai_state_machine != null)
@@ -57,7 +58,7 @@ public class USBAI : MonoBehaviour
 
     public void SetAIBehaviour(StateMachine _behaviour)
     {
-        ai_state_machine = Object.Instantiate(_behaviour);//create my own copy of the state machine asset
+        ai_state_machine = Object.Instantiate(_behaviour);//create own copy of the state machine asset
         ai_state_machine.InitStateMachine(this);//intitialise
     }
 
@@ -204,7 +205,6 @@ public class USBAI : MonoBehaviour
             return;
 
         current_special_delay = Time.time + Random.Range(MIN_SPECIAL_USE, MAX_SPECIAL_USE);
-
         character.SlotDrop();
     }
 

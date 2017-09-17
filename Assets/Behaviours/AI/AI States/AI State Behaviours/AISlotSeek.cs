@@ -8,7 +8,6 @@ public class AISlotSeek : State
     private USBAI ai_controller;
     private bool slotted = false;
 
-
     public override void InitState(MonoBehaviour _behaviour)
     {
         ai_controller = _behaviour as USBAI;
@@ -36,8 +35,11 @@ public class AISlotSeek : State
         if (ai_controller.closest_slot == null)
             return false;
 
-        ai_controller.MoveAI(ai_controller.CalculateMoveVector(ai_controller.closest_slot.transform), 0.5f);
+        const float tolerance = 0.5f;
 
+        ai_controller.MoveAI(ai_controller.CalculateMoveVector(ai_controller.closest_slot.transform), tolerance);
+
+        if (Vector3.Distance(ai_controller.closest_slot.transform.position, ai_controller.character.transform.position) <= tolerance)
         {
             if (ai_controller.closest_slot.slottable)
             {

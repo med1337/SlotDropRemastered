@@ -8,7 +8,7 @@ public class SlotManager : MonoBehaviour
     [SerializeField] float min_activate_delay = 2;
     [SerializeField] float max_activate_delay = 10;
 
-    private List<USBSlot> slots;
+    public List<USBSlot> slots;
     private bool random_slot_queued = false;
     private USBSlot last_opened_slot;
 

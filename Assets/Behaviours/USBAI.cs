@@ -1,13 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VR.WSA.Persistence;
+
+enum AIState : uint
+{
+    Wandering,
+    Attacking,
+    Retreating,
+    SeekSlot
+}
 
 
 public class USBAI : MonoBehaviour
 {
-    private USBCharacter character;
+    [HideInInspector] public USBCharacter character;
+    [HideInInspector] public USBCharacter closest_enemy;
+    [HideInInspector] public USBSlot closest_slot;
+
+    [SerializeField] private StateMachine ai_state_machine;
     private float waypoint_timer = 0;
-    private USBCharacter closest_enemy;
 
     private const float MIN_BASIC_USE = 1;
     private const float MAX_BASIC_USE = 2;
@@ -16,9 +28,16 @@ public class USBAI : MonoBehaviour
 
     private float current_basic_delay;
     private float current_special_delay;
-    private float panic_chance = 0.9f;
-    private float panic_timer;
-    private float panic_duration = 0.9f;
+    private float panic_chance = 0.005f;
+    private float panic_low_health_mod = 1.1f;
+    private int max_health = 0;
+
+
+    private void OnDestroy()
+    {
+        if (ai_state_machine != null)
+            Destroy(ai_state_machine);
+    }
 
 
     void Awake()
@@ -32,47 +51,53 @@ public class USBAI : MonoBehaviour
         else
         {
             character.AddSpeedModifier(0.75f, float.MaxValue);
+            max_health = character.health;
         }
+    }
+
+
+    public void SetAIBehaviour(StateMachine _behaviour)
+    {
+        ai_state_machine = Object.Instantiate(_behaviour);//create own copy of the state machine asset
+        ai_state_machine.InitStateMachine(this);//intitialise
     }
 
 
     void Update()
     {
-        HandleMovement();
-        if (panic_timer <= 0)
+        if (ai_state_machine == null)
         {
-            HandleBasic();
-            HandleSpecial();
+            Debug.LogWarning("AI did not recieve state machine behaviour!");
+            return;
         }
+
+        ai_state_machine.UpdateStateMachine();
     }
 
 
-    void HandleMovement()
+    public Vector3 CalculateMoveVector(Transform _target)
     {
-        CalculateWaypoint();
-        CalculateMovementBehaviour();
-    }
-
-
-    void CalculateMovementBehaviour()
-    {
-        if (closest_enemy != null)
+        if (_target != null)
         {
-            var dist = (closest_enemy.transform.position - transform.position);
+            var dist = (_target.position - transform.position);
             dist.y = 0;
-
-            if (RollForPanic())
-                dist *= -1;
-
-            if (dist.magnitude > 3)
-                character.Move(dist.normalized);
-            else
-                character.Face(dist.normalized);
+            return dist;
         }
+
+        return Vector3.zero;
     }
 
 
-    void CalculateWaypoint()
+    public void MoveAI(Vector3 _dir, float _min_magnitude = 0)
+    {
+        if (_dir.magnitude > _min_magnitude)
+            character.Move(_dir.normalized);
+        else
+            character.Face(_dir.normalized);
+    }
+
+
+    public void CalculateWaypoint()
     {
         waypoint_timer += Time.deltaTime;
 
@@ -98,29 +123,67 @@ public class USBAI : MonoBehaviour
     }
 
 
-    bool RollForPanic()
+    public void FindClosestOpenSlot()
     {
-        if (panic_timer <= 0)
+        var slot_list = GameManager.scene.slot_manager.slots;
+        float closest_distance = float.PositiveInfinity;
+
+        foreach (var slot in slot_list)
         {
-            if (Random.Range(0, 100) < panic_chance)//roll for panic
+            if (slot.golden_slot)
             {
-                panic_timer = panic_duration;//start panic
-                return true;
+                if (character.loadout_name == "Gold")
+                { 
+                    closest_slot = slot;
+                    return;
+                }
+                continue;
             }
-            else
+
+            float dist = (slot.transform.position - transform.position).sqrMagnitude;
+            if (dist >= closest_distance)
+                continue;
+
+            if (slot.slottable)
             {
-                return false;//no panic
+                closest_distance = dist;
+                closest_slot = slot;
             }
-        }
-        else
-        {
-            panic_timer -= Time.deltaTime;//already in panic
-            return true;
         }
     }
 
 
-    void HandleBasic()
+    public bool RollForPanic()
+    {
+        if (closest_enemy == null)
+            return false;
+
+        if (Random.Range(0, 100) < panic_chance + panic_low_health_mod && CheckHealthPercentage(30))//roll for panic
+            return true;
+
+        if (CheckHealthPercentage(10))
+            return true;
+
+        if (Random.Range(0, 100) < panic_chance)
+            return true;
+
+        return false;//no panic
+    }
+
+
+    public bool CheckHealthPercentage(float _health_percentage)
+    {
+        float percent = (float)max_health;
+        percent *= 0.01f;
+
+        if (max_health < percent * _health_percentage)
+            return true;
+
+        return false;
+    }
+
+
+    public void HandleBasic()
     {
         if (closest_enemy == null && current_basic_delay != 0)
             current_basic_delay = 0;
@@ -133,7 +196,7 @@ public class USBAI : MonoBehaviour
     }
 
 
-    void HandleSpecial()
+    public void HandleSpecial()
     {
         if (closest_enemy == null && current_special_delay != 0)
             current_special_delay = 0;

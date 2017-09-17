@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64bbc91853c198148947fc741c923df8, type: 3}
+  m_Name: AIDefaultBehaviours
+  m_EditorClassIdentifier: 
+  states:
+  - {fileID: 11400000, guid: 75def955da3f5a64c947cd8c695d1c12, type: 2}
+  - {fileID: 11400000, guid: 5fabc7bc1b93ee14aa24816efa5fadd8, type: 2}
+  - {fileID: 11400000, guid: 1342496d5a4b5d243837317600f4d066, type: 2}
+  - {fileID: 11400000, guid: eb34a37972207fa4f846117f23f9c6fa, type: 2}

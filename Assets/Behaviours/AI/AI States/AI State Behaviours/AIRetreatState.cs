@@ -7,7 +7,9 @@ public class AIRetreatState : State
 {
     private USBAI ai_controller;
     private float retreat_timer = 0;
-    [SerializeField] private float retreat_duration = 4f;
+
+    [Header("Retreat State Params")]
+    public float retreat_duration = 4f;
 
 
     public override void InitState(MonoBehaviour _behaviour)
@@ -26,7 +28,7 @@ public class AIRetreatState : State
             return (int)AIState.Wandering;
 
         if (ai_controller.character.loadout_name == "Gold")
-            return (int) AIState.Attacking;
+            return (int)AIState.Attacking;
 
             return NO_TRANSITION;
     }
@@ -50,7 +52,7 @@ public class AIRetreatState : State
         ai_controller.CalculateWaypoint();
         Vector3 dir = ai_controller.CalculateMoveVector(ai_controller.closest_enemy.transform);//invert vector
         dir *= -1;
-        ai_controller.MoveAI(dir, 3);//move in opposite direction
+        ai_controller.MoveAI(dir);//move in opposite direction
     }
 
 

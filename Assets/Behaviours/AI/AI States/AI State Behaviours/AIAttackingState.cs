@@ -7,8 +7,12 @@ public class AIAttackingState : State
 {
     private USBAI ai_controller;
 
+    [Header("Attack State Params")]
     public float max_distance_to_target = 5;
-    public int required_score_to_cash = 100;
+    [Space]
+
+    [Header("Transition to Seek Params")]
+    public int required_score_to_slot = 100;
     public int panic_slot_health_requirement = 10;
 
     public override void InitState(MonoBehaviour _behaviour)
@@ -23,7 +27,7 @@ public class AIAttackingState : State
         if (ai_controller.closest_enemy == null)
             return (int)AIState.Wandering;
 
-        if (ai_controller.character.stats.score >= required_score_to_cash ||
+        if (ai_controller.character.stats.score >= required_score_to_slot ||
             ai_controller.CheckHealthPercentage(panic_slot_health_requirement))
             return (int)AIState.SeekSlot;
 

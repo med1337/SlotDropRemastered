@@ -11,17 +11,19 @@ public class AISlotSeek : State
     public override void InitState(MonoBehaviour _behaviour)
     {
         ai_controller = _behaviour as USBAI;
-        state_id = (int) AIState.SeekSlot;
+        state_id = (int)AIState.SeekSlot;
     }
+
 
     public override int ProcessTransitions()
     {
         if (slotted)
-            return (int) AIState.Wandering;
+            return (int)AIState.Wandering;
 
 
         return NO_TRANSITION;
     }
+
 
     public override void UpdateState()
     {

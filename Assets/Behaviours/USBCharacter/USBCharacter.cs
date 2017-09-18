@@ -149,6 +149,7 @@ public class USBCharacter : MonoBehaviour
     public Vector3 move_dir { get; private set; }
     public bool is_titan { get; private set; }
     public bool controls_disabled { get; private set; }
+    public bool slot_dropping { get; private set; }
 
     [Header("Parameters")] [SerializeField] int score_on_kill = 50;
     [SerializeField] int heal_on_kill = 20;
@@ -184,7 +185,6 @@ public class USBCharacter : MonoBehaviour
     private Ability special_ability = new Ability();
 
     private bool moving;
-    private bool slot_dropping;
     private bool face_locked;
     private USBSlot last_slot_hit;
     private int score_;

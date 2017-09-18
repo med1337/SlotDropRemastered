@@ -11,6 +11,14 @@ public class AIRetreatState : State
     [Header("Retreat State Params")]
     public float retreat_duration = 4f;
 
+    [Space]
+    [Header("Transition to Seek Slot Params")]
+    public int panic_slot_health_percent = 10;
+
+    [Space]
+    [Header("Transition to Wandering Params")]
+    public float enemy_proximity = 15;
+
 
     public override void InitState(MonoBehaviour _behaviour)
     {
@@ -27,8 +35,17 @@ public class AIRetreatState : State
         if (retreat_timer <= 0)
             return (int)AIState.Wandering;
 
-        if (ai_controller.character.loadout_name == "Gold")
+        if (ai_controller.character.is_titan)
             return (int)AIState.Attacking;
+
+        if (ai_controller.FindClosestOpenSlot() && ai_controller.CheckHealthPercentage(panic_slot_health_percent))
+            return (int)AIState.SeekSlot;
+
+        if (ai_controller.closest_enemy == null)
+            return (int)AIState.Wandering;
+
+        if (ai_controller.DistanceFromCharacter(ai_controller.closest_enemy.transform) < enemy_proximity)
+            return (int)AIState.Wandering;
 
             return NO_TRANSITION;
     }
@@ -49,7 +66,7 @@ public class AIRetreatState : State
         if (ai_controller.closest_enemy == null)
             return;
 
-        ai_controller.CalculateWaypoint();
+        ai_controller.FindClosestEnemy();
         Vector3 dir = ai_controller.CalculateMoveVector(ai_controller.closest_enemy.transform);//invert vector
         dir *= -1;
         ai_controller.MoveAI(dir);//move in opposite direction

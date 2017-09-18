@@ -12,3 +12,6 @@ MonoBehaviour:
   m_Name: AIWanderingDefault
   m_EditorClassIdentifier: 
   state_id: 0
+  health_percent_attack_requirement: 30
+  required_score_to_slot: 50
+  panic_slot_health_requirement: 80

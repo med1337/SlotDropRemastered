@@ -12,3 +12,10 @@ MonoBehaviour:
   m_Name: AIAttackDefault
   m_EditorClassIdentifier: 
   state_id: 0
+  max_distance_to_target: 5
+  required_score_to_slot: 50
+  panic_slot_health_requirement: 10
+  low_health_retreat_chance: 0.5
+  low_health_retreat_percentage: 30
+  always_retreat_health_percentage: 10
+  random_retreat_chance: 0.001

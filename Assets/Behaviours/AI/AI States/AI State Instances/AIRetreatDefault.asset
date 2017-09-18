@@ -13,3 +13,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state_id: 2
   retreat_duration: 1
+  panic_slot_health_percent: 30
+  enemy_proximity: 2

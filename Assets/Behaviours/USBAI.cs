@@ -28,7 +28,7 @@ public class USBAI : MonoBehaviour
 
     private float current_basic_delay;
     private float current_special_delay;
-    private float panic_chance = 0.005f;
+    private float panic_chance = 0.0005f;
     private float panic_low_health_mod = 1.1f;
     private int max_health = 0;
 
@@ -77,14 +77,12 @@ public class USBAI : MonoBehaviour
 
     public Vector3 CalculateMoveVector(Transform _target)
     {
-        if (_target != null)
-        {
-            var dist = (_target.position - transform.position);
-            dist.y = 0;
-            return dist;
-        }
+        if (_target == null)
+            return Vector3.zero;
 
-        return Vector3.zero;
+        var dist = (_target.position - transform.position);
+        dist.y = 0;
+        return dist;
     }
 
 
@@ -97,45 +95,52 @@ public class USBAI : MonoBehaviour
     }
 
 
-    public void CalculateWaypoint()
+    public void FindClosestEnemy()
     {
         waypoint_timer += Time.deltaTime;
 
-        if (waypoint_timer >= 0.2f)
+        if (!(waypoint_timer >= 0.2f))
+            return;
+
+        waypoint_timer = 0;
+        var enemies = GameManager.scene.respawn_manager.alive_characters;
+        float closest_distance = float.PositiveInfinity;
+
+        foreach (var enemy in enemies)
         {
-            waypoint_timer = 0;
-            var enemies = GameManager.scene.respawn_manager.alive_characters;
-            float closest_distance = float.PositiveInfinity;
+            if (enemy == character)
+                continue;
 
-            foreach (var enemy in enemies)
+            if (enemy.is_titan)
             {
-                if (enemy == character)
-                    continue;
-
-                float dist = (enemy.transform.position - transform.position).sqrMagnitude;
-                if (dist >= closest_distance)
-                    continue;
-
-                closest_distance = dist;
                 closest_enemy = enemy;
+                return;
             }
+
+            float dist = (enemy.transform.position - transform.position).sqrMagnitude;
+            if (dist >= closest_distance)
+                continue;
+
+            closest_distance = dist;
+            closest_enemy = enemy;
         }
     }
 
 
-    public void FindClosestOpenSlot()
+    public bool FindClosestOpenSlot()
     {
         var slot_list = GameManager.scene.slot_manager.slots;
         float closest_distance = float.PositiveInfinity;
+        closest_slot = null;
 
         foreach (var slot in slot_list)
         {
             if (slot.golden_slot)
             {
-                if (character.loadout_name == "Gold")
+                if (character.is_titan)
                 { 
                     closest_slot = slot;
-                    return;
+                    return true;
                 }
                 continue;
             }
@@ -150,24 +155,8 @@ public class USBAI : MonoBehaviour
                 closest_slot = slot;
             }
         }
-    }
 
-
-    public bool RollForPanic()
-    {
-        if (closest_enemy == null)
-            return false;
-
-        if (Random.Range(0, 100) < panic_chance + panic_low_health_mod && CheckHealthPercentage(30))//roll for panic
-            return true;
-
-        if (CheckHealthPercentage(10))
-            return true;
-
-        if (Random.Range(0, 100) < panic_chance)
-            return true;
-
-        return false;//no panic
+        return closest_slot != null;
     }
 
 
@@ -175,11 +164,7 @@ public class USBAI : MonoBehaviour
     {
         float percent = (float)max_health;
         percent *= 0.01f;
-
-        if (max_health < percent * _health_percentage)
-            return true;
-
-        return false;
+        return max_health <= (percent * _health_percentage);
     }
 
 
@@ -190,7 +175,8 @@ public class USBAI : MonoBehaviour
 
         if (Time.time < current_basic_delay || closest_enemy == null)
             return;
-
+ 
+        FaceClosestEnemy();
         current_basic_delay = Time.time + Random.Range(MIN_BASIC_USE, MAX_BASIC_USE);
         character.Attack();
     }
@@ -203,9 +189,26 @@ public class USBAI : MonoBehaviour
 
         if (Time.time < current_special_delay || closest_enemy == null)
             return;
-
+        
+        FaceClosestEnemy();
         current_special_delay = Time.time + Random.Range(MIN_SPECIAL_USE, MAX_SPECIAL_USE);
         character.SlotDrop();
     }
 
+
+    private void FaceClosestEnemy()
+    {
+        if (closest_enemy == null)
+            return;
+
+        Vector3 dir = CalculateMoveVector(closest_enemy.transform);
+        dir.Normalize();
+        character.Face(dir);
+    }
+
+
+    public float DistanceFromCharacter(Transform _target)
+    {
+        return _target == null ? 0 : (_target.position - transform.position).sqrMagnitude;
+    }
 }

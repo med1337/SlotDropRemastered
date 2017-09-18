@@ -7,6 +7,7 @@ public class AISlotSeek : State
 {
     private USBAI ai_controller;
     private bool slotted = false;
+    private bool give_up_slot = false;
 
     public override void InitState(MonoBehaviour _behaviour)
     {
@@ -17,9 +18,11 @@ public class AISlotSeek : State
 
     public override int ProcessTransitions()
     {
-        if (slotted)
-            return (int)AIState.Wandering;
+        if (ai_controller == null)
+            return NO_TRANSITION;
 
+        if (slotted || !ai_controller.FindClosestOpenSlot())
+            return (int)AIState.Wandering;
 
         return NO_TRANSITION;
     }
@@ -27,7 +30,6 @@ public class AISlotSeek : State
 
     public override void UpdateState()
     {
-        ai_controller.FindClosestOpenSlot();
         slotted = MoveToSlot();
     }
 
@@ -40,7 +42,6 @@ public class AISlotSeek : State
         const float tolerance = 0.5f;
 
         ai_controller.MoveAI(ai_controller.CalculateMoveVector(ai_controller.closest_slot.transform), tolerance);
-
         if (Vector3.Distance(ai_controller.closest_slot.transform.position, ai_controller.character.transform.position) <= tolerance)
         {
             if (ai_controller.closest_slot.slottable)
@@ -49,7 +50,6 @@ public class AISlotSeek : State
                 return true;
             }
 
-            ai_controller.FindClosestOpenSlot();
             return false;
         }
 

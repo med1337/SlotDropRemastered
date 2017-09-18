@@ -93,7 +93,7 @@ public class FocusCameraManager : MonoBehaviour
             foreach (USBCharacter character in GameManager.scene.respawn_manager.alive_characters)
                 avg_position += character.transform.position;
 
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < GameManager.scene.respawn_manager.alive_characters.Count / 2; i++)
             {
                 avg_position += GameManager.scene.pc_manager.transform.position;
             }

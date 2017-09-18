@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class Quarantine : OsScreen
 {
     public Slider QuarantineSlider;
-    public Text ClassTitle;
     public Text ResultText;
     public ClassNotification ClassNotification;
     private QuarantineStatus _quarantineStatus;
@@ -67,8 +66,10 @@ public class Quarantine : OsScreen
     {
         if (_quarantineStatus != QuarantineStatus.Idle) return false;
 
-        ClassTitle.text = aCharacter.loadout_name;
+        ClassNotification.SetupClassMessages(aCharacter.loadout_name);
         ClassNotification.UpdatePhoto(aCharacter.loadout_name);
+
+        AudioManager.PlayOneShot(aCharacter.loadout_name.ToLower());
 
         _quarantineStatus = QuarantineStatus.Processing;
 
@@ -122,4 +123,6 @@ public class Quarantine : OsScreen
         //change quarantine state
         _quarantineStatus = QuarantineStatus.Result;
     }
+
+    
 };

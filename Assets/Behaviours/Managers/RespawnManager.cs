@@ -152,7 +152,7 @@ public class RespawnManager : MonoBehaviour
         character.SetColour(_color);
         character.name = _name;
 
-        LoadoutFactory.AssignLoadout(character, starting_loadout);
+        LoadoutFactory.AssignLoadout(character, starting_loadout == "" ? "Base" : starting_loadout);
 
         character.Init();
         character.Stun(0.9f, false);

@@ -125,7 +125,6 @@ GameObject:
   - component: {fileID: 224755058027208996}
   - component: {fileID: 222996832616015698}
   - component: {fileID: 114976129609708486}
-  - component: {fileID: 114707835679669672}
   m_Layer: 10
   m_Name: PointsToWin
   m_TagString: Untagged
@@ -2741,19 +2740,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 0
   m_Text: SUCCESS
---- !u!114 &114707835679669672
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1134126735666658}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f581559e5dd60f4db64c2de50466a28, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myText: {fileID: 0}
-  pointSlider: {fileID: 0}
 --- !u!114 &114724495666514228
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3470,7 +3456,7 @@ MonoBehaviour:
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "500 points \nto win"

@@ -791,6 +791,7 @@ public class PcManager : MonoBehaviour
             TitanScreenX.PointSlider.value >= TitanScreenX.PointSlider.maxValue);
 
         // End focus.
-        GameManager.scene.focus_camera.Focus(GameManager.scene.pc_manager.transform.position, 9, 0.5f);
+        GameManager.scene.focus_camera.Focus(GameManager.scene.pc_manager.transform.position, 9, 0.5f,
+            TitanScreenX.PointSlider.value < TitanScreenX.PointSlider.maxValue);
     }
 }

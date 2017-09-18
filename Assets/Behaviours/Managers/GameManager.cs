@@ -5,18 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static bool round_over;
-    public static bool restarting_scene { get; private set; }
+    public static bool restarting_scene;
     public static TempSceneRefs scene = new TempSceneRefs();
     public static bool cheats_enabled { get; set; }
 
     [SerializeField] PlayerManager player_manager;
     [SerializeField] AudioManager audio_manager;
     [SerializeField] LoadoutFactory loadout_factory;
-    [SerializeField] GameObject end_game_canvas;
+    public GameObject end_game_canvas;
     [SerializeField] private bool cheats_enabled_ = false;
 
-    private static GameManager instance;
+    public static GameManager instance;
 
 
     void Awake()
@@ -42,44 +41,16 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (round_over)
-        {
-            round_over = false;
-            StartCoroutine(EndOfRound());
-        }
-
         if (Input.GetKeyDown(KeyCode.Escape))
             Application.Quit();
 
         if (Input.GetKeyDown(KeyCode.R))
         {
             AudioManager.StopAllSFX();
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(0);
         }
 
         cheats_enabled = cheats_enabled_;
-    }
-
-
-    IEnumerator EndOfRound()
-    {
-        Time.timeScale = 0.3f;
-        restarting_scene = true;
-
-        yield return new WaitForSecondsRealtime(3);
-
-        Time.timeScale = 1;
-        end_game_canvas.SetActive(true);
-
-        yield return new WaitForSecondsRealtime(3);
-
-        restarting_scene = false;
-        end_game_canvas.SetActive(false);
-
-        PlayerManager.IdleAllPlayers();
-        AudioManager.StopAllSFX();
-
-        SceneManager.LoadScene(0);
     }
 
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TitanScreen : MonoBehaviour
 {
@@ -37,10 +38,36 @@ public class TitanScreen : MonoBehaviour
 
             if (PointSlider.value >= PointSlider.maxValue)
             {
-                GameManager.round_over = true;
+                _updateScore = false;
+                GameManager.scene.slot_manager.enabled = false;
+
+                StartCoroutine(EndOfRound());
             }
         }
     }
+
+
+    IEnumerator EndOfRound()
+    {
+        Time.timeScale = 0.3f;
+        GameManager.restarting_scene = true;
+
+        yield return new WaitForSecondsRealtime(3);
+
+        Time.timeScale = 1;
+        GameManager.instance.end_game_canvas.SetActive(true);
+
+        yield return new WaitForSecondsRealtime(3);
+
+        GameManager.restarting_scene = false;
+        GameManager.instance.end_game_canvas.SetActive(false);
+
+        PlayerManager.IdleAllPlayers();
+        AudioManager.StopAllSFX();
+
+        SceneManager.LoadScene(0);
+    }
+
 
     public void UpdateScreen()
     {

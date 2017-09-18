@@ -63,17 +63,20 @@ public class FocusCameraManager : MonoBehaviour
             case FocusCameraState.IDLE:
             {
                 IdleState();
-            } break;
+            }
+                break;
 
             case FocusCameraState.FOCUSING:
             {
                 FocusState();
-            } break;
+            }
+                break;
 
             case FocusCameraState.LOITERING:
             {
                 LoiterState();
-            } break;
+            }
+                break;
         }
     }
 
@@ -90,7 +93,10 @@ public class FocusCameraManager : MonoBehaviour
             foreach (USBCharacter character in GameManager.scene.respawn_manager.alive_characters)
                 avg_position += character.transform.position;
 
-            avg_position += GameManager.scene.pc_manager.transform.position;
+            for (int i = 0; i < 3; i++)
+            {
+                avg_position += GameManager.scene.pc_manager.transform.position;
+            }
             avg_position /= GameManager.scene.respawn_manager.alive_characters.Count + 2;
 
             last_idle_position = CalculateRayToScanPlane(avg_position);
@@ -189,5 +195,4 @@ public class FocusCameraManager : MonoBehaviour
         Gizmos.DrawSphere(raw_target, 2);
         Gizmos.DrawSphere(target_position, 2);
     }
-
 }

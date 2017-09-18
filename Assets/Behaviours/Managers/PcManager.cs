@@ -77,6 +77,7 @@ public class PcManager : MonoBehaviour
 
     //private
     private float _cursorSpeed;
+
     private float _protectionTimer = 0;
     private float minimum_failure_chance = 10;
 
@@ -560,6 +561,16 @@ public class PcManager : MonoBehaviour
             newpopupGameObject.transform.localPosition = new Vector3(posx, posy);
             newpopupGameObject.transform.rotation = new Quaternion(0, 0, 0, 0);
 
+            //overlay of os frame
+            var oSoverlayGameObject = new GameObject();
+            var y = oSoverlayGameObject.AddComponent<Image>();
+            y.sprite = HealthOsScreen.OsSprites[(int) SystemCurrentOs];
+
+            oSoverlayGameObject.transform.SetParent(newpopupGameObject.transform);
+            oSoverlayGameObject.transform.localScale = Vector3.one;
+            oSoverlayGameObject.transform.localPosition = Vector3.zero;
+            oSoverlayGameObject.transform.rotation = new Quaternion(0, 0, 0, 0);
+
             //add popup to array
             _popups.Add(newpopupGameObject);
 
@@ -690,6 +701,7 @@ public class PcManager : MonoBehaviour
             //disable quarantine popup
 
             //increase temperature
+            if (PcState != PCState.None) return;
             if (IncreaseTemperature() < 100)
             {
                 Popup(3);
@@ -788,7 +800,7 @@ public class PcManager : MonoBehaviour
 
         // Wait until the point slider has finished incrementing.
         yield return new WaitUntil(() => TitanScreenX.PointSlider.value >= _target_score ||
-            TitanScreenX.PointSlider.value >= TitanScreenX.PointSlider.maxValue);
+                                         TitanScreenX.PointSlider.value >= TitanScreenX.PointSlider.maxValue);
 
         // End focus.
         GameManager.scene.focus_camera.Focus(GameManager.scene.pc_manager.transform.position, 9, 0.5f,

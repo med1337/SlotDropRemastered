@@ -187,6 +187,8 @@ public class PcManager : MonoBehaviour
     {
         if (TemperatureSlider.value >= 100 && PcState == PCState.None)
         {
+            GameManager.scene.stat_tracker.LogMeteorSwarm();
+
             PcState = PCState.MeteorRain;
             StartCoroutine(TriggerCataclysm());
         }

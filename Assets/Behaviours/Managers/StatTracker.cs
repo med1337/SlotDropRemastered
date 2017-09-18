@@ -26,6 +26,7 @@ public class StatTracker : MonoBehaviour
 
     public List<UpgradeTimestamp> upgrade_timestamps = new List<UpgradeTimestamp>();
     public List<float> titan_timestamps = new List<float>();
+    public List<float> meteor_timestamps = new List<float>();
 
     private float awake_time;
     private bool initialised;
@@ -147,6 +148,20 @@ public class StatTracker : MonoBehaviour
         {
             Debug.Log("Titan Achieved at: " + timestamp.ToString() +
                 " [Total Titans this Session: " + titan_timestamps.Count.ToString() + "]");
+        }
+    }
+
+
+    public void LogMeteorSwarm()
+    {
+        float timestamp = Time.time - awake_time;
+
+        meteor_timestamps.Add(timestamp);
+
+        if (debug_log_enabled)
+        {
+            Debug.Log("Meteor Swarm triggered at: " + timestamp.ToString() +
+                " [Total Meteor Swarms this Session: " + meteor_timestamps.Count.ToString() + "]");
         }
     }
 

@@ -8,8 +8,10 @@ public class TitanScreen : MonoBehaviour
     public Text PointToWinText;
     public Slider PointSlider;
     public Text PointSliderText;
-    private bool _updateScore;
 
+    [SerializeField] AudioSource hum_source;
+
+    private bool _updateScore;
     private int _scoreTarget;
 
     // Use this for initialization
@@ -21,14 +23,24 @@ public class TitanScreen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        hum_source.volume = AudioManager.sfx_volume * 1.5f;
+
         if (_updateScore)
         {
             if (PointSlider.value < _scoreTarget)
             {
+                if (!hum_source.isPlaying)
+                    hum_source.Play();
+
+                hum_source.pitch = 1 + ((PointSlider.value / PointSlider.maxValue) * 2);
+
                 PointSlider.value+=2;
             }
             else
             {
+                if (hum_source.isPlaying)
+                    hum_source.Stop();
+
                 _updateScore = false;
             }
 
@@ -38,8 +50,16 @@ public class TitanScreen : MonoBehaviour
             if (PointSlider.value >= PointSlider.maxValue)
             {
                 _updateScore = false;
+
                 GameManager.scene.slot_manager.enabled = false;
                 GameManager.scene.general_canvas_manager.TriggerEndOfRound();
+
+                PointToWinText.text = "Game Over";
+                AudioManager.PlayOneShot("power_down");
+                CameraShake.Shake(0.6f, 0.6f);
+
+                if (hum_source.isPlaying)
+                    hum_source.Stop();
             }
         }
     }

@@ -10,6 +10,7 @@ TagManager:
   - USBSlot
   - Meteor
   - Sparkle
+  - PCUpgrade
   layers:
   - Default
   - TransparentFX

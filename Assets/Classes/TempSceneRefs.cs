@@ -70,11 +70,23 @@ public struct TempSceneRefs
         }
     }
 
+    public GeneralCanvasManager general_canvas_manager
+    {
+        get
+        {
+            if (general_canvas_manager_ == null)
+                general_canvas_manager_ = GameObject.FindObjectOfType<GeneralCanvasManager>();
+
+            return general_canvas_manager_;
+        }
+    }
+
     private StatTracker stat_tracker_;
     private RespawnManager respawn_manager_;
     private SlotManager slot_manager_;
     private PcManager pc_manager_;
     private MeteorManager meteor_manager_;
     private FocusCameraManager focus_camera_;
+    private GeneralCanvasManager general_canvas_manager_;
 
 }

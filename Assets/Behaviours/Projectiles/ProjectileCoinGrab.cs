@@ -8,8 +8,6 @@ public class ProjectileCoinGrab : Projectile
     [SerializeField] float charge_force = 10;
     [SerializeField] float hit_force = 5;
     [SerializeField] float life_steal = 0.25f;
-    [SerializeField] float stun_chance = 25f;
-    [SerializeField] float stun_duration = 0.5f;
     [SerializeField] Vector3 particle_offset = new Vector3(0, 0.1f, 0);
     [SerializeField] Vector3 coin_offset = new Vector3(0, 5, 0);
 
@@ -104,9 +102,6 @@ public class ProjectileCoinGrab : Projectile
 
         _character.Damage(damage, this.transform.position, owner);
         affected_characters.Add(_character);
-
-        if (Random.Range(1, 100) <= stun_chance)
-            _character.Stun(stun_duration);
 
         Destroy(this.gameObject);
     }

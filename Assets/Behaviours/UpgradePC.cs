@@ -29,8 +29,15 @@ public class UpgradePC : MonoBehaviour
 
     public void CancelUpgrade()
     {
+        if (spawned_hard_drive == null)
+            return;
+
+        upgrading = false;
         DestroyHardDrive();
         OpenUpgradeSlot(false);
+
+        move_to_slot = false;
+        t = 0;
     }
 
 

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ProjectileCoinGrab : Projectile
 {
-    [Header("Parameters")]
     [SerializeField] float charge_force = 10;
     [SerializeField] float hit_force = 5;
     [SerializeField] float life_steal = 0.25f;

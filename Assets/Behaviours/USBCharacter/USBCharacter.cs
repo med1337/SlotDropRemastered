@@ -355,9 +355,12 @@ public class USBCharacter : MonoBehaviour
             }
             else
             {
-                Projectile.CreateEffect(titan_explosion_particle,
-                    body_group.transform.position, transform.position + (Vector3.up * 10));
-                AudioManager.PlayOneShot("explosion");
+                var clone = Instantiate(titan_explosion_particle);
+                clone.transform.position = transform.position + (Vector3.up * 10);
+                
+                AudioManager.PlayOneShot("large_explosion");
+                CameraShake.Shake(0.6f, 0.6f);
+                Destroy(clone, 8);
             }
 
             if (_dealer != null)

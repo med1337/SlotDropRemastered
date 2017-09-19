@@ -56,19 +56,21 @@
 			"scale": 3,
 			"basic": "PyramidTurret",
 			"special": "ZombieSlow"
-		}
-	],
+		},
 
-    "Unused":
-    [
 		{
 			"name": "Thief",
 			"max_health": 100,
 			"move_speed": 15,
 			"scale": 3,
-			"basic": "Null",
+			"basic": "CoinGrab",
 			"special": "Null"
 		}
+	],
+
+    "Unused":
+    [
+
 	],
 
 	"Titan":

@@ -9,6 +9,7 @@ public class ProjectileSwordDance : Projectile
     public float speed_modifier = 0.5f;
     public float stun_duration = 0.5f;
     public float stun_chance = 10;
+    public float charge_force = 10;
 
     private GameObject orbit_axis;
 
@@ -21,15 +22,13 @@ public class ProjectileSwordDance : Projectile
             transform.position = orbit_axis.transform.position;
 
             if (owner.move_dir.magnitude > 0.05f)
-                owner.rigid_body.AddForce(facing * 10000);
+                owner.rigid_body.AddForce(facing * charge_force * 1000);
 
             owner.AddSpeedModifier(speed_modifier, lifetime);
         }
 
         GetComponent<SphereCollider>().center = new Vector3(orbit_distance, 0, 0);
         transform.FindChild("SwordDanceParticle").transform.localPosition = new Vector3(orbit_distance, 0, 0);
-
-        Destroy(this.gameObject, lifetime);
     }
 
 

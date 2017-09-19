@@ -168,6 +168,9 @@ public class ConnectedPlayer
 
         if (input.GetButtonDown("Y"))
             LoadoutFactory.AssignLoadout(character, "Egyptian");
+
+        if (input.GetButtonDown("B"))
+            LoadoutFactory.AssignLoadout(character, "Thief");
     }
 
     //put any stat related cheats here

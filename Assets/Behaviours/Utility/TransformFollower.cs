@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TransformFollower : MonoBehaviour
 {
-    [SerializeField] Vector3 offset;
+    public Vector3 offset;
 
     public Transform target
     {

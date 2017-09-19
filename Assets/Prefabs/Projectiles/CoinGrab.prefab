@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1231093180483564}
+  m_IsPrefabParent: 1
+--- !u!1 &1231093180483564
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4306723458186986}
+  - component: {fileID: 114256561554681032}
+  - component: {fileID: 135462147529417900}
+  m_Layer: 0
+  m_Name: CoinGrab
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4306723458186986
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1231093180483564}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9.476508, y: 5.1, z: -9.842259}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114256561554681032
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1231093180483564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0454959fc58e9bf498601c8cb596692d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 12
+  cooldown: 1.2
+  lifetime: 0.5
+  activation_sound: {fileID: 8300000, guid: 8cb14dca72374b949a375cf12fb44e58, type: 3}
+  hit_sound: {fileID: 0}
+  charge_force: 12
+  hit_force: 10
+  life_steal: 0.3
+  stun_chance: 25
+  stun_duration: 0.5
+  particle_offset: {x: 0, y: 0.5, z: 0}
+  coin_offset: {x: 0, y: 5, z: 2}
+  coin_get: {fileID: 8300000, guid: 682cac113aae3484a87eeef5425d9128, type: 3}
+  hit_sounds:
+  - {fileID: 8300000, guid: 9d5690f891427d14697530555b0a89ab, type: 3}
+  - {fileID: 8300000, guid: 7c8d9d4b93c3360409d042065fa05e0b, type: 3}
+  - {fileID: 8300000, guid: c28ef56d9f2700449918319f9d4d13f5, type: 3}
+  coin_prefab: {fileID: 1662747304829068, guid: 3f4a4d8b654aed746b7c38a2aa24b8e5,
+    type: 2}
+  particle_prefab: {fileID: 1890452938857988, guid: 96ce1b0956de8274d8c7fc54612e36f3,
+    type: 2}
+--- !u!135 &135462147529417900
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1231093180483564}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3
+  m_Center: {x: 0, y: 0, z: 0}

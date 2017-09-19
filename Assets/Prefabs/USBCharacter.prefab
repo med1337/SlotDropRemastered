@@ -588,7 +588,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1407569977858368}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.204925, y: 0.023326874, z: -6.0311003}
+  m_LocalPosition: {x: -3.7989736, y: 0.023326874, z: -14.13617}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4417497652370508}
@@ -944,6 +944,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf2c961b8e21164595fbec59cb9a3a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pulse_mode: 0
+  pulse_speed: 0
+  pulse_low: 0
+  pulse_high: 1
 --- !u!114 &114163896092585598
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1498,6 +1502,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf2c961b8e21164595fbec59cb9a3a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pulse_mode: 0
+  pulse_speed: 0
+  pulse_low: 0
+  pulse_high: 1
 --- !u!114 &114906688605334884
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1564,6 +1572,7 @@ MonoBehaviour:
   energy_lerp_speed: 1
   score_lerp_speed: 6
   velocity_limit: 40
+  health: 0
   body_group: {fileID: 1868444851001498}
   rigid_body: {fileID: 54928263774891892}
   shadow: {fileID: 119234882019570808}
@@ -1575,6 +1584,8 @@ MonoBehaviour:
   hud: {fileID: 114239383109276938}
   damage_flash: {fileID: 114148203334332156}
   shake_module: {fileID: 114195307393189010}
+  titan_explosion_particle: {fileID: 1678359896274582, guid: d6459a13193871d4d89ac712faf11b00,
+    type: 2}
   hit_particle: {fileID: 1134118733693108, guid: 4d3a757409902794bb97c94a856ca590,
     type: 2}
   heal_particle: {fileID: 1648315875834180, guid: 813536f1a76bfb4439ef1e4e5c37ed85,

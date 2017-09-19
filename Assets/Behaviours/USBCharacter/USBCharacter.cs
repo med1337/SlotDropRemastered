@@ -173,6 +173,7 @@ public class USBCharacter : MonoBehaviour
     [SerializeField] PlayerHUD hud;
     [SerializeField] FadableGraphic damage_flash;
     [SerializeField] ShakeModule shake_module;
+    [SerializeField] GameObject titan_explosion_particle;
     [SerializeField] GameObject hit_particle;
     [SerializeField] GameObject heal_particle;
     [SerializeField] Transform slot_tracker;
@@ -339,19 +340,30 @@ public class USBCharacter : MonoBehaviour
 
         if (health <= 0)
         {
-            for (int i = 0; i < 3; ++i)
-            {
-                Projectile.CreateEffect(hit_particle,
-                    body_group.transform.position, transform.position + (Vector3.up * 10));
-            }
 
-            GameManager.scene.stat_tracker.LogDeath(loadout_name);
-            AudioManager.PlayOneShot("death");
+            if (!is_titan)
+            {
+                for (int i = 0; i < 3; ++i)
+                {
+                    Projectile.CreateEffect(hit_particle,
+                        body_group.transform.position, transform.position + (Vector3.up * 10));
+                }
+
+                GameManager.scene.stat_tracker.LogDeath(loadout_name);
+                AudioManager.PlayOneShot("death");
+            }
+            else
+            {
+                Projectile.CreateEffect(titan_explosion_particle,
+                    body_group.transform.position, transform.position + (Vector3.up * 10));
+                AudioManager.PlayOneShot("explosion");
+            }
 
             if (_dealer != null)
             {
                 AwardKill(_dealer);
             }
+            
 
             Destroy(this.gameObject);
         }

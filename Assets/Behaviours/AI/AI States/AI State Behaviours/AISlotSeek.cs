@@ -7,7 +7,6 @@ public class AISlotSeek : State
 {
     private USBAI ai_controller;
     private bool slotted = false;
-    private bool give_up_slot = false;
 
     public override void InitState(MonoBehaviour _behaviour)
     {

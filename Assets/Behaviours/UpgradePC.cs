@@ -27,6 +27,13 @@ public class UpgradePC : MonoBehaviour
     #endregion
 
 
+    public void CancelUpgrade()
+    {
+        DestroyHardDrive();
+        OpenUpgradeSlot(false);
+    }
+
+
     void Update()
     {
         SuckHardDrive();
@@ -95,8 +102,6 @@ public class UpgradePC : MonoBehaviour
         if (CheckHardDriveDistance())//check if move complete
         {
             EndHardDriveSuck();
-            pc_upgrade_indicator.target = null;
-            upgrade_slot_indicator.SetActive(false);
 
             return;
         }
@@ -125,11 +130,13 @@ public class UpgradePC : MonoBehaviour
 
     private void DestroyHardDrive()
     {
-        if (spawned_hard_drive)
-        {
-            Destroy(spawned_hard_drive, destroy_delay);
-            spawned_hard_drive = null;
-        }
+        if (spawned_hard_drive == null)
+            return;
+
+        Destroy(spawned_hard_drive, destroy_delay);
+        spawned_hard_drive = null;
+        pc_upgrade_indicator.target = null;
+        upgrade_slot_indicator.SetActive(false);
     }
 
 

@@ -10,6 +10,7 @@ public class TitanScreen : MonoBehaviour
     public Text PointSliderText;
 
     [SerializeField] AudioSource hum_source;
+    [SerializeField] AudioClip bar_maxed_clip;
 
     private bool _updateScore;
     private int _scoreTarget;
@@ -55,11 +56,13 @@ public class TitanScreen : MonoBehaviour
                 GameManager.scene.general_canvas_manager.TriggerEndOfRound();
 
                 PointToWinText.text = "Game Over";
-                AudioManager.PlayOneShot("power_down");
                 CameraShake.Shake(0.6f, 0.6f);
 
                 if (hum_source.isPlaying)
                     hum_source.Stop();
+
+                hum_source.pitch = 1;
+                hum_source.PlayOneShot(bar_maxed_clip);
             }
         }
     }

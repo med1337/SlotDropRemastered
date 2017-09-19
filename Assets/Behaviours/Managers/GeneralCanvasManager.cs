@@ -35,10 +35,13 @@ public class GeneralCanvasManager : MonoBehaviour
         GameManager.scene.respawn_manager.KillAllCharacters();
         AudioManager.StopAllSFX();
 
-        results_panel.GetComponent<ResultsPanelManager>().UpdateSessionTimer();
+        CleanUpAbilities();
+
+        var results_panel_manager = results_panel.GetComponent<ResultsPanelManager>();
+        results_panel_manager.UpdateSessionTimer();
         results_panel.SetActive(true);
 
-        yield return new WaitUntil(() => !results_panel.activeSelf);
+        yield return new WaitUntil(() => !results_panel_manager.enabled);
 
         GameManager.restarting_scene = false;
         title_panel.SetActive(false);
@@ -47,11 +50,22 @@ public class GeneralCanvasManager : MonoBehaviour
     }
 
 
+    void CleanUpAbilities()
+    {
+        foreach (Projectile projectile in FindObjectsOfType<Projectile>())
+            Destroy(projectile.gameObject);
+
+        foreach (Barrel barrel in FindObjectsOfType<Barrel>())
+            Destroy(barrel.gameObject);
+
+        foreach (Turret turret in FindObjectsOfType<Turret>())
+            Destroy(turret.gameObject);
+    }
+
+
 	
     void Update()
     {
-        //results_panel.SetActive(Input.GetKey(KeyCode.Tab));
-
         bool players_needed = GameManager.scene.respawn_manager.MorePlayersNeeded() && !GameManager.restarting_scene;
         players_needed_prompt.SetActive(players_needed);
     }

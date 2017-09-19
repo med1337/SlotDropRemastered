@@ -3293,6 +3293,7 @@ MonoBehaviour:
   PointSlider: {fileID: 114174594815424856}
   PointSliderText: {fileID: 114989211195065590}
   hum_source: {fileID: 82485930363635870}
+  bar_maxed_clip: {fileID: 8300000, guid: 7fe08c15676fae94cb4eb8c54bb7f492, type: 3}
 --- !u!114 &114895305844176322
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -62,7 +62,7 @@ public class ResultsPanelManager : MonoBehaviour
             continue_text.gameObject.SetActive(true);
 
         if (continue_text.gameObject.activeSelf && ReInput.controllers.GetAnyButton())
-            this.gameObject.SetActive(false);
+            this.enabled = false;
     }
 
 
@@ -79,15 +79,6 @@ public class ResultsPanelManager : MonoBehaviour
 
         pin_position.x = Mathf.Clamp(pin_position.x, -(timeline_line.rectTransform.rect.width / 2), timeline_line.rectTransform.rect.width / 2);
         timeline_pin.transform.localPosition = pin_position;
-    }
-
-
-    void OnDisable()
-    {
-        timeline_pin.rectTransform.localPosition = Vector3.zero - new Vector3(timeline_line.rectTransform.rect.width / 2, 0, 0);
-
-        foreach (Image pin in spawned_pins)
-            Destroy(pin.gameObject);
     }
 
 }

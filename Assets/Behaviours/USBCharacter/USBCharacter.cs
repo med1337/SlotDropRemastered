@@ -341,7 +341,6 @@ public class USBCharacter : MonoBehaviour
 
         if (health <= 0)
         {
-
             if (!is_titan)
             {
                 for (int i = 0; i < 3; ++i)

@@ -99,6 +99,19 @@ public class PcManager : MonoBehaviour
     private OsScreen _osScreen;
 
 
+    public void CancelUpgradeState()
+    {
+        if (PcState != PCState.Upgrade)
+            return;
+
+        UpgradeManager.CancelUpgrade();
+        UpgradeGameObject.gameObject.SetActive(false);
+
+        Reboot(3);
+        ResetProtectionBarToMax();
+    }
+
+
     // Use this for initialization
     void Start()
     {

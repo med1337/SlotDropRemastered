@@ -264,9 +264,9 @@ MonoBehaviour:
   charge_speed: 80
   dir_threshold: 0.5
   hit_sounds:
-  - {fileID: 8300000, guid: 40a3462fa1596674eb7d1e8d07f510f2, type: 3}
-  - {fileID: 8300000, guid: d8b1cd6a338089c4998dfa41461b75e2, type: 3}
-  - {fileID: 8300000, guid: 95d48006ddd5fe448b360e85776029f5, type: 3}
+  - {fileID: 8300000, guid: 0b6e328af6a08594196f52761acb3ef6, type: 3}
+  - {fileID: 8300000, guid: e7f8593591b64264cbc88f9e814a3bd8, type: 3}
+  - {fileID: 8300000, guid: 913bcaad35fff624e99afacff4f5e207, type: 3}
 --- !u!135 &135225891422922496
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -51,6 +51,8 @@ public class ResultsPanelManager : MonoBehaviour
                 continue;
 
             class_blocks[i].enabled = true;
+            class_blocks[i].Flash();
+            AudioManager.PlayOneShot("wink");
         }
 
         if (timings_timer >= timeline_timing && !pin_done)
@@ -69,7 +71,7 @@ public class ResultsPanelManager : MonoBehaviour
         session_duration_text.text = string.Format("{0:00}:{1:00}", session_minutes, session_seconds);
 
         Vector3 pin_position = timeline_pin.transform.localPosition;
-        if (timeline_pin.transform.localPosition.x < timeline_line.rectTransform.rect.width)
+        if (!pin_done)
         {
             pin_position.x += (timeline_line.rectTransform.rect.width / session_timer) *
                               Time.unscaledDeltaTime * (pin_speed * (1 + session_minutes));

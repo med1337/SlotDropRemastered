@@ -93,11 +93,11 @@ public class FocusCameraManager : MonoBehaviour
             foreach (USBCharacter character in GameManager.scene.respawn_manager.alive_characters)
                 avg_position += character.transform.position;
 
-            for (int i = 0; i < GameManager.scene.respawn_manager.alive_characters.Count / 2; i++)
-            {
+            for (int i = 0; i < GameManager.scene.respawn_manager.alive_characters.Count / 3; ++i)
                 avg_position += GameManager.scene.pc_manager.transform.position;
-            }
-            avg_position /= GameManager.scene.respawn_manager.alive_characters.Count + 2;
+
+            avg_position += GameManager.scene.pc_manager.transform.position;
+            avg_position /= GameManager.scene.respawn_manager.alive_characters.Count + 3;
 
             last_idle_position = CalculateRayToScanPlane(avg_position);
         }

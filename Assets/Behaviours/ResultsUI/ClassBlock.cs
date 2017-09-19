@@ -20,8 +20,16 @@ public class ClassBlock : MonoBehaviour
     [SerializeField] Text deaths_text;
     [SerializeField] Text score_earned_text;
     [SerializeField] Text score_deposited_text;
+    [SerializeField] FadableGraphic fade_elem;
 
     private LoadoutStats attached_stats;
+
+
+    public void Flash()
+    {
+        fade_elem.Init();
+        fade_elem.FadeFrom(new Color(150, 150, 150), 1);
+    }
 
 
     void Awake()
@@ -33,6 +41,8 @@ public class ClassBlock : MonoBehaviour
         deaths_bar.value = 0;
         score_earned_bar.value = 0;
         score_deposited_bar.value = 0;
+
+        fade_elem.Init();
     }
 
 

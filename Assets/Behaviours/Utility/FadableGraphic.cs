@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Runtime.InteropServices;
 
 // Attach to a GameObject with an Image, SpriteRenderer, or Text component.
 public class FadableGraphic : MonoBehaviour
@@ -81,6 +82,24 @@ public class FadableGraphic : MonoBehaviour
     public void FadeOut(float _t)
     {
         FadeAlpha(1, 0, _t);
+    }
+
+
+    public void FadeFrom(Color _color, float _t)
+    {
+        Color from = _color;
+        Color to = GetGraphicColor();
+
+        FadeColor(from, to, _t);
+    }
+
+
+    public void FadeTo(Color _color, float _t)
+    {
+        Color from = GetGraphicColor();
+        Color to = _color;
+
+        FadeColor(from, to, _t);
     }
 
 

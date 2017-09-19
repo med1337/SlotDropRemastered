@@ -163,7 +163,6 @@ public class USBCharacter : MonoBehaviour
 
     [Header("References")] public GameObject body_group;
     public Rigidbody rigid_body;
-
     [SerializeField] Projector shadow;
     [SerializeField] Animator animator;
     [SerializeField] GameObject face_indicator;
@@ -176,6 +175,7 @@ public class USBCharacter : MonoBehaviour
     [SerializeField] GameObject hit_particle;
     [SerializeField] GameObject heal_particle;
     [SerializeField] Transform slot_tracker;
+    public GameObject character_indicator;
 
     private MovementCalculator movement_calculator = new MovementCalculator();
     private USBLoadout loadout = new USBLoadout();
@@ -298,7 +298,8 @@ public class USBCharacter : MonoBehaviour
     public void BecomeTitan()
     {
         // Can't become titan during another Cataclysm event.
-        if (GameManager.scene.pc_manager.PcState != PCState.None)
+        if (GameManager.scene.pc_manager.PcState == PCState.MeteorRain ||
+            GameManager.scene.pc_manager.PcState == PCState.Upgrade)
         {
             stats.target_energy = 99;
             return;

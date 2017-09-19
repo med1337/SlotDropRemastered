@@ -84,6 +84,7 @@ public class ConnectedPlayer
         {
             character.SetFaceLocked(input.GetButton("FaceLock"));
             character.Move(new Vector3(horizontal, 0, vertical));
+            character.character_indicator.SetActive(input.GetButton("Back"));
         }
 
         if (input.GetButton("Attack"))

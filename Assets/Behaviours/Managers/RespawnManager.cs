@@ -12,7 +12,6 @@ public class RespawnManager : MonoBehaviour
     public int min_ai;
 
     [SerializeField] GameObject usb_character_prefab;
-    [SerializeField] GameObject players_needed_prompt;
     [SerializeField] string starting_loadout = "Base";
     [SerializeField] bool spawn_ai_with_random_loadout = true;
     [SerializeField] bool disable_ai_during_upgrade_event = true;
@@ -45,6 +44,15 @@ public class RespawnManager : MonoBehaviour
     }
 
 
+    public void KillAllCharacters()
+    {
+        foreach (USBCharacter character in alive_characters)
+            Destroy(character.gameObject);
+
+        min_ai = 0;
+    }
+
+
     void Start()
     {
         spawn_area = GetComponent<SpawnAreaCircle>();
@@ -56,15 +64,14 @@ public class RespawnManager : MonoBehaviour
         alive_characters.RemoveAll(elem => elem == null);
         alive_ai.RemoveAll(elem => elem == null);
 
-        RespawnPlayers();
-        RespawnAI();
+        if (!GameManager.restarting_scene)
+        {
+            RespawnPlayers();
+            RespawnAI();
+        }
 
         if (Input.GetKeyDown(KeyCode.T))
             TitanAllCharacters();
-
-        bool players_needed = MorePlayersNeeded() && !GameManager.restarting_scene;
-
-        players_needed_prompt.SetActive(players_needed);
 
         // Disable AI during Upgrade event.
         ai_modifier = GameManager.scene.pc_manager.PcState == PCState.Upgrade &&

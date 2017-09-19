@@ -7,15 +7,15 @@ public class GameManager : MonoBehaviour
 {
     public static bool restarting_scene;
     public static TempSceneRefs scene = new TempSceneRefs();
-    public static bool cheats_enabled { get; set; }
+    public static bool cheats_enabled;
+    public static float session_start { get; private set; }
 
     [SerializeField] PlayerManager player_manager;
     [SerializeField] AudioManager audio_manager;
     [SerializeField] LoadoutFactory loadout_factory;
-    public GameObject end_game_canvas;
     [SerializeField] private bool cheats_enabled_ = false;
 
-    public static GameManager instance;
+    private static GameManager instance;
 
 
     void Awake()
@@ -57,6 +57,7 @@ public class GameManager : MonoBehaviour
     void OnLevelWasLoaded(int _level)
     {
         PlayerManager.IdleAllPlayers();
+        session_start = Time.realtimeSinceStartup;
     }
 
 }

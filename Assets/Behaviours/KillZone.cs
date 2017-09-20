@@ -17,6 +17,7 @@ public class KillZone : MonoBehaviour
             if (_other.tag == "PCUpgrade")
             {
                 GameManager.scene.pc_manager.CancelUpgradeState();
+                GameManager.scene.stat_tracker.LogFailedUpgrade();
             }
             else
             {

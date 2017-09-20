@@ -25,6 +25,7 @@ public class StatTracker : MonoBehaviour
     public LoadoutStats largest_stats = new LoadoutStats();
 
     public List<UpgradeTimestamp> upgrade_timestamps = new List<UpgradeTimestamp>();
+    public List<float> upgrade_fail_timestamps = new List<float>();
     public List<float> titan_timestamps = new List<float>();
     public List<float> meteor_timestamps = new List<float>();
 
@@ -134,6 +135,20 @@ public class StatTracker : MonoBehaviour
         if (debug_log_enabled)
         {
             Debug.Log("PC Upgraded to: " + _upgrade_name + " at " + timestamp.time.ToString());
+        }
+    }
+
+
+    public void LogFailedUpgrade()
+    {
+        float timestamp = Time.time - awake_time;
+
+        upgrade_fail_timestamps.Add(timestamp);
+
+        if (debug_log_enabled)
+        {
+            Debug.Log("Failed Upgrade at: " + timestamp.ToString() +
+                      " [Total failed Upgrades this Session: " + upgrade_fail_timestamps.Count.ToString() + "]");
         }
     }
 

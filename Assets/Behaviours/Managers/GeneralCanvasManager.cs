@@ -38,7 +38,6 @@ public class GeneralCanvasManager : MonoBehaviour
         CleanUpAbilities();
 
         var results_panel_manager = results_panel.GetComponent<ResultsPanelManager>();
-        results_panel_manager.UpdateSessionTimer();
         results_panel.SetActive(true);
 
         yield return new WaitUntil(() => !results_panel_manager.enabled);

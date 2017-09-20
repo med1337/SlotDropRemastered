@@ -12,7 +12,6 @@ public class ProjectileBarrelBomb : Projectile
     public float stun_duration;
     public float throw_force = 10.0f;
     public float fuse_time = 3f;
-    public float barrel_torque = 5;
 
 
     void Start()
@@ -23,7 +22,6 @@ public class ProjectileBarrelBomb : Projectile
         obj.transform.Rotate(0, 90, 0);
 
         Barrel bomb = obj.GetComponent<Barrel>();
-
         ConfigureBomb(bomb);
         
         bomb.AddForce(facing * (throw_force * 1000));

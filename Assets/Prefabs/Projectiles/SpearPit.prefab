@@ -1221,7 +1221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e301ab120796754b8b003428bf71a31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 12
   cooldown: 1.5
   lifetime: 2
   activation_sound: {fileID: 8300000, guid: f0581c22b72251448b85b023f7c18493, type: 3}

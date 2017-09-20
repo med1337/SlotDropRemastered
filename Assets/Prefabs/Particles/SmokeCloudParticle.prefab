@@ -125,7 +125,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1235148017
+  randomSeed: 1574687836
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -457,7 +457,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 1
-    maxNumParticles: 30
+    maxNumParticles: 35
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -509,7 +509,7 @@ ParticleSystem:
     boxY: 1
     boxZ: 1
     radius:
-      value: 6
+      value: 7
       mode: 0
       spread: 0
       speed:
@@ -611,7 +611,7 @@ ParticleSystem:
     serializedVersion: 4
     rateOverTime:
       minMaxState: 0
-      scalar: 125
+      scalar: 150
       maxCurve:
         serializedVersion: 2
         m_Curve:

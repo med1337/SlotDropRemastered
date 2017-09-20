@@ -51,13 +51,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ab6bdba4dc76a845aecee29e8dda748, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 17
-  cooldown: 2
+  damage: 22
+  cooldown: 2.5
   lifetime: 1
   activation_sound: {fileID: 8300000, guid: 483fb762858754d4f90a21cfbbbb529b, type: 3}
   hit_sound: {fileID: 0}
   particle_prefab: {fileID: 1008735952366906, guid: 9519603f1c602594e8421bf14f8ad76c,
     type: 2}
-  effect_radius: 7
+  effect_radius: 8
   lift_force: 5
   stun_duration: 0.5

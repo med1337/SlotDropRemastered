@@ -229,7 +229,6 @@ public class PcManager : MonoBehaviour
         Color prev_color = dir_light.color;
         dir_light.color = new Color(0.5f, 0.5f, 0);
 
-        //GameManager.scene.slot_manager.enabled = false;
         AudioManager.PlayOneShot("alarm");
 
         float focus_duration = 0.5f;
@@ -244,11 +243,12 @@ public class PcManager : MonoBehaviour
         yield return new WaitUntil(() => !GameManager.scene.respawn_manager.titan_exists);
 
         dir_light.color = prev_color;
-        //GameManager.scene.slot_manager.enabled = true;
 
         TitanScreenX.gameObject.SetActive(false);
         PcState = PCState.None;
         _osState = OSState.Running;
+
+        BarBuffer();
     }
 
 
@@ -327,11 +327,24 @@ public class PcManager : MonoBehaviour
         //reinitialise timer
         _rebootTimer = -LoadDelay;
 
+        //prevent ticking cataclysm events from triggering too close to one another.
+        BarBuffer();
+
         //update pc state and enable pc health scanner
         _osState = OSState.Running;
         PcState = PCState.None;
         GameManager.scene.slot_manager.enabled = true;
         transform.GetChild(0).gameObject.SetActive(true);
+    }
+
+
+    void BarBuffer()
+    {
+        if (ProtectionSlider.value <= 25)
+            ProtectionSlider.value = 25;
+
+        if (TemperatureSlider.value >= 100 - TemperatureStep)
+            TemperatureSlider.value = 100 - TemperatureStep;
     }
 
     private void ProcessReboot()

@@ -22,9 +22,9 @@ public class ProjectileSmokeCloud : Projectile
             USBCharacter character = hit.collider.GetComponent<USBCharacter>();
 
             if (character == null || character == owner)
-                continue;;
+                continue;
 
-            character.Damage(damage);
+            character.Damage(damage, owner);
             character.Stun(stun_duration);
 
             character.rigid_body.AddForce(new Vector3(0, lift_force * 1000, 0));

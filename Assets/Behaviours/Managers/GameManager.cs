@@ -44,9 +44,6 @@ public class GameManager : MonoBehaviour
     {
         min_ai = Mathf.Clamp(min_ai, 0, MAX_AI);
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-            Application.Quit();
-
         if (Input.GetKeyDown(KeyCode.C))
         {
             cheats_enabled = !cheats_enabled;

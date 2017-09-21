@@ -18,6 +18,7 @@ public class ConnectedPlayer
     public PlayerState state = PlayerState.WAITING;
     public USBCharacter character;
     public Color color;
+    public bool in_menu;
 
     private const float TIME_TO_IDLE = 20;
     private float idle_timer;
@@ -31,14 +32,16 @@ public class ConnectedPlayer
         HandleDropIn();
         HandleIdle();
 
+        MenuControl();
+
         ControlCharacter();
         DebugCheats();
-}
+    }
 
 
     void HandleDropIn()
     {
-		if (input.GetButtonDown("DropIn"))
+		if (input.GetButtonDown("DropIn") && !in_menu)
         {
             if (state == PlayerState.WAITING)
             {
@@ -69,14 +72,42 @@ public class ConnectedPlayer
     }
 
 
+    void MenuControl()
+    {
+        if (input.GetButtonDown("Back"))
+        {
+            var debug_panel_manager = GameManager.scene.general_canvas_manager.debug_panel_manager;
+            if (debug_panel_manager == null)
+                return;
+
+            if (in_menu)
+            {
+                debug_panel_manager.Deactivate();
+            }
+            else if (!debug_panel_manager.gameObject.activeSelf)
+            {
+                debug_panel_manager.Activate(this);
+                in_menu = true;
+            }
+        }
+    }
+
+
     void ControlCharacter()
     {
         horizontal = input.GetAxis("Horizontal");
         vertical = input.GetAxis("Vertical");
 
-        if (horizontal != 0 || vertical != 0)
+        if (horizontal != 0 || vertical != 0 || input.GetAnyButton())
             idle_timer = 0;
 
+        if (!in_menu)
+            CharacterControl();
+    }
+
+
+    void CharacterControl()
+    {
         if (character != null)
         {
             character.SetFaceLocked(input.GetButton("FaceLock"));

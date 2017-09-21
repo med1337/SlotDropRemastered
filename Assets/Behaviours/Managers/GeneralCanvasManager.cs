@@ -9,6 +9,7 @@ public class GeneralCanvasManager : MonoBehaviour
     public GameObject title_panel;
     public GameObject players_needed_prompt;
     public GameObject results_panel;
+    public DebugPanelManager debug_panel_manager;
     public Text cheats_prompt;
 
     [SerializeField] float time_before_title = 3;
@@ -71,9 +72,23 @@ public class GeneralCanvasManager : MonoBehaviour
     }
 
 
-	
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (!debug_panel_manager.gameObject.activeSelf)
+            {
+                debug_panel_manager.Activate();
+            }
+            else
+            {
+                debug_panel_manager.Deactivate();
+            }
+        }
+
+        if (debug_panel_manager.gameObject.activeSelf && GameManager.restarting_scene)
+            debug_panel_manager.Deactivate();
+
         bool players_needed = GameManager.scene.respawn_manager.MorePlayersNeeded() && !GameManager.restarting_scene;
         players_needed_prompt.SetActive(players_needed);
     }

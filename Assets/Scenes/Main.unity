@@ -919,9 +919,20 @@ Prefab:
       propertyPath: pc_explosion
       value: 
       objectReference: {fileID: 775064665}
+    - target: {fileID: 114117208881949624, guid: 582c3c919c0f19a438e92f3ff361c79e,
+        type: 2}
+      propertyPath: debug_panel_manager
+      value: 
+      objectReference: {fileID: 61500698}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 582c3c919c0f19a438e92f3ff361c79e, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &61500698 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114190097980047454, guid: 582c3c919c0f19a438e92f3ff361c79e,
+    type: 2}
+  m_PrefabInternal: {fileID: 61500697}
+  m_Script: {fileID: 11500000, guid: 3aa2172830fe73e47ab0066b0607e906, type: 3}
 --- !u!1 &70965828
 GameObject:
   m_ObjectHideFlags: 0

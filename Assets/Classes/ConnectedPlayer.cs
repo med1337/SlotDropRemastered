@@ -32,7 +32,7 @@ public class ConnectedPlayer
         HandleDropIn();
         HandleIdle();
 
-        MenuControl();
+        //MenuControl();
 
         ControlCharacter();
         DebugCheats();

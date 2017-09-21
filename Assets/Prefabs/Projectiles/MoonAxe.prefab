@@ -266,7 +266,7 @@ MonoBehaviour:
   num_bounces: 2
   bounce_radius: 30
   bounce_damage_reduction_factor: 0.2
-  billboard: 0
+  use_facing_rotation: 1
 --- !u!135 &135468515552426428
 SphereCollider:
   m_ObjectHideFlags: 1

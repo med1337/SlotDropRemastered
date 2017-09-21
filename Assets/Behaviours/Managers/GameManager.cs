@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.C))
         {
             cheats_enabled = !cheats_enabled;
+            AudioManager.PlayOneShot("wink");
 
             if (scene.general_canvas_manager != null)
                 scene.general_canvas_manager.FlashCheatsPrompt(1);

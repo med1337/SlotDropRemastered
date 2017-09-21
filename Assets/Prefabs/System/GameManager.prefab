@@ -224,6 +224,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 548c88fa0002d5f48ab2a630e1543e58, type: 3}
   - {fileID: 8300000, guid: aab95b50e1730404a80fe347429055cc, type: 3}
   - {fileID: 8300000, guid: db21683f55970b048b48841bc1b8b1d8, type: 3}
+  - {fileID: 8300000, guid: a3759c9efd45fba41be36669fe2907e4, type: 3}
 --- !u!114 &114151758384894362
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1239,4 +1240,3 @@ MonoBehaviour:
   player_manager: {fileID: 114151758384894362}
   audio_manager: {fileID: 114022213767662548}
   loadout_factory: {fileID: 114154708499624756}
-  cheats_enabled_: 1

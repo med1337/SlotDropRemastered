@@ -103,6 +103,12 @@ public class FadableGraphic : MonoBehaviour
     }
 
 
+    public void CancelFade()
+    {
+        fading = false;
+    }
+
+
     public void Init()
     {
         // Detect what sort of graphic we are.

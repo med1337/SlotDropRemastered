@@ -1,6 +1,14 @@
 ﻿using UnityEngine;
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
+using LitJson;
+
+public class AudioSettings
+{
+    public double music_volume;
+    public double sfx_volume;
+}
 
 public class AudioManager : MonoBehaviour
 {
@@ -17,7 +25,6 @@ public class AudioManager : MonoBehaviour
 
     private AudioSource music_source;
     private AudioSource sfx_source;
-
     private AudioClip last_clip_played;
 
 
@@ -74,6 +81,8 @@ public class AudioManager : MonoBehaviour
         music_source = audio_parent.AddComponent<AudioSource>();
         sfx_source = audio_parent.AddComponent<AudioSource>();
 
+        ReadJSONSettings();
+
         if (music != null)
         {
             music_source.clip = music;
@@ -81,6 +90,32 @@ public class AudioManager : MonoBehaviour
 
             music_source.Play();
         }
+    }
+
+
+    void ReadJSONSettings()
+    {
+        AudioSettings settings = new AudioSettings();
+
+        if (File.Exists(Application.streamingAssetsPath + "/settings.json"))
+        {
+            // Load existing settings file.
+            JsonData settings_json = JsonMapper.ToObject(File.ReadAllText(Application.streamingAssetsPath + "/settings.json"));
+
+            settings.music_volume = double.Parse(settings_json["music_volume"].ToString());
+            settings.sfx_volume = double.Parse(settings_json["sfx_volume"].ToString());
+        }
+        else
+        {
+            // Generate a new settings file.
+            settings.music_volume = 0.25f;
+            settings.sfx_volume = 0.5f;
+
+            SaveSettings(settings);
+        }
+
+        music_volume = (float)settings.music_volume;
+        sfx_volume = (float)settings.sfx_volume;
     }
 
 
@@ -92,6 +127,24 @@ public class AudioManager : MonoBehaviour
         sfx_source.volume = sfx_volume_;
 
         last_clip_played = null;
+    }
+
+
+    void OnApplicationQuit()
+    {
+        AudioSettings settings = new AudioSettings();
+
+        settings.music_volume = music_volume;
+        settings.sfx_volume = sfx_volume;
+
+        SaveSettings(settings);
+    }
+
+
+    void SaveSettings(AudioSettings _settings)
+    {
+        JsonData settings_json = JsonMapper.ToJson(_settings);
+        File.WriteAllText(Application.streamingAssetsPath + "/settings.json", settings_json.ToString());
     }
 
 }

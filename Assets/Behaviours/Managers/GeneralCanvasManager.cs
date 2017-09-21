@@ -42,8 +42,10 @@ public class GeneralCanvasManager : MonoBehaviour
         GameManager.scene.focus_camera.Focus(pc_explosion.transform.position, explosion_zoom, time_before_title + time_before_results, false);
 
         yield return new WaitForSecondsRealtime(time_before_explosion_trigger);
+        GameManager.scene.focus_camera.Focus(pc_explosion.transform.position, explosion_zoom * 1.25f, Mathf.Infinity, false);
         pc_explosion.SetActive(true);
         AudioManager.PlayOneShot("large_explosion");
+        CameraShake.Shake(1.0f, 1.0f);
 
         yield return new WaitForSecondsRealtime(time_before_title);
 

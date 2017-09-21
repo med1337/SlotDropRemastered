@@ -231,11 +231,9 @@ public class PcManager : MonoBehaviour
 
         AudioManager.PlayOneShot("alarm");
 
-        float focus_duration = 0.5f;
         Time.timeScale = 0.5f;
-        GameManager.scene.focus_camera.Focus(_character.body_group.transform.position, 15, focus_duration, false);
 
-        yield return new WaitForSeconds(focus_duration);
+        yield return new WaitForSeconds(0.5f);
 
         Time.timeScale = 1;
         GameManager.scene.slot_manager.ActivateTitanSlots();

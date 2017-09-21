@@ -311,6 +311,7 @@ public class USBCharacter : MonoBehaviour
             return;
         }
 
+        GameManager.scene.focus_camera.Focus(body_group.transform.position, 15, 0.25f, false);
         GameManager.scene.stat_tracker.LogTitanAchieved();
         AudioManager.PlayOneShot("titan_trigger");
 

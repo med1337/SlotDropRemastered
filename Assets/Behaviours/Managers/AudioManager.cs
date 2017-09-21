@@ -86,6 +86,8 @@ public class AudioManager : MonoBehaviour
 
     void Update()
     {
+        audio_clips.RemoveAll(elem => elem == null);
+
         music_source.volume = music_volume_;
         sfx_source.volume = sfx_volume_;
 

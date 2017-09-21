@@ -146,7 +146,7 @@ public class DebugPanelManager : MonoBehaviour
         ++selected_index;
 
         if (selected_index >= menu_options.Count)
-            selected_index = 0;
+            selected_index = menu_options.Count - 1;
 
         menu_options[selected_index].Select();
     }
@@ -158,7 +158,7 @@ public class DebugPanelManager : MonoBehaviour
         --selected_index;
 
         if (selected_index < 0)
-            selected_index =  menu_options.Count - 1;
+            selected_index = 0;
 
         menu_options[selected_index].Select();
     }

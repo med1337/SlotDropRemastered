@@ -32,10 +32,7 @@ public class ConnectedPlayer
         HandleIdle();
 
         ControlCharacter();
-
-#if UNITY_EDITOR
         DebugCheats();
-#endif
 }
 
 
@@ -191,21 +188,11 @@ public class ConnectedPlayer
     {
         if (input.GetButtonDown("FaceLock"))
         {
-            var respawn_manager = GameManager.scene.respawn_manager;
-
-            if (respawn_manager == null)
-                return;
-
-            --respawn_manager.min_ai;
+            --GameManager.min_ai;
         }
         else if (input.GetButtonDown("RB"))
         {
-            var respawn_manager = GameManager.scene.respawn_manager;
-
-            if (respawn_manager == null)
-                return;
-
-            ++respawn_manager.min_ai;
+            ++GameManager.min_ai;
         }
         else if (input.GetButtonDown("SlotDrop"))
         {

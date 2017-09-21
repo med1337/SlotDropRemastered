@@ -9,12 +9,14 @@ public class GameManager : MonoBehaviour
     public static TempSceneRefs scene = new TempSceneRefs();
     public static bool cheats_enabled;
     public static float session_start { get; private set; }
+    public static int min_ai;
 
     [SerializeField] PlayerManager player_manager;
     [SerializeField] AudioManager audio_manager;
     [SerializeField] LoadoutFactory loadout_factory;
 
     private static GameManager instance;
+    private const int MAX_AI = 32;
 
 
     void Awake()
@@ -40,6 +42,8 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        min_ai = Mathf.Clamp(min_ai, 0, MAX_AI);
+
         if (Input.GetKeyDown(KeyCode.Escape))
             Application.Quit();
 

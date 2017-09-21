@@ -8,27 +8,20 @@ public class RespawnManager : MonoBehaviour
     public List<USBCharacter> alive_characters = new List<USBCharacter>();
     public bool titan_exists { get { return alive_characters.Any(elem => elem.is_titan); } }
 
-    [Range(0, MAX_AI)]
-    public int min_ai;
-
     [SerializeField] GameObject usb_character_prefab;
     [SerializeField] string starting_loadout = "Base";
     [SerializeField] bool spawn_ai_with_random_loadout = true;
-    [SerializeField] bool disable_ai_during_upgrade_event = true;
     [SerializeField] public StateMachine ai_behaviour;
     [Space]
 
     private List<USBCharacter> alive_ai = new List<USBCharacter>();
-    private const int MAX_AI = 32;
     private SpawnAreaCircle spawn_area;
-
-    private int ai_modifier;
 
 
     public bool MorePlayersNeeded()
     {
-        if ((PlayerManager.active_player_count <= 1 && min_ai == 0) ||
-            (PlayerManager.active_player_count == 0 && min_ai > 0))
+        if ((PlayerManager.active_player_count <= 1 && GameManager.min_ai == 0) ||
+            (PlayerManager.active_player_count == 0 && GameManager.min_ai > 0))
         {
             return true;
         }
@@ -49,7 +42,7 @@ public class RespawnManager : MonoBehaviour
         foreach (USBCharacter character in alive_characters)
             Destroy(character.gameObject);
 
-        min_ai = 0;
+        GameManager.min_ai = 0;
     }
 
 
@@ -73,10 +66,6 @@ public class RespawnManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.T))
             TitanAllCharacters();
 
-        // Disable AI during Upgrade event.
-        ai_modifier = GameManager.scene.pc_manager.PcState == PCState.Upgrade &&
-            disable_ai_during_upgrade_event ? -min_ai : 0;
-
         Debug();
     }
 
@@ -95,12 +84,10 @@ public class RespawnManager : MonoBehaviour
 
     void RespawnAI()
     {
-        min_ai = Mathf.Clamp(min_ai, 0, MAX_AI);
-
-        if (alive_ai.Count < min_ai + ai_modifier)
+        if (alive_ai.Count < GameManager.min_ai)
             CreateUSBAICharacter();
 
-        if (alive_ai.Count > min_ai + ai_modifier)
+        if (alive_ai.Count > GameManager.min_ai)
             Destroy(alive_ai[alive_ai.Count - 1].gameObject);
     }
 
@@ -108,10 +95,10 @@ public class RespawnManager : MonoBehaviour
     void Debug()
     {
         if (Input.GetKeyDown(KeyCode.LeftBracket))
-            --min_ai;
+            --GameManager.min_ai;
 
         if (Input.GetKeyDown(KeyCode.RightBracket))
-            ++min_ai;
+            ++GameManager.min_ai;
     }
 
 

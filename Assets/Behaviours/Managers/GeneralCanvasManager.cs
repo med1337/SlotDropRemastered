@@ -13,9 +13,11 @@ public class GeneralCanvasManager : MonoBehaviour
     public DebugPanelManager debug_panel_manager;
     public Text cheats_prompt;
 
+    [SerializeField] float time_before_explosion_focus = 0.1f;
     [SerializeField] float time_before_title = 3;
+    [SerializeField] float time_before_explosion_trigger = 2.5f;
     [SerializeField] float time_before_results = 3;
-    [SerializeField] float explosion_zoom = 5;
+    [SerializeField] float explosion_zoom = 20;
 
 
     public void FlashCheatsPrompt(float _duration)
@@ -36,9 +38,12 @@ public class GeneralCanvasManager : MonoBehaviour
         Time.timeScale = 0.3f;
         GameManager.restarting_scene = true;
 
+        yield return new WaitForSecondsRealtime(time_before_explosion_focus);
+        GameManager.scene.focus_camera.Focus(pc_explosion.transform.position, explosion_zoom, time_before_title + time_before_results, false);
+
+        yield return new WaitForSecondsRealtime(time_before_explosion_trigger);
         pc_explosion.SetActive(true);
         AudioManager.PlayOneShot("large_explosion");
-        GameManager.scene.focus_camera.Focus(pc_explosion.transform.position, explosion_zoom, time_before_title + time_before_results, false);
 
         yield return new WaitForSecondsRealtime(time_before_title);
 
@@ -78,7 +83,7 @@ public class GeneralCanvasManager : MonoBehaviour
     }
 
 
-	
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))

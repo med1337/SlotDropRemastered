@@ -9,10 +9,12 @@ public class GeneralCanvasManager : MonoBehaviour
     public GameObject title_panel;
     public GameObject players_needed_prompt;
     public GameObject results_panel;
+    public GameObject pc_explosion;
     public Text cheats_prompt;
 
     [SerializeField] float time_before_title = 3;
     [SerializeField] float time_before_results = 3;
+    [SerializeField] float explosion_zoom = 5;
 
 
     public void FlashCheatsPrompt(float _duration)
@@ -32,6 +34,10 @@ public class GeneralCanvasManager : MonoBehaviour
     {
         Time.timeScale = 0.3f;
         GameManager.restarting_scene = true;
+
+        pc_explosion.SetActive(true);
+        AudioManager.PlayOneShot("large_explosion");
+        GameManager.scene.focus_camera.Focus(pc_explosion.transform.position, explosion_zoom, time_before_title + time_before_results, false);
 
         yield return new WaitForSecondsRealtime(time_before_title);
 

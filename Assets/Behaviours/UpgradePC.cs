@@ -151,10 +151,12 @@ public class UpgradePC : MonoBehaviour
     {
         upgrading = false;
         OpenUpgradeSlot(false);
-        pc_manager.UpgradeOs();
 
-        if (pc_manager)
-            pc_manager.ResetProtectionBarToMax();
+        if (pc_manager == null)
+            return;
+
+        pc_manager.UpgradeOs();
+        pc_manager.ResetProtectionBarToMax();
     }
 
 

@@ -35,7 +35,10 @@ public class TitanScreen : MonoBehaviour
 
                 hum_source.pitch = 1 + ((PointSlider.value / PointSlider.maxValue) * 2);
 
-                PointSlider.value+=2;
+                int adjustment = Random.Range(1, 3);
+                PointSlider.value += adjustment;
+
+                PointSlider.value = Mathf.Clamp(PointSlider.value, 0, _scoreTarget);
             }
             else
             {

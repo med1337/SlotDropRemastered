@@ -18,6 +18,10 @@ public class KillZone : MonoBehaviour
             {
                 GameManager.scene.pc_manager.CancelUpgradeState();
                 GameManager.scene.stat_tracker.LogFailedUpgrade();
+
+                var colliders = _other.GetComponents<Collider>();
+                foreach (Collider c in colliders)
+                    Destroy(c);
             }
             else
             {

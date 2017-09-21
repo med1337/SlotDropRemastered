@@ -258,6 +258,7 @@ public class USBCharacter : MonoBehaviour
     {
         body_renderer.material.color = _color;
         face_indicator.GetComponent<SpriteRenderer>().material.color = _color;
+        character_indicator.GetComponentInChildren<SpriteRenderer>().color = _color;
     }
 
 

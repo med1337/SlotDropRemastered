@@ -101,6 +101,8 @@ public class ProjectileCoinGrab : Projectile
                 owner.stats.target_score += score_steal;
                 _character.stats.target_score -= score_steal;
 
+                GameManager.scene.stat_tracker.LogScoreIncrease(owner.loadout_name, score_steal);
+
                 SpawnCoin();
             }
         }

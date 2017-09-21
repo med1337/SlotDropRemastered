@@ -553,13 +553,8 @@ public class USBCharacter : MonoBehaviour
         }
 
         special_ability.Activate();
-    }
 
-
-    void SlotDropDone()
-    {
-        slot_dropping = false;
-
+        // TEST!
         if (last_slot_hit != null)
         {
             if (!last_slot_hit.slottable ||
@@ -579,6 +574,12 @@ public class USBCharacter : MonoBehaviour
         }
 
         last_slot_hit = null;
+    }
+
+
+    void SlotDropDone()
+    {
+        slot_dropping = false;
     }
 
 

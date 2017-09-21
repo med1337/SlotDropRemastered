@@ -15,10 +15,13 @@ public class ProjectileSmokeCloud : Projectile
         CreateEffect(particle_prefab, origin, Vector3.zero);
         CameraShake.Shake(0.3f, 0.3f);
 
-        var hits = Physics.SphereCastAll(origin, effect_radius, Vector3.down, 0, 1 << LayerMask.NameToLayer("Player"));
+        var hits = Physics.SphereCastAll(origin, effect_radius, Vector3.down, 0, ~LayerMask.NameToLayer("Projectile"));
 
         foreach (var hit in hits)
         {
+            if (hit.rigidbody != null)
+                hit.rigidbody.AddForce(new Vector3(0, lift_force * 1000, 0));
+
             USBCharacter character = hit.collider.GetComponent<USBCharacter>();
 
             if (character == null || character == owner)
@@ -26,8 +29,6 @@ public class ProjectileSmokeCloud : Projectile
 
             character.Damage(damage, owner);
             character.Stun(stun_duration);
-
-            character.rigid_body.AddForce(new Vector3(0, lift_force * 1000, 0));
         }
 
         Destroy(this.gameObject);

@@ -909,6 +909,11 @@ Prefab:
       propertyPath: upgrade_slot_indicator
       value: 
       objectReference: {fileID: 2077649783}
+    - target: {fileID: 114063264718031560, guid: 582c3c919c0f19a438e92f3ff361c79e,
+        type: 2}
+      propertyPath: min_ai
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 582c3c919c0f19a438e92f3ff361c79e, type: 2}
   m_IsPrefabParent: 0
@@ -1488,7 +1493,7 @@ GameObject:
   - component: {fileID: 262890222}
   - component: {fileID: 262890221}
   - component: {fileID: 262890220}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}

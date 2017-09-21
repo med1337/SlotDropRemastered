@@ -55,12 +55,11 @@ public class MenuOption : MonoBehaviour
 
     public void Deselect()
     {
-        bg.color = deselect_color;
-
         if (fade == null)
             Start();
 
-        fade.FadeTo(deselect_color, 0);
+        fade.CancelFade();
+        bg.color = deselect_color;
     }
 
 

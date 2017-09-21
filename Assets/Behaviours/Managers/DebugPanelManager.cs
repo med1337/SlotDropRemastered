@@ -17,6 +17,8 @@ public class DebugPanelManager : MonoBehaviour
     {
         this.gameObject.SetActive(true);
         controlling_player = _activating_player;
+
+        SelectFirst();
     }
 
 
@@ -37,13 +39,15 @@ public class DebugPanelManager : MonoBehaviour
             else if (option.option_type == MenuOptionType.SFX_VOLUME)
                 option.value = AudioManager.sfx_volume;
         }
-
-        Invoke("SelectFirst", 0.05f);
     }
 
 
     void SelectFirst()
     {
+        foreach (MenuOption option in menu_options)
+            option.Deselect();
+
+        selected_index = 0;
         menu_options[0].Select();
     }
 

@@ -269,7 +269,11 @@ public class USBCharacter : MonoBehaviour
 
     public void AssignLoadout(USBLoadout _loadout, bool _heal = true)
     {
-        // TODO: remove previous particle effect ..
+        Flash(Color.yellow);
+        AudioManager.PlayOneShot("new_data");
+
+        Projectile.CreateEffect(LoadoutFactory.instance.download_data_prefab,
+            this.transform.position, Vector3.zero);
 
         loadout = _loadout;
 

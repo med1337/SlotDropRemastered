@@ -6,7 +6,7 @@ public class ProjectileCoinGrab : Projectile
 {
     [SerializeField] float charge_force = 10;
     [SerializeField] float hit_force = 5;
-    [SerializeField] float life_steal = 0.25f;
+    [SerializeField] int score_steal = 1;
     [SerializeField] Vector3 particle_offset = new Vector3(0, 0.1f, 0);
     [SerializeField] Vector3 coin_offset = new Vector3(0, 5, 0);
 
@@ -78,7 +78,6 @@ public class ProjectileCoinGrab : Projectile
             return;
 
         HitCharacter(character);
-        SpawnCoin();
     }
 
 
@@ -96,7 +95,14 @@ public class ProjectileCoinGrab : Projectile
         {
             owner.rigid_body.velocity = Vector3.zero;
             owner.rigid_body.AddForce(-diff * (hit_force / 2) * 1000);
-            owner.Heal(Mathf.RoundToInt(damage * life_steal));
+
+            if (_character.stats.target_score >= score_steal)
+            {
+                owner.stats.target_score += score_steal;
+                _character.stats.target_score -= score_steal;
+
+                SpawnCoin();
+            }
         }
 
         _character.Damage(damage, this.transform.position, owner);
@@ -108,9 +114,6 @@ public class ProjectileCoinGrab : Projectile
 
     void SpawnCoin()
     {
-        if (owner == null)
-            return;
-
         AudioManager.PlayOneShot(coin_get);
 
         var coin_clone = Instantiate(coin_prefab, owner.body_group.transform.position, Quaternion.identity);

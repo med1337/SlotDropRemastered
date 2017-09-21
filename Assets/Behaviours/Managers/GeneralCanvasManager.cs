@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GeneralCanvasManager : MonoBehaviour
@@ -8,9 +9,17 @@ public class GeneralCanvasManager : MonoBehaviour
     public GameObject title_panel;
     public GameObject players_needed_prompt;
     public GameObject results_panel;
+    public Text cheats_prompt;
 
     [SerializeField] float time_before_title = 3;
     [SerializeField] float time_before_results = 3;
+
+
+    public void FlashCheatsPrompt(float _duration)
+    {
+        cheats_prompt.text = "Cheats " + (GameManager.cheats_enabled ? "Enabled" : "Disabled");
+        cheats_prompt.GetComponent<FadableGraphic>().FadeOut(_duration);
+    }
 
 
     public void TriggerEndOfRound()

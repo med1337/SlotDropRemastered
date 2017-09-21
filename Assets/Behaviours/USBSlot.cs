@@ -62,26 +62,13 @@ public class USBSlot : MonoBehaviour
 
         if (_character.is_titan && golden_slot)
         {
-            _character.Flash(Color.yellow);
-            AudioManager.PlayOneShot("new_data");
-
-            Projectile.CreateEffect(LoadoutFactory.instance.download_data_prefab,
-                _character.transform.position, Vector3.zero);
-            
             GameManager.scene.pc_manager.DepositScore(_character.stats.target_score);
             _character.stats.target_score = 0;
         }
         else
         {
             GameManager.scene.stat_tracker.LogScoreDeposited(_character.loadout_name, _character.stats.target_score);
-
             LoadoutFactory.AssignRandomLoadout(_character);
-            _character.Flash(Color.yellow);
-
-            AudioManager.PlayOneShot("new_data");
-            Projectile.CreateEffect(LoadoutFactory.instance.download_data_prefab,
-                _character.transform.position, Vector3.zero);
-
             GameManager.scene.pc_manager.AttemptQuarantine(_character);
         }
 

@@ -171,6 +171,9 @@ public class ConnectedPlayer
 
         if (input.GetButtonDown("B"))
             LoadoutFactory.AssignLoadout(character, "Thief");
+
+        if (input.GetButtonDown("SlotDrop"))
+            character.BecomeTitan();
     }
 
     //put any stat related cheats here

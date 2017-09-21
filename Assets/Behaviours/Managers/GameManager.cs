@@ -13,7 +13,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] PlayerManager player_manager;
     [SerializeField] AudioManager audio_manager;
     [SerializeField] LoadoutFactory loadout_factory;
-    [SerializeField] private bool cheats_enabled_ = false;
 
     private static GameManager instance;
 
@@ -44,13 +43,19 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
             Application.Quit();
 
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            cheats_enabled = !cheats_enabled;
+
+            if (scene.general_canvas_manager != null)
+                scene.general_canvas_manager.FlashCheatsPrompt(1);
+        }
+
         if (Input.GetKeyDown(KeyCode.R))
         {
             AudioManager.StopAllSFX();
             SceneManager.LoadScene(0);
         }
-
-        cheats_enabled = cheats_enabled_;
     }
 
 
@@ -58,6 +63,7 @@ public class GameManager : MonoBehaviour
     {
         PlayerManager.IdleAllPlayers();
         session_start = Time.realtimeSinceStartup;
+        cheats_enabled = false;
     }
 
 }

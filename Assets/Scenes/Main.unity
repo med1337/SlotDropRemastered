@@ -3664,6 +3664,21 @@ Prefab:
       propertyPath: _userData.keyboardMaps.Array.data[0].actionElementMaps.Array.data[5]._keyboardKeyCode
       value: 109
       objectReference: {fileID: 0}
+    - target: {fileID: 114848044667365770, guid: a396d2489cc5d4140accda6bf0a8a329,
+        type: 2}
+      propertyPath: _userData.configVars.alwaysUseUnityInput
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114848044667365770, guid: a396d2489cc5d4140accda6bf0a8a329,
+        type: 2}
+      propertyPath: _userData.configVars.windowsStandalonePrimaryInputSource
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114848044667365770, guid: a396d2489cc5d4140accda6bf0a8a329,
+        type: 2}
+      propertyPath: _userData.configVars.useXInput
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a396d2489cc5d4140accda6bf0a8a329, type: 2}
   m_IsPrefabParent: 0

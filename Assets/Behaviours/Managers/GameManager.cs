@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 {
     public static bool restarting_scene;
     public static TempSceneRefs scene = new TempSceneRefs();
-    public static bool cheats_enabled;
+    public static bool cheats_enabled = true;
     public static float session_start { get; private set; }
     public static int min_ai;
     public static GameSettings settings = new GameSettings();
@@ -94,7 +94,6 @@ public class GameManager : MonoBehaviour
     {
         PlayerManager.IdleAllPlayers();
         session_start = Time.realtimeSinceStartup;
-        cheats_enabled = false;
         min_ai = settings.starting_ai;
     }
 

@@ -479,7 +479,7 @@ public class USBCharacter : MonoBehaviour
     {
         if (!slot_dropping)
         {
-            Vector3 move = move_dir * movement_calculator.CalculateMoveSpeed() * Time.fixedDeltaTime;
+            Vector3 move = move_dir * movement_calculator.CalculateMoveSpeed() * Time.deltaTime;
             rigid_body.MovePosition(transform.position + move);
 
             move_dir = Vector3.zero;

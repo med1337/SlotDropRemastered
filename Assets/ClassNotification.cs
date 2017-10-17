@@ -57,19 +57,19 @@ public class ClassNotification : MonoBehaviour
                 Line1Text.text = "Warning";
                 Line2Text.text = "Illegal software detected";
                 Line3Text.text = "Detected";
-                ActionText.text = "Calling the police";
+                ActionText.text = "Calling the police...";
                 break;
             case "Egyptian":
                 Line1Text.text = "Warning";
                 Line2Text.text = "Legacy software";
                 Line3Text.text = "Detected";
-                ActionText.text = "Updating...";
+                ActionText.text = "Updating old software...";
                 break;
             case "Logger":
                 Line1Text.text = "Warning";
                 Line2Text.text = "Keylogger";
                 Line3Text.text = "Detected";
-                ActionText.text = "Attempting quarantine...";
+                ActionText.text = "Removing malware...";
                 break;
             case "Thief":
                 Line1Text.text = "Warning";
@@ -81,7 +81,7 @@ public class ClassNotification : MonoBehaviour
                 Line1Text.text = "Warning";
                 Line2Text.text = "Phishing attack";
                 Line3Text.text = "Detected";
-                ActionText.text = "Transfering bitcoins...";
+                ActionText.text = "Marking as junk...";
                 break;
         }
     }

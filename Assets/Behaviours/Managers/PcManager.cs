@@ -612,12 +612,6 @@ public class PcManager : MonoBehaviour
     {
         if (_osState != OSState.Running || PcState != PCState.None) return;
 
-        if (SystemCurrentOs == CurrentOS.Ten)
-        {
-            IncreaseTemperature();
-            return;
-        }
-
         //activate quarantine popup and make sure it is on top
         QuarantineGameObject.gameObject.SetActive(true);
         QuarantineGameObject.transform.SetAsLastSibling();
@@ -684,27 +678,27 @@ public class PcManager : MonoBehaviour
         switch (SystemCurrentOs)
         {
             case CurrentOS.XP:
-                TemperatureStep = 25;
-                ProtectionUpdateStep = 0.5f;
-                minimum_failure_chance = 50f;
-                break;
-            case CurrentOS.Vista:
-                TemperatureStep = 25;
+                TemperatureStep = 20;
                 ProtectionUpdateStep = 0.4f;
-                minimum_failure_chance = 40f;
-                break;
-            case CurrentOS.Seven:
-                TemperatureStep = 25;
-                ProtectionUpdateStep = 0.3f;
                 minimum_failure_chance = 30f;
                 break;
-            case CurrentOS.Eight:
-                TemperatureStep = 25;
+            case CurrentOS.Vista:
+                TemperatureStep = 20;
+                ProtectionUpdateStep = 0.3f;
+                minimum_failure_chance = 25f;
+                break;
+            case CurrentOS.Seven:
+                TemperatureStep = 20;
                 ProtectionUpdateStep = 0.2f;
                 minimum_failure_chance = 20f;
                 break;
+            case CurrentOS.Eight:
+                TemperatureStep = 20;
+                ProtectionUpdateStep = 0.1f;
+                minimum_failure_chance = 15f;
+                break;
             case CurrentOS.Ten:
-                TemperatureStep = 25;
+                TemperatureStep = 20;
                 ProtectionUpdateStep = 0;
                 minimum_failure_chance = 10f;
                 break;

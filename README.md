@@ -1,4 +1,4 @@
-![front](https://tomturnerblog.files.wordpress.com/2017/06/slot_drop_front_image.png)
+![front](https://tomturnerblog.files.wordpress.com/2017/06/slot_drop_press_image_001.png)
 # Slot Drop 
 Winning game of Cyber Security Game Jam 2017. 
 

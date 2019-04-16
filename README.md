@@ -1,5 +1,8 @@
+![front](https://tomturnerblog.files.wordpress.com/2017/06/slot_drop_front_image.png)
 # Slot Drop 
 Winning game of Cyber Security Game Jam 2017. 
+
+**Gameplay video:** https://www.youtube.com/watch?v=sbF0BEep8rw
 
 ## Team
 ### Leszek Bagnucki 
